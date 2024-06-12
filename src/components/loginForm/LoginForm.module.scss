@@ -1,0 +1,100 @@
+@import "../../styles/variables";
+@import "../../styles/breakpoints";
+
+.loginForm {
+  width: 100%;
+  @include mq(xs) {
+    width: auto;
+  }
+  &Content {
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 10px;
+    padding: 50px 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+
+    @include mq(xs) {
+      width: 370px;
+    }
+  }
+}
+
+.hello {
+  color: $primary-main;
+  font-size: 28px;
+  font-weight: 500;
+}
+
+.slogan {
+  font-size: 14px;
+  margin-top: 2px;
+  color: $text-primary;
+}
+
+.form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  & label {
+    margin-top: 20px;
+  }
+  & input {
+    margin-top: 5px;
+    border: 1px solid $text-secondary;
+    font-size: 16px;
+    outline: none;
+    padding: 10px;
+    border-radius: 25px;
+    &:focus {
+      border: 1px solid $primary-main;
+    }
+    &::-webkit-input-placeholder {
+      color: $text-secondary;
+    }
+    &::-moz-placeholder {
+      color: $text-secondary;
+    }
+    &:-ms-input-placeholder {
+      color: $text-secondary;
+    }
+    &::-ms-input-placeholder {
+      color: $text-secondary;
+    }
+    &::placeholder {
+      color: $text-secondary;
+    }
+  }
+  & button[type="submit"] {
+    cursor: pointer;
+    background-color: $primary-main;
+    color: #fff;
+    transition: all 0.3s linear;
+    padding: 10px;
+    margin-top: 20px;
+    border-radius: 20px;
+    &:hover {
+      background-color: $primary-main-hover;
+    }
+  }
+}
+.forgotPassword {
+  margin-top: 10px;
+  cursor: pointer;
+  color: $text-primary;
+  background: none;
+  display: inline-block;
+  align-self: flex-start;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.error {
+  margin-top: 3px;
+  color: $error-main;
+  font-size: 14px;
+}

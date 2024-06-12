@@ -1,0 +1,75 @@
+@import "../../styles/variables";
+
+.circles-wrapper {
+  width: 200px;
+  height: 200px;
+}
+
+.circle {
+  border: 2px solid $primary-main;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  position: relative;
+}
+
+.circle::before {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #fff;
+  top: -6px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 6px $primary-main;
+}
+
+.circle-lg {
+  width: 200px;
+  height: 200px;
+  -webkit-animation: rotateCircles 3.1s linear infinite;
+  animation: rotateCircles 3.1s linear infinite;
+}
+
+.circle-md {
+  width: 150px;
+  height: 150px;
+  -webkit-animation: rotateCircles 3s linear infinite;
+  animation: rotateCircles 3s linear infinite;
+}
+
+.circle-md::before {
+  width: 10px;
+  height: 10px;
+}
+
+.circle-sm {
+  width: 100px;
+  height: 100px;
+  -webkit-animation: rotateCircles 2.5s linear infinite;
+  animation: rotateCircles 2.5s linear infinite;
+}
+
+.circle-sm::before {
+  width: 10px;
+  height: 10px;
+}
+
+@-webkit-keyframes rotateCircles {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateCircles {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

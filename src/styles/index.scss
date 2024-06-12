@@ -1,0 +1,21 @@
+@import "variables";
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Roboto";
+}
+
+body {
+  min-height: 100vh;
+  background: $background-default;
+}
+a {
+  text-decoration: none;
+}
+
+button {
+  outline: none;
+  border: none;
+}
