@@ -1,10 +1,11 @@
-import { useRef } from "react";
-import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 
-import useActions from "../../hooks/useActions";
+import useActions from "@/hooks/useActions";
 
-import Input from "../../ui/Input/Input";
+import Input from "@/ui/Input/Input";
+import Button from "@/ui/Button/Button";
+
+import { loginInputs } from "@/constants";
 
 import styles from "./LoginForm.module.scss";
 
@@ -12,18 +13,15 @@ const LoginForm = () => {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
-  } = useForm();
-  const formRef = useRef();
+  } = useForm({ mode: "onChange" });
   const { logIn } = useActions();
-  const navigate = useNavigate();
 
   const onSubmit = (data) => {
-    const form = formRef.current;
-    form.reset();
+    reset();
+    logIn(data);
     console.log("Form data:", data);
-    logIn();
-    navigate("/");
   };
 
   return (
@@ -31,43 +29,28 @@ const LoginForm = () => {
       <div className={styles.loginFormContent}>
         <h2 className={styles.hello}>Welcome back!</h2>
         <p className={styles.slogan}>Access your tasks securely!</p>
-        <form
-          ref={formRef}
-          className={styles.form}
-          onSubmit={handleSubmit(onSubmit)}
-        >
-          <Input
-            label="email"
-            register={register}
-            required
-            placeholder="email@gmail.com"
-            type="email"
-            autoComplete="email"
-          />
-          {errors.email && (
-            <span className={styles.error}>Email is required</span>
-          )}
-
-          <Input
-            label="password"
-            register={register}
-            required
-            placeholder="Your password"
-            type="password"
-            autoComplete="current-password"
-            minLength={4}
-          />
-          {errors.password && (
-            <span className={styles.error}>Password is required</span>
-          )}
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+          {loginInputs.map((input, index) => (
+            <div className={styles.inputWrapper} key={index}>
+              <Input {...input} register={register} />
+              {errors[input.name] && (
+                <span className={styles.error}>
+                  {errors[input.name].message}
+                </span>
+              )}
+            </div>
+          ))}
 
           <button
+            tabIndex={3}
             onClick={(e) => e.preventDefault()}
             className={styles.forgotPassword}
           >
             Forget Password?
           </button>
-          <button type="submit">Submit</button>
+          <Button className={styles.button} tabIndex={4} type="submit">
+            Submit
+          </Button>
         </form>
       </div>
     </div>

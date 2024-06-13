@@ -1,26 +1,9 @@
 import styles from "./Input.module.scss";
 
-const Input = ({
-  label,
-  register,
-  required,
-  placeholder,
-  type,
-  autoComplete,
-  minLength,
-}) => (
+const Input = ({ name, label, register, options, ...rest }) => (
   <>
-    <label style={{ marginTop: 10, textTransform: "capitalize" }}>
-      {label}
-    </label>
-    <input
-      type={type}
-      minLength={minLength}
-      placeholder={placeholder}
-      className={styles.input}
-      autoComplete={autoComplete}
-      {...register(label, { required })}
-    />
+    <label>{label}</label>
+    <input {...rest} {...register(name, options)} className={styles.input} />
   </>
 );
 

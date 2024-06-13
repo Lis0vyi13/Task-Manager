@@ -1,10 +1,9 @@
 import { useMemo } from "react";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
+import { authActions } from "../store/slices/auth.slice";
 
-import { loginActions } from "../store/slices/login.slice.js";
-
-const rootActions = { ...loginActions };
+const rootActions = { ...authActions };
 
 const useActions = () => {
   const dispatch = useDispatch();

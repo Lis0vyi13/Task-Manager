@@ -1,0 +1,16 @@
+@import "../../styles/variables";
+
+.button {
+  cursor: pointer;
+  background-color: $primary-main;
+  color: #fff;
+  transition: all 0.3s linear;
+  padding: 10px;
+  border-radius: 20px;
+  &:focus {
+    outline: 1px solid #000;
+  }
+  &:hover {
+    background-color: $primary-main-hover;
+  }
+}

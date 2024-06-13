@@ -1,0 +1,53 @@
+@import "../../styles/variables";
+@import "../../styles/breakpoints";
+
+.sidebar {
+  padding: 20px;
+  background-color: #fff;
+  height: 100vh;
+  @include mq(md) {
+    width: 350px;
+  }
+}
+
+.logo {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 26px;
+}
+
+.list {
+  display: flex;
+  padding-top: 40px;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+.listLink {
+  transition: all 0.2s ease-in-out;
+  border-radius: 20px;
+  padding: 10px;
+  &:hover {
+    background-color: $primary-main-light;
+    color: #fff;
+  }
+}
+
+.activeLink {
+  background-color: $primary-main;
+  color: #fff;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.icon {
+  font-size: 25px;
+}

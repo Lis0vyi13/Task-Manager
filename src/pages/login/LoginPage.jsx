@@ -1,10 +1,22 @@
-import Container from "../../components/container/Container";
-import LoginForm from "../../components/loginForm/LoginForm";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+
+import useAuth from "../../hooks/useAuth";
+
+import Container from "../../components/Container/Container";
+import LoginForm from "../../components/LoginForm/LoginForm";
+import Circle from "../../components/Circle/Circle";
 
 import styles from "./LoginPage.module.scss";
-import "./Circle.scss";
 
 const LoginPage = () => {
+  const user = useAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    user && navigate("/");
+  }, [navigate, user]);
+
   return (
     <section className="login">
       <Container>
@@ -12,13 +24,7 @@ const LoginPage = () => {
           <div className={styles.leftSide}>
             <p className={styles.slogan}>Organize your work effortlessly!</p>
             <h1 className={styles.title}>Efficient Task Management Tool</h1>
-            <div className="circles-wrapper">
-              <div className="circle circle-lg">
-                <div className="circle circle-md">
-                  <div className="circle circle-sm"></div>
-                </div>
-              </div>
-            </div>
+            <Circle />
           </div>
           <LoginForm />
         </div>
