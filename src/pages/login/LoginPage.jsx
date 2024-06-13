@@ -1,11 +1,11 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-import useAuth from "../../hooks/useAuth";
+import useAuth from "@/hooks/useAuth";
 
-import Container from "../../components/Container/Container";
-import LoginForm from "../../components/LoginForm/LoginForm";
-import Circle from "../../components/Circle/Circle";
+import Container from "@/components/Container/Container";
+import LoginForm from "@/components/LoginForm/LoginForm";
+import Circle from "@/components/Circle/Circle";
 
 import styles from "./LoginPage.module.scss";
 

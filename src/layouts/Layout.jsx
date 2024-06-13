@@ -1,7 +1,8 @@
 import { Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-import Sidebar from "../components/Sidebar/Sidebar";
+import Sidebar from "@/components/Sidebar/Sidebar";
+import Header from "@/components/Header/Header";
 
 import styles from "./Layout.module.scss";
 
@@ -13,10 +14,13 @@ const Layout = () => {
   }
 
   return (
-    <section className={styles.layout}>
+    <section className={`${styles.layout}`}>
       <Sidebar />
-      <div style={{ padding: 20 }} className="content">
-        <Outlet />
+      <div className={styles.content}>
+        <Header />
+        <div className={styles.wrapper}>
+          <Outlet />
+        </div>
       </div>
     </section>
   );

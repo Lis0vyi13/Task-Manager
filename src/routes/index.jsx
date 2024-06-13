@@ -1,12 +1,12 @@
 import { Navigate } from "react-router-dom";
 
-import DashboardPage from "../pages/DashboardPage";
-import TasksPage from "../pages/TasksPage";
-import CompletedPage from "../pages/CompletedPage";
-import InProgressPage from "../pages/InProgressPage";
-import TodoPage from "../pages/TodoPage";
-import TeamPage from "../pages/TeamPage";
-import TrashPage from "../pages/TrashPage";
+import DashboardPage from "@/pages/DashboardPage";
+import TasksPage from "@/pages/TasksPage";
+import CompletedPage from "@/pages/CompletedPage";
+import InProgressPage from "@/pages/InProgressPage";
+import TodoPage from "@/pages/TodoPage";
+import TeamPage from "@/pages/TeamPage";
+import TrashPage from "@/pages/TrashPage";
 
 const routes = [
   { index: true, element: <Navigate to={"dashboard"} /> },

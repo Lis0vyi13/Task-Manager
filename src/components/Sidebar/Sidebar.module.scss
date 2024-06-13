@@ -1,12 +1,26 @@
-@import "../../styles/variables";
-@import "../../styles/breakpoints";
+@import "@/styles/variables";
+@import "@/styles/breakpoints";
 
 .sidebar {
   padding: 20px;
   background-color: #fff;
   height: 100vh;
+  width: 270px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  transition: all 0.3s ease;
   @include mq(md) {
+    position: relative;
     width: 350px;
+  }
+}
+
+.sidebarHidden {
+  transform: translateX(-100%);
+  @include mq(md) {
+    transform: translateX(0);
   }
 }
 
@@ -14,6 +28,21 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  position: relative;
+}
+
+.closeSidebar {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 21px;
+  cursor: pointer;
+  display: block;
+
+  @include mq(md) {
+    display: none;
+  }
 }
 
 .title {
