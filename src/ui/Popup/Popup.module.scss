@@ -1,0 +1,70 @@
+@import "@/styles/breakpoints";
+
+.popup {
+  position: absolute;
+  z-index: 2;
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  min-width: 200px;
+  flex-direction: column;
+  align-items: flex-start;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  -webkit-animation: popupOpenAnimation 0.2s ease-out forwards;
+  animation: popupOpenAnimation 0.2s ease-out forwards;
+  right: 0;
+  bottom: -20px;
+
+  @include mq(sm) {
+    min-width: 230px;
+  }
+}
+
+.closing {
+  -webkit-animation: popupCloseAnimation 0.2s ease-out forwards;
+  animation: popupCloseAnimation 0.2s ease-out forwards;
+}
+
+@-webkit-keyframes popupOpenAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(100%) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(100%) scale(1);
+  }
+}
+
+@keyframes popupOpenAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(100%) scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(100%) scale(1);
+  }
+}
+
+@-webkit-keyframes popupCloseAnimation {
+  0% {
+    opacity: 1;
+    transform: translateY(100%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%) scale(0.8);
+  }
+}
+
+@keyframes popupCloseAnimation {
+  0% {
+    opacity: 1;
+    transform: translateY(100%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%) scale(0.8);
+  }
+}

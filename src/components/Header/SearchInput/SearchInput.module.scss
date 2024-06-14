@@ -1,0 +1,37 @@
+@import "@/styles/variables";
+@import "@/styles/breakpoints";
+
+.search {
+  position: relative;
+  width: 100%;
+}
+.searchIcon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  font-size: 18px;
+  transform: translateY(-50%);
+}
+.searchInput {
+  width: 100%;
+  font-size: 16px;
+  padding: 10px 35px;
+  border: none;
+  outline: none;
+  background: $background-default;
+  border-radius: 20px;
+}
+
+.resetInput {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  font-size: 18px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  display: none;
+
+  @include mq(md) {
+    display: block;
+  }
+}

@@ -4,10 +4,9 @@ import { useForm } from "react-hook-form";
 import useDebounce from "@/hooks/useDebounce";
 import useActions from "@/hooks/useActions";
 
-import UserAvatar from "../UserAvatar/UserAvatar";
-
-import { CiSearch } from "react-icons/ci";
-import { IoMdClose, IoIosNotificationsOutline } from "react-icons/io";
+import UserAvatar from "./UserAvatar/UserAvatar";
+import SearchInput from "./SearchInput/SearchInput";
+import Notification from "./Notification/Notification";
 
 import styles from "./Header.module.scss";
 
@@ -32,21 +31,10 @@ const Header = () => {
         <button onClick={() => toggleSidebar()} className={styles.burger}>
           ≡
         </button>
-        <div className={styles.search}>
-          <CiSearch className={styles.searchIcon} />
-          <input
-            className={styles.searchInput}
-            {...register("searchQuery")}
-            placeholder="Search..."
-          />
-          <IoMdClose onClick={handleReset} className={styles.resetInput} />
-        </div>
+        <SearchInput register={register} handleReset={handleReset} />
       </div>
       <div className={styles.rigthSide}>
-        <div className={styles.notification}>
-          <IoIosNotificationsOutline className={styles.notificationButton} />
-          <div className={styles.notificationAmount}>2</div>
-        </div>
+        <Notification />
         <UserAvatar />
       </div>
     </header>

@@ -1,0 +1,18 @@
+@import "@/styles/variables";
+@import "@/styles/breakpoints";
+
+.avatar {
+  position: relative;
+}
+
+.button {
+  cursor: pointer;
+  background-color: $primary-main;
+  border-radius: 50%;
+  padding: 10px;
+  color: #fff;
+  font-size: 17px;
+  @include mq(sm) {
+    font-size: 20px;
+  }
+}

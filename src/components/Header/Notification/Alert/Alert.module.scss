@@ -1,0 +1,57 @@
+@import "@/styles/variables";
+@import "@/styles/breakpoints";
+
+.alert {
+  display: flex;
+  gap: 10px;
+  transition: all 0.2s ease;
+  padding: 15px 20px;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 100%;
+
+  &:hover {
+    background-color: #e4e4e4;
+    .icon {
+      color: $primary-main;
+    }
+  }
+}
+
+.title {
+  font-size: 14px;
+}
+
+.icon {
+  align-self: self-start;
+  font-size: 16px;
+  background-color: $text-secondary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px;
+  border-radius: 50%;
+}
+
+.contentTop {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.daysAgo {
+  color: $text-primary;
+  font-size: 13px;
+}
+.description {
+  margin-top: 10px;
+  text-align: left;
+  font-weight: 500;
+  font-size: 14px;
+  color: $text-gray;
+  line-clamp: 1;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}

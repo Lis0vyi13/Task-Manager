@@ -24,6 +24,7 @@ module.exports = {
       { allowConstantExport: true },
     ],
     "react/prop-types": "off",
+    "react/display-name": "off",
   },
 };
 

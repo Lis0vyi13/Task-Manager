@@ -1,0 +1,23 @@
+.popupItem {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+  gap: 10px;
+  transition: all 0.3s ease;
+  padding: 10px 20px;
+  width: 100%;
+  &:hover {
+    background-color: #e4e4e4;
+  }
+}
+
+.icon {
+  font-size: 17px;
+}
+
+.popupRedItem {
+  &:hover > p {
+    color: #7d160e;
+  }
+}

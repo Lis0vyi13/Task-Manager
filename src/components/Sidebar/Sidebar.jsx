@@ -1,12 +1,13 @@
-import { NavLink, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 import useActions from "@/hooks/useActions";
 
+import SidebarListItem from "./SidebarListItem/SidebarListItem";
+
 import { navLinks } from "@/constants";
 
 import { IoMdClose } from "react-icons/io";
-
 import taskLogo from "/task-logo.png";
 
 import styles from "./Sidebar.module.scss";
@@ -34,18 +35,7 @@ const Sidebar = () => {
       <nav className={styles.nav}>
         <ul className={styles.list}>
           {navLinks.map((link) => (
-            <NavLink
-              className={({ isActive }) =>
-                `${styles.listLink} ${isActive ? styles.activeLink : ""}`
-              }
-              key={link.name}
-              to={link.to}
-            >
-              <li className={styles.listItem}>
-                {<link.img className={styles.icon} />}
-                {link.name}
-              </li>
-            </NavLink>
+            <SidebarListItem key={link.name} {...link} />
           ))}
         </ul>
       </nav>

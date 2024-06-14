@@ -1,13 +1,10 @@
-import useActions from "../hooks/useActions";
-import Button from "../ui/Button/Button";
+import DashboardCardList from "@/components/Dashboard/DashboardCardList/DashboardCardList";
 
 const DashboardPage = () => {
-  const { logOut } = useActions();
-
   return (
-    <div>
-      <Button onClick={() => logOut()}>Logout</Button>
-    </div>
+    <section className="dashboard">
+      <DashboardCardList />
+    </section>
   );
 };
 

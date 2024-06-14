@@ -57,26 +57,3 @@
   gap: 20px;
   justify-content: center;
 }
-.listLink {
-  transition: all 0.2s ease-in-out;
-  border-radius: 20px;
-  padding: 10px;
-  &:hover {
-    background-color: $primary-main-light;
-    color: #fff;
-  }
-}
-
-.activeLink {
-  background-color: $primary-main;
-  color: #fff;
-}
-
-.listItem {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.icon {
-  font-size: 25px;
-}

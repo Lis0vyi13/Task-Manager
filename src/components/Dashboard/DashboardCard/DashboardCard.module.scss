@@ -1,0 +1,56 @@
+@import "@/styles/variables";
+
+.card {
+  flex-grow: 1;
+  position: relative;
+  width: min(370px, 100%);
+  background-color: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.title {
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 18px;
+}
+
+.amount {
+  font-weight: bold;
+  font-size: 24px;
+}
+
+.daysAgo {
+  color: $text-primary;
+  font-size: 15px;
+}
+
+.iconWrapper {
+  position: absolute;
+  right: 35px;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.icon {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  color: #fff;
+  font-size: 25px;
+}
+.circle {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+}
