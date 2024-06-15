@@ -123,3 +123,15 @@ export const dashboardCards = [
     createdAt: "2021-06-14T17:08:23Z",
   },
 ];
+
+export const chartData = [
+  { name: "1", total: 2200 },
+  { name: "2", total: 1210 },
+  { name: "3", total: 1590 },
+  { name: "4", total: 1390 },
+  { name: "5", total: 1890 },
+  { name: "6", total: 190 },
+  { name: "8", total: 1190 },
+  { name: "9", total: 1990 },
+  { name: "10", total: 590 },
+];

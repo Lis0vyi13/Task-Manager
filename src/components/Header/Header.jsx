@@ -31,7 +31,11 @@ const Header = () => {
         <button onClick={() => toggleSidebar()} className={styles.burger}>
           ≡
         </button>
-        <SearchInput register={register} handleReset={handleReset} />
+        <SearchInput
+          register={register}
+          watch={watch}
+          handleReset={handleReset}
+        />
       </div>
       <div className={styles.rigthSide}>
         <Notification />

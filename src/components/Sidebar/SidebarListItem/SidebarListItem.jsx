@@ -1,18 +1,14 @@
 import { NavLink } from "react-router-dom";
 
-import useActions from "@/hooks/useActions";
-
 import styles from "./SidebarListItem.module.scss";
 
-const SidebarListItem = ({ to, Icon, name }) => {
-  const { toggleSidebar } = useActions();
-
+const SidebarListItem = ({ to, Icon, name, handler }) => {
   return (
     <NavLink
       className={({ isActive }) =>
         `${styles.listLink} ${isActive ? styles.activeLink : ""}`
       }
-      onClick={() => toggleSidebar()}
+      onClick={handler}
       to={to}
     >
       <li className={styles.listItem}>

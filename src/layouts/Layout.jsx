@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -8,6 +9,14 @@ import styles from "./Layout.module.scss";
 
 const Layout = () => {
   const isLoggedIn = useSelector((state) => state.auth.user);
+  const isSidebarOpen = useSelector((state) => state.sidebar.isSidebarOpen);
+
+  const sidebarRef = useRef();
+  const sidebarWidth = sidebarRef.current?.getBoundingClientRect().width;
+
+  useEffect(() => {
+    document.documentElement.style.setProperty("--offset", sidebarWidth + "px");
+  }, [sidebarWidth]);
 
   if (!isLoggedIn) {
     return <Navigate to="/login" />;
@@ -15,8 +24,12 @@ const Layout = () => {
 
   return (
     <section className={`${styles.layout}`}>
-      <Sidebar />
-      <div className={styles.content}>
+      <Sidebar ref={sidebarRef} />
+      <div
+        className={`${styles.content} ${
+          isSidebarOpen ? styles.contentOffset : ""
+        }`}
+      >
         <Header />
         <div className={styles.wrapper}>
           <Outlet />
