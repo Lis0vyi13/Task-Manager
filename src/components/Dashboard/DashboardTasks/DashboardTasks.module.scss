@@ -1,0 +1,150 @@
+@import "@/styles/variables";
+@import "@/styles/breakpoints";
+
+.tasks {
+  background-color: #fff;
+  border-radius: 10px;
+  padding-top: 10px;
+  overflow-x: auto;
+  width: 100%;
+
+  @include mq(lg) {
+    width: 65%;
+  }
+}
+
+.head {
+  text-transform: capitalize;
+  font-weight: 800;
+}
+
+.table {
+  width: 768px;
+
+  @include mq(smMd) {
+    width: 100%;
+  }
+}
+
+.thead,
+.tbody {
+  width: 100%;
+  display: flex;
+}
+
+.tbody {
+  flex-direction: column;
+}
+
+.thead .row {
+  &:hover {
+    background: none;
+  }
+  border-bottom: 1px solid $text-secondary;
+}
+.row {
+  padding: 15px 20px;
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  text-align: left;
+  transition: all 0.3s ease;
+  align-items: center;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $text-secondary;
+  }
+
+  &:hover {
+    background: $text-secondary;
+  }
+
+  & th,
+  td {
+    flex-grow: 1;
+    font-size: 16px;
+  }
+}
+
+.td {
+  display: flex;
+  gap: 15px;
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+}
+
+.tbody .row .td,
+.thead .row .head {
+  &:not(:first-of-type) {
+    width: 15%;
+
+    @include mq(xl) {
+      width: 10%;
+    }
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &:first-of-type {
+    width: 50%;
+    @include mq(smMd) {
+      width: 60%;
+    }
+    flex-shrink: 1;
+  }
+}
+
+.text {
+  font-weight: 400;
+}
+
+.daysAgo {
+  color: $text-primary;
+}
+
+.avatar {
+  position: relative;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 5px;
+  color: #fff;
+  font-size: 14px;
+  width: 32px;
+  height: 32px;
+}
+
+.priority {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  & span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.team {
+  display: flex;
+  padding: 0 25px;
+}
+
+.initials {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.createdAt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

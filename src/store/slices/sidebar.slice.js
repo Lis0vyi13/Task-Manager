@@ -11,6 +11,9 @@ const sidebarSlice = createSlice({
     toggleSidebar(state) {
       state.isSidebarOpen = !state.isSidebarOpen;
     },
+    closeSidebar(state) {
+      state.isSidebarOpen = false;
+    },
   },
 });
 

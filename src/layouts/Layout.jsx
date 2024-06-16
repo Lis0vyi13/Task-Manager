@@ -1,22 +1,16 @@
-import { useEffect, useRef } from "react";
+import { Suspense } from "react";
 import { Navigate, Outlet } from "react-router-dom";
-import { useSelector } from "react-redux";
+
+import useLayout from "./useLayout";
 
 import Sidebar from "@/components/Sidebar/Sidebar";
 import Header from "@/components/Header/Header";
+import Loader from "@/components/Loader/Loader";
 
 import styles from "./Layout.module.scss";
 
 const Layout = () => {
-  const isLoggedIn = useSelector((state) => state.auth.user);
-  const isSidebarOpen = useSelector((state) => state.sidebar.isSidebarOpen);
-
-  const sidebarRef = useRef();
-  const sidebarWidth = sidebarRef.current?.getBoundingClientRect().width;
-
-  useEffect(() => {
-    document.documentElement.style.setProperty("--offset", sidebarWidth + "px");
-  }, [sidebarWidth]);
+  const { isLoggedIn, sidebarRef, isSidebarOpen } = useLayout();
 
   if (!isLoggedIn) {
     return <Navigate to="/login" />;
@@ -31,9 +25,11 @@ const Layout = () => {
         }`}
       >
         <Header />
-        <div className={styles.wrapper}>
-          <Outlet />
-        </div>
+        <main className={styles.main}>
+          <Suspense fallback={<Loader />}>
+            <Outlet />
+          </Suspense>
+        </main>
       </div>
     </section>
   );

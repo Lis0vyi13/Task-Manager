@@ -42,13 +42,12 @@ const LoginForm = () => {
           ))}
 
           <button
-            tabIndex={3}
             onClick={(e) => e.preventDefault()}
             className={styles.forgotPassword}
           >
             Forget Password?
           </button>
-          <Button className={styles.button} tabIndex={4} type="submit">
+          <Button className={styles.button} type="submit">
             Submit
           </Button>
         </form>

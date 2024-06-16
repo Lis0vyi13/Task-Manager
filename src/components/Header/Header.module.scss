@@ -1,12 +1,16 @@
 @import "@/styles/breakpoints";
 
 .header {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
   display: flex;
   gap: 20px;
   align-items: center;
   justify-content: space-between;
   padding: 25px 15px;
   width: 100%;
+  z-index: 100;
   background-color: #fff;
 }
 .burger {

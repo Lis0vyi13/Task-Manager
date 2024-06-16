@@ -4,15 +4,23 @@
 
 .layout {
   display: flex;
+  height: 100vh;
 }
-.wrapper {
+
+.main {
   padding: 20px;
+  flex-grow: 1;
+  overflow-y: auto;
 }
+
 .content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
   position: relative;
   transition: all 0.3s ease;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   &Offset {
     transform: translateX(var(--offset));
     &::after {
@@ -23,5 +31,6 @@
     content: "";
     position: absolute;
     background-color: rgba($color: #000000, $alpha: 0.3);
+    z-index: 101;
   }
 }

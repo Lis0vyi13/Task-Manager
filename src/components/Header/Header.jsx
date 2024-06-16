@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { useSelector } from "react-redux";
 
 import useDebounce from "@/hooks/useDebounce";
 import useActions from "@/hooks/useActions";
@@ -14,6 +15,7 @@ const Header = () => {
   const { register, reset, watch } = useForm({ mode: "onChange" });
   const debouncedSearchValue = useDebounce(watch("searchQuery"), 500);
   const { toggleSidebar } = useActions();
+  const isSidebarOpen = useSelector((state) => state.sidebar.isSidebarOpen);
 
   const handleReset = () => {
     reset({ searchQuery: "" });
@@ -28,9 +30,12 @@ const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.leftSide}>
-        <button onClick={() => toggleSidebar()} className={styles.burger}>
-          ≡
-        </button>
+        {!isSidebarOpen && (
+          <button onClick={() => toggleSidebar()} className={styles.burger}>
+            ≡
+          </button>
+        )}
+
         <SearchInput
           register={register}
           watch={watch}

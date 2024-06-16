@@ -8,10 +8,18 @@
   font-family: "Nunito Sans", sans-serif;
 }
 
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 body {
-  min-height: 100vh;
   background: $background-default;
 }
+
 a {
   text-decoration: none;
   color: inherit;
