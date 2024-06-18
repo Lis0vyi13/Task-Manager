@@ -1,13 +1,11 @@
 import moment from "moment/moment";
 import { motion } from "framer-motion";
 
+import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
+
 import styles from "./DashboardCard.module.scss";
 
 const DashboardCard = ({ createdAt, Icon, title, amount, color }) => {
-  const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
-
   const relativeTime = capitalizeFirstLetter(moment(createdAt).fromNow());
 
   const cardVariants = {

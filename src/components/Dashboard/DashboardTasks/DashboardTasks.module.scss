@@ -4,12 +4,14 @@
 .tasks {
   background-color: #fff;
   border-radius: 10px;
-  padding-top: 10px;
-  overflow-x: auto;
   width: 100%;
+  margin-bottom: 90px;
+  overflow: auto;
+  height: 704px;
 
   @include mq(lg) {
     width: 65%;
+    height: 694px;
   }
 }
 
@@ -19,6 +21,7 @@
 }
 
 .table {
+  position: relative;
   width: 768px;
 
   @include mq(smMd) {
@@ -26,14 +29,16 @@
   }
 }
 
-.thead,
-.tbody {
+.thead {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  top: 0;
+  background-color: #fff;
+  z-index: 2;
   width: 100%;
   display: flex;
-}
-
-.tbody {
-  flex-direction: column;
+  padding-top: 10px;
 }
 
 .thead .row {
@@ -66,19 +71,7 @@
   }
 }
 
-.td {
-  display: flex;
-  gap: 15px;
-}
-
-.circle {
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-}
-
-.tbody .row .td,
-.thead .row .head {
+.head {
   &:not(:first-of-type) {
     width: 15%;
 
@@ -101,12 +94,24 @@
   }
 }
 
-.text {
-  font-weight: 400;
-}
+.userInfo {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 0);
+  display: none;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1;
 
-.daysAgo {
-  color: $text-primary;
+  &.top {
+    transform: translate(-50%, -102%);
+    top: 0;
+  }
+
+  &.bottom {
+    transform: translate(-50%, 102%);
+    bottom: 0;
+  }
 }
 
 .avatar {
@@ -118,33 +123,29 @@
   font-size: 14px;
   width: 32px;
   height: 32px;
-}
+  overflow: visible;
 
-.priority {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  & span {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  &:hover .userInfo {
+    display: block;
+    -webkit-animation: fadeIn 0.3s forwards;
+    animation: fadeIn 0.3s forwards;
   }
 }
 
-.team {
-  display: flex;
-  padding: 0 25px;
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
-.initials {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  transform: translate(-50%, -50%);
-}
-
-.createdAt {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }

@@ -1,4 +1,10 @@
-import { MdDashboard } from "react-icons/md";
+import {
+  MdDashboard,
+  MdKeyboardArrowDown,
+  MdKeyboardArrowUp,
+  MdKeyboardDoubleArrowUp,
+} from "react-icons/md";
+
 import { FaTasks, FaTrash, FaUser, FaListAlt } from "react-icons/fa";
 import { IoCheckmarkDoneCircle, IoLogOut } from "react-icons/io5";
 import {
@@ -125,8 +131,8 @@ export const dashboardCards = [
 ];
 
 export const chartData = [
-  { name: "1", total: 2200 },
-  { name: "2", total: 1210 },
+  { name: "1", total: 1200 },
+  { name: "2", total: 2210 },
   { name: "3", total: 1590 },
   { name: "4", total: 1390 },
   { name: "5", total: 1890 },
@@ -152,10 +158,10 @@ export const tasksData = [
     team: [
       {
         _id: "65c202d4aa62f32ffd1303cc",
-        name: "Codewave Asante",
+        name: "Olexandr Lisovyi",
         title: "Administrator",
         role: "Admin",
-        email: "admin@gmail.com",
+        email: "lisovyy13@gmail.com",
       },
       {
         _id: "65c30b96e639681a13def0b5",
@@ -259,10 +265,176 @@ export const tasksData = [
     team: [
       {
         _id: "65c202d4aa62f32ffd1303cc",
-        name: "Codewave Asante",
+        name: "Olexandr Lisovyi",
         title: "Administrator",
         role: "Admin",
-        email: "admin@gmail.com",
+        email: "lisovyy13@gmail.com",
+      },
+      {
+        _id: "65c27a0e18c0a1b750ad5cad",
+        name: "John Doe",
+        title: "Software Engineer",
+        role: "Developer",
+        email: "john.doe@example.com",
+      },
+      {
+        _id: "65c30b96e639681a13def0b5",
+        name: "Jane Smith",
+        title: "Product Manager",
+        role: "Manager",
+        email: "jane.smith@example.com",
+      },
+    ],
+    isTrashed: false,
+    activities: [
+      {
+        type: "assigned",
+        activity: "Test activity. Let's go!!!",
+        date: "2024-02-08T17:55:34.353Z",
+        by: "65c202d4aa62f32ffd1303cc",
+        _id: "65c5188be1585cfa650b79c4",
+      },
+      {
+        type: "in progress",
+        activity: "Project is progress. Hiope to fin=ish soon!!",
+        date: "2024-02-08T17:55:34.353Z",
+        by: "65c202d4aa62f32ffd1303cc",
+        _id: "65c518dce1585cfa650b79da",
+      },
+      {
+        type: "bug",
+        activity: "Bug found in the code. Kindly check and fixed ASAP!!!",
+        date: "2024-02-08T18:13:14.717Z",
+        by: "65c202d4aa62f32ffd1303cc",
+        _id: "65c51a5e8064df97d208b392",
+      },
+      {
+        type: "commented",
+        activity: "Nice work. Let's finished hard!!!",
+        date: "2024-02-08T18:13:14.717Z",
+        by: "65c202d4aa62f32ffd1303cc",
+        _id: "65c51af08064df97d208b3b0",
+      },
+    ],
+    subTasks: [
+      {
+        title: "Blog App Dashboard",
+        date: "2024-02-06T00:00:00.000Z",
+        tag: "Design",
+        _id: "65c352e776ed5c48f944095c",
+      },
+      {
+        title: "Blog App Admin Dashboard",
+        date: "2024-02-07T00:00:00.000Z",
+        tag: "Design",
+        _id: "65c3531476ed5c48f9440965",
+      },
+    ],
+    createdAt: "2024-02-08T05:01:26.983Z",
+    updatedAt: "2024-02-09T06:51:15.005Z",
+    __v: 8,
+  },
+  {
+    _id: "65c46026af6ec0118be9407a",
+    title: "Website Project Proposal Review",
+    date: "2024-02-07T00:00:00.000Z",
+    priority: "high",
+    stage: "todo",
+    assets: [
+      "https://firebasestorage.googleapis.com/v0/b/taskmanager-557d7.appspot.com/o/1707410130023hand-holding-writing-checklist-application-form-document-clipboard-white-background-3d-illustration.jpg?alt=media&token=08de4848-517f-48ca-a9b4-624744d5ddb0",
+      "https://firebasestorage.googleapis.com/v0/b/taskmanager-557d7.appspot.com/o/1707412301523image_processing20220706-26930-ktfgon.png?alt=media&token=6cd185c1-9fc3-4f52-bb0b-0d4a29e65b85",
+      "https://firebasestorage.googleapis.com/v0/b/taskmanager-557d7.appspot.com/o/1707412306237image_processing20220706-11953-1f826f4.png?alt=media&token=7270475f-a994-41fd-8ae6-62e00f72b0b3",
+    ],
+    team: [
+      {
+        _id: "65c202d4aa62f32ffd1303cc",
+        name: "Olexandr Lisovyi",
+        title: "Administrator",
+        role: "Admin",
+        email: "lisovyy13@gmail.com",
+      },
+      {
+        _id: "65c27a0e18c0a1b750ad5cad",
+        name: "John Doe",
+        title: "Software Engineer",
+        role: "Developer",
+        email: "john.doe@example.com",
+      },
+      {
+        _id: "65c30b96e639681a13def0b5",
+        name: "Jane Smith",
+        title: "Product Manager",
+        role: "Manager",
+        email: "jane.smith@example.com",
+      },
+    ],
+    isTrashed: false,
+    activities: [
+      {
+        type: "assigned",
+        activity: "Test activity. Let's go!!!",
+        date: "2024-02-08T17:55:34.353Z",
+        by: "65c202d4aa62f32ffd1303cc",
+        _id: "65c5188be1585cfa650b79c4",
+      },
+      {
+        type: "in progress",
+        activity: "Project is progress. Hiope to fin=ish soon!!",
+        date: "2024-02-08T17:55:34.353Z",
+        by: "65c202d4aa62f32ffd1303cc",
+        _id: "65c518dce1585cfa650b79da",
+      },
+      {
+        type: "bug",
+        activity: "Bug found in the code. Kindly check and fixed ASAP!!!",
+        date: "2024-02-08T18:13:14.717Z",
+        by: "65c202d4aa62f32ffd1303cc",
+        _id: "65c51a5e8064df97d208b392",
+      },
+      {
+        type: "commented",
+        activity: "Nice work. Let's finished hard!!!",
+        date: "2024-02-08T18:13:14.717Z",
+        by: "65c202d4aa62f32ffd1303cc",
+        _id: "65c51af08064df97d208b3b0",
+      },
+    ],
+    subTasks: [
+      {
+        title: "Blog App Dashboard",
+        date: "2024-02-06T00:00:00.000Z",
+        tag: "Design",
+        _id: "65c352e776ed5c48f944095c",
+      },
+      {
+        title: "Blog App Admin Dashboard",
+        date: "2024-02-07T00:00:00.000Z",
+        tag: "Design",
+        _id: "65c3531476ed5c48f9440965",
+      },
+    ],
+    createdAt: "2024-02-08T05:01:26.983Z",
+    updatedAt: "2024-02-09T06:51:15.005Z",
+    __v: 8,
+  },
+  {
+    _id: "65c46026af6ec0118be9407a",
+    title: "Website Project Proposal Review",
+    date: "2024-02-07T00:00:00.000Z",
+    priority: "high",
+    stage: "todo",
+    assets: [
+      "https://firebasestorage.googleapis.com/v0/b/taskmanager-557d7.appspot.com/o/1707410130023hand-holding-writing-checklist-application-form-document-clipboard-white-background-3d-illustration.jpg?alt=media&token=08de4848-517f-48ca-a9b4-624744d5ddb0",
+      "https://firebasestorage.googleapis.com/v0/b/taskmanager-557d7.appspot.com/o/1707412301523image_processing20220706-26930-ktfgon.png?alt=media&token=6cd185c1-9fc3-4f52-bb0b-0d4a29e65b85",
+      "https://firebasestorage.googleapis.com/v0/b/taskmanager-557d7.appspot.com/o/1707412306237image_processing20220706-11953-1f826f4.png?alt=media&token=7270475f-a994-41fd-8ae6-62e00f72b0b3",
+    ],
+    team: [
+      {
+        _id: "65c202d4aa62f32ffd1303cc",
+        name: "Olexandr Lisovyi",
+        title: "Administrator",
+        role: "Admin",
+        email: "lisovyy13@gmail.com",
       },
       {
         _id: "65c27a0e18c0a1b750ad5cad",
@@ -399,10 +571,10 @@ export const tasksData = [
       },
       {
         _id: "65c202d4aa62f32ffd1303cc",
-        name: "Codewave Asante",
+        name: "Olexandr Lisovyi",
         title: "Administrator",
         role: "Admin",
-        email: "admin@gmail.com",
+        email: "lisovyy13@gmail.com",
       },
       {
         _id: "65c317360fd860f958baa08e",
@@ -444,10 +616,10 @@ export const tasksData = [
     team: [
       {
         _id: "65c202d4aa62f32ffd1303cc",
-        name: "Codewave Asante",
+        name: "Olexandr Lisovyi",
         title: "Administrator",
         role: "Admin",
-        email: "admin@gmail.com",
+        email: "lisovyy13@gmail.com",
       },
       {
         _id: "65c27a0e18c0a1b750ad5cad",
@@ -531,10 +703,10 @@ export const tasksData = [
     team: [
       {
         _id: "65c202d4aa62f32ffd1303cc",
-        name: "Codewave Asante",
+        name: "Olexandr Lisovyi",
         title: "Administrator",
         role: "Admin",
-        email: "admin@gmail.com",
+        email: "lisovyy13@gmail.com",
       },
       {
         _id: "65c27a0e18c0a1b750ad5cad",
@@ -618,10 +790,10 @@ export const tasksData = [
     team: [
       {
         _id: "65c202d4aa62f32ffd1303cc",
-        name: "Codewave Asante",
+        name: "Olexandr Lisovyi",
         title: "Administrator",
         role: "Admin",
-        email: "admin@gmail.com",
+        email: "lisovyy13@gmail.com",
       },
       {
         _id: "65c27a0e18c0a1b750ad5cad",
@@ -673,3 +845,9 @@ export const TASK_TYPE = {
 };
 
 export const TASK_BGS = ["#2563EB", "#DC2626", "#D97706", "#059669"];
+
+export const TASK_PRIORITY_ICONS = {
+  high: <MdKeyboardDoubleArrowUp />,
+  medium: <MdKeyboardArrowUp />,
+  low: <MdKeyboardArrowDown />,
+};

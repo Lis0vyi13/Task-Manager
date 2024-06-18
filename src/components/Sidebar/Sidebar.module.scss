@@ -11,6 +11,7 @@
   z-index: 1;
   transition: all 0.3s ease;
   position: fixed;
+  font-size: 17px;
 
   @include mq(sm) {
     width: 350px;

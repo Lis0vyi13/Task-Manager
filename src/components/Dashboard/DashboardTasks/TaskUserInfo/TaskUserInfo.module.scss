@@ -1,0 +1,53 @@
+@import "@/styles/variables";
+
+.userInfo {
+  position: relative;
+  width: 250px;
+  background-color: #fff;
+  color: #000;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.content {
+  padding: 15px;
+  display: flex;
+  gap: 15px;
+}
+
+.avatar {
+  position: relative;
+  border-radius: 25px;
+  padding: 5px;
+  color: #fff;
+  font-size: 16px;
+  width: 32px;
+  height: 64px;
+}
+
+.initials {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.userInfoText {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.name {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.role {
+  font-size: 16px;
+  color: $text-light-gray;
+  font-weight: 400;
+}
+
+.email {
+  color: $primary-main;
+}
