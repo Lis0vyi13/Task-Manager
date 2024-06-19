@@ -13,7 +13,7 @@ import {
 } from "@/constants";
 
 import styles from "./TableBody.module.scss";
-import dshStyles from "../DashboardTasks.module.scss";
+import tasksStyles from "../Tasks.module.scss";
 
 const TableBody = ({ data }) => {
   return (
@@ -48,14 +48,14 @@ const TableBody = ({ data }) => {
                       style={{
                         backgroundColor: TASK_BGS[i % TASK_BGS.length],
                       }}
-                      className={dshStyles.avatar}
+                      className={tasksStyles.avatar}
                     >
                       <span className={styles.initials}>
                         {getInitials(dev.name)}
                       </span>
                       <div
-                        className={`${dshStyles.userInfo} ${
-                          taskIndex > 4 ? dshStyles.top : dshStyles.bottom
+                        className={`${tasksStyles.userInfo} ${
+                          taskIndex > 4 ? tasksStyles.top : tasksStyles.bottom
                         }`}
                       >
                         <TaskUserInfo index={i} {...dev} />

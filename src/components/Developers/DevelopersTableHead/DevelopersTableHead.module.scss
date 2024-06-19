@@ -1,0 +1,41 @@
+@import "@/styles/variables";
+@import "@/styles/breakpoints";
+
+.developersTableHead {
+  text-transform: capitalize;
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+  top: -2px;
+  background-color: #fff;
+  z-index: 2;
+  width: 100%;
+  @include mq(xsSm) {
+    padding-top: 10px;
+  }
+}
+
+.row {
+  display: flex;
+  padding: 20px 15px 10px 15px;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  text-align: center;
+  & th:not(:first-of-type) {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 20%;
+  }
+  & th:first-of-type {
+    width: 60%;
+    text-align: left;
+  }
+
+  border-bottom: 1px solid $text-secondary;
+}
+
+.heading {
+  font-weight: 800;
+}

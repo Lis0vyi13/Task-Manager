@@ -1,3 +1,5 @@
+@import "@/styles/breakpoints";
+
 .dashboard {
   display: flex;
   flex-direction: column;
@@ -7,4 +9,10 @@
 .flexContainer {
   display: flex;
   width: 100%;
+  gap: 30px;
+  margin-bottom: 40px;
+  flex-direction: column;
+  @include mq(lgXl) {
+    flex-direction: row;
+  }
 }

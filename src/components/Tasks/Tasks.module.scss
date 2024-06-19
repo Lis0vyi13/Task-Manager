@@ -5,13 +5,11 @@
   background-color: #fff;
   border-radius: 10px;
   width: 100%;
-  margin-bottom: 90px;
   overflow: auto;
-  height: 704px;
+  height: 687px;
 
-  @include mq(lg) {
+  @include mq(lgXl) {
     width: 65%;
-    height: 694px;
   }
 }
 
@@ -29,26 +27,8 @@
   }
 }
 
-.thead {
-  position: -webkit-sticky;
-  position: sticky;
-  left: 0;
-  top: 0;
-  background-color: #fff;
-  z-index: 2;
-  width: 100%;
-  display: flex;
-  padding-top: 10px;
-}
-
-.thead .row {
-  &:hover {
-    background: none;
-  }
-  border-bottom: 1px solid $text-secondary;
-}
 .row {
-  padding: 15px 20px;
+  padding: 10px 15px;
   display: flex;
   gap: 20px;
   width: 100%;
@@ -68,29 +48,6 @@
   td {
     flex-grow: 1;
     font-size: 16px;
-  }
-}
-
-.head {
-  &:not(:first-of-type) {
-    width: 15%;
-
-    @include mq(xl) {
-      width: 10%;
-    }
-    flex-grow: 1;
-    flex-shrink: 1;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  &:first-of-type {
-    width: 50%;
-    @include mq(smMd) {
-      width: 60%;
-    }
-    flex-shrink: 1;
   }
 }
 

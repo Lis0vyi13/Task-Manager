@@ -1,6 +1,7 @@
-import DashboardCardList from "@/components/Dashboard/DashboardCardList/DashboardCardList";
+import DashboardCardList from "@/components/DashboardCards/DashboardCardsList/DashboardCardsList";
 import PriorityChart from "@/components/PriorityChart/PriorityChart";
-import DashboardTasks from "@/components/Dashboard/DashboardTasks/DashboardTasks";
+import Tasks from "@/components/Tasks/Tasks";
+import Developers from "@/components/Developers/Developers";
 
 import styles from "./DashboardPage.module.scss";
 
@@ -10,7 +11,8 @@ const DashboardPage = () => {
       <DashboardCardList />
       <PriorityChart />
       <div className={styles.flexContainer}>
-        <DashboardTasks />
+        <Tasks />
+        <Developers />
       </div>
     </section>
   );

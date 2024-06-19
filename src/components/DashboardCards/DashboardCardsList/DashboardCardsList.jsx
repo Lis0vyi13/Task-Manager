@@ -2,9 +2,9 @@ import DashboardCard from "../DashboardCard/DashboardCard";
 
 import { dashboardCards } from "@/constants";
 
-import styles from "./DashboardCardList.module.scss";
+import styles from "./DashboardCardsList.module.scss";
 
-const DashboardCardList = () => {
+const DashboardCardsList = () => {
   return (
     <div className={styles.dashboardList}>
       {dashboardCards.map((card) => (
@@ -14,4 +14,4 @@ const DashboardCardList = () => {
   );
 };
 
-export default DashboardCardList;
+export default DashboardCardsList;
