@@ -1,0 +1,137 @@
+@import "@/styles/variables";
+@import "@/styles/breakpoints";
+
+.task {
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  background-color: #fff;
+  border-radius: 10px;
+  flex-grow: 1;
+}
+
+.content {
+  padding: 10px;
+}
+.header {
+  display: flex;
+  padding-bottom: 5px;
+  justify-content: space-between;
+}
+
+.header,
+.main,
+.footer {
+  border-bottom: 1px solid $gray-hover;
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.headerMoreIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 5px;
+  margin-top: -3px;
+
+  &:hover {
+    background-color: $gray-hover;
+  }
+}
+
+.priority {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 14px;
+}
+
+.priorityText {
+  text-transform: uppercase;
+}
+
+.taskTitle {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.circle {
+  min-width: 15px;
+  min-height: 15px;
+  border-radius: 50%;
+}
+
+.date {
+  color: $text-gray;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 7px 0;
+}
+
+.details {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+  color: $text-gray;
+  align-items: center;
+}
+
+.commentary,
+.assets,
+.subtasks {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $primary-main;
+  }
+  & span {
+    margin-top: 2px;
+  }
+}
+
+.commentary {
+  gap: 4px;
+}
+.subtasks {
+  gap: 5px;
+}
+.assets {
+  gap: 1px;
+}
+
+.team {
+  padding: 0;
+}
+
+.userInfo {
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -102%);
+
+  @media (min-width: 1532px) {
+    left: 0;
+    top: 50%;
+    transform: translate(-102%, -50%);
+  }
+}

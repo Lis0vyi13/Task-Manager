@@ -1,0 +1,52 @@
+@import "@/styles/variables";
+@import "@/styles/breakpoints";
+
+.tasks {
+  background-color: #fff;
+  border-radius: 10px;
+  width: 100%;
+  overflow: auto;
+  height: 687px;
+
+  @include mq(lgXl) {
+    width: 65%;
+  }
+}
+
+.head {
+  text-transform: capitalize;
+  font-weight: 800;
+}
+
+.table {
+  position: relative;
+  width: 768px;
+
+  @include mq(smMd) {
+    width: 100%;
+  }
+}
+
+.row {
+  padding: 10px 15px;
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  text-align: left;
+  transition: all 0.3s ease;
+  align-items: center;
+
+  &:not(:last-child) {
+    border-bottom: 1px solid $text-secondary;
+  }
+
+  &:hover {
+    background: $text-secondary;
+  }
+
+  & th,
+  td {
+    flex-grow: 1;
+    font-size: 16px;
+  }
+}

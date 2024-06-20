@@ -2,9 +2,9 @@ import getInitials from "@/utils/getInitials";
 
 import { TASK_BGS } from "@/constants";
 
-import styles from "./TaskUserInfo.module.scss";
+import styles from "./UserInfo.module.scss";
 
-const TaskUserInfo = ({ name, index, title, email }) => {
+const UserInfo = ({ name, index, title, email }) => {
   return (
     <div className={`${styles.userInfo}`}>
       <div className={styles.content}>
@@ -28,4 +28,4 @@ const TaskUserInfo = ({ name, index, title, email }) => {
   );
 };
 
-export default TaskUserInfo;
+export default UserInfo;

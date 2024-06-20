@@ -5,13 +5,14 @@
   background-color: #fff;
   border-radius: 10px;
   flex-grow: 1;
-  overflow: auto;
+  overflow-y: auto;
   max-height: 687px;
 }
 
 .table {
   position: relative;
   width: 520px;
+
   height: 100%;
   @include mq(xsSm) {
     width: 100%;

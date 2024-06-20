@@ -1,0 +1,41 @@
+@import "@/styles/variables";
+@import "@/styles/breakpoints";
+
+.tab {
+  position: relative;
+  border-radius: 5px;
+  background-color: #fff;
+  font-weight: 700;
+  border: none;
+  display: flex;
+  font-size: 15px;
+  gap: 5px;
+  align-items: center;
+  padding: 10px 15px;
+  transition: all 0.2s ease;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+
+  &:hover {
+    background-color: #e0e0e0;
+  }
+  &:focus {
+    outline: none;
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    width: 0;
+    transition: all 0.3s ease;
+    background-color: #2563eb;
+  }
+  &.active::after {
+    width: 100%;
+  }
+
+  @include mq(xs) {
+    font-size: 16px;
+  }
+}

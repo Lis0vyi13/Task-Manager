@@ -1,35 +1,49 @@
-import { useRef } from "react";
+import { useState } from "react";
 
-import { motion } from "framer-motion";
+import Title from "@/ui/Title/Title";
+import Button from "@/ui/Button/Button";
 
-import TableBody from "./TableBody/TableBody";
-import TableHead from "./TableHead/TableHead";
+import Tabs from "../Tabs/Tabs";
+import TasksTitle from "./TasksTitle/TasksTitle";
+import BoardView from "./BoardView/BoardView";
 
-import { summary } from "@/constants";
+import { TASK_TYPE, taskTabs, tasks } from "@/constants";
 
 import styles from "./Tasks.module.scss";
 
 const Tasks = () => {
-  const tasksRef = useRef();
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-  };
+  const [activeTab, setActiveTab] = useState(1);
+
+  const titles = [
+    { name: "To do", color: TASK_TYPE.todo },
+    { name: "In progress", color: TASK_TYPE["in progress"] },
+    { name: "Completed", color: TASK_TYPE.completed },
+  ];
 
   return (
-    <motion.section
-      ref={tasksRef}
-      className={styles.tasks}
-      initial="hidden"
-      whileInView="visible"
-      variants={cardVariants}
-      viewport={{ once: true }}
-    >
-      <table className={styles.table}>
-        <TableHead />
-        <TableBody data={summary.last10Task} />
-      </table>
-    </motion.section>
+    <section className={styles.tasksWrapper}>
+      <header className={styles.header}>
+        <Title>Tasks</Title>
+        <Button className={styles.button}>+ Create task</Button>
+      </header>
+      <main className={styles.main}>
+        <Tabs
+          activeTab={activeTab}
+          setActiveTab={setActiveTab}
+          data={taskTabs}
+        />
+        <div className={styles.tasksTitles}>
+          {titles.map((title) => (
+            <TasksTitle {...title} key={title.name}>
+              {title.name}
+            </TasksTitle>
+          ))}
+        </div>
+        <div className={styles.boardViewTasks}>
+          <BoardView tasks={tasks} />
+        </div>
+      </main>
+    </section>
   );
 };
 

@@ -3,9 +3,9 @@ import { motion } from "framer-motion";
 
 import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 
-import styles from "./DashboardCard.module.scss";
+import styles from "./StatsCard.module.scss";
 
-const DashboardCard = ({ createdAt, Icon, title, amount, color }) => {
+const StatsCard = ({ createdAt, Icon, title, amount, color }) => {
   const relativeTime = capitalizeFirstLetter(moment(createdAt).fromNow());
 
   const cardVariants = {
@@ -32,4 +32,4 @@ const DashboardCard = ({ createdAt, Icon, title, amount, color }) => {
   );
 };
 
-export default DashboardCard;
+export default StatsCard;

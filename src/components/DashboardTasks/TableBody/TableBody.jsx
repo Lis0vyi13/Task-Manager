@@ -1,19 +1,12 @@
 import moment from "moment";
 
 import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
-import getInitials from "@/utils/getInitials";
 
-import TaskUserInfo from "../TaskUserInfo/TaskUserInfo";
+import Team from "@/components/Team/Team";
 
-import {
-  TASK_TYPE,
-  PRIOTITY_STYLES,
-  TASK_BGS,
-  TASK_PRIORITY_ICONS,
-} from "@/constants";
+import { TASK_TYPE, PRIOTITY_STYLES, TASK_PRIORITY_ICONS } from "@/constants";
 
 import styles from "./TableBody.module.scss";
-import tasksStyles from "../Tasks.module.scss";
 
 const TableBody = ({ data }) => {
   return (
@@ -40,30 +33,7 @@ const TableBody = ({ data }) => {
               </div>
             </td>
             <td className={styles.td}>
-              <div className={styles.team}>
-                {task.team.map((dev, i) => {
-                  return (
-                    <div
-                      key={dev._id}
-                      style={{
-                        backgroundColor: TASK_BGS[i % TASK_BGS.length],
-                      }}
-                      className={tasksStyles.avatar}
-                    >
-                      <span className={styles.initials}>
-                        {getInitials(dev.name)}
-                      </span>
-                      <div
-                        className={`${tasksStyles.userInfo} ${
-                          taskIndex > 4 ? tasksStyles.top : tasksStyles.bottom
-                        }`}
-                      >
-                        <TaskUserInfo index={i} {...dev} />
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
+              <Team {...task} index={taskIndex} />
             </td>
             <td className={`${styles.td} ${styles.createdAt}`}>
               <span className={styles.daysAgo}>

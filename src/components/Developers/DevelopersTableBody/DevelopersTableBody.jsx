@@ -1,7 +1,8 @@
 import moment from "moment";
 
-import getInitials from "@/utils/getInitials";
 import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
+
+import Team from "@/components/Team/Team";
 
 import { TASK_BGS, summary } from "@/constants";
 
@@ -13,16 +14,15 @@ const DevelopersTableBody = () => {
       {summary.users.map((user, i) => (
         <tr key={user.name + " row"} className={styles.row}>
           <td className={styles.data}>
-            <div
-              title={user.name}
-              key={user._id}
-              style={{
-                backgroundColor: TASK_BGS[i % TASK_BGS.length],
-              }}
+            <Team
+              {...user}
+              index={i}
+              style={{ backgroundColor: TASK_BGS[i % TASK_BGS.length] }}
               className={styles.avatar}
-            >
-              <span className={styles.initials}>{getInitials(user.name)}</span>
-            </div>
+              avatarClassName={styles.avatar}
+              infoClassName={styles.info}
+              team={[user]}
+            />
             <div className={styles.userInfo}>
               <p className={styles.name}>{user.name}</p>
               <span className={styles.role}>{user.role}</span>
@@ -30,7 +30,10 @@ const DevelopersTableBody = () => {
           </td>
           <td className={styles.data}>
             <div
-              style={{ backgroundColor: user.isActive ? "#BFDBFE" : "#FEF3C7" }}
+              style={{
+                backgroundColor: user.isActive ? "#BFDBFE" : "#FEF3C7",
+                color: user.isActive ? "#1D4ED8" : "#000",
+              }}
               className={styles.status}
             >
               <p>{user?.isActive ? "Active" : "Disabled"}</p>

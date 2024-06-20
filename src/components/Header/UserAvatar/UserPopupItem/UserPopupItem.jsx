@@ -1,9 +1,11 @@
+import { memo } from "react";
 import { Link } from "react-router-dom";
 
-import styles from "./UserPopupItem.module.scss";
 import useActions from "@/hooks/useActions";
 
-const UserPopupItem = ({ type, color, name, to, Icon }) => {
+import styles from "./UserPopupItem.module.scss";
+
+const UserPopupItem = memo(({ type, color, name, to, Icon }) => {
   const { logOut } = useActions();
 
   if (type === "button") {
@@ -29,6 +31,6 @@ const UserPopupItem = ({ type, color, name, to, Icon }) => {
       <p>{name}</p>
     </Link>
   );
-};
+});
 
 export default UserPopupItem;

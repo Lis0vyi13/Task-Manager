@@ -1,0 +1,82 @@
+@import "@/styles/breakpoints";
+
+.team {
+  display: flex;
+  padding: 0 25px;
+}
+
+.initials {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.avatar {
+  position: relative;
+  cursor: pointer;
+  border-radius: 50%;
+  padding: 5px;
+  color: #fff;
+  font-size: 14px;
+  width: 32px;
+  height: 32px;
+  overflow: visible;
+
+  &:hover .userInfo {
+    display: block;
+    -webkit-animation: fadeIn 0.3s forwards;
+    animation: fadeIn 0.3s forwards;
+  }
+}
+
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.userInfo {
+  position: absolute;
+  transform: translate(-50%, 0);
+  display: none;
+  opacity: 0;
+  transition: all 0.3s ease;
+  z-index: 1;
+
+  &.top {
+    left: 50%;
+    transform: translate(-50%, -102%);
+    top: 0;
+  }
+
+  &.bottom {
+    left: 50%;
+    transform: translate(-50%, 102%);
+    bottom: 0;
+  }
+
+  &.left {
+    top: 50%;
+    left: 0;
+    transform: translate(-102%, -50%);
+  }
+
+  &.right {
+    top: 50%;
+    right: 0;
+    transform: translate(102%, -50%);
+  }
+}
