@@ -138,6 +138,17 @@
 .footer {
   max-height: 70px;
   overflow: auto;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: blue;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(16, 16, 199);
+  }
 }
 .subtasksWrapper {
   margin-top: 10px;

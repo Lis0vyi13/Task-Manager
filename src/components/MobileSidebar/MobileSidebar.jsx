@@ -5,16 +5,16 @@ import { useSelector } from "react-redux";
 import useOutsideClick from "@/hooks/useOutsideClick";
 import useActions from "@/hooks/useActions";
 
-import SidebarListItem from "./SidebarListItem/SidebarListItem";
+import MobileSidebarListItem from "./MobileSidebarListItem/MobileSidebarListItem";
 
 import { navLinks } from "@/constants";
 
 import { IoMdClose } from "react-icons/io";
 import taskLogo from "/task-logo.png";
 
-import styles from "./Sidebar.module.scss";
+import styles from "./MobileSidebar.module.scss";
 
-const Sidebar = forwardRef((_, ref) => {
+const MobileSidebar = forwardRef((_, ref) => {
   const isSidebarOpen = useSelector((state) => state.sidebar.isSidebarOpen);
   const { toggleSidebar } = useActions();
 
@@ -41,7 +41,7 @@ const Sidebar = forwardRef((_, ref) => {
       <nav className={styles.nav}>
         <ul className={styles.list}>
           {navLinks.map((link) => (
-            <SidebarListItem
+            <MobileSidebarListItem
               handler={handlerSidebar}
               key={link.name}
               {...link}
@@ -53,4 +53,4 @@ const Sidebar = forwardRef((_, ref) => {
   );
 });
 
-export default Sidebar;
+export default MobileSidebar;

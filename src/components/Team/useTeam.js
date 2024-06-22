@@ -3,7 +3,6 @@ import { useEffect, useRef } from "react";
 import styles from "./Team.module.scss";
 
 const useTeam = ({ team }) => {
-  console.log(team);
   const avatarRefs = useRef([]);
   const userInfoRefs = useRef([]);
 

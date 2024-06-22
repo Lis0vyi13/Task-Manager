@@ -1,8 +1,8 @@
 import { NavLink } from "react-router-dom";
 
-import styles from "./SidebarListItem.module.scss";
+import styles from "./MobileSidebarListItem.module.scss";
 
-const SidebarListItem = ({ to, Icon, name, handler }) => {
+const MobileSidebarListItem = ({ to, Icon, name, handler }) => {
   return (
     <NavLink
       className={({ isActive }) =>
@@ -19,4 +19,4 @@ const SidebarListItem = ({ to, Icon, name, handler }) => {
   );
 };
 
-export default SidebarListItem;
+export default MobileSidebarListItem;
