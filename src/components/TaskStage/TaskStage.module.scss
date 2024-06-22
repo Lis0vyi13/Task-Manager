@@ -1,0 +1,19 @@
+@import "@/styles/variables";
+
+.stage {
+  overflow: auto;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  max-height: 664px;
+  margin-top: 15px;
+}
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba($color: $primary-main, $alpha: 0.5);
+}

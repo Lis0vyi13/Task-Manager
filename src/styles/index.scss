@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;500;600;700;800;900;1000&display=swap");
 @import "variables";
+@import "breakpoints";
 
 * {
   padding: 0;
@@ -43,22 +44,24 @@ button {
   background: none;
 }
 
-::-webkit-scrollbar {
-  width: 15px;
-  height: 12px;
-}
+@include mq(mdXl) {
+  ::-webkit-scrollbar {
+    width: 13px;
+    height: 12px;
+  }
 
-::-webkit-scrollbar-track {
-  background: #f1f1f1;
-}
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
 
-::-webkit-scrollbar-thumb {
-  background-color: $primary-main;
-  border-radius: 40px;
-  border: 3px solid #f1f1f1;
-}
+  ::-webkit-scrollbar-thumb {
+    background-color: $primary-main;
+    border-radius: 40px;
+    border: 3px solid #f1f1f1;
+  }
 
-::-webkit-scrollbar-thumb:hover {
-  background-color: #13389e;
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #13389e;
+  }
 }
 

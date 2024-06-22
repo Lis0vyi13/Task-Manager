@@ -1,10 +1,10 @@
-import StatsCard from "../StatsCard/StatsCard";
+import StatsCard from "./StatsCard/StatsCard";
 
 import { statsCards } from "@/constants";
 
-import styles from "./StatsCardsList.module.scss";
+import styles from "./Stats.module.scss";
 
-const StatsCardsList = () => {
+const Stats = () => {
   return (
     <div className={styles.statsList}>
       {statsCards.map((card) => (
@@ -14,4 +14,4 @@ const StatsCardsList = () => {
   );
 };
 
-export default StatsCardsList;
+export default Stats;

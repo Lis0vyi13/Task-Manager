@@ -3,6 +3,7 @@ import { FaList } from "react-icons/fa";
 import { MdOutlineComment, MdAttachFile } from "react-icons/md";
 
 import Team from "@/components/Team/Team";
+import Subtask from "./Subtask/Subtask";
 
 import {
   PRIOTITY_STYLES,
@@ -72,7 +73,13 @@ const Task = ({
             />
           </article>
         </main>
-        <footer className={styles.footer}></footer>
+        <footer className={styles.footer}>
+          <section className={styles.subtasksWrapper}>
+            {subTasks.map((subtask, i) => (
+              <Subtask index={i} {...subtask} key={subtask._id} />
+            ))}
+          </section>
+        </footer>
       </div>
     </div>
   );

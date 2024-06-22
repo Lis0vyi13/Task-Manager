@@ -15,6 +15,9 @@ import {
   RiDashboardHorizontalFill,
 } from "react-icons/ri";
 
+import BoardView from "@/components/Tasks/BoardView/BoardView";
+import ListView from "@/components/Tasks/ListView/ListView";
+
 export const loginInputs = [
   {
     name: "email",
@@ -699,6 +702,7 @@ export const summary = {
       createdAt: "2022-02-06T09:58:44.794Z",
       isActive: true,
       email: "lisovyy13@gmail.com",
+      avatar: "#2563EB",
     },
     {
       _id: "65c30b96e639681a13def0b5",
@@ -708,6 +712,7 @@ export const summary = {
       isActive: true,
       createdAt: "2024-02-07T04:48:22.519Z",
       email: "nikzakha203@gmail.com",
+      avatar: "#DC2626",
     },
 
     {
@@ -718,6 +723,7 @@ export const summary = {
       isActive: true,
       createdAt: "2024-05-07T05:38:50.816Z",
       email: "emily.wilson@example.com",
+      avatar: "#D97706",
     },
     {
       _id: "65c317360fd860f958baa08e",
@@ -727,6 +733,7 @@ export const summary = {
       isActive: true,
       createdAt: "2024-04-07T05:37:58.862Z",
       email: "alex.johnson@example.com",
+      avatar: "#059669",
     },
     {
       _id: "65c5f27fb5204a81bde86833",
@@ -736,6 +743,7 @@ export const summary = {
       isActive: false,
       createdAt: "2024-01-09T09:38:07.765Z",
       email: "new.user@example.com",
+      avatar: "#DC2626",
     },
   ],
   tasks: {
@@ -745,9 +753,14 @@ export const summary = {
   },
 };
 
-export const taskTabs = [
-  { id: 1, title: "Board view", icon: <RiDashboardHorizontalFill /> },
-  { id: 2, title: "List view", icon: <FaList /> },
+export const tasksView = [
+  {
+    id: 1,
+    title: "Board view",
+    icon: <RiDashboardHorizontalFill />,
+    Component: BoardView,
+  },
+  { id: 2, title: "List view", icon: <FaList />, Component: ListView },
 ];
 
 export const formatDate = (date) => {
@@ -1272,10 +1285,10 @@ export const tasks = [
 
 export const user = {
   _id: "662f32ffd1303cc",
-  name: "Codewave",
+  name: "Olexandr",
   title: "Administrator",
   role: "Admin",
-  email: "admin@mts.com",
+  email: "lisovyy13@gmail.com",
   isAdmin: true,
   tasks: [],
   createdAt: "2024-02-06T09:58:44.794Z",

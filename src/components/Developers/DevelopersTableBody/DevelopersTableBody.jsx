@@ -4,20 +4,18 @@ import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 
 import Team from "@/components/Team/Team";
 
-import { TASK_BGS, summary } from "@/constants";
+import { summary } from "@/constants";
 
 import styles from "./DevelopersTableBody.module.scss";
 
 const DevelopersTableBody = () => {
   return (
     <tbody className={styles.developersTableBody}>
-      {summary.users.map((user, i) => (
+      {summary.users.map((user) => (
         <tr key={user.name + " row"} className={styles.row}>
           <td className={styles.data}>
             <Team
               {...user}
-              index={i}
-              style={{ backgroundColor: TASK_BGS[i % TASK_BGS.length] }}
               className={styles.avatar}
               avatarClassName={styles.avatar}
               infoClassName={styles.info}

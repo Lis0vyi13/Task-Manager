@@ -16,9 +16,10 @@ const SearchInput = memo(({ register, watch, handleReset }) => {
         {...register("searchQuery")}
         placeholder="Search..."
       />
-      {searchQuery !== "" && (
-        <IoMdClose onClick={handleReset} className={styles.resetInput} />
-      )}
+      {!searchQuery ||
+        (searchQuery != "" && (
+          <IoMdClose onClick={handleReset} className={styles.resetInput} />
+        ))}
     </div>
   );
 });

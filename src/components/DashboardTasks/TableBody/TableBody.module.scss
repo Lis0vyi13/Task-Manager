@@ -70,10 +70,13 @@
   text-align: left;
   transition: all 0.3s ease;
   align-items: center;
-  border-bottom: 1px solid $text-secondary;
 
   &:hover {
     background: $text-secondary;
+  }
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid $text-secondary;
   }
 
   & th,

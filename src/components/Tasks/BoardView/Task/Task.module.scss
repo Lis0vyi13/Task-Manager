@@ -18,8 +18,7 @@
 }
 
 .header,
-.main,
-.footer {
+.main {
   border-bottom: 1px solid $gray-hover;
 }
 
@@ -134,4 +133,15 @@
     top: 50%;
     transform: translate(-102%, -50%);
   }
+}
+
+.footer {
+  max-height: 70px;
+  overflow: auto;
+}
+.subtasksWrapper {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }

@@ -4,13 +4,13 @@ import { TASK_BGS } from "@/constants";
 
 import styles from "./UserInfo.module.scss";
 
-const UserInfo = ({ name, index, title, email }) => {
+const UserInfo = ({ name, index, title, email, avatar }) => {
   return (
     <div className={`${styles.userInfo}`}>
       <div className={styles.content}>
         <div
           style={{
-            backgroundColor: TASK_BGS[index % TASK_BGS.length],
+            backgroundColor: avatar || TASK_BGS[index % TASK_BGS.length],
           }}
           className={styles.avatar}
         >

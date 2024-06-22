@@ -34,9 +34,6 @@
   @include mq(sm) {
     grid-template-columns: repeat(3, 1fr);
   }
-  @include mq(md) {
-    gap: 40px;
-  }
 }
 
 .boardViewTasks {
