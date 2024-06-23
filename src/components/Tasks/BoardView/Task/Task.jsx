@@ -13,6 +13,7 @@ import {
 } from "@/constants";
 
 import styles from "./Task.module.scss";
+import useUser from "@/hooks/useUser";
 
 const Task = ({
   priority,
@@ -24,6 +25,8 @@ const Task = ({
   subTasks,
   team,
 }) => {
+  const user = useUser();
+
   return (
     <div className={styles.task}>
       <div className={styles.content}>
@@ -79,6 +82,14 @@ const Task = ({
               <Subtask index={i} {...subtask} key={subtask._id} />
             ))}
           </section>
+          <button
+            disabled={user.isAdmin}
+            className={`${styles.btnAddSubtask} ${
+              user.isAdmin ? "" : styles.disabled
+            }`}
+          >
+            <span>+</span> <p>Add subtask</p>
+          </button>
         </footer>
       </div>
     </div>

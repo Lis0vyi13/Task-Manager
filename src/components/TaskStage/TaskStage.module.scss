@@ -1,14 +1,24 @@
 @import "@/styles/variables";
+@import "@/styles/breakpoints";
 
 .stage {
   overflow: auto;
   height: -webkit-fit-content;
   height: -moz-fit-content;
   height: fit-content;
-  max-height: 664px;
+  max-height: 824px;
   margin-top: 15px;
+  transition: all 0.3s ease;
+
+  &.hide {
+    max-height: 0;
+  }
   &::-webkit-scrollbar {
-    width: 10px;
+    width: 6px;
+
+    @include mq(mdXl) {
+      width: 10px;
+    }
   }
 
   &::-webkit-scrollbar-track {
@@ -27,8 +37,4 @@
   display: flex;
   flex-direction: column;
   gap: 15px;
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: rgba($color: $primary-main, $alpha: 0.5);
 }

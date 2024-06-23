@@ -6,7 +6,7 @@ import styles from "./PriorityChart.module.scss";
 const PriorityChart = () => {
   const cardVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.3, delay: 0.2 } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
   };
 
   return (
