@@ -1,8 +1,10 @@
+import { memo } from "react";
+
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
 
 import styles from "./TasksTitle.module.scss";
 
-const TasksTitle = ({ color, name, handler, isExpand }) => {
+const TasksTitle = memo(({ color, name, handler, isExpand }) => {
   return (
     <button onClick={handler} className={styles.tasksTitle}>
       <div style={{ backgroundColor: color }} className={styles.circle} />
@@ -15,6 +17,6 @@ const TasksTitle = ({ color, name, handler, isExpand }) => {
       )}
     </button>
   );
-};
+});
 
 export default TasksTitle;

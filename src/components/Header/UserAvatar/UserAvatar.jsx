@@ -13,19 +13,20 @@ import { userAvatarButtons } from "@/constants";
 
 import styles from "./UserAvatar.module.scss";
 
-const UserAvatar = memo(({ fullname }) => {
+const UserAvatar = memo(() => {
   const { isOpened, isClosing, handleToggle, handleClose } =
     useAnimatedToggle();
   const user = useUser();
+  console.log(user);
 
   return (
     <div className={styles.avatar}>
       <button
-        style={{ backgroundColor: user.avatar || "#2744e5" }}
+        style={{ backgroundColor: user?.avatar || "#2744e5" }}
         onClick={handleToggle}
         className={styles.button}
       >
-        {fullname ? getInitials(fullname) : "OL"}
+        {getInitials(user?.name)}
       </button>
 
       {isOpened && (

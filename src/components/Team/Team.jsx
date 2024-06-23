@@ -4,8 +4,6 @@ import useTeam from "./useTeam";
 
 import UserInfo from "../UserInfo/UserInfo";
 
-import { TASK_BGS } from "@/constants";
-
 import styles from "./Team.module.scss";
 
 const Team = ({
@@ -14,12 +12,9 @@ const Team = ({
   className = "",
   avatarClassName = "",
   infoClassName = "",
-  style = {},
-  avatar,
   withInfo = true,
 }) => {
   const { avatarRefs, userInfoRefs } = useTeam({ team });
-
   return (
     <div className={`${styles.team} ${className}`}>
       {team.map((dev, i) => (
@@ -28,8 +23,7 @@ const Team = ({
           title={!withInfo ? dev.name : null}
           key={dev._id}
           style={{
-            ...style,
-            backgroundColor: avatar || TASK_BGS[i % TASK_BGS.length],
+            backgroundColor: dev.avatar,
           }}
           className={`${styles.avatar} ${avatarClassName}`}
         >

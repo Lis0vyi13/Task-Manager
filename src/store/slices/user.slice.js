@@ -10,6 +10,12 @@ const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    setUser(state, { payload }) {
+      state.user = payload;
+    },
+    clearUser(state) {
+      state.user = null;
+    },
     changeAvatar(state, { payload }) {
       state.avatar = payload;
     },

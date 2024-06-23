@@ -1,5 +1,7 @@
 import { useMemo, useState } from "react";
 
+import { motion } from "framer-motion";
+
 import TaskStage from "../../TaskStage/TaskStage";
 import TasksTitle from "../TasksTitle/TasksTitle";
 
@@ -27,11 +29,20 @@ const BoardView = ({ tasks }) => {
       prevState.map((isExpand, i) => (i === index ? !isExpand : isExpand)),
     );
   };
-
+  const cardVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+  };
   return (
     <section className={styles.boardView}>
       {stages.map((stage, i) => (
-        <div key={stage}>
+        <motion.div
+          key={stage}
+          initial="hidden"
+          whileInView="visible"
+          variants={cardVariants}
+          viewport={{ once: true }}
+        >
           {titles
             .filter((title) => title.stage === stage)
             .map((title) => (
@@ -43,7 +54,7 @@ const BoardView = ({ tasks }) => {
               />
             ))}
           <TaskStage isExpand={isExpandArray[i]} stage={stage} tasks={tasks} />
-        </div>
+        </motion.div>
       ))}
     </section>
   );

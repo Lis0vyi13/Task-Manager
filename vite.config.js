@@ -15,6 +15,9 @@ export default defineConfig({
     },
     mainFields: [],
   },
+  optimizeDeps: {
+    exclude: ["js-big-decimal"],
+  },
   plugins: [react()],
 });
 

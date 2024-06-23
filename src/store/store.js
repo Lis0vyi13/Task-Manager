@@ -5,6 +5,7 @@ import userReducer from "./slices/user.slice";
 import sidebarReducer from "./slices/sidebar.slice";
 
 import api from "./api";
+import authMiddleware from "./middleware/authMiddleware";
 
 const store = configureStore({
   reducer: {
@@ -14,7 +15,7 @@ const store = configureStore({
     sidebar: sidebarReducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(api.middleware),
+    getDefaultMiddleware().concat(api.middleware).concat(authMiddleware),
 });
 
 export default store;
