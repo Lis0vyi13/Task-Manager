@@ -2,9 +2,9 @@ import { useMemo } from "react";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
-import { authActions } from "@/store/slices/auth.slice";
-import { userActions } from "@/store/slices/user.slice";
-import { sidebarActions } from "@/store/slices/sidebar.slice";
+import { authActions } from "@/features/auth/AuthSlice";
+import { userActions } from "@/features/user/UserSlice";
+import { sidebarActions } from "@/features/sidebar/SidebarSlice";
 
 const rootActions = { ...authActions, ...userActions, ...sidebarActions };
 

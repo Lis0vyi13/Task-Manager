@@ -1,0 +1,167 @@
+@import "@/styles/variables";
+@import "@/styles/breakpoints";
+@import "@/styles/mixins";
+.task {
+  background-color: #fff;
+  border-radius: 10px;
+  flex-grow: 1;
+}
+
+.content {
+  padding: 10px;
+}
+.header {
+  display: flex;
+  padding-bottom: 5px;
+  justify-content: space-between;
+}
+
+.header,
+.main {
+  border-bottom: 1px solid $gray-hover;
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.headerMoreIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 5px;
+  margin-top: -3px;
+
+  &:hover {
+    background-color: $gray-hover;
+  }
+}
+
+.taskTitle {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.date {
+  color: $text-gray;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  padding: 7px 0;
+}
+
+.details {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  font-size: 14px;
+  color: $text-gray;
+  align-items: center;
+}
+
+.commentary,
+.assets,
+.subtasks {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+
+  &:hover {
+    color: $primary-main;
+  }
+  & span {
+    margin-top: 2px;
+  }
+}
+
+.commentary {
+  gap: 4px;
+}
+.subtasks {
+  gap: 5px;
+}
+.assets {
+  gap: 1px;
+}
+
+.team {
+  padding: 0;
+}
+
+.userInfo {
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -102%);
+
+  @media (min-width: 1532px) {
+    left: 0;
+    top: 50%;
+    transform: translate(-102%, -50%);
+  }
+}
+
+.footer {
+  overflow: auto;
+  &::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: blue;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: rgb(16, 16, 199);
+  }
+}
+.subtasksWrapper {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: 65px;
+  overflow: auto;
+}
+
+.btnAddSubtask {
+  display: flex;
+  gap: 10px;
+  font-size: 16px;
+  text-transform: uppercase;
+  cursor: pointer;
+  color: #1d4ed8;
+  transition: all 0.3s ease;
+  padding: 8px 6px;
+  border-radius: 10px;
+  margin-top: 10px;
+  font-size: 15px;
+  align-items: center;
+
+  &.disabled {
+    color: #b2b4b7;
+    cursor: not-allowed;
+  }
+  &:hover {
+    background-color: rgba($color: #2563eb, $alpha: 0.1);
+  }
+  & span {
+    font-size: 18px;
+  }
+}

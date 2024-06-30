@@ -11,7 +11,7 @@ const useTeam = ({ team }) => {
       const userInfo = userInfoRefs.current[i];
 
       const onAvatarClickHandler = () => {
-        userInfo.classList.add(styles.active);
+        userInfo.classList.toggle(styles.active);
       };
 
       const outsideClickHandler = (e) => {

@@ -5,19 +5,19 @@ import {
   MdKeyboardDoubleArrowUp,
 } from "react-icons/md";
 
-import { FaTasks, FaTrash, FaUser, FaListAlt, FaList } from "react-icons/fa";
+import { FaTasks, FaTrash, FaUser, FaListAlt } from "react-icons/fa";
 import { IoCheckmarkDoneCircle, IoLogOut } from "react-icons/io5";
 import {
   RiProgress5Line,
   RiTodoFill,
   RiTeamFill,
   RiLockPasswordFill,
-  RiDashboardHorizontalFill,
 } from "react-icons/ri";
 
-import BoardView from "@/components/Tasks/BoardView/BoardView";
-import ListView from "@/components/Tasks/ListView/ListView";
-
+export const fadeSlideUpVariants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
+};
 export const loginInputs = [
   {
     name: "email",
@@ -54,9 +54,9 @@ export const loginInputs = [
 export const navLinks = [
   { name: "Dashboard", Icon: MdDashboard, to: "/dashboard" },
   { name: "Tasks", Icon: FaTasks, to: "/tasks" },
-  { name: "Completed", Icon: IoCheckmarkDoneCircle, to: "/completed" },
-  { name: "In Progress", Icon: RiProgress5Line, to: "/in-progress" },
   { name: "To Do", Icon: RiTodoFill, to: "/to-do" },
+  { name: "In Progress", Icon: RiProgress5Line, to: "/in-progress" },
+  { name: "Completed", Icon: IoCheckmarkDoneCircle, to: "/completed" },
   { name: "Team", Icon: RiTeamFill, to: "/team" },
   { name: "Trash", Icon: FaTrash, to: "/trash" },
 ];
@@ -801,16 +801,6 @@ export const summary = {
   },
 };
 
-export const tasksView = [
-  {
-    id: 1,
-    title: "Board view",
-    icon: <RiDashboardHorizontalFill />,
-    Component: BoardView,
-  },
-  { id: 2, title: "List view", icon: <FaList />, Component: ListView },
-];
-
 export const formatDate = (date) => {
   const month = date.toLocaleString("en-US", { month: "short" });
   const day = date.getDate();
@@ -845,6 +835,7 @@ export const tasks = [
         name: "Mykyta Zaharchenko",
         title: "Product Manager",
         email: "nikzakha203@gmail.com",
+        avatar: "#DC2626",
       },
       {
         _id: "65c317360fd860f958baa08e",

@@ -4,10 +4,9 @@ import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { Toaster } from "sonner";
 
 import Layout from "./layouts/Layout";
+import LoginPage from "./pages/Login";
 
-import LoginPage from "./pages/Login/LoginPage";
-
-import Loader from "./components/Loader/Loader";
+import Loader from "./components/Loader";
 
 import routes from "./routes";
 

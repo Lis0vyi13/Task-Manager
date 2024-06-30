@@ -1,0 +1,47 @@
+@import "@/styles/variables";
+@import "@/styles/breakpoints";
+
+.tasksWrapper {
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 10px 20px;
+
+  @include mq(sm) {
+    font-size: 18px;
+  }
+}
+
+.tasksTitles {
+  margin-top: 25px;
+  display: grid;
+
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px;
+
+  @include mq(xs) {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include mq(sm) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.button {
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 10px 20px;
+
+  @include mq(sm) {
+    font-size: 18px;
+  }
+}

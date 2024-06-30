@@ -1,5 +1,11 @@
+import Members from "@/components/Members";
+
 const TeamPage = () => {
-  return <div>TeamPage</div>;
+  return (
+    <section className="team">
+      <Members />
+    </section>
+  );
 };
 
 export default TeamPage;

@@ -1,5 +1,11 @@
+import TasksLayout from "@/layouts/TasksLayout";
+
 const InProgressPage = () => {
-  return <div>InProgressPage</div>;
+  return (
+    <section className="in-progress">
+      <TasksLayout title={"In progress"} stage={"in progress"} />
+    </section>
+  );
 };
 
 export default InProgressPage;
