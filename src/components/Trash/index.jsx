@@ -22,7 +22,7 @@ const Trash = ({ tasks }) => {
         animate="visible"
         variants={fadeSlideUpVariants}
       >
-        <Title>Team members</Title>
+        <Title>Trash</Title>
 
         <div className={styles.trashActions}>
           <div className={styles.trashAction}>

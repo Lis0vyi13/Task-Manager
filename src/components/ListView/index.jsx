@@ -5,12 +5,7 @@ import StageCircle from "../StageCircle";
 
 import { MdAttachFile, MdOutlineComment } from "react-icons/md";
 import { FaList } from "react-icons/fa";
-import {
-  PRIOTITY_STYLES,
-  TASK_PRIORITY_ICONS,
-  fadeSlideUpVariants,
-  formatDate,
-} from "@/constants";
+import { fadeSlideUpVariants, formatDate } from "@/constants";
 
 import styles from "./ListView.module.scss";
 import PriorityIndicator from "../PriorityIndicator";

@@ -8,6 +8,7 @@ import {
   TeamPage,
   TodoPage,
   TrashPage,
+  TaskDetailsPage,
 } from "@/pages";
 
 const routes = [
@@ -39,6 +40,10 @@ const routes = [
   {
     path: "trash",
     element: <TrashPage />,
+  },
+  {
+    path: "task/:id",
+    element: <TaskDetailsPage />,
   },
 ];
 

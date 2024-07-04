@@ -134,18 +134,6 @@ export const statsCards = [
   },
 ];
 
-export const chartData = [
-  { name: "1", total: 1200 },
-  { name: "2", total: 2210 },
-  { name: "3", total: 1590 },
-  { name: "4", total: 1390 },
-  { name: "5", total: 1890 },
-  { name: "6", total: 190 },
-  { name: "8", total: 1190 },
-  { name: "9", total: 1990 },
-  { name: "10", total: 590 },
-];
-
 export const tasksHeading = ["Task title", "Priority", "Team", "Created At"];
 
 export const PRIOTITY_STYLES = {
@@ -237,7 +225,7 @@ export const summary = {
       _id: "65c5d547660756f6fd453a7a",
       title: "Duplicate - Duplicate - Review Code Changes",
       date: "2024-02-09T00:00:00.000Z",
-      priority: "medium",
+      priority: "low",
       stage: "in progress",
       assets: [],
       team: [
@@ -863,7 +851,7 @@ export const tasks = [
     _id: "65c5d547660756f6fd453a7a",
     title: "Duplicate - Duplicate - Review Code Changes",
     date: "2024-02-09T00:00:00.000Z",
-    priority: "medium",
+    priority: "low",
     stage: "in progress",
     assets: [],
     team: [
@@ -922,7 +910,7 @@ export const tasks = [
     _id: "65c46026af6ec0118be9407a",
     title: "Website Project Proposal Review",
     date: "2024-02-07T00:00:00.000Z",
-    priority: "high",
+    priority: "normal",
     stage: "todo",
     assets: [
       "https://firebasestorage.googleapis.com/v0/b/taskmanager-557d7.appspot.com/o/1707410130023hand-holding-writing-checklist-application-form-document-clipboard-white-background-3d-illustration.jpg?alt=media&token=08de4848-517f-48ca-a9b4-624744d5ddb0",
@@ -1067,7 +1055,7 @@ export const tasks = [
     _id: "65c4586f0548279012f8c256",
     title: "Bug Fixing",
     date: "2024-02-07T00:00:00.000Z",
-    priority: "high",
+    priority: "low",
     stage: "todo",
     assets: [
       "https://firebasestorage.googleapis.com/v0/b/taskmanager-557d7.appspot.com/o/1707412457946Wed%20Dev%20Course.png?alt=media&token=028416bf-88c6-4738-9a5a-d90e6d53b202",
@@ -1300,7 +1288,7 @@ export const tasks = [
     _id: "65c351b976ed5c48f9440947",
     title: "Website Project Proposal",
     date: "2024-02-07T00:00:00.000Z",
-    priority: "high",
+    priority: "low",
     stage: "todo",
     assets: [],
     team: [

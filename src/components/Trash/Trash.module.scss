@@ -20,6 +20,7 @@
   align-items: center;
   gap: 10px;
   flex-wrap: wrap;
+  margin-bottom: 15px;
 }
 
 .trashActions {
@@ -35,7 +36,11 @@
   transition: all 0.3s ease;
   cursor: pointer;
   border-radius: 20px;
-  padding: 5px 10px;
+  padding: 3px 7px;
+
+  @include mq(sm) {
+    padding: 5px 10px;
+  }
   &:hover {
     background-color: $text-secondary;
   }
@@ -66,7 +71,10 @@
   }
 }
 .actionText {
-  font-size: 16px;
+  font-size: 14px;
+  @include mq(sm) {
+    font-size: 16px;
+  }
   font-weight: 500;
 }
 
