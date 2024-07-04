@@ -1,1 +1,0 @@
-import{j as t}from"./index-D-obOMTB.js";import{T as e}from"./index-nm4AnHWE.js";import"./index-D_9x_kyb.js";import"./index-DLnTNW1k.js";import"./index-BOypAXnS.js";import"./index-MLedY7kS.js";import"./motion-BQAEkfSQ.js";const l=()=>t.jsx("section",{className:"completed",children:t.jsx(e,{title:"Completed",stage:"completed"})});export{l as default};
