@@ -136,10 +136,18 @@ export const statsCards = [
 
 export const tasksHeading = ["Task title", "Priority", "Team", "Created At"];
 
-export const PRIOTITY_STYLES = {
+export const PRIORITY_STYLES = {
   high: "#DC2626",
   medium: "#D97706",
+  normal: "#000",
   low: "#2563EB",
+};
+
+export const STATUS_BG_STYLES = {
+  high: "rgb(254, 202, 202)",
+  medium: "#f3d78b",
+  normal: "#939393",
+  low: "rgb(191, 219, 254)",
 };
 
 export const TASK_TYPE = {

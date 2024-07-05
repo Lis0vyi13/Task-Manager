@@ -1,15 +1,15 @@
-import { PRIOTITY_STYLES, TASK_PRIORITY_ICONS } from "@/constants";
+import { PRIORITY_STYLES, TASK_PRIORITY_ICONS } from "@/constants";
 
 import styles from "./PriorityIndicator.module.scss";
 
-const PriorityIndicator = ({ priority, withAddition }) => {
+const PriorityIndicator = ({ priority, withAddition, style }) => {
   return (
     <div
-      style={{ color: PRIOTITY_STYLES[priority] }}
+      style={{ color: PRIORITY_STYLES[priority] }}
       className={styles.priority}
     >
       {TASK_PRIORITY_ICONS[priority]}
-      <span className={`${styles.priorityText}`}>
+      <span style={style} className={`${styles.priorityText}`}>
         {priority} {withAddition && "priority"}
       </span>
     </div>

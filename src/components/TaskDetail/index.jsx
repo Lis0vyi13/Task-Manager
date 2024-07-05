@@ -1,13 +1,15 @@
-import { useParams } from "react-router-dom";
+import PriorityStatus from "../PriorityStatus";
+
 import styles from "./TaskDetail.module.scss";
-import { tasks } from "@/constants";
 
-const ID = "65c5f12ab5204a81bde866a9";
-
-const TaskDetail = () => {
-  const { id } = useParams();
-
-  return <div>TaskDetail</div>;
+const TaskDetail = ({ task }) => {
+  return (
+    <section className={styles.taskDetail}>
+      <article className={styles.taskInfo}>
+        <PriorityStatus priority={task.priority} />
+      </article>
+    </section>
+  );
 };
 
 export default TaskDetail;
