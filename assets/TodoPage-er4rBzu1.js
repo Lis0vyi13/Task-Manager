@@ -1,1 +1,0 @@
-import{j as o}from"./index-ByvS7Yyt.js";import{T as t}from"./index-B_znz1Ut.js";import"./index-CsGBwLel.js";import"./index-DJelD0bc.js";import"./index-iuj-Zi6_.js";import"./index-CVrsBc24.js";import"./motion-Cw-UD540.js";const d=()=>o.jsx("section",{className:"todo",children:o.jsx(t,{title:"To do",stage:"todo"})});export{d as default};

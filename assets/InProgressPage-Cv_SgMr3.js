@@ -1,1 +1,0 @@
-import{j as r}from"./index-ByvS7Yyt.js";import{T as s}from"./index-B_znz1Ut.js";import"./index-CsGBwLel.js";import"./index-DJelD0bc.js";import"./index-iuj-Zi6_.js";import"./index-CVrsBc24.js";import"./motion-Cw-UD540.js";const n=()=>r.jsx("section",{className:"in-progress",children:r.jsx(s,{title:"In progress",stage:"in progress"})});export{n as default};
