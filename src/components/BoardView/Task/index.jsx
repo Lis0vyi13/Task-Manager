@@ -1,7 +1,10 @@
+import useTaskDetailHandler from "@/hooks/useTaskDetailHandler";
 import useUser from "@/hooks/useUser";
 
-import Team from "@/components/Team";
 import Subtask from "./Subtask";
+import Team from "@/components/Team";
+import StageCircle from "@/components/StageCircle";
+import PriorityIndicator from "@/components/PriorityIndicator";
 
 import { IoIosMore } from "react-icons/io";
 import { FaList } from "react-icons/fa";
@@ -10,8 +13,6 @@ import { MdOutlineComment, MdAttachFile } from "react-icons/md";
 import { formatDate } from "@/constants";
 
 import styles from "./Task.module.scss";
-import StageCircle from "@/components/StageCircle";
-import PriorityIndicator from "@/components/PriorityIndicator";
 
 const Task = ({
   priority,
@@ -22,23 +23,28 @@ const Task = ({
   assets,
   subTasks,
   team,
+  _id,
 }) => {
   const user = useUser();
+
+  const navigate = useTaskDetailHandler();
 
   return (
     <div className={styles.task}>
       <div className={styles.content}>
         <header className={styles.header}>
           <div className={styles.headerInfo}>
-            <PriorityIndicator withAddition priority={priority} />
-            <div className={styles.taskTitle}>
+            <div className={styles.headerTop}>
+              <PriorityIndicator withAddition priority={priority} />
+              <div className={styles.headerMoreIcon}>
+                <IoIosMore />
+              </div>
+            </div>
+            <div onClick={() => navigate(_id)} className={styles.taskTitle}>
               <StageCircle stage={stage} />
-              <div className={styles.title}>{title}</div>
+              <h1 className={styles.title}>{title}</h1>
             </div>
             <div className={styles.date}>{formatDate(new Date(date))}</div>
-          </div>
-          <div className={styles.headerMoreIcon}>
-            <IoIosMore />
           </div>
         </header>
         <main className={styles.main}>

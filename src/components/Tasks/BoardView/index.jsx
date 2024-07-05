@@ -5,12 +5,15 @@ import { motion } from "framer-motion";
 import TaskStage from "@/components/Tasks/TaskStage";
 import TasksTitle from "@/components/TasksTitle";
 
-import { TASK_TYPE } from "@/constants";
+import { fadeSlideUpVariants, TASK_TYPE } from "@/constants";
 
 import styles from "./BoardView.module.scss";
 
 const BoardView = ({ tasks }) => {
   const stages = useMemo(() => ["todo", "in progress", "completed"], []);
+  const initialExpandState = useMemo(() => stages.map(() => true), [stages]);
+  const [isExpandArray, setIsExpandArray] = useState(initialExpandState);
+
   const titles = [
     { name: "To do", stage: "todo", color: TASK_TYPE.todo },
     {
@@ -21,18 +24,12 @@ const BoardView = ({ tasks }) => {
     { name: "Completed", stage: "completed", color: TASK_TYPE.completed },
   ];
 
-  const initialExpandState = stages.map(() => true);
-  const [isExpandArray, setIsExpandArray] = useState(initialExpandState);
-
   const onTitleClickHandler = (index) => {
     setIsExpandArray((prevState) =>
       prevState.map((isExpand, i) => (i === index ? !isExpand : isExpand)),
     );
   };
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-  };
+
   return (
     <section className={styles.boardView}>
       {stages.map((stage, i) => (
@@ -40,7 +37,7 @@ const BoardView = ({ tasks }) => {
           key={stage}
           initial="hidden"
           whileInView="visible"
-          variants={cardVariants}
+          variants={fadeSlideUpVariants}
           viewport={{ once: true }}
         >
           {titles

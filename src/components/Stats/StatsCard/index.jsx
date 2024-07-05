@@ -3,22 +3,18 @@ import { motion } from "framer-motion";
 
 import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 
+import { fadeSlideUpVariants } from "@/constants";
 import styles from "./StatsCard.module.scss";
 
 const StatsCard = ({ createdAt, Icon, title, amount, color }) => {
   const relativeTime = capitalizeFirstLetter(moment(createdAt).fromNow());
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-  };
 
   return (
     <motion.div
       className={styles.card}
       initial="hidden"
       animate="visible"
-      variants={cardVariants}
+      variants={fadeSlideUpVariants}
     >
       <h2 className={styles.title}>{title}</h2>
       <h3 className={styles.amount}>{amount}</h3>

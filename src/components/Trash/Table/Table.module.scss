@@ -1,0 +1,193 @@
+@import "@/styles/variables";
+
+.table {
+  padding-bottom: 10px;
+  width: 100%;
+  text-align: left;
+}
+
+.thead {
+  display: block;
+  position: -webkit-sticky;
+  top: 1px;
+  transform: translateY(-1px);
+  background-color: #fff;
+  position: sticky;
+  left: 0;
+  z-index: 1;
+}
+
+.tbody {
+  display: block;
+  position: relative;
+}
+
+.thead .tr {
+  padding: 15px;
+  display: flex;
+  gap: 10px;
+  min-width: max(930px, 100%);
+  border-bottom: 1px solid $text-secondary;
+  text-transform: capitalize;
+}
+
+.tbody .tr {
+  position: relative;
+  font-weight: 400;
+  display: flex;
+  width: 100%;
+  transition: all 0.3s ease;
+  padding: 0 10px;
+  align-items: center;
+  gap: 10px;
+
+  min-width: max(930px, 100%);
+
+  &:hover {
+    background: $gray-hover;
+  }
+
+  &:not(:last-of-type) {
+    border-bottom: 1px solid $text-secondary;
+  }
+}
+
+.th,
+.td {
+  &:first-of-type {
+    min-width: 35%;
+    text-align: left;
+  }
+  min-width: 15%;
+  text-align: center;
+}
+
+.th {
+  display: flex;
+
+  &:not(:first-of-type) {
+    justify-content: center;
+    text-align: center;
+  }
+}
+
+.capitalize {
+  text-transform: capitalize;
+}
+
+.td {
+  display: flex;
+  padding: 15px 0px;
+  gap: 20px;
+  align-items: center;
+  text-align: left;
+  &:not(:first-of-type) {
+    text-transform: capitalize;
+    justify-content: center;
+  }
+  &:last-of-type {
+    min-width: auto;
+    width: 100%;
+    padding-right: 5px;
+  }
+}
+
+.title {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.avatar {
+  position: relative;
+  border-radius: 50%;
+  color: #fff;
+  font-size: 16px;
+  min-width: 38px;
+  min-height: 38px;
+  overflow: visible;
+}
+
+.team {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.info {
+  right: 0;
+  top: 0;
+  transform: translate(100%, -35%);
+}
+
+.status {
+  text-align: center;
+  color: $text-primary;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 700;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end !important;
+}
+
+.editBtn {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 16px;
+  color: $primary-main-light;
+  &:hover {
+    color: $primary-main-hover;
+  }
+  font-weight: 500;
+}
+
+.deleteBtn {
+  transition: all 0.3s ease;
+  cursor: pointer;
+  font-size: 16px;
+  color: $error-main;
+  &:hover {
+    color: $error-main-hover;
+  }
+  font-weight: 500;
+}
+
+.titleWrapper {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &:hover > h1 {
+    color: $primary-main;
+  }
+}
+.actionIcon {
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.restore {
+  color: $text-gray;
+  padding: 5px;
+  border-radius: 50%;
+  font-size: 35px;
+  &:hover {
+    background-color: $text-secondary;
+  }
+}
+
+.delete {
+  padding: 5px;
+  border-radius: 50%;
+  font-size: 35px;
+  color: $error-main;
+
+  &:hover {
+    background-color: $text-secondary;
+  }
+}

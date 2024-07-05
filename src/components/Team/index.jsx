@@ -15,6 +15,7 @@ const Team = ({
   withInfo = true,
 }) => {
   const { avatarRefs, userInfoRefs } = useTeam({ team });
+
   return (
     <div className={`${styles.team} ${className}`}>
       {team.map((dev, i) => (
@@ -27,7 +28,7 @@ const Team = ({
           }}
           className={`${styles.avatar} ${avatarClassName}`}
         >
-          <span className={styles.initials}>{getInitials(dev.name)}</span>
+          <p className={styles.initials}>{getInitials(dev.name)}</p>
           {withInfo && (
             <div
               className={`${styles.userInfo} ${

@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 
 import Task from "./Task";
@@ -6,9 +7,10 @@ import { fadeSlideUpVariants } from "@/constants";
 import styles from "./BoardView.module.scss";
 
 const BoardView = ({ tasks, stage }) => {
-  const modifiedTasks = stage
-    ? tasks.filter((task) => task.stage === stage)
-    : tasks;
+  const modifiedTasks = useMemo(
+    () => (stage ? tasks.filter((task) => task.stage === stage) : tasks),
+    [stage, tasks],
+  );
 
   return (
     <motion.section

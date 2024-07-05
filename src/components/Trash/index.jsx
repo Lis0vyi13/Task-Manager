@@ -1,19 +1,25 @@
+import { useMemo } from "react";
 import { motion } from "framer-motion";
+import useTaskDetailHandler from "@/hooks/useTaskDetailHandler";
 
 import Title from "@/ui/Title";
 
-import StageCircle from "../StageCircle";
-import PriorityIndicator from "../PriorityIndicator";
+import Table from "./Table";
 
-import { fadeSlideUpVariants } from "@/constants";
 import { MdDelete, MdRestore } from "react-icons/md";
+import { fadeSlideUpVariants } from "@/constants";
 
 import styles from "./Trash.module.scss";
 
 const Trash = ({ tasks }) => {
   const titles = ["Full Name", "Priority", "Stage", "Modified on"];
+  const navigate = useTaskDetailHandler();
+  const trashedTasks = useMemo(
+    () => tasks.filter((task) => !task.isTrashed),
+    [tasks],
+  );
 
-  const trashedTasks = tasks.filter((task) => !task.isTrashed);
+  const tableData = { titles, navigate, trashedTasks };
   return (
     <section className={styles.trash}>
       <motion.header
@@ -43,53 +49,7 @@ const Trash = ({ tasks }) => {
           trashedTasks.length > 0 ? styles.notEmpty : ""
         }`}
       >
-        {trashedTasks.length > 0 ? (
-          <table className={styles.table}>
-            <thead className={styles.thead}>
-              <tr className={styles.tr}>
-                {titles.map((title) => (
-                  <th key={title} className={`${styles.th}`}>
-                    {title}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody className={styles.tbody}>
-              {trashedTasks.map((task) => (
-                <tr key={task._id} className={styles.tr}>
-                  <td className={styles.td}>
-                    <div className={styles.team}>
-                      <StageCircle stage={task.stage} />
-                      <p className={styles.name}>{task.title}</p>
-                    </div>
-                  </td>
-                  <td className={styles.td}>
-                    <PriorityIndicator withAddition priority={task.priority} />
-                  </td>
-                  <td className={styles.td}>
-                    <p>{task.stage}</p>
-                  </td>
-
-                  <td className={styles.td}>
-                    <p>{new Date(task.updatedAt).toDateString()}</p>
-                  </td>
-                  <td className={`${styles.actions} ${styles.td} `}>
-                    <MdRestore
-                      title="Restore"
-                      className={`${styles.restore} ${styles.actionIcon}`}
-                    />
-                    <MdDelete
-                      title="Delete"
-                      className={`${styles.delete} ${styles.actionIcon}`}
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        ) : (
-          "Trash is empty"
-        )}
+        {trashedTasks.length > 0 ? <Table {...tableData} /> : "Trash is empty"}
       </motion.section>
     </section>
   );

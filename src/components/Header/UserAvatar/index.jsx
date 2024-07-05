@@ -17,7 +17,6 @@ const UserAvatar = memo(() => {
   const { isOpened, isClosing, handleToggle, handleClose } =
     useAnimatedToggle();
   const user = useUser();
-  console.log(user);
 
   return (
     <div className={styles.avatar}>

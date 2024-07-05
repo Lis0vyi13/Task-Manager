@@ -10,6 +10,8 @@
 .td {
   display: flex;
   gap: 15px;
+  padding: 15px 0;
+
   &:not(:first-of-type) {
     width: 15%;
 
@@ -65,25 +67,32 @@
 }
 
 .row {
-  padding: 15px;
+  padding: 0 15px;
   display: flex;
   gap: 20px;
   width: 100%;
   text-align: left;
   transition: all 0.3s ease;
   align-items: center;
-
-  &:hover {
-    background: $gray-hover;
-  }
-
   &:not(:last-of-type) {
     border-bottom: 1px solid $text-secondary;
+  }
+  &:hover {
+    background: $gray-hover;
   }
 
   & th,
   td {
     flex-grow: 1;
     font-size: 16px;
+  }
+}
+
+.pointer {
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover > h1 {
+    color: $primary-main;
   }
 }

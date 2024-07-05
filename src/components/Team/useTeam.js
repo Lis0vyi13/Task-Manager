@@ -9,7 +9,6 @@ const useTeam = ({ team }) => {
   useEffect(() => {
     avatarRefs.current.forEach((avatar, i) => {
       const userInfo = userInfoRefs.current[i];
-
       const onAvatarClickHandler = () => {
         userInfo.classList.toggle(styles.active);
       };
@@ -23,7 +22,10 @@ const useTeam = ({ team }) => {
 
       avatar.addEventListener("click", onAvatarClickHandler);
       document.addEventListener("click", (e) => outsideClickHandler(e));
-      return () => avatar.removeEventListener("click", onAvatarClickHandler);
+      return () => {
+        avatar.removeEventListener("click", onAvatarClickHandler);
+        document.removeEventListener("click", (e) => outsideClickHandler(e));
+      };
     });
   }, [team]);
 

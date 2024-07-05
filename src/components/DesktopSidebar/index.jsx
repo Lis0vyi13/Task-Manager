@@ -16,6 +16,7 @@ const DesktopSidebar = () => {
     (state) => state.sidebar.isDesktopSidebarOpen,
   );
   const { toggleDesktopSidebar } = useActions();
+
   return (
     <aside
       className={`${styles.sidebar}  ${

@@ -9,9 +9,9 @@ const PriorityIndicator = ({ priority, withAddition }) => {
       className={styles.priority}
     >
       {TASK_PRIORITY_ICONS[priority]}
-      <p className={`${styles.priorityText}`}>
+      <span className={`${styles.priorityText}`}>
         {priority} {withAddition && "priority"}
-      </p>
+      </span>
     </div>
   );
 };

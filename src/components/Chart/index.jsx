@@ -30,11 +30,12 @@ const Chart = () => {
   for (let i = 0; i < tasks.length; i++) {
     totalPriority[tasks[i].priority] += 1;
   }
+
   const chartData = [
-    { name: "Low", total: totalPriority.low },
-    { name: "Normal", total: totalPriority.normal },
-    { name: "Medium", total: totalPriority.medium },
-    { name: "High", total: totalPriority.high },
+    { name: "Low", Amount: totalPriority.low },
+    { name: "Normal", Amount: totalPriority.normal },
+    { name: "Medium", Amount: totalPriority.medium },
+    { name: "High", Amount: totalPriority.high },
   ];
 
   return (
@@ -45,7 +46,7 @@ const Chart = () => {
         <Tooltip />
         <Legend />
         <CartesianGrid strokeDasharray="3 3" />
-        <Bar dataKey="total" fill="#8884d8" />
+        <Bar dataKey="Amount" fill="#8884d8" />
       </BarChart>
     </ResponsiveContainer>
   );

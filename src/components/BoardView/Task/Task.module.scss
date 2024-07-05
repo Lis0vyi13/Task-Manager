@@ -25,6 +25,7 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  width: 100%;
 }
 
 .headerMoreIcon {
@@ -49,6 +50,23 @@
   display: flex;
   gap: 5px;
   align-items: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  &:hover > h1 {
+    color: $primary-main;
+  }
+}
+
+.title {
+  font-size: 16px;
+  font-weight: normal;
+}
+
+.headerTop {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .date {
