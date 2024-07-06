@@ -1,1 +1,0 @@
-import{j as t,P as e,w as p}from"./index-sijsFQJU.js";const a="_priority_5tsm6_1",c="_priorityText_5tsm6_8",s={priority:a,priorityText:c},y=({priority:r,withAddition:i,style:o})=>t.jsxs("div",{style:{color:e[r]},className:s.priority,children:[p[r],t.jsxs("span",{style:o,className:`${s.priorityText}`,children:[r," ",i&&"priority"]})]});export{y as P};

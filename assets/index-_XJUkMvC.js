@@ -1,1 +1,0 @@
-import{q as a,j as r,T as c}from"./index-sijsFQJU.js";const i=t=>t.charAt(0).toUpperCase()+t.slice(1),u=()=>{const t=a.useNavigate();return s=>{t(`/task/${s}`)}},l="_circle_16kjz_1",n={circle:l},p=({stage:t,className:e})=>r.jsx("div",{style:{backgroundColor:c[t]},className:`${e} ${n.circle}`,title:i(t)});export{p as S,i as c,u};
