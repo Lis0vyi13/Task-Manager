@@ -16,7 +16,7 @@ const Activity = ({ activity }) => {
       </div>
       <div className={styles.info}>
         <h3 className={styles.username}>
-          {summary.users.find((user) => user._id === activity.by).name}
+          {summary.users.find((user) => user._id === activity.by)?.name}
         </h3>
         <div className={styles.typeDateBlock}>
           <span className={styles.type}>{activity.type}</span>
