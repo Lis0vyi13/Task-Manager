@@ -1,0 +1,83 @@
+@import "@/styles/variables";
+
+.taskInfo {
+  border-bottom: 1px solid $text-secondary;
+  padding-bottom: 20px;
+}
+
+.priorityStageBlock {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.stageBlock {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stage {
+  text-transform: uppercase;
+  font-weight: 500;
+}
+
+.createdAtBlock {
+  margin-top: 15px;
+}
+.createdAt {
+  color: $text-gray;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+
+.assetsSubTasksBlock {
+  display: flex;
+  gap: 25px;
+  padding: 15px 0;
+  font-size: 15px;
+  text-transform: capitalize;
+  border-bottom: 1px solid $text-secondary;
+
+  & span {
+    font-weight: 500;
+  }
+}
+
+.teamBlock,
+.subtasksBlock {
+  margin-top: 30px;
+}
+
+.title {
+}
+.titleSecondary {
+  color: $text-gray;
+  text-transform: uppercase;
+  font-size: 14px;
+}
+
+.memberBlock {
+  padding: 10px 0;
+  border-top: 1px solid $text-secondary;
+}
+
+.substasksTitle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.subtasksProgress {
+  padding: 5px 8px;
+  border-radius: 20px;
+  position: relative;
+  font-weight: 700;
+}
+
+.subtasks {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}

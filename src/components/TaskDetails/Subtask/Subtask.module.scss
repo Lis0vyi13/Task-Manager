@@ -1,0 +1,70 @@
+@import "@/styles/variables";
+
+.subtask {
+  display: flex;
+  gap: 10px;
+}
+
+.subtaskIcon {
+  background-color: rgb(221, 214, 254);
+  display: inline-flex;
+  padding: 7px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+.header {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  align-items: center;
+}
+.date {
+  color: $text-gray;
+  text-transform: capitalize;
+  font-size: 14px;
+}
+
+.tag {
+  background-color: rgb(221, 214, 254);
+  color: rgb(124, 58, 237);
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 20px;
+  font-size: 14px;
+}
+.doneTag {
+  color: rgb(4, 120, 87);
+  background-color: rgb(209, 250, 229);
+}
+
+.subtaskTitle {
+  margin-top: 10px;
+}
+
+.done {
+  &:hover {
+    background-color: rgb(209, 250, 229);
+  }
+}
+
+.undone {
+  &:hover {
+    background-color: rgb(251, 216, 218);
+  }
+}
+.button {
+  margin-top: 10px;
+  cursor: pointer;
+  padding: 5px 10px;
+  background-color: $gray-hover;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+}

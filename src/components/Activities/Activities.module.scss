@@ -1,0 +1,29 @@
+@import "@/styles/breakpoints";
+
+.activitiesWrapper {
+  display: flex;
+  gap: 25px;
+  width: 100%;
+  flex-direction: column;
+  @include mq(sm) {
+    flex-direction: row;
+  }
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 500;
+}
+.activities {
+  margin-top: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.left {
+  flex: 0 0 55%;
+}
+
+.right {
+  width: 100%;
+}

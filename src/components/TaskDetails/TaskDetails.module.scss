@@ -1,0 +1,21 @@
+@import "@/styles/variables";
+@import "@/styles/breakpoints";
+
+.taskDetail {
+  display: flex;
+  gap: 30px;
+  overflow: hidden;
+  flex-direction: column;
+
+  @include mq(mdXl) {
+    flex-direction: row;
+  }
+}
+
+.block {
+  flex: 0 0 100%;
+
+  @include mq(mdXl) {
+    flex: 0 0 50%;
+  }
+}

@@ -1,0 +1,61 @@
+@import "@/styles/variables";
+
+.activity {
+  display: flex;
+  gap: 10px;
+}
+
+.iconBlock {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+}
+.icon {
+  display: inline-block;
+  align-self: flex-start;
+}
+.lineBlock {
+  height: 100%;
+}
+
+.line {
+  height: 100%;
+  width: 2px;
+  background-color: $text-secondary;
+}
+
+.info {
+  margin-bottom: 30px;
+}
+
+.username {
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.typeDateBlock {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.type {
+  text-transform: capitalize;
+  color: $text-gray;
+}
+
+.date {
+  color: $text-gray;
+  font-size: 14px;
+  margin-top: 1px;
+}
+
+.activityText {
+  font-weight: 400;
+  margin-top: 5px;
+  font-size: 16px;
+}

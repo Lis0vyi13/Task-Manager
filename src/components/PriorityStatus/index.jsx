@@ -6,9 +6,18 @@ const PriorityStatus = ({ priority }) => {
   const bg = STATUS_BG_STYLES[priority];
 
   return (
-    <div style={{ backgroundColor: bg }} className={styles.status}>
+    <div
+      style={{
+        backgroundColor: bg,
+        border: priority === "normal" ? "1px solid #000" : "unset",
+      }}
+      className={styles.status}
+    >
       <PriorityIndicator
-        style={{ textTransform: "uppercase", fontWeight: "bold" }}
+        style={{
+          textTransform: "uppercase",
+          fontWeight: "bold",
+        }}
         priority={priority}
         withAddition
       />

@@ -1,0 +1,32 @@
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: #ffffff;
+  font-size: 1.3rem;
+  background-color: #6b7280;
+}
+
+.iconStarted {
+  background-color: #2563eb;
+}
+
+.iconCompleted {
+  background-color: #16a34a;
+}
+
+.iconInProgress {
+  background-color: #7c3aed;
+}
+
+.iconBug {
+  color: #dc2626;
+  background-color: rgb(253, 141, 141);
+}
+
+.iconCommented {
+  background-color: #6b7280;
+}

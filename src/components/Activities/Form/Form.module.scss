@@ -1,0 +1,100 @@
+@import "@/styles/breakpoints";
+
+.label {
+  display: flex;
+  align-items: center;
+}
+
+.addActivityForm {
+  margin-top: 5px;
+}
+
+.selectBlock {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.label {
+  display: flex;
+  align-items: center;
+  font-size: 1rem;
+  padding: 5px 2px;
+}
+
+.select {
+  width: 100%;
+  cursor: pointer;
+  padding: 0.5rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: Arial, sans-serif;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(38, 132, 255, 0.2);
+}
+
+.textareaBlock {
+  margin-top: 20px;
+}
+.textarea {
+  width: 100%;
+  padding: 0.8rem;
+  height: 100px;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-family: Arial, sans-serif;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  @include mq(sm) {
+    height: 250px;
+  }
+}
+.textarea::-webkit-input-placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.textarea::-moz-placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.textarea:-ms-input-placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.textarea::-ms-input-placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.textarea::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
+.textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(38, 132, 255, 0.2);
+}
+
+.submitButton {
+  margin-top: 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  padding: 10px 20px;
+}
+
+.errorText {
+  color: red;
+  font-size: 0.925rem;
+  margin-top: 0.35rem;
+}

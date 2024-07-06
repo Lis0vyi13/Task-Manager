@@ -1,0 +1,37 @@
+@import "@/styles/breakpoints";
+
+.title {
+  font-size: 18px;
+  text-transform: uppercase;
+}
+
+.assetsBlock {
+  margin-top: 25px;
+}
+
+.assets {
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  margin-top: 5px;
+  justify-content: center;
+  @include mq(xs) {
+    justify-content: unset;
+  }
+}
+
+.asset {
+  flex: 0 1 50%;
+  height: 240px;
+  width: max(250px, 100%);
+
+  transition: all 0.3s ease;
+  cursor: pointer;
+  &:hover {
+    scale: 1.02;
+  }
+}
+
+.supportLinksBlock {
+  margin-top: 20px;
+}
