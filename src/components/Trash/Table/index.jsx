@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import PriorityIndicator from "@/components/PriorityIndicator";
 import StageCircle from "@/components/StageCircle";
 
@@ -5,6 +6,8 @@ import { MdDelete, MdRestore } from "react-icons/md";
 import styles from "./Table.module.scss";
 
 const Table = ({ titles, trashedTasks, navigate }) => {
+  const onNavigateHandler = useCallback((id) => navigate(id), [navigate]);
+
   return (
     <table className={styles.table}>
       <thead className={styles.thead}>
@@ -20,7 +23,7 @@ const Table = ({ titles, trashedTasks, navigate }) => {
         {trashedTasks.map((task) => (
           <tr key={task._id} className={styles.tr}>
             <td
-              onClick={() => navigate(task._id)}
+              onClick={() => onNavigateHandler(task._id)}
               className={`${styles.td} ${styles.titleWrapper}`}
             >
               <StageCircle stage={task.stage} />

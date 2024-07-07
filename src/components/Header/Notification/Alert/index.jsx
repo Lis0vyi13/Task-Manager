@@ -1,15 +1,15 @@
+import { memo, useMemo } from "react";
 import moment from "moment";
+import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 
 import { LuBellRing } from "react-icons/lu";
-
 import styles from "./Alert.module.scss";
 
-const Alert = ({ text, createdAt }) => {
-  const capitalizeFirstLetter = (string) => {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  };
-
-  const relativeTime = capitalizeFirstLetter(moment(createdAt).fromNow());
+const Alert = memo(({ text, createdAt }) => {
+  const relativeTime = useMemo(
+    () => capitalizeFirstLetter(moment(createdAt).fromNow()),
+    [createdAt],
+  );
 
   return (
     <div className={styles.alert}>
@@ -27,6 +27,6 @@ const Alert = ({ text, createdAt }) => {
       </div>
     </div>
   );
-};
+});
 
 export default Alert;

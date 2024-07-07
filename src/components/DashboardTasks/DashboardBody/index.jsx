@@ -1,3 +1,4 @@
+import { useCallback } from "react";
 import moment from "moment";
 
 import useTaskDetailHandler from "@/hooks/useTaskDetailHandler";
@@ -12,13 +13,20 @@ import styles from "./DashboardBody.module.scss";
 const DashboardBody = ({ data }) => {
   const navigate = useTaskDetailHandler();
 
+  const handleTaskClick = useCallback(
+    (taskId) => {
+      navigate(taskId);
+    },
+    [navigate],
+  );
+
   return (
     <tbody className={styles.tbody}>
       {data.map((task, taskIndex) => {
         return (
           <tr key={task._id} className={styles.row}>
             <td
-              onClick={() => navigate(task._id)}
+              onClick={() => handleTaskClick(task._id)}
               className={`${styles.td} ${styles.pointer}`}
             >
               <StageCircle className={styles.circle} stage={task.stage} />

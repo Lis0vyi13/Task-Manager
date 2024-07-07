@@ -1,5 +1,6 @@
-import { useMemo } from "react";
-import getProgressColor from "@/utils/getProgressColor";
+import { memo } from "react";
+
+import useTaskDetailsLeft from "./useTaskDetailsLeft";
 
 import Title from "@/ui/Title";
 
@@ -10,21 +11,10 @@ import Subtask from "../Subtask";
 
 import styles from "./TaskDetailsLeft.module.scss";
 
-const TaskDetailsLeft = ({ task }) => {
-  const { subTasks } = task;
-  const doneTasksLength = useMemo(
-    () => subTasks.filter((task) => task.done).length,
-    [subTasks],
-  );
-  const subtaskLength = subTasks.length;
-  const subtasksProgress =
-    doneTasksLength > 0
-      ? Math.round((doneTasksLength / subtaskLength) * 100)
-      : 0;
-  const progressColor = useMemo(
-    () => getProgressColor(subtasksProgress),
-    [subtasksProgress],
-  );
+const TaskDetailsLeft = memo(({ task }) => {
+  const { progressColor, subtasksProgress, subTasks } = useTaskDetailsLeft({
+    task,
+  });
 
   return (
     <>
@@ -80,6 +70,6 @@ const TaskDetailsLeft = ({ task }) => {
       </div>
     </>
   );
-};
+});
 
 export default TaskDetailsLeft;

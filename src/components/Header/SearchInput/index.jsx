@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useMemo } from "react";
 
 import { CiSearch } from "react-icons/ci";
 import { IoMdClose } from "react-icons/io";
@@ -6,7 +6,7 @@ import { IoMdClose } from "react-icons/io";
 import styles from "./SearchInput.module.scss";
 
 const SearchInput = memo(({ register, watch, handleReset }) => {
-  const searchQuery = watch("searchQuery");
+  const searchQuery = useMemo(() => watch("searchQuery"), [watch]);
 
   return (
     <div className={styles.search}>

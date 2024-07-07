@@ -2,7 +2,6 @@ import { memo } from "react";
 
 import useAnimatedToggle from "@/hooks/useAnimatedToggle";
 import useUser from "@/hooks/useUser";
-
 import getInitials from "@/utils/getInitials";
 
 import Popup from "@/ui/Popup";

@@ -1,19 +1,15 @@
-import { useState } from "react";
 import Title from "@/ui/Title";
+import ImageModal from "@/ui/Modals/Image";
+import Loader from "@/ui/Loader";
+
+import useTaskDetails from "./useTaskDetails";
 
 import styles from "./TaskDetailsRight.module.scss";
-import ImageModal from "@/components/Modals/Image";
 
 const TaskDetailsRight = ({ task }) => {
-  const [selectedImage, setSelectedImage] = useState(null);
+  const { selectedImage, loading, handleImageClick, handleCloseModal } =
+    useTaskDetails({ task });
 
-  const handleImageClick = (src) => {
-    setSelectedImage(src);
-  };
-
-  const handleCloseModal = () => {
-    setSelectedImage(null);
-  };
   return (
     <>
       <div className={styles.description}>
@@ -23,7 +19,11 @@ const TaskDetailsRight = ({ task }) => {
       <div className={styles.assetsBlock}>
         <Title className={styles.title}>Assets</Title>
         <div className={styles.assets}>
-          {task?.assets?.length > 0 ? (
+          {loading ? (
+            <div className={styles.loader}>
+              <Loader />
+            </div>
+          ) : task?.assets?.length > 0 ? (
             task.assets.map((asset, i) => (
               <img
                 onClick={() => handleImageClick(asset)}

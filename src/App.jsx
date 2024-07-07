@@ -6,7 +6,7 @@ import { Toaster } from "sonner";
 import Layout from "./layouts/Layout";
 import LoginPage from "./pages/Login";
 
-import Loader from "./components/Loader";
+import Loader from "./ui/Loader";
 
 import routes from "./routes";
 

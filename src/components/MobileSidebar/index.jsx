@@ -1,4 +1,4 @@
-import { forwardRef } from "react";
+import { forwardRef, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 
@@ -20,9 +20,9 @@ const MobileSidebar = forwardRef((_, ref) => {
   );
   const { toggleMobileSidebar } = useActions();
 
-  const handlerSidebar = () => {
+  const handlerSidebar = useCallback(() => {
     if (isMobileSidebarOpen) toggleMobileSidebar();
-  };
+  }, [isMobileSidebarOpen, toggleMobileSidebar]);
 
   useOutsideClick(ref, handlerSidebar);
 

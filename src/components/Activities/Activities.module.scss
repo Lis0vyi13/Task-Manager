@@ -1,12 +1,14 @@
 @import "@/styles/breakpoints";
+@import "@/styles/variables";
 
 .activitiesWrapper {
   display: flex;
-  gap: 25px;
   width: 100%;
   flex-direction: column;
+  gap: 20px;
   @include mq(sm) {
     flex-direction: row;
+    gap: 25px;
   }
 }
 
@@ -25,5 +27,12 @@
 }
 
 .right {
+  border-top: 1px solid $text-secondary;
+  padding-top: 10px;
   width: 100%;
+
+  @include mq(sm) {
+    padding-top: 0;
+    border-top: none;
+  }
 }

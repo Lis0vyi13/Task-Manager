@@ -1,12 +1,12 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import Title from "@/ui/Title";
+import Tabs from "@/ui/Tabs";
+import Loader from "@/ui/Loader";
 
 import Activities from "@/components/Activities";
 import TaskDetails from "@/components/TaskDetails";
-import Tabs from "@/components/Tabs";
-import Loader from "@/components/Loader";
 
 import { TbListDetails } from "react-icons/tb";
 import { MdTimeline } from "react-icons/md";
@@ -47,6 +47,15 @@ const TaskInfoPage = () => {
   );
 
   const navigate = useNavigate();
+
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    if (ActiveTabComponent) {
+      setTimeout(() => setIsLoading(false), 500);
+    }
+  }, [ActiveTabComponent]);
+
   return (
     <section className={styles.taskDetail}>
       <div onClick={() => navigate(-1)} className={styles.titleBlock}>
@@ -57,7 +66,7 @@ const TaskInfoPage = () => {
         <Tabs {...tabsData} />
       </div>
       <div className={styles.content}>
-        {ActiveTabComponent ? <ActiveTabComponent task={task} /> : <Loader />}
+        {isLoading ? <Loader /> : <ActiveTabComponent task={task} />}
       </div>
     </section>
   );

@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 
 import Title from "@/ui/Title";
 
-import Tabs from "@/components/Tabs";
+import Tabs from "@/ui/Tabs";
 import BoardView from "@/components/BoardView";
 import ListView from "@/components/ListView";
 

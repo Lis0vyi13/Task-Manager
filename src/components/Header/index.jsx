@@ -1,9 +1,4 @@
-import { useEffect } from "react";
-import { useForm } from "react-hook-form";
-import { useSelector } from "react-redux";
-
-import useDebounce from "@/hooks/useDebounce";
-import useActions from "@/hooks/useActions";
+import useHeader from "./useHeader";
 
 import UserAvatar from "./UserAvatar";
 import SearchInput from "./SearchInput";
@@ -12,23 +7,14 @@ import Notification from "./Notification";
 import styles from "./Header.module.scss";
 
 const Header = () => {
-  const { register, reset, watch } = useForm({ mode: "onChange" });
-  const debouncedSearchValue = useDebounce(watch("searchQuery"), 500);
-  const { toggleMobileSidebar } = useActions();
-  const isMobileSidebarOpen = useSelector(
-    (state) => state.sidebar.isMobileSidebarOpen,
-  );
-
-  const handleReset = () => {
-    reset({ searchQuery: "" });
-  };
-
-  useEffect(() => {
-    if (debouncedSearchValue) {
-      console.log("Search Query:", debouncedSearchValue);
-    }
-  }, [debouncedSearchValue]);
-
+  const {
+    isMobileSidebarOpen,
+    toggleMobileSidebar,
+    isSearchVisible,
+    register,
+    watch,
+    handleReset,
+  } = useHeader();
   return (
     <header className={styles.header}>
       <div className={styles.leftSide}>
@@ -40,12 +26,13 @@ const Header = () => {
             ≡
           </button>
         )}
-
-        <SearchInput
-          register={register}
-          watch={watch}
-          handleReset={handleReset}
-        />
+        {isSearchVisible && (
+          <SearchInput
+            register={register}
+            watch={watch}
+            handleReset={handleReset}
+          />
+        )}
       </div>
       <div className={styles.rigthSide}>
         <Notification />

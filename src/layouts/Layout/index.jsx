@@ -7,12 +7,13 @@ import useLayout from "./useLayout";
 import MobileSidebar from "@/components/MobileSidebar";
 import DesktopSidebar from "@/components/DesktopSidebar";
 import Header from "@/components/Header";
-import Loader from "@/components/Loader";
+import Loader from "@/ui/Loader";
 
 import styles from "./Layout.module.scss";
 
 const Layout = () => {
   const { isLoggedIn, sidebarRef, isMobileSidebarOpen } = useLayout();
+
   if (!isLoggedIn) {
     return <Navigate to="/login" />;
   }

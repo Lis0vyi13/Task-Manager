@@ -1,9 +1,11 @@
-import { MdTaskAlt } from "react-icons/md";
+import { useCallback } from "react";
 
+import { MdTaskAlt } from "react-icons/md";
 import styles from "./Subtask.module.scss";
 
 const Subtask = ({ title, date, tag, done }) => {
-  const doneHandler = () => {};
+  const doneHandler = useCallback(() => {}, []);
+
   return (
     <div className={styles.subtask}>
       <div className={styles.subtaskIcon}>

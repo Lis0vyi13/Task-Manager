@@ -1,7 +1,4 @@
-import { useCallback, useEffect } from "react";
-import { useForm } from "react-hook-form";
-
-import useActions from "@/hooks/useActions";
+import useLogin from "./useLogin";
 
 import Input from "@/ui/Input";
 import Button from "@/ui/Button";
@@ -11,31 +8,7 @@ import { loginInputs } from "@/constants";
 import styles from "./LoginForm.module.scss";
 
 const LoginForm = () => {
-  const {
-    register,
-    handleSubmit,
-    reset,
-    formState: { errors },
-  } = useForm({ mode: "onChange" });
-  const { logIn } = useActions();
-
-  const onSubmit = useCallback(
-    (data) => {
-      reset();
-      logIn(data);
-    },
-    [logIn, reset],
-  );
-
-  useEffect(() => {
-    const onEnterHandler = (e) => {
-      if (e.key === "Enter" && document.activeElement.tagName === "INPUT") {
-        handleSubmit(onSubmit)();
-      }
-    };
-    document.addEventListener("keydown", onEnterHandler);
-    return () => document.removeEventListener("keydown", onEnterHandler);
-  }, [handleSubmit, onSubmit]);
+  const { handleSubmit, onSubmit, register, errors } = useLogin();
 
   return (
     <div className={styles.loginForm}>

@@ -1,5 +1,3 @@
-import { useMemo, useState } from "react";
-
 import { motion } from "framer-motion";
 
 import TaskStage from "@/components/Tasks/TaskStage";
@@ -8,27 +6,20 @@ import TasksTitle from "@/components/TasksTitle";
 import { fadeSlideUpVariants, TASK_TYPE } from "@/constants";
 
 import styles from "./BoardView.module.scss";
+import useBoardView from "./useBoardView";
+
+const titles = [
+  { name: "To do", stage: "todo", color: TASK_TYPE.todo },
+  {
+    name: "In progress",
+    stage: "in progress",
+    color: TASK_TYPE["in progress"],
+  },
+  { name: "Completed", stage: "completed", color: TASK_TYPE.completed },
+];
 
 const BoardView = ({ tasks }) => {
-  const stages = useMemo(() => ["todo", "in progress", "completed"], []);
-  const initialExpandState = useMemo(() => stages.map(() => true), [stages]);
-  const [isExpandArray, setIsExpandArray] = useState(initialExpandState);
-
-  const titles = [
-    { name: "To do", stage: "todo", color: TASK_TYPE.todo },
-    {
-      name: "In progress",
-      stage: "in progress",
-      color: TASK_TYPE["in progress"],
-    },
-    { name: "Completed", stage: "completed", color: TASK_TYPE.completed },
-  ];
-
-  const onTitleClickHandler = (index) => {
-    setIsExpandArray((prevState) =>
-      prevState.map((isExpand, i) => (i === index ? !isExpand : isExpand)),
-    );
-  };
+  const { stages, isExpandArray, onTitleClickHandler } = useBoardView();
 
   return (
     <section className={styles.boardView}>

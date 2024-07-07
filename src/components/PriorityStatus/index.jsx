@@ -1,15 +1,21 @@
-import { STATUS_BG_STYLES } from "@/constants";
-import styles from "./PriorityStatus.module.scss";
+import { useMemo } from "react";
 import PriorityIndicator from "../PriorityIndicator";
 
+import { STATUS_BG_STYLES } from "@/constants";
+import styles from "./PriorityStatus.module.scss";
+
 const PriorityStatus = ({ priority }) => {
-  const bg = STATUS_BG_STYLES[priority];
+  const bg = useMemo(() => STATUS_BG_STYLES[priority], [priority]);
+  const border = useMemo(
+    () => (priority === "normal" ? "1px solid #000" : "unset"),
+    [priority],
+  );
 
   return (
     <div
       style={{
         backgroundColor: bg,
-        border: priority === "normal" ? "1px solid #000" : "unset",
+        border: border,
       }}
       className={styles.status}
     >

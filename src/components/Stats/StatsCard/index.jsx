@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import moment from "moment/moment";
 import { motion } from "framer-motion";
 
@@ -7,7 +8,10 @@ import { fadeSlideUpVariants } from "@/constants";
 import styles from "./StatsCard.module.scss";
 
 const StatsCard = ({ createdAt, Icon, title, amount, color }) => {
-  const relativeTime = capitalizeFirstLetter(moment(createdAt).fromNow());
+  const relativeTime = useMemo(
+    () => capitalizeFirstLetter(moment(createdAt).fromNow()),
+    [createdAt],
+  );
 
   return (
     <motion.div

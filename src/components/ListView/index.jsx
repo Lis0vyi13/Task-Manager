@@ -9,17 +9,20 @@ import { fadeSlideUpVariants } from "@/constants";
 
 import styles from "./ListView.module.scss";
 
+const titles = ["Task title", "Priority", "Created At", "Assets", "Team"];
+
 const ListView = ({ tasks, stage }) => {
   const modifiedTasks = useMemo(
     () => (stage ? tasks.filter((task) => task.stage === stage) : tasks),
     [stage, tasks],
   );
 
-  const titles = ["Task title", "Priority", "Created At", "Assets", "Team"];
   const navigate = useTaskDetailHandler();
 
-  const tableData = { modifiedTasks, titles, navigate };
-
+  const tableData = useMemo(
+    () => ({ modifiedTasks, titles, navigate }),
+    [modifiedTasks, navigate],
+  );
   return (
     <motion.section
       initial="hidden"

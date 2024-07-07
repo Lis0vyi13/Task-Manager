@@ -11,15 +11,19 @@ import { fadeSlideUpVariants } from "@/constants";
 
 import styles from "./Trash.module.scss";
 
+const titles = ["Full Name", "Priority", "Stage", "Modified on"];
+
 const Trash = ({ tasks }) => {
-  const titles = ["Full Name", "Priority", "Stage", "Modified on"];
   const navigate = useTaskDetailHandler();
   const trashedTasks = useMemo(
     () => tasks.filter((task) => !task.isTrashed),
     [tasks],
   );
 
-  const tableData = { titles, navigate, trashedTasks };
+  const tableData = useMemo(
+    () => ({ titles, navigate, trashedTasks }),
+    [navigate, trashedTasks],
+  );
   return (
     <section className={styles.trash}>
       <motion.header

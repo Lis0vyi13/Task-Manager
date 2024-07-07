@@ -1,3 +1,4 @@
+import { useMemo } from "react";
 import { motion } from "framer-motion";
 
 import Title from "@/ui/Title";
@@ -9,11 +10,12 @@ import { fadeSlideUpVariants, summary } from "@/constants";
 
 import styles from "./Members.module.scss";
 
-const Members = () => {
-  const users = summary.users;
-  const titles = ["Full Name", "Role", "Email", "Status", "Created at"];
+const titles = ["Full Name", "Role", "Email", "Status", "Created at"];
 
-  const tableData = { users, titles };
+const Members = () => {
+  const users = useMemo(() => summary.users, []);
+
+  const tableData = useMemo(() => ({ users, titles }), [users]);
   const addUserHandler = () => {};
 
   return (
