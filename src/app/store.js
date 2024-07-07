@@ -3,6 +3,7 @@ import { configureStore } from "@reduxjs/toolkit";
 import authReducer from "@/features/auth/AuthSlice";
 import userReducer from "@/features/user/UserSlice";
 import sidebarReducer from "@/features/sidebar/SidebarSlice";
+import searchReducer from "@/features/search/SearchSlice";
 
 import api from "@/api/api";
 
@@ -14,6 +15,7 @@ const store = configureStore({
     auth: authReducer,
     user: userReducer,
     sidebar: sidebarReducer,
+    search: searchReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware).concat(authMiddleware),

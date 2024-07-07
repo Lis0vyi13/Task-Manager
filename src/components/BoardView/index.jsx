@@ -1,16 +1,15 @@
-import { useMemo } from "react";
 import { motion } from "framer-motion";
 
-import Task from "./Task";
-import { fadeSlideUpVariants } from "@/constants";
+import useView from "@/hooks/useView";
 
+import Loader from "@/ui/Loader";
+import Task from "./Task";
+
+import { fadeSlideUpVariants } from "@/constants";
 import styles from "./BoardView.module.scss";
 
 const BoardView = ({ tasks, stage }) => {
-  const modifiedTasks = useMemo(
-    () => (stage ? tasks.filter((task) => task.stage === stage) : tasks),
-    [stage, tasks],
-  );
+  const { isLoading, filteredTasks } = useView({ tasks, stage });
 
   return (
     <motion.section
@@ -19,9 +18,13 @@ const BoardView = ({ tasks, stage }) => {
       variants={fadeSlideUpVariants}
       className={styles.boardView}
     >
-      {modifiedTasks.length > 0
-        ? modifiedTasks.map((task) => <Task {...task} key={task._id} />)
-        : "Tasks not found"}
+      {isLoading ? (
+        <Loader />
+      ) : filteredTasks.length > 0 ? (
+        filteredTasks.map((task) => <Task {...task} key={task._id} />)
+      ) : (
+        "Tasks not found"
+      )}
     </motion.section>
   );
 };

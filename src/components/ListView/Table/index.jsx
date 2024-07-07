@@ -9,7 +9,7 @@ import { formatDate } from "@/constants";
 
 import styles from "./Table.module.scss";
 
-const Table = ({ modifiedTasks, titles, navigate }) => {
+const Table = ({ filteredTasks, titles, navigateToTask }) => {
   return (
     <table className={styles.table}>
       <thead className={styles.thead}>
@@ -22,10 +22,10 @@ const Table = ({ modifiedTasks, titles, navigate }) => {
         </tr>
       </thead>
       <tbody className={styles.tbody}>
-        {modifiedTasks.map((task) => (
+        {filteredTasks.map((task) => (
           <tr className={styles.tr} key={task._id}>
             <td
-              onClick={() => navigate(task._id)}
+              onClick={() => navigateToTask(task._id)}
               className={`${styles.tableTitle} ${styles.td}`}
             >
               <StageCircle stage={task.stage} />

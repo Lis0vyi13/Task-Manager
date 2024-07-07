@@ -2,8 +2,10 @@ import { useMemo } from "react";
 import { motion } from "framer-motion";
 
 import useTaskDetailHandler from "@/hooks/useTaskDetailHandler";
+import useView from "@/hooks/useView";
 
 import Table from "./Table";
+import Loader from "@/ui/Loader";
 
 import { fadeSlideUpVariants } from "@/constants";
 
@@ -12,27 +14,27 @@ import styles from "./ListView.module.scss";
 const titles = ["Task title", "Priority", "Created At", "Assets", "Team"];
 
 const ListView = ({ tasks, stage }) => {
-  const modifiedTasks = useMemo(
-    () => (stage ? tasks.filter((task) => task.stage === stage) : tasks),
-    [stage, tasks],
-  );
+  const { isLoading, filteredTasks } = useView({ tasks, stage });
 
-  const navigate = useTaskDetailHandler();
+  const navigateToTask = useTaskDetailHandler();
 
   const tableData = useMemo(
-    () => ({ modifiedTasks, titles, navigate }),
-    [modifiedTasks, navigate],
+    () => ({ filteredTasks, titles, navigateToTask }),
+    [filteredTasks, navigateToTask],
   );
+
   return (
     <motion.section
       initial="hidden"
       animate="visible"
       variants={fadeSlideUpVariants}
       className={`${styles.listView} ${
-        modifiedTasks.length > 0 ? styles.notEmpty : ""
+        filteredTasks.length > 0 ? styles.notEmpty : ""
       }`}
     >
-      {modifiedTasks.length > 0 ? (
+      {isLoading ? (
+        <Loader />
+      ) : filteredTasks.length > 0 ? (
         <Table {...tableData} />
       ) : (
         <span className={styles.notFound}>Tasks not found</span>

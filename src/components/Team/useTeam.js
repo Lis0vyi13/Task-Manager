@@ -1,5 +1,4 @@
 import { useEffect, useRef } from "react";
-
 import styles from "./Team.module.scss";
 
 const useTeam = ({ team }) => {
@@ -7,26 +6,45 @@ const useTeam = ({ team }) => {
   const userInfoRefs = useRef([]);
 
   useEffect(() => {
-    avatarRefs.current.forEach((avatar, i) => {
-      const userInfo = userInfoRefs.current[i];
-      const onAvatarClickHandler = () => {
-        userInfo.classList.toggle(styles.active);
-      };
-
-      const outsideClickHandler = (e) => {
-        if (!userInfo.classList.contains(styles.active)) return;
-        if (avatar && !avatar.contains(e.target)) {
-          userInfo.classList.remove(styles.active);
+    const avatars = avatarRefs.current;
+    const handleAvatarClick = (i) => {
+      return () => {
+        const userInfo = userInfoRefs.current[i];
+        if (userInfo) {
+          userInfo.classList.toggle(styles.active);
         }
       };
+    };
 
-      avatar.addEventListener("click", onAvatarClickHandler);
-      document.addEventListener("click", (e) => outsideClickHandler(e));
-      return () => {
-        avatar.removeEventListener("click", onAvatarClickHandler);
-        document.removeEventListener("click", (e) => outsideClickHandler(e));
-      };
+    const handleOutsideClick = (e) => {
+      userInfoRefs.current.forEach((userInfo, i) => {
+        if (userInfo && userInfo.classList.contains(styles.active)) {
+          if (avatars[i] && !avatars[i].contains(e.target)) {
+            userInfo.classList.remove(styles.active);
+          }
+        }
+      });
+    };
+
+    avatars.forEach((avatar, i) => {
+      if (avatar) {
+        const boundClickHandler = handleAvatarClick(i);
+        avatar.addEventListener("click", boundClickHandler);
+        avatar.boundClickHandler = boundClickHandler;
+      }
     });
+
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      avatars.forEach((avatar) => {
+        if (avatar && avatar.boundClickHandler) {
+          avatar.removeEventListener("click", avatar.boundClickHandler);
+          delete avatar.boundClickHandler;
+        }
+      });
+      document.removeEventListener("click", handleOutsideClick);
+    };
   }, [team]);
 
   return { avatarRefs, userInfoRefs };

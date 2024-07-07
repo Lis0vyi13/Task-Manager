@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
@@ -9,21 +9,21 @@ import useDebounce from "@/hooks/useDebounce";
 const useHeader = () => {
   const { register, reset, watch } = useForm({ mode: "onChange" });
   const debouncedSearchValue = useDebounce(watch("searchQuery"), 500);
-  const { toggleMobileSidebar } = useActions();
+  const { toggleMobileSidebar, setQuery, resetQuery } = useActions();
   const { pathname } = useLocation();
   const isMobileSidebarOpen = useSelector(
     (state) => state.sidebar.isMobileSidebarOpen,
   );
 
-  const handleReset = useCallback(() => {
+  const handleReset = () => {
     reset({ searchQuery: "" });
-  }, [reset]);
+    resetQuery();
+  };
 
   useEffect(() => {
-    if (debouncedSearchValue) {
-      console.log("Search Query:", debouncedSearchValue);
-    }
-  }, [debouncedSearchValue]);
+    console.log("Search Query:", debouncedSearchValue);
+    setQuery(debouncedSearchValue);
+  }, [debouncedSearchValue, setQuery]);
 
   const validPaths = useMemo(
     () => ["/tasks", "/to-do", "/in-progress", "/completed", "/team", "/trash"],

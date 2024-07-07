@@ -1,8 +1,11 @@
-import { useMemo } from "react";
+import { useMemo, useState } from "react";
 import { motion } from "framer-motion";
+
 import useTaskDetailHandler from "@/hooks/useTaskDetailHandler";
+import useSearch from "@/hooks/useSearch";
 
 import Title from "@/ui/Title";
+import Loader from "@/ui/Loader";
 
 import Table from "./Table";
 
@@ -14,16 +17,31 @@ import styles from "./Trash.module.scss";
 const titles = ["Full Name", "Priority", "Stage", "Modified on"];
 
 const Trash = ({ tasks }) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const query = useSearch();
+  const filteredTask = useMemo(() => {
+    setIsLoading(true);
+
+    const trashedTasks = tasks.filter((task) => !task.isTrashed);
+    const queryTasks = query
+      ? trashedTasks.filter((task) =>
+          task?.title?.toLowerCase().includes(query.toLowerCase()),
+        )
+      : trashedTasks;
+
+    setIsLoading(false);
+
+    return queryTasks;
+  }, [query, tasks]);
+
   const navigate = useTaskDetailHandler();
-  const trashedTasks = useMemo(
-    () => tasks.filter((task) => !task.isTrashed),
-    [tasks],
-  );
 
   const tableData = useMemo(
-    () => ({ titles, navigate, trashedTasks }),
-    [navigate, trashedTasks],
+    () => ({ titles, navigate, filteredTask }),
+    [navigate, filteredTask],
   );
+
   return (
     <section className={styles.trash}>
       <motion.header
@@ -50,10 +68,16 @@ const Trash = ({ tasks }) => {
         animate="visible"
         variants={fadeSlideUpVariants}
         className={`${styles.listView} ${
-          trashedTasks.length > 0 ? styles.notEmpty : ""
+          filteredTask.length > 0 ? styles.notEmpty : ""
         }`}
       >
-        {trashedTasks.length > 0 ? <Table {...tableData} /> : "Trash is empty"}
+        {isLoading ? (
+          <Loader />
+        ) : filteredTask.length > 0 ? (
+          <Table {...tableData} />
+        ) : (
+          "Trash is empty"
+        )}
       </motion.section>
     </section>
   );

@@ -9,11 +9,20 @@ import Table from "./Table";
 import { fadeSlideUpVariants, summary } from "@/constants";
 
 import styles from "./Members.module.scss";
+import useSearch from "@/hooks/useSearch";
 
 const titles = ["Full Name", "Role", "Email", "Status", "Created at"];
 
 const Members = () => {
-  const users = useMemo(() => summary.users, []);
+  const query = useSearch();
+
+  const users = useMemo(() => {
+    return query
+      ? summary.users.filter((user) =>
+          user?.name?.toLowerCase().includes(query?.toLowerCase()),
+        )
+      : summary.users;
+  }, [query]);
 
   const tableData = useMemo(() => ({ users, titles }), [users]);
   const addUserHandler = () => {};
@@ -40,7 +49,7 @@ const Members = () => {
           users.length > 0 ? styles.notEmpty : ""
         }`}
       >
-        <Table {...tableData} />
+        {users.length > 0 ? <Table {...tableData} /> : "No users found"}
       </motion.section>
     </section>
   );

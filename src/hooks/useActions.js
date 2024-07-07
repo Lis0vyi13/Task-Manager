@@ -5,8 +5,14 @@ import { useDispatch } from "react-redux";
 import { authActions } from "@/features/auth/AuthSlice";
 import { userActions } from "@/features/user/UserSlice";
 import { sidebarActions } from "@/features/sidebar/SidebarSlice";
+import { searchActions } from "@/features/search/SearchSlice";
 
-const rootActions = { ...authActions, ...userActions, ...sidebarActions };
+const rootActions = {
+  ...authActions,
+  ...userActions,
+  ...sidebarActions,
+  ...searchActions,
+};
 
 const useActions = () => {
   const dispatch = useDispatch();

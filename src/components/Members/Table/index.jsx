@@ -5,6 +5,7 @@ import { formatDate } from "@/constants";
 import styles from "./Table.module.scss";
 
 const Table = ({ users, titles }) => {
+  console.log(users);
   return (
     <table className={styles.table}>
       <thead className={styles.thead}>
