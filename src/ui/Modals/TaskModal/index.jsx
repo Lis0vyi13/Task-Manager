@@ -55,7 +55,7 @@ const TaskModal = ({ onClose, className, task, changedValue }) => {
       onSubmit={onSubmit}
       onClose={onCloseHandler}
     >
-      <section className="modalWrapper">
+      <section className={`modalWrapper ${styles.modal}`}>
         <Title className="modalTitle">
           {task ? "Update task" : "Add task"}
         </Title>

@@ -1,6 +1,15 @@
 @import "@/styles/breakpoints";
 @import "@/styles/mixins";
 
+.modal {
+  position: relative;
+  top: 20px;
+  margin-bottom: 40px;
+  @include mq(sm) {
+    top: unset;
+    margin-bottom: 0;
+  }
+}
 .stagePriorityBlock,
 .dateAssetsBlock {
   display: flex;
