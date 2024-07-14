@@ -7,7 +7,6 @@ import useModal from "@/hooks/useModal";
 import QuestionModal from "@/ui/Modals/QuestionModal";
 import PriorityIndicator from "@/components/PriorityIndicator";
 import StageCircle from "@/components/StageCircle";
-import More from "@/components/More";
 
 import { MdDelete, MdRestore } from "react-icons/md";
 import styles from "./Table.module.scss";
@@ -94,8 +93,23 @@ const Table = ({ titles, filteredTask, navigate }) => {
                 </td>
               </>
             ) : (
-              <td>
-                <More />
+              <td className={`${styles.actions} ${styles.td} `}>
+                <MdRestore
+                  onClick={() => {
+                    openQuestionModal(task);
+                    setModalType("restore");
+                  }}
+                  title="Restore"
+                  className={`${styles.restore} ${styles.actionIcon}`}
+                />
+                <MdDelete
+                  onClick={() => {
+                    openQuestionModal(task);
+                    setModalType("delete");
+                  }}
+                  title="Delete"
+                  className={`${styles.delete} ${styles.actionIcon}`}
+                />
               </td>
             )}
             {isQuestionModalOpen &&

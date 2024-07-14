@@ -6,8 +6,9 @@
   margin-top: 13px;
   max-width: max(1542px, 100%);
   border-radius: 10px;
-  overflow-x: hidden;
-  @include mq(sm) {
+  overflow-x: visible;
+
+  @include mq(md) {
     overflow-x: auto;
   }
   &.notEmpty {

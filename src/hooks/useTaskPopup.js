@@ -6,16 +6,16 @@ import { FaExchangeAlt, FaFolderOpen } from "react-icons/fa";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 
-const useTaskPopup = ({ task }) => {
+const useTaskPopup = ({ task, setItemHandler = () => {} }) => {
   const { isOpened, isClosing, handleToggle, handleClose } =
     useAnimatedToggle();
 
   const [isEditModalOpen, openEditModal, closeEditModal] = useModal({
-    setItem: () => {},
+    setItem: setItemHandler,
   });
   const [isQuestionModalOpen, openQuestionModal, closeQuestionModal] = useModal(
     {
-      setItem: () => {},
+      setItem: setItemHandler,
     },
   );
   const [isAddSubtaskModalOpen, openAddSubtaskModal, closeAddSubtaskModal] =
@@ -82,6 +82,8 @@ const useTaskPopup = ({ task }) => {
     isStageModalOpen,
     openStageModal,
     closeStageModal,
+    openQuestionModal,
+    openEditModal,
   };
 };
 

@@ -1255,7 +1255,7 @@ export const tasks = [
         avatar: "#D97706",
       },
     ],
-    isTrashed: false,
+    isTrashed: true,
     activities: [],
     subTasks: [
       {

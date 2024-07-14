@@ -4,10 +4,10 @@
 
 .listView {
   margin-top: 13px;
-  overflow: auto;
   border-radius: 10px;
-  overflow-x: hidden;
-  @include mq(sm) {
+  overflow-x: visible;
+
+  @include mq(md) {
     overflow-x: auto;
   }
 
