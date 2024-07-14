@@ -14,10 +14,10 @@
   background-color: #fff;
 }
 .burger {
-  font-size: 27px;
+  font-size: 29px;
   cursor: pointer;
   display: block;
-
+  width: 26px;
   @include mq(md) {
     display: none;
   }

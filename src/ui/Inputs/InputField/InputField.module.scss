@@ -1,0 +1,55 @@
+.label {
+  text-transform: capitalize;
+  margin-bottom: 5px;
+  display: inline-block;
+}
+.input {
+  width: 100%;
+  padding: 0.5rem;
+  margin-top: 3px;
+  outline: none;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  &:disabled {
+    background-color: #ecf0f0;
+    cursor: not-allowed;
+  }
+  &::-webkit-input-placeholder {
+    color: #aaa;
+  }
+
+  &::-moz-placeholder {
+    color: #aaa;
+  }
+
+  &:-ms-input-placeholder {
+    color: #aaa;
+  }
+
+  &::-ms-input-placeholder {
+    color: #aaa;
+  }
+
+  &::placeholder {
+    color: #aaa;
+    font-size: 16px;
+  }
+
+  &:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 0 1px rgba(38, 132, 255, 1);
+  }
+}
+
+.inputError {
+  box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.errorText {
+  color: red;
+  font-size: 0.925rem;
+  margin-top: 0.35rem;
+}

@@ -1,4 +1,5 @@
 @import "@/styles/variables";
+@import "@/styles/breakpoints";
 
 .table {
   padding-bottom: 10px;
@@ -8,11 +9,9 @@
 
 .thead {
   display: block;
-  position: -webkit-sticky;
   top: 1px;
   transform: translateY(-1px);
   background-color: #fff;
-  position: sticky;
   left: 0;
   z-index: 1;
 }
@@ -26,9 +25,12 @@
   padding: 15px;
   display: flex;
   gap: 10px;
-  min-width: max(930px, 100%);
   border-bottom: 1px solid $text-secondary;
   text-transform: capitalize;
+
+  @include mq(md) {
+    min-width: max(930px, 100%);
+  }
 }
 
 .tbody .tr {
@@ -40,9 +42,12 @@
   padding: 0 10px;
   align-items: center;
   gap: 10px;
+  justify-content: space-between;
 
-  min-width: max(930px, 100%);
-
+  @include mq(md) {
+    justify-content: unset;
+    min-width: max(930px, 100%);
+  }
   &:hover {
     background: $gray-hover;
   }

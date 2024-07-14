@@ -21,7 +21,6 @@ const useHeader = () => {
   };
 
   useEffect(() => {
-    console.log("Search Query:", debouncedSearchValue);
     setQuery(debouncedSearchValue);
   }, [debouncedSearchValue, setQuery]);
 

@@ -6,7 +6,7 @@ const useTaskDetails = ({ task }) => {
 
   useEffect(() => {
     if (task.assets && task.assets.length > 0) {
-      const imagePromises = task.assets.map((src) => {
+      const imagePromises = task?.assets?.map((src) => {
         return new Promise((resolve) => {
           const img = new Image();
           img.src = src;

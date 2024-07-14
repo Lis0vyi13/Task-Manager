@@ -1,8 +1,9 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { motion } from "framer-motion";
 
 import Title from "@/ui/Title";
 import Button from "@/ui/Button";
+import TaskModal from "@/ui/Modals/TaskModal";
 
 import Tabs from "@/ui/Tabs";
 import BoardView from "./BoardView";
@@ -16,7 +17,7 @@ import styles from "./Tasks.module.scss";
 
 const Tasks = () => {
   const [activeTab, setActiveTab] = useState(1);
-
+  const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const tasksView = useMemo(
     () => [
       {
@@ -34,6 +35,8 @@ const Tasks = () => {
     return tasksView.find((tab) => tab.id === activeTab)?.Component;
   }, [activeTab, tasksView]);
 
+  const onAddTaskHandler = useCallback(() => {}, []);
+
   return (
     <section className={styles.tasksWrapper}>
       <motion.header
@@ -43,8 +46,23 @@ const Tasks = () => {
         variants={fadeSlideUpVariants}
       >
         <Title>Tasks</Title>
-        <Button className={styles.button}>+ Create task</Button>
+        <Button
+          onClick={() => setIsTaskModalOpen(true)}
+          className={styles.button}
+        >
+          + Create task
+        </Button>
       </motion.header>
+
+      <TaskModal
+        changedValue={isTaskModalOpen}
+        className={`${isTaskModalOpen ? "" : styles.hidden} ${
+          styles.addTaskModal
+        }`}
+        onSubmit={onAddTaskHandler}
+        onClose={() => setIsTaskModalOpen(false)}
+      />
+
       <motion.main
         className={styles.main}
         initial="hidden"

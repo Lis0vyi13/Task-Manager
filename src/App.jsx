@@ -29,7 +29,7 @@ function App() {
         </Routes>
       </Suspense>
 
-      <Toaster richColors />
+      <Toaster toastOptions={{ className: "toaster" }} richColors />
     </Router>
   );
 }

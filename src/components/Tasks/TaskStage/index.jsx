@@ -16,7 +16,7 @@ const TaskStage = memo(({ stage, tasks, isExpand }) => {
         {isLoading ? (
           <Loader />
         ) : (
-          filteredTasks.map((task) => <Task {...task} key={task._id} />)
+          filteredTasks.map((task) => <Task task={task} key={task._id} />)
         )}
       </div>
     </article>

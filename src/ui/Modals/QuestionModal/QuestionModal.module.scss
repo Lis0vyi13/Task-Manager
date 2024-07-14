@@ -1,0 +1,59 @@
+@import "@/styles/variables";
+
+.modal {
+  width: min(100%, 500px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  padding: 25px;
+  flex-direction: column;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.icon {
+  padding: 8px;
+  font-size: 80px;
+}
+
+.text {
+  color: $text-gray;
+  font-weight: 600;
+  margin-top: 5px;
+  font-size: 18px;
+  text-align: center;
+}
+
+.deleteIcon {
+  color: red;
+}
+
+.deleteCircle {
+  background-color: rgba($color: red, $alpha: 0.4);
+}
+
+.deleteSubmitButton {
+  background-color: red;
+  font-size: 16px;
+  &:hover {
+    background-color: rgb(196, 6, 6);
+  }
+}
+
+.restoreIcon {
+  color: rgb(255, 174, 0);
+}
+
+.restoreCircle {
+  background-color: rgba(255, 174, 0, 0.4);
+}
+.restoreSubmitButton {
+  font-size: 16px;
+  background-color: rgb(255, 174, 0);
+  &:hover {
+    background-color: rgb(206, 142, 4);
+  }
+}

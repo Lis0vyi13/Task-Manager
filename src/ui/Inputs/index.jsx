@@ -1,8 +1,8 @@
 import styles from "./Input.module.scss";
 
-const Input = ({ name, label, register, options, ...rest }) => (
+const Input = ({ name, htmlFor, label, register, options, ...rest }) => (
   <>
-    <label>{label}</label>
+    <label htmlFor={htmlFor}>{label}</label>
     <input {...rest} {...register(name, options)} className={styles.input} />
   </>
 );

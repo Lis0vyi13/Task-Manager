@@ -1,21 +1,23 @@
-import { useMemo } from "react";
+import { useCallback, useMemo, useState } from "react";
 import { motion } from "framer-motion";
+
+import useSearch from "@/hooks/useSearch";
 
 import Title from "@/ui/Title";
 import Button from "@/ui/Button";
+import AddUser from "@/ui/Modals/AddUser";
 
 import Table from "./Table";
 
 import { fadeSlideUpVariants, summary } from "@/constants";
 
 import styles from "./Members.module.scss";
-import useSearch from "@/hooks/useSearch";
 
 const titles = ["Full Name", "Role", "Email", "Status", "Created at"];
 
 const Members = () => {
   const query = useSearch();
-
+  const [isUserModalOpen, setIsUserModalOpen] = useState(false);
   const users = useMemo(() => {
     return query
       ? summary.users.filter((user) =>
@@ -25,7 +27,9 @@ const Members = () => {
   }, [query]);
 
   const tableData = useMemo(() => ({ users, titles }), [users]);
-  const addUserHandler = () => {};
+  const addUserHandler = useCallback(() => {
+    setIsUserModalOpen(true);
+  }, []);
 
   return (
     <section className={styles.members}>
@@ -40,6 +44,12 @@ const Members = () => {
         <Button onClick={addUserHandler} className={styles.button}>
           + Add new user
         </Button>
+        {isUserModalOpen && (
+          <AddUser
+            changedValue={isUserModalOpen}
+            onClose={() => setIsUserModalOpen(false)}
+          />
+        )}
       </motion.header>
       <motion.section
         initial="hidden"

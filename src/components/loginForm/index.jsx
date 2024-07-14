@@ -1,6 +1,6 @@
 import useLogin from "./useLogin";
 
-import Input from "@/ui/Input";
+import Input from "@/ui/Inputs";
 import Button from "@/ui/Button";
 
 import { loginInputs } from "@/constants";

@@ -1,0 +1,16 @@
+.inputError {
+  box-shadow: 0 0 0 3px rgba(255, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.errorText {
+  color: red;
+  font-size: 0.925rem;
+  margin-top: 0.35rem;
+}
+
+.label {
+  text-transform: capitalize;
+  margin-bottom: 5px;
+  display: inline-block;
+}

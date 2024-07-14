@@ -1,0 +1,20 @@
+@import "@/styles/variables";
+
+.more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 50%;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  padding: 5px;
+  margin-top: -3px;
+  font-size: 18px;
+
+  &:hover {
+    background-color: $gray-hover;
+  }
+}

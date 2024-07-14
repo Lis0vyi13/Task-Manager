@@ -2,11 +2,6 @@
 @import "@/styles/breakpoints";
 
 .stage {
-  overflow: auto;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  max-height: 758px;
   margin-top: 15px;
   transition: all 0.3s ease;
 
@@ -26,11 +21,11 @@
   }
 
   &::-webkit-scrollbar-thumb {
-    background-color: blue;
+    background-color: rgb(193, 193, 193);
   }
 
   &::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(16, 16, 199);
+    background-color: rgb(149, 149, 149);
   }
 }
 .content {

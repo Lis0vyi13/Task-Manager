@@ -23,13 +23,20 @@
 .header {
   display: flex;
   gap: 10px;
-  align-items: flex-start;
   align-items: center;
+  flex-wrap: wrap;
 }
 .date {
   color: $text-gray;
   text-transform: capitalize;
   font-size: 14px;
+}
+
+.tags {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
 .tag {

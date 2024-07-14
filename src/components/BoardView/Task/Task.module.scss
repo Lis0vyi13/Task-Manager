@@ -28,24 +28,6 @@
   width: 100%;
 }
 
-.headerMoreIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  border-radius: 50%;
-  height: -webkit-fit-content;
-  height: -moz-fit-content;
-  height: fit-content;
-  padding: 5px;
-  margin-top: -3px;
-
-  &:hover {
-    background-color: $gray-hover;
-  }
-}
-
 .taskTitle {
   display: flex;
   gap: 5px;
@@ -67,6 +49,7 @@
   width: 100%;
   align-items: center;
   justify-content: space-between;
+  position: relative;
 }
 
 .date {
@@ -154,7 +137,7 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
-  max-height: 65px;
+  max-height: 54px;
   overflow: auto;
 }
 
@@ -182,4 +165,12 @@
   & span {
     font-size: 18px;
   }
+}
+
+.popup {
+  bottom: -10px;
+}
+
+.divider {
+  border-bottom: 1px solid $text-secondary;
 }

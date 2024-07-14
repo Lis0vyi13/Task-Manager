@@ -72,6 +72,7 @@
 }
 
 .popupButtons {
+  border-top: 1px solid $text-secondary;
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -91,5 +92,8 @@
   transition: all 0.3s ease;
   &:hover {
     background-color: #e4e4e4;
+  }
+  &:first-of-type {
+    border-right: 1px solid $text-secondary;
   }
 }

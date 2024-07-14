@@ -1,4 +1,5 @@
 @import "@/styles/breakpoints";
+@import "@/styles/variables";
 
 .title {
   font-size: 18px;
@@ -13,13 +14,17 @@
   display: flex;
   width: 100%;
   flex-wrap: wrap;
-  margin-top: 5px;
+  position: relative;
+}
+.assetsCenter {
   justify-content: center;
   @include mq(xs) {
     justify-content: unset;
   }
 }
-
+.noAssetsText {
+  text-align: left;
+}
 .asset {
   flex: 0 1 50%;
   height: 240px;
@@ -32,10 +37,24 @@
   }
 }
 
-.supportLinksBlock {
+.supportLinksBlock,
+.linksBlock {
   margin-top: 20px;
 }
 
 .loader {
   margin-top: 40px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.link {
+  color: $primary-main;
+  &:hover {
+    text-decoration: underline;
+  }
 }

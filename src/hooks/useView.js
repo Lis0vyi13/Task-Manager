@@ -8,9 +8,11 @@ const useView = ({ tasks, stage }) => {
 
   const filteredTasks = useMemo(() => {
     setisLoading(true);
+    const untrashedTasks = tasks.filter((task) => !task.isTrashed);
+
     const stageFilteredTasks = stage
-      ? tasks.filter((task) => task.stage === stage)
-      : tasks;
+      ? untrashedTasks.filter((task) => task.stage === stage)
+      : untrashedTasks;
 
     const queryFilteredTasks = query
       ? stageFilteredTasks.filter((task) =>

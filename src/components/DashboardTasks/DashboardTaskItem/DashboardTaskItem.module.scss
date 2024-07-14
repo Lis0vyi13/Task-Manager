@@ -1,0 +1,95 @@
+@import "@/styles/variables";
+@import "@/styles/breakpoints";
+
+.td {
+  display: flex;
+  gap: 15px;
+  padding: 15px 0;
+
+  &:not(:first-of-type) {
+    width: 15%;
+    @include mq(xl) {
+      width: 10%;
+    }
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  &:first-of-type {
+    @include mq(smMd) {
+      width: 60%;
+    }
+  }
+}
+
+.circle {
+  min-width: 20px;
+  max-width: 20px;
+  min-height: 20px;
+  max-height: 20px;
+  border-radius: 50%;
+}
+
+.text {
+  font-weight: 400;
+}
+.daysAgo {
+  color: $text-primary;
+  text-align: center;
+}
+
+.priority {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  & span {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.createdAt {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.row {
+  position: relative;
+  padding: 0 15px;
+  display: flex;
+  gap: 20px;
+  width: 100%;
+  text-align: left;
+  transition: all 0.3s ease;
+  align-items: center;
+  justify-content: space-between;
+
+  @include mq(md) {
+    justify-content: unset;
+  }
+  &:not(:last-of-type) {
+    border-bottom: 1px solid $text-secondary;
+  }
+  &:hover {
+    background: $gray-hover;
+  }
+
+  & th,
+  td {
+    font-size: 16px;
+  }
+}
+
+.pointer {
+  cursor: pointer;
+  transition: all 0.3s ease;
+
+  &:hover > h1 {
+    color: $primary-main;
+  }
+}

@@ -1,0 +1,23 @@
+.item {
+  display: flex;
+  gap: 10px;
+  width: 100%;
+  align-items: center;
+  padding: 15px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
+  &:not(:disabled):hover {
+    background-color: #d0d0d0;
+  }
+}
+
+.icon {
+  font-size: 17px;
+}
+.title {
+  font-size: 16px;
+}

@@ -14,10 +14,12 @@ const Subtask = ({ title, date, tag, done }) => {
       <div className={styles.subtaskInfo}>
         <header className={styles.header}>
           <span className={styles.date}>{new Date(date).toDateString()}</span>
-          <span className={styles.tag}>{tag}</span>
-          {done && (
-            <span className={`${styles.doneTag} ${styles.tag}`}>Done</span>
-          )}
+          <div className={styles.tags}>
+            <span className={styles.tag}>{tag}</span>
+            {done && (
+              <span className={`${styles.doneTag} ${styles.tag}`}>Done</span>
+            )}
+          </div>
         </header>
         <main className={styles.main}>
           <p className={styles.subtaskTitle}>{title}</p>

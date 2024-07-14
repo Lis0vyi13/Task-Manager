@@ -6,7 +6,9 @@ import {
 } from "react-icons/md";
 
 import { FaTasks, FaTrash, FaUser, FaListAlt } from "react-icons/fa";
+
 import { IoCheckmarkDoneCircle, IoLogOut } from "react-icons/io5";
+
 import {
   RiProgress5Line,
   RiTodoFill,
@@ -103,34 +105,38 @@ export const statsCards = [
   {
     id: 1,
     title: "Total task",
-    amount: 10,
     color: "blue",
+    type: "all",
+    href: "/tasks",
     Icon: FaListAlt,
     createdAt: "2024-06-14T17:08:23Z",
   },
   {
     id: 2,
-    title: "Completed task",
-    amount: 1,
-    color: "green",
-    Icon: IoCheckmarkDoneCircle,
-    createdAt: "2024-05-14T17:08:23Z",
+    title: "Todos",
+    color: "red",
+    type: "todo",
+    href: "/to-do",
+    Icon: RiTodoFill,
+    createdAt: "2021-06-14T17:08:23Z",
   },
   {
     id: 3,
     title: "Task in progress",
-    amount: 3,
     color: "orange",
+    type: "in progress",
+    href: "/in-progress",
     Icon: RiProgress5Line,
     createdAt: "2022-06-14T17:08:23Z",
   },
   {
     id: 4,
-    title: "Todos",
-    amount: 6,
-    color: "red",
-    Icon: RiTodoFill,
-    createdAt: "2021-06-14T17:08:23Z",
+    title: "Completed task",
+    color: "green",
+    type: "completed",
+    href: "/completed",
+    Icon: IoCheckmarkDoneCircle,
+    createdAt: "2024-05-14T17:08:23Z",
   },
 ];
 
@@ -871,6 +877,8 @@ export const tasks = [
         done: false,
       },
     ],
+    description: "test description",
+    links: ["dsgssd", "sdgsdgsf"],
     createdAt: "2024-02-09T09:32:26.574Z",
     updatedAt: "2024-02-09T09:36:53.339Z",
     __v: 1,

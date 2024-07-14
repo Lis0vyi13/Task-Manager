@@ -10,6 +10,7 @@ const TaskDetailsRight = ({ task }) => {
   const { selectedImage, loading, handleImageClick, handleCloseModal } =
     useTaskDetails({ task });
 
+  const isAssets = task?.assets?.length > 0;
   return (
     <>
       <div className={styles.description}>
@@ -18,13 +19,15 @@ const TaskDetailsRight = ({ task }) => {
       </div>
       <div className={styles.assetsBlock}>
         <Title className={styles.title}>Assets</Title>
-        <div className={styles.assets}>
+        <div
+          className={`${styles.assets} ${isAssets ? styles.assetsCenter : ""}`}
+        >
           {loading ? (
             <div className={styles.loader}>
               <Loader />
             </div>
-          ) : task?.assets?.length > 0 ? (
-            task.assets.map((asset, i) => (
+          ) : isAssets ? (
+            task?.assets?.map((asset, i) => (
               <img
                 onClick={() => handleImageClick(asset)}
                 key={`asset-${i}`}
@@ -34,7 +37,26 @@ const TaskDetailsRight = ({ task }) => {
               />
             ))
           ) : (
-            <p>No assets available</p>
+            <span className={styles.noAssetsText}>No assets available</span>
+          )}
+        </div>
+      </div>
+
+      <div className={styles.linksBlock}>
+        <Title className={styles.title}>Support links</Title>
+        <div className={styles.links}>
+          {isAssets ? (
+            <ul className={styles.list}>
+              {task?.links?.map((link) => (
+                <li key={link} className={styles.listItem}>
+                  <a className={styles.link} href={link}>
+                    {link}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No links available</p>
           )}
         </div>
       </div>

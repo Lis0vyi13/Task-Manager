@@ -1,13 +1,33 @@
+import { createPortal } from "react-dom";
+
+import useModal from "./useModal";
+
 import styles from "./Modal.module.scss";
 
-const Modal = ({ onClose, children }) => {
-  return (
-    <div className={styles.overlay} onClick={onClose}>
+const Modal = ({
+  onClose,
+  noCross,
+  onSubmit,
+  className,
+  changedValue,
+  children,
+}) => {
+  const { modalRef } = useModal({ onClose, changedValue, onSubmit, styles });
+
+  return createPortal(
+    <div
+      ref={modalRef}
+      className={`${styles.overlay} ${className}`}
+      onClick={onClose}
+    >
       <div onClick={(e) => e.stopPropagation()}>{children}</div>
-      <button className={styles.closeButton} onClick={onClose}>
-        &times;
-      </button>
-    </div>
+      {!noCross && (
+        <button className={styles.closeButton} onClick={onClose}>
+          &times;
+        </button>
+      )}
+    </div>,
+    document.body,
   );
 };
 

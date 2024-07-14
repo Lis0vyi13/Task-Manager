@@ -1,0 +1,51 @@
+@import "@/styles/breakpoints";
+@import "@/styles/mixins";
+
+.stagePriorityBlock,
+.dateAssetsBlock {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  position: relative;
+  flex-wrap: wrap;
+  @include mq(sm) {
+    flex-wrap: nowrap;
+  }
+}
+
+.dateBlock,
+.stageBlock,
+.priorityBlock,
+.addAssetsBlock {
+  width: 100%;
+
+  @include mq(sm) {
+    width: 50%;
+  }
+}
+
+.inputFile {
+  display: none;
+}
+
+.addAssetsLabel {
+  display: flex;
+  margin-bottom: 10px;
+  margin-left: 5px;
+  cursor: pointer;
+  gap: 5px;
+  align-items: center;
+
+  @include mq(sm) {
+    position: absolute;
+    right: 10px;
+    top: 54px;
+    margin-bottom: 0;
+    margin-left: 0;
+    justify-content: center;
+  }
+
+  &:hover p {
+    text-decoration: underline;
+  }
+}
