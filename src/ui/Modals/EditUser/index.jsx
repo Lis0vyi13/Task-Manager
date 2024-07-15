@@ -9,16 +9,11 @@ import Modal from "../Modal";
 
 // import styles from "./EditUser.module.scss";
 
-const selectStatusOptions = [
-  { value: true, label: "Active" },
-  { value: false, label: "Disabled" },
-];
-
 const EditUser = ({ user, onClose, changedValue }) => {
-  const { handleSubmit, reset, onSubmit, control } = useEditUser({
-    user,
-    selectStatusOptions,
-  });
+  const { handleSubmit, reset, onSubmit, control, selectStatusOptions } =
+    useEditUser({
+      user,
+    });
   const { onSubmitHandler } = useModalHandlers({
     onClose,
     reset,
@@ -60,7 +55,7 @@ const EditUser = ({ user, onClose, changedValue }) => {
                 message: "Invalid email address",
               },
             }}
-            placeholder={"User role"}
+            placeholder={"example@gmail.com"}
             type="email"
             autoComplete={"email"}
           />

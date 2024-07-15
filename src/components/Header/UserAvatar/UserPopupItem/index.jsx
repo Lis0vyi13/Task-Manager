@@ -1,35 +1,17 @@
 import { memo } from "react";
-import { Link } from "react-router-dom";
-
-import useActions from "@/hooks/useActions";
 
 import styles from "./UserPopupItem.module.scss";
 
-const UserPopupItem = memo(({ type, color, name, to, Icon }) => {
-  const { logOut } = useActions();
-
-  if (type === "button") {
-    return (
-      <button
-        onClick={() => logOut()}
-        style={{ color: color || "inherit" }}
-        className={`${styles.popupItem} ${color ? styles.popupRedItem : ""}`}
-      >
-        <Icon className={styles.icon} />
-        <p>{name}</p>
-      </button>
-    );
-  }
-
+const UserPopupItem = memo(({ color, name, handler, Icon }) => {
   return (
-    <Link
-      to={to}
+    <button
+      onClick={handler}
       style={{ color: color || "inherit" }}
       className={`${styles.popupItem} ${color ? styles.popupRedItem : ""}`}
     >
       <Icon className={styles.icon} />
       <p>{name}</p>
-    </Link>
+    </button>
   );
 });
 

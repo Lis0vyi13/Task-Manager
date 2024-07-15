@@ -1,21 +1,28 @@
 import { memo } from "react";
 
-import useAnimatedToggle from "@/hooks/useAnimatedToggle";
-import useUser from "@/hooks/useUser";
 import getInitials from "@/utils/getInitials";
+import useAvatar from "./useAvatar";
 
 import Popup from "@/ui/Popup";
-
 import UserPopupItem from "./UserPopupItem";
-
-import { userAvatarButtons } from "@/constants";
+import EditProfile from "@/ui/Modals/EditProfile";
+import ChangePassword from "@/ui/Modals/ChangePassword/ChangePassword";
 
 import styles from "./UserAvatar.module.scss";
 
 const UserAvatar = memo(() => {
-  const { isOpened, isClosing, handleToggle, handleClose } =
-    useAnimatedToggle();
-  const user = useUser();
+  const {
+    user,
+    handleToggle,
+    isOpened,
+    isClosing,
+    handleClose,
+    userAvatarButtons,
+    isEditModalOpen,
+    closeEditModal,
+    isChangePasswordModalOpen,
+    closeChangePasswordModal,
+  } = useAvatar();
 
   return (
     <div className={styles.avatar}>
@@ -37,6 +44,15 @@ const UserAvatar = memo(() => {
             <UserPopupItem key={btn.name} {...btn} />
           ))}
         </Popup>
+      )}
+      {isEditModalOpen && (
+        <EditProfile changedValue={isEditModalOpen} onClose={closeEditModal} />
+      )}
+      {isChangePasswordModalOpen && (
+        <ChangePassword
+          changedValue={isChangePasswordModalOpen}
+          onClose={closeChangePasswordModal}
+        />
       )}
     </div>
   );

@@ -5,16 +5,11 @@ import {
   MdKeyboardDoubleArrowUp,
 } from "react-icons/md";
 
-import { FaTasks, FaTrash, FaUser, FaListAlt } from "react-icons/fa";
+import { FaTasks, FaTrash, FaListAlt } from "react-icons/fa";
 
-import { IoCheckmarkDoneCircle, IoLogOut } from "react-icons/io5";
+import { IoCheckmarkDoneCircle } from "react-icons/io5";
 
-import {
-  RiProgress5Line,
-  RiTodoFill,
-  RiTeamFill,
-  RiLockPasswordFill,
-} from "react-icons/ri";
+import { RiProgress5Line, RiTodoFill, RiTeamFill } from "react-icons/ri";
 
 export const fadeSlideUpVariants = {
   hidden: { opacity: 0, y: 20 },
@@ -61,26 +56,6 @@ export const navLinks = [
   { name: "Completed", Icon: IoCheckmarkDoneCircle, to: "/completed" },
   { name: "Team", Icon: RiTeamFill, to: "/team" },
   { name: "Trash", Icon: FaTrash, to: "/trash" },
-];
-
-export const userAvatarButtons = [
-  {
-    name: "Profile",
-    Icon: FaUser,
-    to: "",
-  },
-  {
-    name: "Change password",
-    Icon: RiLockPasswordFill,
-    to: "",
-  },
-  {
-    name: "Logout",
-    Icon: IoLogOut,
-    to: "",
-    type: "button",
-    color: "#f44336",
-  },
 ];
 
 export const notifications = [

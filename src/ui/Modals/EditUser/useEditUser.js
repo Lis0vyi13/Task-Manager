@@ -2,7 +2,12 @@ import { useCallback, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import transformToInputDateType from "@/utils/transformToInputDateType";
 
-const useEditUser = ({ user, selectOptions }) => {
+const selectStatusOptions = [
+  { value: true, label: "Active" },
+  { value: false, label: "Disabled" },
+];
+
+const useEditUser = ({ user }) => {
   const defaultValues = useMemo(
     () => ({
       name: user?.name || "",
@@ -10,20 +15,15 @@ const useEditUser = ({ user, selectOptions }) => {
       email: user?.email || "",
       status:
         user?.isActive !== ""
-          ? selectOptions?.find((option) => option.value === user.isActive)
+          ? selectStatusOptions?.find(
+              (option) => option.value === user.isActive,
+            )
           : "",
       createdAt: user?.createdAt
         ? transformToInputDateType(user.createdAt)
         : "",
     }),
-    [
-      selectOptions,
-      user.createdAt,
-      user?.email,
-      user.isActive,
-      user?.name,
-      user?.role,
-    ],
+    [user.createdAt, user?.email, user.isActive, user?.name, user?.role],
   );
 
   const { handleSubmit, reset, control } = useForm({
@@ -33,7 +33,7 @@ const useEditUser = ({ user, selectOptions }) => {
 
   const onSubmit = useCallback(() => {}, []);
 
-  return { handleSubmit, reset, onSubmit, control };
+  return { handleSubmit, reset, onSubmit, control, selectStatusOptions };
 };
 
 export default useEditUser;

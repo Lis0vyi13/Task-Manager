@@ -20,7 +20,9 @@ const Modal = ({
       className={`${styles.overlay} ${className}`}
       onClick={onClose}
     >
-      <div onClick={(e) => e.stopPropagation()}>{children}</div>
+      <div className={styles.modalWrapper} onClick={(e) => e.stopPropagation()}>
+        {children}
+      </div>
       {!noCross && (
         <button className={styles.closeButton} onClick={onClose}>
           &times;
