@@ -7,6 +7,7 @@ import StageCircle from "@/components/StageCircle";
 import More from "@/components/More";
 import PopupItem from "@/components/BoardView/Task/PopupItem";
 import Popup from "@/ui/Popup";
+import TaskModals from "@/components/TaskModals";
 import PriorityIndicator from "@/components/PriorityIndicator";
 
 import { MdAttachFile, MdOutlineComment } from "react-icons/md";
@@ -14,7 +15,6 @@ import { FaList } from "react-icons/fa";
 
 import { formatDate } from "@/constants";
 import styles from "./TableItem.module.scss";
-import TaskModals from "@/components/TaskModals";
 
 const TableItem = ({ task, navigateToTask }) => {
   const {
@@ -115,7 +115,7 @@ const TableItem = ({ task, navigateToTask }) => {
                   <PopupItem
                     disabled={item.permission}
                     key={item.title}
-                    className={i + 1 === block.length ? styles.divider : ""}
+                    className={i + 1 === block.length ? "divider" : ""}
                     icon={item.icon}
                     title={item.title}
                     handleClose={handleClose}

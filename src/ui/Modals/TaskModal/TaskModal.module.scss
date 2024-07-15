@@ -3,12 +3,8 @@
 
 .modal {
   position: relative;
-  top: 20px;
-  margin-bottom: 40px;
-  @include mq(sm) {
-    top: unset;
-    margin-bottom: 0;
-  }
+  max-height: 80vh;
+  overflow-y: auto;
 }
 .stagePriorityBlock,
 .dateAssetsBlock {
@@ -19,6 +15,13 @@
   flex-wrap: wrap;
   @include mq(sm) {
     flex-wrap: nowrap;
+  }
+}
+
+.priorityBlock {
+  margin-top: -15px;
+  @include mq(sm) {
+    margin-top: 0;
   }
 }
 

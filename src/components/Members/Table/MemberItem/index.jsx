@@ -117,7 +117,7 @@ const MemberItem = ({ user }) => {
                   <PopupItem
                     disabled={item.permission}
                     key={item.title}
-                    className={i + 1 === block.length ? styles.divider : ""}
+                    className={i + 1 === block.length ? "divider" : ""}
                     icon={item.icon}
                     title={item.title}
                     handleClose={handleClose}

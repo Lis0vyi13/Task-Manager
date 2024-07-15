@@ -47,7 +47,7 @@ const StageModal = ({ changedValue, onClose, task }) => {
       onSubmit={onSubmit}
       onClose={onCloseHandler}
     >
-      <section className="modalWrapper">
+      <section className={`modalWrapper`}>
         <form onSubmit={handleSubmit(onSubmitHandler)}>
           <Title className={"modalTitle"}>Change task stage</Title>
           <SelectField

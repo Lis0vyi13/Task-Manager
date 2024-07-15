@@ -1,5 +1,4 @@
 @import "@/styles/breakpoints";
-
 .overlay {
   position: fixed;
   top: 0;
@@ -12,12 +11,16 @@
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.3s ease, visibility 0.3s ease;
-  overflow: auto;
+  overflow-y: auto;
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   @include mq(sm) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    font-size: 16px;
   }
+
   &.visible {
     opacity: 1;
     visibility: visible;

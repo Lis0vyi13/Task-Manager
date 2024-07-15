@@ -46,6 +46,7 @@ const AddSubtask = ({ changedValue, onClose }) => {
               control={control}
               label="Task date"
               type="date"
+              placeholder={"Date..."}
               rules={{ required: "Date is required" }}
             />
             <InputField
