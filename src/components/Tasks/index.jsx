@@ -54,14 +54,16 @@ const Tasks = () => {
         </Button>
       </motion.header>
 
-      <TaskModal
-        changedValue={isTaskModalOpen}
-        className={`${isTaskModalOpen ? "" : styles.hidden} ${
-          styles.addTaskModal
-        }`}
-        onSubmit={onAddTaskHandler}
-        onClose={() => setIsTaskModalOpen(false)}
-      />
+      {isTaskModalOpen && (
+        <TaskModal
+          changedValue={isTaskModalOpen}
+          className={`${isTaskModalOpen ? "" : styles.hidden} ${
+            styles.addTaskModal
+          }`}
+          onSubmit={onAddTaskHandler}
+          onClose={() => setIsTaskModalOpen(false)}
+        />
+      )}
 
       <motion.main
         className={styles.main}

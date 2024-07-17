@@ -1,4 +1,5 @@
 import { useCallback, useEffect, useRef } from "react";
+import "wicg-inert";
 
 const useModal = ({ onClose, onSubmit, changedValue, styles }) => {
   const modalRef = useRef();
@@ -26,12 +27,14 @@ const useModal = ({ onClose, onSubmit, changedValue, styles }) => {
     if (changedValue) {
       setTimeout(() => {
         modal?.classList.add(styles.visible);
+        document.querySelector("#root").inert = true;
       }, 0);
     }
 
     return () => {
       if (modal) {
         modal.classList.remove(styles.visible);
+        document.querySelector("#root").inert = false;
       }
       document.removeEventListener("keydown", onEscapeHandler);
       document.removeEventListener("keydown", onEnterHandler);

@@ -1,5 +1,3 @@
-import { useCallback } from "react";
-
 import Modal from "../Modal";
 import ModalButtons from "@/ui/ModalButtons";
 
@@ -27,9 +25,10 @@ const QuestionModal = ({
   text,
   type,
   submitButtonText,
+  onSubmit,
 }) => {
   // const data = task || user;
-  const onSubmit = useCallback(() => {}, []);
+  // const onSubmit = useCallback(() => {}, []);
 
   return (
     <Modal

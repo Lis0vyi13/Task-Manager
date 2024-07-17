@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react";
 
-const useModal = ({ setItem }) => {
+const useModal = ({ setItem = () => {} } = {}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openEditModal = useCallback(
