@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useTaskPopup from "@/hooks/useTaskPopup";
 import useBreakpoints from "@/hooks/useBreakpoints";
 
@@ -5,7 +6,7 @@ import QuestionModal from "@/ui/Modals/QuestionModal";
 import Team from "@/components/Team";
 import StageCircle from "@/components/StageCircle";
 import More from "@/components/More";
-import PopupItem from "@/components/BoardView/Task/PopupItem";
+import PopupItem from "@/components/PopupItem";
 import Popup from "@/ui/Popup";
 import TaskModals from "@/components/TaskModals";
 import PriorityIndicator from "@/components/PriorityIndicator";
@@ -61,18 +62,30 @@ const TableItem = ({ task, navigateToTask }) => {
             </span>
           </td>
           <td className={`${styles.td} ${styles.details}`}>
-            <article title="Commentary" className={styles.commentary}>
+            <Link
+              to={`/task/${task._id}`}
+              title="Commentary"
+              className={styles.commentary}
+            >
               <MdOutlineComment />
               <span>{task.activities.length}</span>
-            </article>
-            <article title="Assets" className={styles.assets}>
+            </Link>
+            <Link
+              to={`/task/${task._id}`}
+              title="Assets"
+              className={styles.assets}
+            >
               <MdAttachFile />
               <span>{task.assets.length}</span>
-            </article>
-            <article title={"Subtasks"} className={styles.subtasks}>
+            </Link>
+            <Link
+              to={`/task/${task._id}`}
+              title={"Subtasks"}
+              className={styles.subtasks}
+            >
               <FaList />
               <span>0/{task.subTasks.length}</span>
-            </article>
+            </Link>
           </td>
           <td className={`${styles.td}`}>
             <Team

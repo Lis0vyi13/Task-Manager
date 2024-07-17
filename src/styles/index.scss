@@ -77,24 +77,24 @@ button {
   text-transform: uppercase !important;
 }
 
-.inputGroup {
+.inputBlock {
   margin-top: 15px;
 }
 
-.inputGroup label {
+.inputBlock label {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
 }
 
-.inputGroup input[type="color"] {
+.inputBlock input[type="color"] {
   width: 100%;
   height: 40px;
   border: 1px solid #ccc;
   border-radius: 5px;
 }
 
-.inputGroup input[type="file"] {
+.inputBlock input[type="file"] {
   width: 100%;
   padding: 10px;
   border: 1px solid #ccc;

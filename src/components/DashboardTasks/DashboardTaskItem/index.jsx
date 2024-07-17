@@ -9,7 +9,7 @@ import StageCircle from "@/components/StageCircle";
 import PriorityIndicator from "@/components/PriorityIndicator";
 import Team from "@/components/Team";
 import More from "@/components/More";
-import PopupItem from "@/components/BoardView/Task/PopupItem";
+import PopupItem from "@/components/PopupItem";
 import TaskModals from "@/components/TaskModals";
 
 import styles from "./DashboardTaskItem.module.scss";

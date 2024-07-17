@@ -1,3 +1,4 @@
+import { memo } from "react";
 import useEditUser from "./useEditUser";
 import useModalHandlers from "@/hooks/useModalHandlers";
 
@@ -9,7 +10,7 @@ import Modal from "../Modal";
 
 // import styles from "./EditUser.module.scss";
 
-const EditUser = ({ user, onClose, changedValue }) => {
+const EditUser = memo(({ user, onClose, changedValue }) => {
   const { handleSubmit, reset, onSubmit, control, selectStatusOptions } =
     useEditUser({
       user,
@@ -80,6 +81,6 @@ const EditUser = ({ user, onClose, changedValue }) => {
       </section>
     </Modal>
   );
-};
+});
 
 export default EditUser;

@@ -1,10 +1,11 @@
+import { memo } from "react";
 import { createPortal } from "react-dom";
 
 import useModal from "./useModal";
 
 import styles from "./Modal.module.scss";
 
-const Modal = ({
+const Modal = memo(({
   onClose,
   noCross,
   onSubmit,
@@ -12,7 +13,12 @@ const Modal = ({
   changedValue,
   children,
 }) => {
-  const { modalRef } = useModal({ onClose, changedValue, onSubmit, styles });
+  const { modalRef, modalContentRef } = useModal({
+    onClose,
+    changedValue,
+    onSubmit,
+    styles,
+  });
 
   return createPortal(
     <div
@@ -20,7 +26,11 @@ const Modal = ({
       className={`${styles.overlay} ${className}`}
       onClick={onClose}
     >
-      <div className={styles.modalWrapper} onClick={(e) => e.stopPropagation()}>
+      <div
+        ref={modalContentRef}
+        className={styles.modalWrapper}
+        onClick={(e) => e.stopPropagation()}
+      >
         {children}
       </div>
       {!noCross && (
@@ -31,6 +41,6 @@ const Modal = ({
     </div>,
     document.body,
   );
-};
+});
 
 export default Modal;

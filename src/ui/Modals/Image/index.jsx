@@ -5,7 +5,7 @@ import Loader from "@/ui/Loader";
 import Modal from "../Modal";
 import styles from "./ImageModal.module.scss";
 
-const ImageModal = ({ src, alt, onClose }) => {
+const ImageModal = ({ src, alt, changedValue, onClose }) => {
   const [isLoading, setIsLoading] = useState(true);
 
   const handleImageLoad = () => {
@@ -17,7 +17,7 @@ const ImageModal = ({ src, alt, onClose }) => {
   }, [src]);
 
   return (
-    <Modal onClose={onClose}>
+    <Modal changedValue={changedValue} onClose={onClose}>
       <div className={styles.modal} onClick={(e) => e.stopPropagation()}>
         <img
           className={styles.image}

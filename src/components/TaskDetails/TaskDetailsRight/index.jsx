@@ -9,8 +9,9 @@ import styles from "./TaskDetailsRight.module.scss";
 const TaskDetailsRight = ({ task }) => {
   const { selectedImage, loading, handleImageClick, handleCloseModal } =
     useTaskDetails({ task });
-
   const isAssets = task?.assets?.length > 0;
+  const isLinks = task?.links?.length > 0;
+
   return (
     <>
       <div className={styles.description}>
@@ -45,7 +46,7 @@ const TaskDetailsRight = ({ task }) => {
       <div className={styles.linksBlock}>
         <Title className={styles.title}>Support links</Title>
         <div className={styles.links}>
-          {isAssets ? (
+          {isLinks ? (
             <ul className={styles.list}>
               {task?.links?.map((link) => (
                 <li key={link} className={styles.listItem}>
@@ -62,6 +63,7 @@ const TaskDetailsRight = ({ task }) => {
       </div>
       {selectedImage && (
         <ImageModal
+          changedValue={selectedImage}
           src={selectedImage}
           alt="Selected asset"
           onClose={handleCloseModal}

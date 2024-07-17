@@ -10,15 +10,13 @@ import ModalButtons from "@/ui/ModalButtons";
 
 const EditProfile = ({ onClose, changedValue }) => {
   const user = useUser();
-  const [avatarColor, setAvatarColor] = useState(
-    user?.avatarColor || "#000000",
-  );
   const [avatarPhoto, setAvatarPhoto] = useState(null);
 
   const defaultValues = {
     name: user?.name.split(" ")[0] || "",
     surname: user?.name.split(" ")[1] || "",
     email: user?.email || "",
+    avatarColor: user?.avatarColor || "#000000",
   };
 
   const { handleSubmit, reset, control } = useForm({
@@ -28,17 +26,18 @@ const EditProfile = ({ onClose, changedValue }) => {
 
   const onSubmit = useCallback(
     (data) => {
+      console.log(data);
+
       const formData = new FormData();
       formData.append("name", data.name);
       formData.append("surname", data.surname);
       formData.append("email", data.email);
-      formData.append("avatarColor", avatarColor);
+      formData.append("avatarColor", data.avatarColor);
       if (avatarPhoto) {
         formData.append("avatarPhoto", avatarPhoto);
       }
-      // handle form submission
     },
-    [avatarColor, avatarPhoto],
+    [avatarPhoto],
   );
 
   const { onSubmitHandler } = useModalHandlers({
@@ -46,38 +45,38 @@ const EditProfile = ({ onClose, changedValue }) => {
     reset,
   });
 
-  const handleFileChange = (e) => {
+  const handleFileChange = useCallback((e) => {
     setAvatarPhoto(e.target.files[0]);
-  };
+  }, []);
 
   return (
     <Modal
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit(onSubmitHandler)}
       onClose={onClose}
       changedValue={changedValue}
       noCross
     >
       <section className="modalWrapper">
-        <Title className={"modalTitle"}>Edit user</Title>
+        <Title className="modalTitle">Edit user</Title>
         <form onSubmit={handleSubmit(onSubmitHandler)}>
           <InputField
-            name={"name"}
+            name="name"
             control={control}
-            label={"Name"}
+            label="Name"
             rules={{ required: "Name is required!" }}
-            placeholder={"Your name"}
+            placeholder="Your name"
           />
           <InputField
-            name={"surname"}
+            name="surname"
             control={control}
-            label={"Surname"}
+            label="Surname"
             rules={{ required: "Surname is required!" }}
-            placeholder={"Your surname"}
+            placeholder="Your surname"
           />
           <InputField
-            name={"email"}
+            name="email"
             control={control}
-            label={"Email"}
+            label="Email"
             rules={{
               required: { value: true, message: "Email is required" },
               pattern: {
@@ -85,21 +84,17 @@ const EditProfile = ({ onClose, changedValue }) => {
                 message: "Invalid email address",
               },
             }}
-            placeholder={"example@gmail.com"}
+            placeholder="example@gmail.com"
             type="email"
-            autoComplete={"email"}
+            autoComplete="email"
           />
-          <div className="inputGroup">
-            <label htmlFor="avatarColor">Avatar Color</label>
-            <input
-              type="color"
-              id="avatarColor"
-              name="avatarColor"
-              value={avatarColor}
-              onChange={(e) => setAvatarColor(e.target.value)}
-            />
-          </div>
-          <div className="inputGroup">
+          <InputField
+            name="avatarColor"
+            control={control}
+            label="Avatar Color"
+            type="color"
+          />
+          <div className="inputBlock">
             <label htmlFor="avatarPhoto">Upload Avatar Photo</label>
             <input
               type="file"
@@ -109,7 +104,7 @@ const EditProfile = ({ onClose, changedValue }) => {
               onChange={handleFileChange}
             />
           </div>
-          <ModalButtons onSubmit={onSubmit} onClose={onClose} />
+          <ModalButtons onSubmit={handleSubmit(onSubmit)} onClose={onClose} />
         </form>
       </section>
     </Modal>

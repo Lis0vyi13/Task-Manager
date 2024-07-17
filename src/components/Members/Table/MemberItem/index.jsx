@@ -5,7 +5,7 @@ import useBreakpoints from "@/hooks/useBreakpoints";
 import Team from "@/components/Team";
 import More from "@/components/More";
 import Popup from "@/ui/Popup";
-import PopupItem from "@/components/BoardView/Task/PopupItem";
+import PopupItem from "@/components/PopupItem";
 import QuestionModal from "@/ui/Modals/QuestionModal";
 import EditUser from "@/ui/Modals/EditUser";
 

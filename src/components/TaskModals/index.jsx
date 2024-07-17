@@ -1,7 +1,7 @@
-import AddSubtask from "@/ui/Modals/AddSubtask";
 import QuestionModal from "@/ui/Modals/QuestionModal";
 import StageModal from "@/ui/Modals/StageModal";
 import TaskModal from "@/ui/Modals/TaskModal";
+import SubtaskModal from "@/ui/Modals/SubtaskModal";
 
 const TaskModals = ({
   task,
@@ -26,11 +26,10 @@ const TaskModals = ({
         />
       )}
       {isAddSubtaskModalOpen && (
-        <AddSubtask
+        <SubtaskModal
           changedValue={isAddSubtaskModalOpen}
           onClose={closeAddSubtaskModal}
           onSubmit={onAddSubtaskHandler}
-          taskId={task._id}
         />
       )}
       {isQuestionModalOpen && (

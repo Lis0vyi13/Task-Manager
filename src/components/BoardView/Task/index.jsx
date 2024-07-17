@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import useTask from "./useTask";
 
 import TaskModals from "@/components/TaskModals";
@@ -7,7 +8,7 @@ import StageCircle from "@/components/StageCircle";
 import PriorityIndicator from "@/components/PriorityIndicator";
 import More from "@/components/More";
 import Subtask from "./Subtask";
-import PopupItem from "./PopupItem";
+import PopupItem from "../../PopupItem";
 
 import { FaList } from "react-icons/fa";
 import { MdOutlineComment, MdAttachFile } from "react-icons/md";
@@ -94,18 +95,30 @@ const Task = ({ task }) => {
         </header>
         <main className={styles.main}>
           <section className={styles.details}>
-            <article title="Commentary" className={styles.commentary}>
+            <Link
+              to={`/task/${task._id}`}
+              title="Commentary"
+              className={styles.commentary}
+            >
               <MdOutlineComment />
               <span>{task.activities.length}</span>
-            </article>
-            <article title="Assets" className={styles.assets}>
+            </Link>
+            <Link
+              to={`/task/${task._id}`}
+              title="Assets"
+              className={styles.assets}
+            >
               <MdAttachFile />
               <span>{task.assets.length}</span>
-            </article>
-            <article title={"Subtasks"} className={styles.subtasks}>
+            </Link>
+            <Link
+              to={`/task/${task._id}`}
+              title={"Subtasks"}
+              className={styles.subtasks}
+            >
               <FaList />
               <span>0/{task.subTasks.length}</span>
-            </article>
+            </Link>
           </section>
           <section>
             <Team

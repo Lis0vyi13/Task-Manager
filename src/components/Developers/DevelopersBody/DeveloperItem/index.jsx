@@ -7,7 +7,7 @@ import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 import Team from "@/components/Team";
 import More from "@/components/More";
 import Popup from "@/ui/Popup";
-import PopupItem from "@/components/BoardView/Task/PopupItem";
+import PopupItem from "@/components/PopupItem";
 import EditDeleteModals from "@/components/EditDeleteModals/EditDeleteModals";
 import QuestionModal from "@/ui/Modals/QuestionModal";
 

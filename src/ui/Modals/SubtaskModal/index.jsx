@@ -1,17 +1,24 @@
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import useModalHandlers from "@/hooks/useModalHandlers";
+import transformToInputDateType from "@/utils/transformToInputDateType";
 
 import Title from "@/ui/Title";
 import InputField from "@/ui/Inputs/InputField";
 import ModalButtons from "@/ui/ModalButtons";
 import Modal from "../Modal";
 
-import styles from "./AddSubtask.module.scss";
+import styles from "./SubtaskModal.module.scss";
 
-const AddSubtask = ({ changedValue, onClose }) => {
+const SubtaskModal = ({ changedValue, onClose, subtask }) => {
+  const defaultValues = {
+    title: subtask?.title || "",
+    date: subtask?.date ? transformToInputDateType(subtask.date) : "",
+    tag: subtask?.tag || "",
+  };
   const { handleSubmit, reset, control } = useForm({
     mode: "onChange",
+    defaultValues,
   });
 
   const { onSubmitHandler, onCloseHandler } = useModalHandlers({
@@ -67,4 +74,4 @@ const AddSubtask = ({ changedValue, onClose }) => {
   );
 };
 
-export default AddSubtask;
+export default SubtaskModal;
