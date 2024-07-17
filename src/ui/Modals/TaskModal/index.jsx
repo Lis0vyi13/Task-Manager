@@ -140,7 +140,7 @@ const TaskModal = ({ onClose, className, task, changedValue }) => {
               {filePreviews.map((src, index) => (
                 <div key={index} className={styles.image}>
                   <img
-                    onClick={handleImageClick}
+                    onClick={() => handleImageClick(src)}
                     src={src}
                     alt={`Asset ${index + 1}`}
                   />
@@ -184,6 +184,7 @@ const TaskModal = ({ onClose, className, task, changedValue }) => {
           onClose={closeDeleteModal}
           text={"Are you sure you want to delete current asset?"}
           type={"delete"}
+          submitButtonText="Delete"
         />
       )}
     </Modal>
