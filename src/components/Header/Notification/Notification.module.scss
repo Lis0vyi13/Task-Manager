@@ -4,6 +4,7 @@
 .popup {
   width: 300px;
   right: -55px;
+  overflow: hidden;
   @include mq(sm) {
     width: 400px;
     right: 0;
@@ -96,7 +97,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   &:hover {
-    background-color: #e4e4e4;
+    background-color: var(--blockHover);
   }
   &:first-of-type {
     border-right: 1px solid $text-secondary;

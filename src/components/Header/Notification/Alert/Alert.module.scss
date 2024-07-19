@@ -12,9 +12,6 @@
 
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
-    .icon {
-      color: $primary-main;
-    }
   }
 }
 
@@ -25,7 +22,8 @@
 .icon {
   align-self: self-start;
   font-size: 16px;
-  background-color: $text-secondary;
+  background-color: $primary-main;
+  color: #fff;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -40,7 +38,7 @@
 }
 
 .daysAgo {
-  color: $text-primary;
+  color: var(--color);
   font-size: 13px;
 }
 .description {
@@ -48,7 +46,7 @@
   text-align: left;
   font-weight: 500;
   font-size: 14px;
-  color: $text-gray;
+  color: var(--gray);
   line-clamp: 1;
   overflow: hidden;
   display: -webkit-box;
