@@ -1,20 +1,20 @@
 @import "@/styles/breakpoints";
+@import "@/styles/mixins";
 
 .popup {
   position: absolute;
   z-index: 22222;
-  background-color: #fff;
+  background-color: var(--blockColor);
   border-radius: 10px;
   display: flex;
   min-width: 200px;
   flex-direction: column;
   align-items: flex-start;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  @include shadow;
   -webkit-animation: popupOpenAnimation 0.2s ease-out forwards;
   animation: popupOpenAnimation 0.2s ease-out forwards;
   right: 0;
   bottom: -5px;
-
   @include mq(sm) {
     min-width: 230px;
   }

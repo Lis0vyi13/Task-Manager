@@ -3,6 +3,16 @@
 @import "variables";
 @import "breakpoints";
 
+:root {
+  --main: #ededed;
+  --color: #000;
+  --colorHover: #2744e5;
+  --blockColor: #fff;
+  --blockHover: #d8d8d8;
+  --gray: #525252;
+  color-scheme: light;
+}
+
 * {
   padding: 0;
   margin: 0;
@@ -20,7 +30,8 @@ body,
 }
 
 body {
-  background: $background-default;
+  background: var(--blockColor);
+  color: var(--color);
 }
 
 a {
@@ -30,6 +41,7 @@ a {
 
 button {
   outline: none;
+  background: none;
   border: none;
 }
 
@@ -37,29 +49,32 @@ ol,
 ul {
   list-style-type: none;
 }
-.toaster {
-  font-size: 16px;
-  padding: 5px 10px;
-}
-
-.divider {
-  border-bottom: 1px solid $text-secondary;
-}
 
 .hidden {
   visibility: hidden;
 }
 
-button {
-  background: none;
+.dark {
+  --main: #212121;
+  --color: #fff;
+  --colorHover: #66b2ff;
+  --blockColor: #333;
+  --blockHover: #484848;
+  --gray: rgb(147, 147, 147);
+  color-scheme: dark;
 }
 
-.inputBlock {
-  margin-top: 15px;
+.toaster {
+  font-size: 17px;
+  padding: 10px;
+}
+
+.divider {
+  border-bottom: 1px solid var(--blockHover);
 }
 
 .modalWrapper {
-  background-color: #fff;
+  background-color: var(--blockColor);
   padding: 15px;
   border-radius: 10px;
   width: 100%;
@@ -78,7 +93,7 @@ button {
 }
 
 .inputBlock {
-  margin-top: 15px;
+  margin-top: 12px;
 }
 
 .inputBlock label {
@@ -90,14 +105,12 @@ button {
 .inputBlock input[type="color"] {
   width: 100%;
   height: 40px;
-  border: 1px solid #ccc;
   border-radius: 5px;
 }
 
 .inputBlock input[type="file"] {
   width: 100%;
   padding: 10px;
-  border: 1px solid #ccc;
   border-radius: 5px;
 }
 
@@ -108,13 +121,13 @@ button {
   }
 
   ::-webkit-scrollbar-track {
-    background: #f1f1f1;
+    background: var(--blockColor);
   }
 
   ::-webkit-scrollbar-thumb {
     background-color: $primary-main;
     border-radius: 40px;
-    border: 3px solid #f1f1f1;
+    border: 3px solid var(--blockColor);
   }
 
   ::-webkit-scrollbar-thumb:hover {

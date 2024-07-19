@@ -46,7 +46,6 @@ const QuestionModal = ({
         <p className={styles.text}>{text}</p>
         <ModalButtons
           onClose={onClose}
-          onSubmit={onSubmit}
           containerClassName={styles.buttonsContainer}
           submitButtonText={submitButtonText}
           submitButtonClassName={modalStyles[type]?.submitButton || ""}

@@ -8,7 +8,6 @@ const ModalButtons = ({
   cancelButtonText = "Cancel",
   submitButtonText = "Submit",
   containerClassName,
-  onSubmit,
 }) => {
   return (
     <div className={`${styles.buttons} ${containerClassName}`}>
@@ -19,10 +18,7 @@ const ModalButtons = ({
       >
         {cancelButtonText}
       </Button>
-      <Button
-        onClick={onSubmit}
-        className={`${styles.submitButton} ${submitButtonClassName}`}
-      >
+      <Button className={`${styles.submitButton} ${submitButtonClassName}`}>
         {submitButtonText}
       </Button>
     </div>

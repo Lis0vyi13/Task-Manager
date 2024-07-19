@@ -6,12 +6,14 @@ import { authActions } from "@/features/auth/AuthSlice";
 import { userActions } from "@/features/user/UserSlice";
 import { sidebarActions } from "@/features/sidebar/SidebarSlice";
 import { searchActions } from "@/features/search/SearchSlice";
+import { pageActions } from "@/features/page/PageSlice";
 
 const rootActions = {
   ...authActions,
   ...userActions,
   ...sidebarActions,
   ...searchActions,
+  ...pageActions,
 };
 
 const useActions = () => {

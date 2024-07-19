@@ -1,0 +1,96 @@
+@import "@/styles/breakpoints";
+
+@-webkit-keyframes sunToMoon {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-50px) rotate(90deg);
+  }
+  100% {
+    transform: translateY(0) rotate(180deg);
+  }
+}
+
+@keyframes sunToMoon {
+  0% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-50px) rotate(90deg);
+  }
+  100% {
+    transform: translateY(0) rotate(180deg);
+  }
+}
+
+@-webkit-keyframes moonToSun {
+  0% {
+    transform: translateY(0) rotate(180deg);
+  }
+  50% {
+    transform: translateY(-50px) rotate(90deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+@keyframes moonToSun {
+  0% {
+    transform: translateY(0) rotate(180deg);
+  }
+  50% {
+    transform: translateY(-50px) rotate(90deg);
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+}
+
+.toggleButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 50%;
+  transition: background-color 0.3s ease;
+  padding: 0.3rem;
+  margin-top: -3px;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+
+  @include mq(sm) {
+    font-size: 1.8rem;
+  }
+  transition: color 0.3s ease;
+}
+
+.sunAnimation {
+  -webkit-animation: sunToMoon 1s forwards;
+  animation: sunToMoon 1s forwards;
+}
+
+.moonAnimation {
+  -webkit-animation: moonToSun 1s forwards;
+  animation: moonToSun 1s forwards;
+}
+
+.icon {
+  color: #ffb400;
+
+  &.dark {
+    color: #1e90ff;
+  }
+}

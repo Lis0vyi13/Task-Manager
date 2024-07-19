@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import useModalHandlers from "@/hooks/useModalHandlers";
 import transformToInputDateType from "@/utils/transformToInputDateType";
 
@@ -26,18 +27,26 @@ const SubtaskModal = ({ changedValue, onClose, subtask }) => {
     reset,
   });
 
-  const onSubmit = useCallback(() => {}, []);
+  const onSubmit = useCallback(
+    (data) => {
+      onSubmitHandler(data);
+      toast.success(subtask ? "Changed successfull" : "Added successfull");
+    },
+    [onSubmitHandler, subtask],
+  );
 
   return (
     <Modal
       changedValue={changedValue}
       noCross
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       onClose={onCloseHandler}
     >
-      <section className="modalWrapper">
-        <form onSubmit={handleSubmit(onSubmitHandler)}>
-          <Title className={"modalTitle"}>Add subtask</Title>
+      <section className={`modalWrapper ${styles.modal}`}>
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <Title className={"modalTitle"}>
+            {subtask ? "Edit subtask" : "Add subtask"}
+          </Title>
           <InputField
             name={"title"}
             control={control}
@@ -64,8 +73,7 @@ const SubtaskModal = ({ changedValue, onClose, subtask }) => {
             />
           </div>
           <ModalButtons
-            onSubmit={onSubmit}
-            submitButtonText="Add Task"
+            submitButtonText={subtask ? "Submit" : "Add Task"}
             onClose={onCloseHandler}
           />
         </form>

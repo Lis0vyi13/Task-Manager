@@ -2,7 +2,7 @@
 @import "@/styles/breakpoints";
 @import "@/styles/mixins";
 .task {
-  background-color: #fff;
+  background-color: var(--blockColor);
   border-radius: 10px;
   flex-grow: 1;
 }
@@ -35,7 +35,7 @@
   cursor: pointer;
   transition: all 0.3s ease;
   &:hover > h1 {
-    color: $primary-main;
+    color: var(--colorHover);
   }
 }
 
@@ -53,7 +53,7 @@
 }
 
 .date {
-  color: $text-gray;
+  color: var(--gray);
   font-size: 14px;
   font-weight: 500;
 }
@@ -72,7 +72,7 @@
   gap: 10px;
   align-items: center;
   font-size: 14px;
-  color: $text-gray;
+  color: var(--gray);
   align-items: center;
 }
 
@@ -85,7 +85,7 @@
   transition: all 0.3s ease;
 
   &:hover {
-    color: $primary-main;
+    color: var(--colorHover);
   }
   & span {
     margin-top: 2px;
@@ -120,16 +120,23 @@
 
 .footer {
   overflow: auto;
-  &::-webkit-scrollbar {
-    width: 10px;
+  ::-webkit-scrollbar {
+    width: 9px;
   }
 
-  &::-webkit-scrollbar-thumb {
-    background-color: blue;
+  ::-webkit-scrollbar-track {
+    background: var(--blockHover);
+    border-radius: 10px;
   }
 
-  &::-webkit-scrollbar-thumb:hover {
-    background-color: rgb(16, 16, 199);
+  ::-webkit-scrollbar-thumb {
+    background-color: $primary-main;
+    border-radius: 40px;
+    border: none;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #13389e;
   }
 }
 .subtasksWrapper {
@@ -147,7 +154,7 @@
   font-size: 16px;
   text-transform: uppercase;
   cursor: pointer;
-  color: #1d4ed8;
+  color: var(--colorHover);
   transition: all 0.3s ease;
   padding: 8px 6px;
   border-radius: 10px;
@@ -160,7 +167,7 @@
     cursor: not-allowed;
   }
   &:hover {
-    background-color: rgba($color: #2563eb, $alpha: 0.1);
+    background-color: rgba($color: $primary-main, $alpha: 0.1);
   }
   & span {
     font-size: 18px;

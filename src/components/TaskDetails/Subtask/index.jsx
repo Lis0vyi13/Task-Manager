@@ -59,12 +59,17 @@ const Subtask = ({ title, date, tag, done }) => {
               isClosing={isClosing}
               handleClose={handleClose}
             >
-              {OPTIONS.map((block) =>
+              {OPTIONS.map((block, blockIndex) =>
                 block.map((item, i) => (
                   <PopupItem
                     disabled={item.permission}
                     key={item.title}
-                    className={i + 1 === block.length ? "divider" : ""}
+                    className={
+                      i + 1 === block.length &&
+                      blockIndex + 1 !== OPTIONS.length
+                        ? "divider"
+                        : ""
+                    }
                     icon={item.icon}
                     title={item.title}
                     handleClose={handleClose}

@@ -16,10 +16,10 @@
   @include mq(sm) {
     font-size: 16px;
   }
-  border: 1px solid #ccc;
+  border: 1px solid var(--blockHover);
   border-radius: 5px;
   &:disabled {
-    background-color: #ecf0f0;
+    background-color: var(--blockHover);
     cursor: not-allowed;
   }
   &::-webkit-input-placeholder {

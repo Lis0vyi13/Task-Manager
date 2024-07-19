@@ -27,7 +27,7 @@
   margin-top: 15px;
 }
 .createdAt {
-  color: $text-gray;
+  color: var(--gray);
   text-transform: capitalize;
   font-size: 14px;
 }
@@ -51,7 +51,7 @@
 }
 
 .titleSecondary {
-  color: $text-gray;
+  color: var(--gray);
   text-transform: uppercase;
   font-size: 14px;
 }

@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import useModalHandlers from "@/hooks/useModalHandlers";
 import useUser from "@/hooks/useUser";
 
@@ -7,6 +8,9 @@ import Modal from "../Modal";
 import Title from "@/ui/Title";
 import InputField from "@/ui/Inputs/InputField";
 import ModalButtons from "@/ui/ModalButtons";
+
+import styles from "./EditProfile.module.scss";
+import FileInput from "@/ui/Inputs/FileInput";
 
 const EditProfile = ({ onClose, changedValue }) => {
   const user = useUser();
@@ -24,10 +28,16 @@ const EditProfile = ({ onClose, changedValue }) => {
     defaultValues,
   });
 
+  const { onSubmitHandler } = useModalHandlers({
+    onClose,
+    reset,
+  });
+
   const onSubmit = useCallback(
     (data) => {
+      onSubmitHandler(data);
       console.log(data);
-
+      toast.success("Changed successfull");
       const formData = new FormData();
       formData.append("name", data.name);
       formData.append("surname", data.surname);
@@ -37,13 +47,8 @@ const EditProfile = ({ onClose, changedValue }) => {
         formData.append("avatarPhoto", avatarPhoto);
       }
     },
-    [avatarPhoto],
+    [avatarPhoto, onSubmitHandler],
   );
-
-  const { onSubmitHandler } = useModalHandlers({
-    onClose,
-    reset,
-  });
 
   const handleFileChange = useCallback((e) => {
     setAvatarPhoto(e.target.files[0]);
@@ -51,14 +56,14 @@ const EditProfile = ({ onClose, changedValue }) => {
 
   return (
     <Modal
-      onSubmit={handleSubmit(onSubmitHandler)}
+      onSubmit={handleSubmit(onSubmit)}
       onClose={onClose}
       changedValue={changedValue}
       noCross
     >
-      <section className="modalWrapper">
+      <section className={`modalWrapper ${styles.modal}`}>
         <Title className="modalTitle">Edit user</Title>
-        <form onSubmit={handleSubmit(onSubmitHandler)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <InputField
             name="name"
             control={control}
@@ -95,16 +100,9 @@ const EditProfile = ({ onClose, changedValue }) => {
             type="color"
           />
           <div className="inputBlock">
-            <label htmlFor="avatarPhoto">Upload Avatar Photo</label>
-            <input
-              type="file"
-              id="avatarPhoto"
-              name="avatarPhoto"
-              accept="image/*"
-              onChange={handleFileChange}
-            />
+            <FileInput name={"avatarPhoto"} onChange={handleFileChange} />
           </div>
-          <ModalButtons onSubmit={handleSubmit(onSubmit)} onClose={onClose} />
+          <ModalButtons onClose={onClose} />
         </form>
       </section>
     </Modal>

@@ -30,7 +30,7 @@
   border-bottom: 1px solid $text-secondary;
   transition: all 0.3s ease;
   &:hover {
-    background: $gray-hover;
+    background: var(--blockHover);
   }
 }
 
@@ -38,7 +38,6 @@
   position: relative;
   border-radius: 50%;
   padding: 5px;
-  color: #fff;
   font-size: 16px;
   min-width: 38px;
   min-height: 38px;
@@ -75,7 +74,6 @@
 }
 .status {
   text-align: center;
-  color: $text-primary;
   padding: 4px 12px;
   border-radius: 20px;
   font-weight: 700;
@@ -83,7 +81,6 @@
 
 .createdAt {
   text-align: center;
-  color: $text-primary;
   font-size: 15px;
   font-weight: 400;
 }

@@ -15,7 +15,7 @@
 }
 
 .date {
-  color: $text-gray;
+  color: var(--gray);
   font-size: 14px;
   font-weight: 500;
 }
@@ -23,7 +23,7 @@
 .tag {
   text-transform: capitalize;
   background-color: rgba($color: #2563eb, $alpha: 0.1);
-  color: #1d4ed8;
+  color: var(--colorHover);
   padding: 4px 12px;
   border-radius: 10px;
 }

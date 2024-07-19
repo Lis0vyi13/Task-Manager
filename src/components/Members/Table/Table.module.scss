@@ -2,7 +2,6 @@
 @import "@/styles/breakpoints";
 
 .table {
-  padding-bottom: 10px;
   width: 100%;
   text-align: left;
 }
@@ -11,7 +10,7 @@
   display: block;
   top: 1px;
   transform: translateY(-1px);
-  background-color: #fff;
+  background-color: var(--blockColor);
   left: 0;
   z-index: 1;
 }
@@ -19,6 +18,7 @@
 .tbody {
   display: block;
   position: relative;
+  background-color: var(--blockColor);
 }
 
 .thead .tr {
@@ -30,31 +30,6 @@
   width: 100%;
   @include mq(md) {
     min-width: max(930px, 100%);
-  }
-}
-
-.tbody .tr {
-  position: relative;
-  font-weight: 400;
-  display: flex;
-  width: 100%;
-  transition: all 0.3s ease;
-  padding: 0 10px;
-  align-items: center;
-  gap: 10px;
-  justify-content: space-between;
-
-  @include mq(md) {
-    justify-content: unset;
-    min-width: max(930px, 100%);
-  }
-
-  &:hover {
-    background: $gray-hover;
-  }
-
-  &:not(:last-of-type) {
-    border-bottom: 1px solid $text-secondary;
   }
 }
 
@@ -94,67 +69,4 @@
     width: 100%;
     padding-right: 5px;
   }
-}
-
-.title {
-  font-weight: 400;
-  font-size: 16px;
-}
-
-.avatar {
-  position: relative;
-  border-radius: 50%;
-  color: #fff;
-  font-size: 16px;
-  min-width: 38px;
-  min-height: 38px;
-  overflow: visible;
-}
-
-.team {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.info {
-  right: 0;
-  top: 0;
-  transform: translate(100%, -35%);
-}
-
-.status {
-  text-align: center;
-  color: $text-primary;
-  padding: 4px 12px;
-  border-radius: 20px;
-  font-weight: 700;
-}
-
-.actions {
-  display: flex;
-  gap: 20px;
-  justify-content: flex-end !important;
-}
-
-.editBtn {
-  transition: all 0.3s ease;
-  cursor: pointer;
-  font-size: 16px;
-  color: $primary-main-light;
-  &:hover {
-    color: $primary-main-hover;
-  }
-  font-weight: 500;
-}
-
-.deleteBtn {
-  transition: all 0.3s ease;
-  cursor: pointer;
-  font-size: 16px;
-  color: $error-main;
-  &:hover {
-    color: $error-main-hover;
-  }
-  font-weight: 500;
 }

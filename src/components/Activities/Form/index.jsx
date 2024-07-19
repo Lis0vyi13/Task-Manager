@@ -1,4 +1,6 @@
+import { useCallback } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 import Button from "@/ui/Button";
 
@@ -13,10 +15,15 @@ const Form = () => {
     formState: { errors },
   } = useForm();
 
-  const onSubmitHandler = (data) => {
-    console.log(data);
-    reset();
-  };
+  const onSubmitHandler = useCallback(
+    (data) => {
+      console.log(data);
+      reset();
+      toast.success("Posted successfull");
+    },
+    [reset],
+  );
+
   return (
     <form
       onSubmit={handleSubmit(onSubmitHandler)}

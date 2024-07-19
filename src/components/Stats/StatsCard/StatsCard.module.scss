@@ -1,11 +1,11 @@
 @import "@/styles/variables";
 @import "@/styles/breakpoints";
+@import "@/styles";
 
 .card {
   flex-grow: 1;
   position: relative;
   width: min(370px, 100%);
-  background-color: #fff;
   border-radius: 10px;
   padding: 20px;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -15,8 +15,10 @@
   transition: all 0.3s ease;
   cursor: pointer;
 
+  background-color: var(--blockColor);
+  color: var(--color);
   &:hover {
-    background-color: #ebebeb;
+    background-color: var(--blockHover);
   }
 }
 
@@ -35,7 +37,7 @@
 }
 
 .daysAgo {
-  color: $text-primary;
+  color: var(--color);
   font-size: 15px;
 }
 

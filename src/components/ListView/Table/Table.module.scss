@@ -2,7 +2,6 @@
 @import "@/styles/breakpoints";
 
 .table {
-  padding-bottom: 10px;
   width: 100%;
   text-align: left;
 }
@@ -11,7 +10,7 @@
   display: block;
   top: 1px;
   transform: translateY(-1px);
-  background-color: #fff;
+  background-color: var(--blockColor);
   left: 0;
   z-index: 1;
 }

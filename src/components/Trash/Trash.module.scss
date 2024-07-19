@@ -8,7 +8,7 @@
   border-radius: 10px;
   &.notEmpty {
     @include shadow;
-    background-color: #fff;
+    background-color: var(--blockColor);
   }
 
   @include mq(md) {
@@ -44,7 +44,7 @@
     padding: 5px 10px;
   }
   &:hover {
-    background-color: $text-secondary;
+    background-color: var(--blockHover);
   }
 }
 .actionIcon {

@@ -3,11 +3,14 @@
 
 .stage {
   margin-top: 15px;
-  transition: all 0.3s ease;
+  transition: max-height 0.3s ease;
+  max-height: 100%;
 
   &.hide {
     max-height: 0;
+    overflow: hidden;
   }
+
   &::-webkit-scrollbar {
     width: 6px;
 
@@ -28,6 +31,7 @@
     background-color: rgb(149, 149, 149);
   }
 }
+
 .content {
   display: flex;
   flex-direction: column;

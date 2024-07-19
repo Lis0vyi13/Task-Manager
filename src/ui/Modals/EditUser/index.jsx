@@ -1,6 +1,7 @@
-import { memo } from "react";
+import { memo, useCallback } from "react";
 import useEditUser from "./useEditUser";
 import useModalHandlers from "@/hooks/useModalHandlers";
+import { toast } from "sonner";
 
 import Title from "@/ui/Title";
 import InputField from "@/ui/Inputs/InputField";
@@ -8,28 +9,34 @@ import SelectField from "@/ui/Inputs/SelectField";
 import ModalButtons from "@/ui/ModalButtons";
 import Modal from "../Modal";
 
-// import styles from "./EditUser.module.scss";
+import styles from "./EditUser.module.scss";
 
 const EditUser = memo(({ user, onClose, changedValue }) => {
-  const { handleSubmit, reset, onSubmit, control, selectStatusOptions } =
-    useEditUser({
-      user,
-    });
+  const { handleSubmit, reset, control, selectStatusOptions } = useEditUser({
+    user,
+  });
   const { onSubmitHandler } = useModalHandlers({
     onClose,
     reset,
   });
 
+  const onSubmit = useCallback(
+    (data) => {
+      onSubmitHandler(data);
+      toast.success("Changed successfull");
+    },
+    [onSubmitHandler],
+  );
   return (
     <Modal
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       onClose={onClose}
       changedValue={changedValue}
       noCross
     >
-      <section className="modalWrapper">
+      <section className={`modalWrapper ${styles.modal}`}>
         <Title className={"modalTitle"}>Edit user</Title>
-        <form onSubmit={handleSubmit(onSubmitHandler)}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <InputField
             disabled
             name={"name"}
@@ -76,7 +83,7 @@ const EditUser = memo(({ user, onClose, changedValue }) => {
             type="date"
             rules={{ required: "Date is required" }}
           />
-          <ModalButtons onSubmit={onSubmit} onClose={onClose} />
+          <ModalButtons onClose={onClose} />
         </form>
       </section>
     </Modal>

@@ -8,15 +8,13 @@
   @include mq(md) {
     display: block;
     position: relative;
-    position: -webkit-sticky;
     font-size: 17px;
     z-index: 100000;
     height: 100vh;
     top: 0;
     z-index: 1;
     padding: 20px 30px 20px 20px;
-    background-color: #fff;
-    position: sticky;
+    background-color: initial;
   }
   &.minSidebar {
     width: -webkit-fit-content;

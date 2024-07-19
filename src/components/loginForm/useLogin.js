@@ -1,6 +1,7 @@
 import useActions from "@/hooks/useActions";
 import { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 const useLogin = () => {
   const {
@@ -15,6 +16,7 @@ const useLogin = () => {
     (data) => {
       reset();
       logIn(data);
+      toast.success("You've logged in successfully");
     },
     [logIn, reset],
   );

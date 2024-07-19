@@ -4,6 +4,7 @@ import authReducer from "@/features/auth/AuthSlice";
 import userReducer from "@/features/user/UserSlice";
 import sidebarReducer from "@/features/sidebar/SidebarSlice";
 import searchReducer from "@/features/search/SearchSlice";
+import pageReducer from "@/features/page/PageSlice";
 
 import api from "@/api/api";
 
@@ -16,6 +17,7 @@ const store = configureStore({
     user: userReducer,
     sidebar: sidebarReducer,
     search: searchReducer,
+    page: pageReducer,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(api.middleware).concat(authMiddleware),

@@ -4,7 +4,7 @@
 .thead {
   left: 0;
   top: 1px;
-  background-color: #fff;
+  background-color: var(--blockColor);
   z-index: 2;
   width: 100%;
   display: flex;

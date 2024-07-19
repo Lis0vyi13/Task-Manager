@@ -1,5 +1,6 @@
 import { useCallback, useMemo } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import useModalHandlers from "@/hooks/useModalHandlers";
 
 import Title from "@/ui/Title";
@@ -7,7 +8,7 @@ import SelectField from "@/ui/Inputs/SelectField";
 import ModalButtons from "@/ui/ModalButtons";
 import Modal from "../Modal";
 
-// import styles from "./StageModal.module.scss";
+import styles from "./StageModal.module.scss";
 
 const stages = [
   { value: "todo", label: "TODO" },
@@ -38,17 +39,23 @@ const StageModal = ({ changedValue, onClose, task }) => {
     reset,
   });
 
-  const onSubmit = useCallback(() => {}, []);
+  const onSubmit = useCallback(
+    (data) => {
+      onSubmitHandler(data);
+      toast.success("Changed successfull");
+    },
+    [onSubmitHandler],
+  );
 
   return (
     <Modal
       changedValue={changedValue}
       noCross
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       onClose={onCloseHandler}
     >
-      <section className={`modalWrapper`}>
-        <form onSubmit={handleSubmit(onSubmitHandler)}>
+      <section className={`modalWrapper ${styles.modal}`}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Title className={"modalTitle"}>Change task stage</Title>
           <SelectField
             name="stage"
@@ -58,11 +65,7 @@ const StageModal = ({ changedValue, onClose, task }) => {
             placeholder={"Stage..."}
             options={stages}
           />
-          <ModalButtons
-            onSubmit={onSubmit}
-            submitButtonText="Submit"
-            onClose={onCloseHandler}
-          />
+          <ModalButtons submitButtonText="Submit" onClose={onCloseHandler} />
         </form>
       </section>
     </Modal>

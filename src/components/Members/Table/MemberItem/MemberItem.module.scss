@@ -7,33 +7,7 @@
   text-align: left;
 }
 
-.thead {
-  display: block;
-  top: 1px;
-  transform: translateY(-1px);
-  background-color: #fff;
-  left: 0;
-  z-index: 1;
-}
-
-.tbody {
-  display: block;
-  position: relative;
-}
-
-.thead .tr {
-  padding: 15px;
-  display: flex;
-  gap: 10px;
-  border-bottom: 1px solid $text-secondary;
-  text-transform: capitalize;
-  width: 100%;
-  @include mq(md) {
-    min-width: max(930px, 100%);
-  }
-}
-
-.tbody .tr {
+.tr {
   position: relative;
   font-weight: 400;
   display: flex;
@@ -43,14 +17,13 @@
   align-items: center;
   gap: 10px;
   justify-content: space-between;
-
+  background-color: var(--blockColor);
+  &:hover {
+    background-color: var(--blockHover);
+  }
   @include mq(md) {
     justify-content: unset;
     min-width: max(930px, 100%);
-  }
-
-  &:hover {
-    background: $gray-hover;
   }
 
   &:not(:last-of-type) {
@@ -58,7 +31,6 @@
   }
 }
 
-.th,
 .td {
   &:first-of-type {
     min-width: 25%;
@@ -66,15 +38,6 @@
   }
   min-width: 15%;
   text-align: center;
-}
-
-.th {
-  display: flex;
-
-  &:not(:first-of-type) {
-    justify-content: center;
-    text-align: center;
-  }
 }
 
 .capitalize {
@@ -125,7 +88,7 @@
 
 .status {
   text-align: center;
-  color: $text-primary;
+  color: var(--color);
   padding: 4px 12px;
   border-radius: 20px;
   font-weight: 700;
@@ -143,7 +106,7 @@
   font-size: 16px;
   color: $primary-main-light;
   &:hover {
-    color: $primary-main-hover;
+    color: var(--colorHover);
   }
   font-weight: 500;
 }

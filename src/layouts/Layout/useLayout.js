@@ -9,10 +9,19 @@ const useLayout = () => {
   const isMobileSidebarOpen = useSelector(
     (state) => state.sidebar.isMobileSidebarOpen,
   );
-  const { closeMobileSidebar, toggleMobileSidebar } = useActions();
+  const { theme } = useSelector((state) => state.page);
 
   const sidebarRef = useRef();
+
+  const { closeMobileSidebar, toggleMobileSidebar } = useActions();
   const sidebarWidth = sidebarRef.current?.getBoundingClientRect().width;
+
+  useEffect(() => {
+    if (theme === "dark") {
+      document.body.classList.add("dark");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 900px)");

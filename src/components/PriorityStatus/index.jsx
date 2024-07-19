@@ -10,6 +10,10 @@ const PriorityStatus = ({ priority }) => {
     () => (priority === "normal" ? "1px solid #000" : "unset"),
     [priority],
   );
+  const color = useMemo(
+    () => (priority === "normal" ? "#000" : ""),
+    [priority],
+  );
 
   return (
     <div
@@ -23,6 +27,7 @@ const PriorityStatus = ({ priority }) => {
         style={{
           textTransform: "uppercase",
           fontWeight: "bold",
+          color: color,
         }}
         priority={priority}
         withAddition

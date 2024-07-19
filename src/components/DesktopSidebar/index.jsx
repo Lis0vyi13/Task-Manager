@@ -3,7 +3,6 @@ import { useSelector } from "react-redux";
 import useActions from "@/hooks/useActions";
 
 import DesktopSidebarListItem from "./DesktopSidebarListItem";
-
 import taskLogo from "/task-logo.png";
 import { SlArrowLeft, SlArrowRight } from "react-icons/sl";
 

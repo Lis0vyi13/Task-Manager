@@ -1,5 +1,7 @@
 import { Controller, useController } from "react-hook-form";
 import Select from "react-select";
+import useSelectField from "./useSelectField";
+
 import styles from "./SelectField.module.scss";
 
 const SelectField = ({
@@ -14,6 +16,7 @@ const SelectField = ({
   const {
     fieldState: { error },
   } = useController({ name, control, rules });
+  const { customStyles } = useSelectField();
 
   return (
     <div className="inputBlock">
@@ -30,7 +33,8 @@ const SelectField = ({
             isMulti={isMulti}
             options={options}
             placeholder={placeholder}
-            className={`${error ? styles.inputError : ""}`}
+            styles={customStyles}
+            className={` ${error ? styles.inputError : ""}`}
           />
         )}
       />

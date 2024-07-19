@@ -28,7 +28,7 @@
   flex-wrap: wrap;
 }
 .date {
-  color: $text-gray;
+  color: var(--gray);
   text-transform: capitalize;
   font-size: 14px;
 }
@@ -68,6 +68,7 @@
 }
 .done {
   &:hover {
+    color: #000;
     background-color: rgb(209, 250, 229);
   }
 }
@@ -75,13 +76,14 @@
 .undone {
   &:hover {
     background-color: rgb(251, 216, 218);
+    color: #000;
   }
 }
 .button {
   margin-top: 10px;
   cursor: pointer;
   padding: 5px 10px;
-  background-color: $gray-hover;
+  background-color: var(--blockHover);
   border-radius: 10px;
   transition: all 0.3s ease;
 }

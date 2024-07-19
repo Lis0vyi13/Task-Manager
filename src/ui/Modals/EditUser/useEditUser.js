@@ -1,4 +1,4 @@
-import { useCallback, useMemo } from "react";
+import { useMemo } from "react";
 import { useForm } from "react-hook-form";
 import transformToInputDateType from "@/utils/transformToInputDateType";
 
@@ -31,9 +31,7 @@ const useEditUser = ({ user }) => {
     defaultValues,
   });
 
-  const onSubmit = useCallback(() => {}, []);
-
-  return { handleSubmit, reset, onSubmit, control, selectStatusOptions };
+  return { handleSubmit, reset, control, selectStatusOptions };
 };
 
 export default useEditUser;

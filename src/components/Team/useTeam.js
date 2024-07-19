@@ -7,9 +7,11 @@ const useTeam = ({ team }) => {
 
   useEffect(() => {
     const avatars = avatarRefs.current;
+    const userInfos = userInfoRefs.current;
+
     const handleAvatarClick = (i) => {
       return () => {
-        const userInfo = userInfoRefs.current[i];
+        const userInfo = userInfos[i];
         if (userInfo) {
           userInfo.classList.toggle(styles.active);
         }
@@ -17,9 +19,12 @@ const useTeam = ({ team }) => {
     };
 
     const handleOutsideClick = (e) => {
-      userInfoRefs.current.forEach((userInfo, i) => {
+      userInfos.forEach((userInfo, i) => {
         if (userInfo && userInfo.classList.contains(styles.active)) {
-          if (avatars[i] && !avatars[i].contains(e.target)) {
+          if (
+            !userInfos[i].contains(e.target) &&
+            !avatars[i].contains(e.target)
+          ) {
             userInfo.classList.remove(styles.active);
           }
         }
@@ -34,6 +39,12 @@ const useTeam = ({ team }) => {
       }
     });
 
+    userInfos.forEach((userInfo) => {
+      if (userInfo) {
+        userInfo.addEventListener("click", (e) => e.stopPropagation());
+      }
+    });
+
     document.addEventListener("click", handleOutsideClick);
 
     return () => {
@@ -43,6 +54,13 @@ const useTeam = ({ team }) => {
           delete avatar.boundClickHandler;
         }
       });
+
+      userInfos.forEach((userInfo) => {
+        if (userInfo) {
+          userInfo.removeEventListener("click", (e) => e.stopPropagation());
+        }
+      });
+
       document.removeEventListener("click", handleOutsideClick);
     };
   }, [team]);

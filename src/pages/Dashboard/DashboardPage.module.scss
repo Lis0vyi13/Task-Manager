@@ -1,9 +1,12 @@
 @import "@/styles/breakpoints";
+@import "@/styles";
 
 .dashboard {
   display: flex;
   flex-direction: column;
   gap: 40px;
+  background: transparent;
+  color: var(--color);
 }
 
 .flexContainer {

@@ -1,22 +1,31 @@
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import useModalHandlers from "@/hooks/useModalHandlers";
+
 import Modal from "../Modal";
 import Title from "@/ui/Title";
 import InputField from "@/ui/Inputs/InputField";
 import ModalButtons from "@/ui/ModalButtons";
 
+import styles from "./ChangePassword.module.scss";
+
 const ChangePassword = ({ onClose, changedValue }) => {
   const { handleSubmit, reset, control, setError, clearErrors } = useForm({
     mode: "onChange",
   });
-
-  const onSubmit = useCallback(() => {}, []);
-
   const { onSubmitHandler } = useModalHandlers({
     onClose,
     reset,
   });
+
+  const onSubmit = useCallback(
+    (data) => {
+      onSubmitHandler(data);
+      toast.success("Changed successfull");
+    },
+    [onSubmitHandler],
+  );
 
   const validatePasswords = (data) => {
     const { newPassword, confirmNewPassword } = data;
@@ -27,18 +36,18 @@ const ChangePassword = ({ onClose, changedValue }) => {
       });
     } else {
       clearErrors("confirmNewPassword");
-      onSubmitHandler();
+      onSubmit(data);
     }
   };
 
   return (
     <Modal
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit(validatePasswords)}
       onClose={onClose}
       changedValue={changedValue}
       noCross
     >
-      <section className="modalWrapper">
+      <section className={`modalWrapper ${styles.modal}`}>
         <Title className={"modalTitle"}>Edit user</Title>
         <form onSubmit={handleSubmit(validatePasswords)}>
           <InputField
@@ -68,7 +77,7 @@ const ChangePassword = ({ onClose, changedValue }) => {
             type="password"
             autoComplete="on"
           />
-          <ModalButtons onSubmit={onSubmit} onClose={onClose} />
+          <ModalButtons onClose={onClose} />
         </form>
       </section>
     </Modal>

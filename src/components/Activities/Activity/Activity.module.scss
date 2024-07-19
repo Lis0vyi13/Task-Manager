@@ -45,13 +45,12 @@
 
 .type {
   text-transform: capitalize;
-  color: $text-gray;
+  color: var(--gray);
 }
 
 .date {
-  color: $text-gray;
+  color: var(--gray);
   font-size: 14px;
-  margin-top: 1px;
 }
 
 .activityText {

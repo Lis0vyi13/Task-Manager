@@ -1,3 +1,7 @@
+.modal {
+  background-color: var(--blockColor);
+}
+
 .dateTagBlock {
   display: grid;
   grid-template-columns: repeat(2, 1fr);

@@ -1,5 +1,6 @@
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import useModalHandlers from "@/hooks/useModalHandlers";
 
 import Title from "@/ui/Title";
@@ -7,7 +8,7 @@ import InputField from "@/ui/Inputs/InputField";
 import ModalButtons from "@/ui/ModalButtons";
 import Modal from "../Modal";
 
-// import styles from "./AddUser.module.scss";
+import styles from "./AddUser.module.scss";
 
 const AddUser = ({ changedValue, className, onClose }) => {
   const { handleSubmit, reset, control } = useForm({
@@ -19,18 +20,24 @@ const AddUser = ({ changedValue, className, onClose }) => {
     reset,
   });
 
-  const onSubmit = useCallback(() => {}, []);
+  const onSubmit = useCallback(
+    (data) => {
+      onSubmitHandler(data);
+      toast.success("Added successfull");
+    },
+    [onSubmitHandler],
+  );
 
   return (
     <Modal
       changedValue={changedValue}
       className={className}
       noCross
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit(onSubmit)}
       onClose={onCloseHandler}
     >
-      <section className="modalWrapper">
-        <form onSubmit={handleSubmit(onSubmitHandler)}>
+      <section className={`modalWrapper ${styles.modal}`}>
+        <form onSubmit={handleSubmit(onSubmit)}>
           <Title className={"modalTitle"}>Add new user</Title>
           <InputField
             name={"email"}
@@ -47,7 +54,7 @@ const AddUser = ({ changedValue, className, onClose }) => {
             placeholder={"example@gmail.com"}
             type="email"
           />
-          <ModalButtons onSubmit={onSubmit} onClose={onCloseHandler} />
+          <ModalButtons onClose={onCloseHandler} />
         </form>
       </section>
     </Modal>

@@ -8,6 +8,7 @@
   gap: 10px;
   padding: 25px;
   flex-direction: column;
+  background-color: var(--blockColor);
 }
 
 .circle {
@@ -20,7 +21,7 @@
 }
 
 .text {
-  color: $text-gray;
+  color: var(--color);
   font-weight: 600;
   margin-top: 5px;
   font-size: 18px;

@@ -53,12 +53,17 @@ const Task = ({ task }) => {
                   isClosing={isClosing}
                   handleClose={handleClose}
                 >
-                  {TASK_MORE_OPTIONS.map((block) =>
+                  {TASK_MORE_OPTIONS.map((block, blockIndex) =>
                     block.map((item, i) => (
                       <PopupItem
                         disabled={item.permission}
                         key={item.title}
-                        className={i + 1 === block.length ? "divider" : ""}
+                        className={
+                          i + 1 === block.length &&
+                          blockIndex + 1 !== TASK_MORE_OPTIONS.length
+                            ? "divider"
+                            : ""
+                        }
                         icon={item.icon}
                         title={item.title}
                         handleClose={handleClose}

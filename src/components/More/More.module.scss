@@ -15,6 +15,6 @@
   font-size: 18px;
 
   &:hover {
-    background-color: $gray-hover;
+    background-color: var(--blockHover);
   }
 }

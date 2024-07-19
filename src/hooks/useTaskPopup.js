@@ -32,25 +32,25 @@ const useTaskPopup = ({ task, setItemHandler = () => {} }) => {
   const TASK_MORE_OPTIONS = [
     [
       {
-        icon: { Icon: FaFolderOpen, color: "#000" },
+        icon: { Icon: FaFolderOpen, color: "" },
         title: "Open task",
         permission: false,
         onClick: () => navigate(task._id),
       },
       {
-        icon: { Icon: MdEdit, color: "#000" },
+        icon: { Icon: MdEdit, color: "" },
         title: "Edit",
         permission: false,
         onClick: openEditModal,
       },
       {
-        icon: { Icon: IoMdAdd, color: "#000" },
+        icon: { Icon: IoMdAdd, color: "" },
         title: "Add sub task",
         permission: false,
         onClick: openAddSubtaskModal,
       },
       {
-        icon: { Icon: FaExchangeAlt, color: "#000" },
+        icon: { Icon: FaExchangeAlt, color: "" },
         title: "Change stage",
         permission: false,
         onClick: openStageModal,

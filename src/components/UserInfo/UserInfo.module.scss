@@ -3,7 +3,8 @@
 .userInfo {
   position: relative;
   width: 250px;
-  background-color: #fff;
+  cursor: auto;
+  background-color: var(--blockColor);
   color: #000;
   z-index: 10000000;
   box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -40,6 +41,7 @@
 
 .name {
   font-size: 20px;
+  color: var(--color);
   font-weight: bold;
 }
 
@@ -50,7 +52,7 @@
 }
 
 .email {
-  color: $primary-main;
+  color: var(--colorHover);
   word-break: break-all;
   font-size: 14px;
 }

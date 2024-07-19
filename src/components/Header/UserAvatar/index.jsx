@@ -6,7 +6,7 @@ import useAvatar from "./useAvatar";
 import Popup from "@/ui/Popup";
 import UserPopupItem from "./UserPopupItem";
 import EditProfile from "@/ui/Modals/EditProfile";
-import ChangePassword from "@/ui/Modals/ChangePassword/ChangePassword";
+import ChangePassword from "@/ui/Modals/ChangePassword";
 
 import styles from "./UserAvatar.module.scss";
 

@@ -1,3 +1,5 @@
+import { useCallback } from "react";
+import { toast } from "sonner";
 import useTaskModal from "./useTaskModal";
 import useModalHandlers from "@/hooks/useModalHandlers";
 
@@ -8,7 +10,6 @@ import InputField from "@/ui/Inputs/InputField";
 import TextArea from "@/ui/Inputs/TextArea";
 import QuestionModal from "../QuestionModal";
 import ImageModal from "../Image";
-
 import Modal from "../Modal";
 
 import { FaImages } from "react-icons/fa";
@@ -56,18 +57,26 @@ const TaskModal = ({ onClose, className, task, changedValue }) => {
     reset,
   });
 
+  const onSubmit = useCallback(
+    (data) => {
+      onSubmitHandler(data);
+      toast.success(task ? "Changed successfull" : "Added successfull");
+    },
+    [onSubmitHandler, task],
+  );
   return (
     <Modal
       changedValue={changedValue}
       className={className}
       noCross
       onClose={onCloseHandler}
+      onSubmit={handleSubmit(onSubmit)}
     >
       <section className={`modalWrapper ${styles.modal}`}>
         <Title className="modalTitle">
           {task ? "Update task" : "Add task"}
         </Title>
-        <form onSubmit={handleSubmit(onSubmitHandler)} className={styles.form}>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <InputField
             name="name"
             control={control}

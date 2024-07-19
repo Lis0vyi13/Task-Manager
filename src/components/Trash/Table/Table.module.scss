@@ -11,7 +11,7 @@
   display: block;
   top: 1px;
   transform: translateY(-1px);
-  background-color: #fff;
+  background-color: var(--blockColor);
   left: 0;
   z-index: 1;
 }
@@ -25,7 +25,7 @@
   padding: 15px;
   display: flex;
   gap: 10px;
-  border-bottom: 1px solid $text-secondary;
+  border-bottom: 1px solid var(--blockHover);
   text-transform: capitalize;
 
   @include mq(md) {
@@ -49,11 +49,11 @@
     min-width: max(930px, 100%);
   }
   &:hover {
-    background: $gray-hover;
+    background-color: var(--blockHover);
   }
 
   &:not(:last-of-type) {
-    border-bottom: 1px solid $text-secondary;
+    border-bottom: 1px solid var(--blockHover);
   }
 }
 
@@ -107,10 +107,22 @@
   font-size: 16px;
 }
 
+.titleWrapper {
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  &:hover > h1 {
+    color: var(--colorHover);
+  }
+}
+
 .avatar {
   position: relative;
   border-radius: 50%;
-  color: #fff;
+  color: var(--color);
   font-size: 16px;
   min-width: 38px;
   min-height: 38px;
@@ -131,7 +143,7 @@
 
 .status {
   text-align: center;
-  color: $text-primary;
+  color: var(--color);
   padding: 4px 12px;
   border-radius: 20px;
   font-weight: 700;
@@ -141,17 +153,6 @@
   display: flex;
   gap: 10px;
   justify-content: flex-end !important;
-}
-
-.editBtn {
-  transition: all 0.3s ease;
-  cursor: pointer;
-  font-size: 16px;
-  color: $primary-main-light;
-  &:hover {
-    color: $primary-main-hover;
-  }
-  font-weight: 500;
 }
 
 .deleteBtn {
@@ -165,27 +166,17 @@
   font-weight: 500;
 }
 
-.titleWrapper {
-  cursor: pointer;
-  transition: all 0.3s ease;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  &:hover > h1 {
-    color: $primary-main;
-  }
-}
 .actionIcon {
   font-size: 28px;
   cursor: pointer;
 }
 
 .restore {
-  color: $text-gray;
+  color: var(--gray);
   padding: 5px;
   border-radius: 50%;
   font-size: 35px;
+  transition: all 0.3s ease;
   &:hover {
     background-color: $text-secondary;
   }
@@ -196,7 +187,7 @@
   border-radius: 50%;
   font-size: 35px;
   color: $error-main;
-
+  transition: all 0.3s ease;
   &:hover {
     background-color: $text-secondary;
   }

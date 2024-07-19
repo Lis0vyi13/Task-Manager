@@ -37,7 +37,7 @@
   font-weight: 400;
 }
 .daysAgo {
-  color: $text-primary;
+  color: var(--color);
   text-align: center;
 }
 
@@ -76,7 +76,7 @@
     border-bottom: 1px solid $text-secondary;
   }
   &:hover {
-    background: $gray-hover;
+    background: var(--blockHover);
   }
 
   & th,
@@ -90,6 +90,6 @@
   transition: all 0.3s ease;
 
   &:hover > h1 {
-    color: $primary-main;
+    color: var(--colorHover);
   }
 }

@@ -13,8 +13,11 @@ import BackToTop from "@/components/BackToTop";
 import styles from "./Layout.module.scss";
 
 const Layout = () => {
-  const { isLoggedIn, sidebarRef, isMobileSidebarOpen } = useLayout();
   const mainRef = useRef(null);
+  const { isLoggedIn, sidebarRef, isMobileSidebarOpen } = useLayout({
+    mainRef,
+  });
+
   if (!isLoggedIn) {
     return <Navigate to="/login" />;
   }

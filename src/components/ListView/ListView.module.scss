@@ -13,6 +13,6 @@
   }
   &.notEmpty {
     @include shadow;
-    background-color: #fff;
+    background-color: var(--blockColor);
   }
 }

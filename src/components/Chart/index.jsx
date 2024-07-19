@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import { useSelector } from "react-redux";
 import {
   Bar,
   BarChart,
@@ -10,11 +11,14 @@ import {
   YAxis,
 } from "recharts";
 
+import CustomTooltip from "./CustomTooltip";
+
 import { tasks } from "@/constants";
 
 import styles from "./Chart.module.scss";
 
 const Chart = () => {
+  const { theme } = useSelector((state) => state.page);
   const totalPriority = useMemo(() => {
     return tasks.reduce(
       (acc, task) => {
@@ -35,12 +39,16 @@ const Chart = () => {
     [totalPriority],
   );
 
+  const hoverColor = useMemo(
+    () => (theme === "light" ? "#d8d8d8" : "#484848"),
+    [theme],
+  );
   return (
     <ResponsiveContainer className={styles.chart} width={"100%"} height={350}>
       <BarChart data={chartData}>
         <XAxis dataKey="name" />
         <YAxis />
-        <Tooltip />
+        <Tooltip cursor={{ fill: hoverColor }} content={<CustomTooltip />} />
         <Legend />
         <CartesianGrid strokeDasharray="3 3" />
         <Bar dataKey="Amount" fill="#8884d8" />

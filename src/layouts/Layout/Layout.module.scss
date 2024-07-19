@@ -1,3 +1,6 @@
+@import "@/styles/variables";
+@import "@/styles";
+
 :root {
   --offset: 0;
 }
@@ -12,6 +15,7 @@
   flex-grow: 1;
   overflow-y: auto;
   overflow-x: hidden;
+  background: var(--main);
 }
 
 .content {
