@@ -5,3 +5,9 @@
 .developersTableBody {
   display: block;
 }
+
+tbody tr {
+  &:not(:last-of-type) {
+    border-bottom: 1px solid $text-secondary;
+  }
+}

@@ -14,9 +14,7 @@ import styles from "./Layout.module.scss";
 
 const Layout = () => {
   const mainRef = useRef(null);
-  const { isLoggedIn, sidebarRef, isMobileSidebarOpen } = useLayout({
-    mainRef,
-  });
+  const { isLoggedIn, sidebarRef, isMobileSidebarOpen } = useLayout();
 
   if (!isLoggedIn) {
     return <Navigate to="/login" />;

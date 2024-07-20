@@ -10,7 +10,6 @@
   display: block;
   top: 1px;
   transform: translateY(-1px);
-  background-color: var(--blockColor);
   left: 0;
   z-index: 1;
 }
@@ -18,7 +17,6 @@
 .tbody {
   display: block;
   position: relative;
-  background-color: var(--blockColor);
 }
 
 .thead .tr {

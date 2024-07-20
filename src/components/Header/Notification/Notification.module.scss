@@ -4,6 +4,7 @@
 .popup {
   width: 300px;
   right: -55px;
+  bottom: -15px;
   overflow: hidden;
   @include mq(sm) {
     width: 400px;
@@ -19,7 +20,7 @@
   border-radius: 50%;
   transition: all 0.3s ease;
   &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: var(--blockHover);
   }
 }
 

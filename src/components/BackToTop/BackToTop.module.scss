@@ -1,8 +1,8 @@
 .backToTop {
   position: fixed;
-  bottom: 50px;
+  bottom: 20px;
   right: 30px;
-  z-index: 100000000000;
+  z-index: 10000000;
   opacity: 1;
   transition: all 0.3s ease;
   &.hidden {

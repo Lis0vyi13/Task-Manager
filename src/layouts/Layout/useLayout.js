@@ -1,6 +1,5 @@
 import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
-
 import useActions from "@/hooks/useActions";
 import useAuth from "@/hooks/useAuth";
 
@@ -14,7 +13,6 @@ const useLayout = () => {
   const sidebarRef = useRef();
 
   const { closeMobileSidebar, toggleMobileSidebar } = useActions();
-  const sidebarWidth = sidebarRef.current?.getBoundingClientRect().width;
 
   useEffect(() => {
     if (theme === "dark") {
@@ -42,11 +40,33 @@ const useLayout = () => {
   }, [isMobileSidebarOpen, closeMobileSidebar, toggleMobileSidebar]);
 
   useEffect(() => {
+    const sidebarWidth = sidebarRef.current?.getBoundingClientRect().width;
     document.documentElement.style.setProperty("--offset", sidebarWidth + "px");
-  }, [sidebarWidth]);
+  }, [sidebarRef]);
 
   useEffect(() => {
-    document.body.style.overflow = isMobileSidebarOpen ? "hidden" : "auto";
+    const handleScroll = (e) => {
+      if (isMobileSidebarOpen && !e.target.closest("aside")) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+    };
+
+    if (isMobileSidebarOpen) {
+      document.body.style.overflow = "hidden";
+      document.addEventListener("touchmove", handleScroll, { passive: false });
+    } else {
+      document.body.style.overflow = "unset";
+      document.removeEventListener("touchmove", handleScroll, {
+        passive: false,
+      });
+    }
+
+    return () => {
+      document.removeEventListener("touchmove", handleScroll, {
+        passive: false,
+      });
+    };
   }, [isMobileSidebarOpen]);
 
   return { isLoggedIn, sidebarRef, isMobileSidebarOpen };
