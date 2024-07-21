@@ -9,11 +9,31 @@
   gap: 40px;
   flex-wrap: wrap;
   margin-top: 25px;
+  position: relative;
+  flex-direction: row;
+  transition: all 0.3s ease;
+
   @include mq(mdXl) {
     margin-top: 0;
     min-height: 100vh;
   }
+
+  &.moveLeft {
+    .leftSide {
+      transform: translateY(107%);
+      @include mq(sm) {
+        transform: translateX(107%);
+      }
+    }
+    .loginFormContainer {
+      transform: translateY(-107%);
+      @include mq(sm) {
+        transform: translateX(-107%);
+      }
+    }
+  }
 }
+
 .slogan {
   width: -webkit-fit-content;
   width: -moz-fit-content;
@@ -30,6 +50,18 @@
   flex-direction: column;
   gap: 20px;
   align-items: center;
+  transition: transform 0.6s ease;
+}
+
+.loginFormContainer {
+  position: relative;
+  z-index: 2;
+  transition: transform 0.6s ease;
+  width: 100%;
+
+  @include mq(sm) {
+    width: auto;
+  }
 }
 
 .title {

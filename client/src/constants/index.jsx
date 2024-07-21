@@ -48,6 +48,31 @@ export const loginInputs = [
   },
 ];
 
+export const signUpInputs = [
+  {
+    name: "name",
+    label: "Name",
+    type: "text",
+    placeholder: "Your name...",
+    autoComplete: "given-name",
+    options: {
+      required: { value: true, message: "Name is required" },
+    },
+    tabIndex: 1,
+  },
+  {
+    name: "surname",
+    label: "Surname",
+    type: "text",
+    placeholder: "Your surname...",
+    autoComplete: "family-name",
+    options: {
+      required: { value: true, message: "Surname is required" },
+    },
+    tabIndex: 2,
+  },
+];
+
 export const navLinks = [
   { name: "Dashboard", Icon: MdDashboard, to: "/dashboard" },
   { name: "Tasks", Icon: FaTasks, to: "/tasks" },

@@ -29,6 +29,7 @@ const Notification = memo(() => {
           className={styles.popup}
           isClosing={isClosing}
           handleClose={handleClose}
+          desktopStyle
         >
           <div className={styles.alerts}>
             {notifications.map((notif) => (

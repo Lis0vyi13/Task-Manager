@@ -2,7 +2,6 @@
 @import "@/styles/mixins";
 
 .popup {
-  position: absolute;
   z-index: 22222222;
   background-color: var(--blockColor);
   border-radius: 5px;
@@ -11,18 +10,48 @@
   flex-direction: column;
   align-items: flex-start;
   @include shadow;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  -webkit-animation: popupMobileAnimation 0.2s ease-out forwards;
+  animation: popupMobileAnimation 0.2s ease-out forwards;
+
+  @include mq(sm) {
+    transform: translateY(0);
+    position: absolute;
+    right: 0;
+    bottom: -5px;
+    min-width: 230px;
+    -webkit-animation: popupOpenAnimation 0.2s ease-out forwards;
+    animation: popupOpenAnimation 0.2s ease-out forwards;
+  }
+}
+
+.desktopStyle {
+  transform: translateY(0);
+  position: absolute;
+  bottom: -5px;
+  left: unset;
+
+  min-width: 230px;
   -webkit-animation: popupOpenAnimation 0.2s ease-out forwards;
   animation: popupOpenAnimation 0.2s ease-out forwards;
-  right: 0;
-  bottom: -5px;
-  @include mq(sm) {
-    min-width: 230px;
+  &Closing {
+    -webkit-animation: popupCloseAnimation 0.2s ease-out forwards;
+    animation: popupCloseAnimation 0.2s ease-out forwards;
   }
 }
 
 .closing {
-  -webkit-animation: popupCloseAnimation 0.2s ease-out forwards;
-  animation: popupCloseAnimation 0.2s ease-out forwards;
+  -webkit-animation: popupMobileCloseAnimation 0.2s ease-out forwards;
+  animation: popupMobileCloseAnimation 0.2s ease-out forwards;
+
+  @include mq(sm) {
+    -webkit-animation: popupCloseAnimation 0.2s ease-out forwards;
+    animation: popupCloseAnimation 0.2s ease-out forwards;
+  }
 }
 
 @-webkit-keyframes popupOpenAnimation {
@@ -66,5 +95,49 @@
   100% {
     opacity: 0;
     transform: translateY(100%) scale(0.8);
+  }
+}
+
+@-webkit-keyframes popupMobileAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes popupMobileAnimation {
+  0% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@-webkit-keyframes popupMobileCloseAnimation {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+}
+
+@keyframes popupMobileCloseAnimation {
+  0% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(100%);
   }
 }

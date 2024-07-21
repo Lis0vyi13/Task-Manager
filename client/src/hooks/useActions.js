@@ -2,11 +2,11 @@ import { useMemo } from "react";
 import { bindActionCreators } from "@reduxjs/toolkit";
 import { useDispatch } from "react-redux";
 
-import { authActions } from "@/features/auth/AuthSlice";
-import { userActions } from "@/features/user/UserSlice";
-import { sidebarActions } from "@/features/sidebar/SidebarSlice";
-import { searchActions } from "@/features/search/SearchSlice";
-import { pageActions } from "@/features/page/PageSlice";
+import { authActions } from "@/redux/features/auth/AuthSlice";
+import { userActions } from "@/redux/features/user/UserSlice";
+import { sidebarActions } from "@/redux/features/sidebar/SidebarSlice";
+import { searchActions } from "@/redux/features/search/SearchSlice";
+import { pageActions } from "@/redux/features/page/PageSlice";
 
 const rootActions = {
   ...authActions,
