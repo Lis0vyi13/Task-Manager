@@ -39,7 +39,7 @@ const useAvatar = () => {
       {
         name: "Logout",
         Icon: IoLogOut,
-        handler: logOut,
+        handler: () => logOut(),
         type: "button",
         color: "#f44336",
       },
