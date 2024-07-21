@@ -39,6 +39,7 @@ const UserAvatar = memo(() => {
           style={{ padding: "10px 0px" }}
           isClosing={isClosing}
           handleClose={handleClose}
+          desktopStyle
         >
           {userAvatarButtons.map((btn) => (
             <UserPopupItem key={btn.name} {...btn} />

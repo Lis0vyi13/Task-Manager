@@ -37,7 +37,7 @@ const EditProfile = ({ onClose, changedValue }) => {
     (data) => {
       onSubmitHandler(data);
       console.log(data);
-      toast.success("Changed successfull");
+      toast.success("Changed successful");
       const formData = new FormData();
       formData.append("name", data.name);
       formData.append("surname", data.surname);

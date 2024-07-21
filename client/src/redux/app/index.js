@@ -1,14 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
 
-import authReducer from "@/features/auth/AuthSlice";
-import userReducer from "@/features/user/UserSlice";
-import sidebarReducer from "@/features/sidebar/SidebarSlice";
-import searchReducer from "@/features/search/SearchSlice";
-import pageReducer from "@/features/page/PageSlice";
+import authReducer from "../features/auth/AuthSlice";
+import userReducer from "../features/user/UserSlice";
+import sidebarReducer from "../features/sidebar/SidebarSlice";
+import searchReducer from "../features/search/SearchSlice";
+import pageReducer from "../features/page/PageSlice";
 
-import api from "@/api/api";
+import api from "../api";
 
-import authMiddleware from "@/features/middlewares/AuthMiddleware";
+import authMiddleware from "../features/middlewares/AuthMiddleware";
 
 const store = configureStore({
   reducer: {

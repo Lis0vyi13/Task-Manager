@@ -22,7 +22,7 @@ const ChangePassword = ({ onClose, changedValue }) => {
   const onSubmit = useCallback(
     (data) => {
       onSubmitHandler(data);
-      toast.success("Changed successfull");
+      toast.success("Changed successful");
     },
     [onSubmitHandler],
   );

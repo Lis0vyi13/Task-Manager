@@ -60,7 +60,7 @@ const TaskModal = ({ onClose, className, task, changedValue }) => {
   const onSubmit = useCallback(
     (data) => {
       onSubmitHandler(data);
-      toast.success(task ? "Changed successfull" : "Added successfull");
+      toast.success(task ? "Changed successful" : "Added successful");
     },
     [onSubmitHandler, task],
   );

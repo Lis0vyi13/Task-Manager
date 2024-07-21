@@ -30,7 +30,7 @@ const SubtaskModal = ({ changedValue, onClose, subtask }) => {
   const onSubmit = useCallback(
     (data) => {
       onSubmitHandler(data);
-      toast.success(subtask ? "Changed successfull" : "Added successfull");
+      toast.success(subtask ? "Changed successful" : "Added successful");
     },
     [onSubmitHandler, subtask],
   );

@@ -23,7 +23,7 @@ const AddUser = ({ changedValue, className, onClose }) => {
   const onSubmit = useCallback(
     (data) => {
       onSubmitHandler(data);
-      toast.success("Added successfull");
+      toast.success("Added successful");
     },
     [onSubmitHandler],
   );
