@@ -52,22 +52,6 @@
   }
 }
 
-.forgotPassword {
-  width: -webkit-fit-content;
-  width: -moz-fit-content;
-  width: fit-content;
-  margin-top: 15px;
-  cursor: pointer;
-  color: var(--colorHover);
-
-  &:focus {
-    text-decoration: underline;
-  }
-  &:hover {
-    text-decoration: underline;
-  }
-}
-
 .error {
   margin-top: 3px;
   color: $error-main;
@@ -79,12 +63,15 @@
   font-size: 15px;
 }
 
+.signInBlock {
+  margin-top: 10px;
+}
 .signIn {
   text-align: left;
   color: var(--colorHover);
   cursor: pointer;
   transition: color 0.3s ease;
-  margin-top: 10px;
+
   &:focus {
     text-decoration: underline;
   }

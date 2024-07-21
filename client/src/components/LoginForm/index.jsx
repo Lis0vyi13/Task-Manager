@@ -42,12 +42,6 @@ const LoginForm = ({ isSignUp, onSignInClick }) => {
             </div>
           ))}
 
-          <span
-            onClick={(e) => e.preventDefault()}
-            className={styles.forgotPassword}
-          >
-            Forget Password?
-          </span>
           <p className={styles.signInBlock}>
             {isSignUp ? "Already have an account? " : "Don’t have an account? "}
             <span onClick={onSignInClick} className={styles.signIn}>
