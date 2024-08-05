@@ -16,8 +16,8 @@ import CustomTooltip from "./CustomTooltip";
 import styles from "./Chart.module.scss";
 
 const Chart = () => {
-  const { dashboardStats } = useSelector((store) => store.tasks);
-  const { graphData } = dashboardStats;
+  const dashboardStats = useSelector((store) => store.tasks?.dashboardStats);
+  const graphData = dashboardStats.graphData;
   const { theme } = useSelector((state) => state.page);
   const hoverColor = useMemo(() => (theme === "light" ? "#d8d8d8" : "#484848"), [theme]);
 

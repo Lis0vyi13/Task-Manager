@@ -11,8 +11,8 @@ import { IoCheckmarkDoneCircle } from "react-icons/io5";
 import styles from "./Stats.module.scss";
 
 const Stats = () => {
-  const stats = useSelector((store) => store.tasks.dashboardStats);
-  const { tasks: allTasks } = useSelector((store) => store.tasks.tasks);
+  const stats = useSelector((store) => store?.tasks?.dashboardStats || {});
+  const allTasks = useSelector((store) => store?.tasks?.tasks || {});
   const { last10Task = [], totalTasks = 0, tasks: taskStages = {} } = stats;
 
   const getUpdatedAtTime = (task) => {

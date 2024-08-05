@@ -5,7 +5,7 @@ import styles from "./DashboardBody.module.scss";
 
 const DashboardBody = () => {
   const { dashboardStats } = useSelector((store) => store.tasks);
-  const { last10Task } = dashboardStats;
+  const last10Task = dashboardStats?.last10Task;
 
   return (
     <tbody className={styles.tbody}>
