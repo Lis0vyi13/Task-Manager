@@ -15,7 +15,7 @@ const TaskDetailsRight = ({ task }) => {
     <>
       <div className={styles.description}>
         <Title className={styles.title}>TASK DESCRIPTION</Title>
-        <p>{task.description || "No description added"}</p>
+        <p>{task?.description || "No description added"}</p>
       </div>
       <div className={styles.assetsBlock}>
         <Title className={styles.title}>Assets</Title>

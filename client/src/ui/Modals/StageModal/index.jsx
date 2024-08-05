@@ -22,8 +22,8 @@ const StageModal = ({ changedValue, onClose, task }) => {
     () => ({
       stage: task?.stage
         ? {
-            value: task.stage,
-            label: task.stage.toUpperCase(),
+            value: task?.stage,
+            label: task?.stage.toUpperCase(),
           }
         : "",
     }),

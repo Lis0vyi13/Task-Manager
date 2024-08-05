@@ -45,16 +45,16 @@ const DashboardTaskItem = ({ task, taskIndex }) => {
 
   const user = useUser();
   return (
-    <tr key={task._id} className={styles.row}>
-      <td onClick={() => handleTaskClick(task._id)} className={`${styles.td} ${styles.pointer}`}>
-        <StageCircle className={styles.circle} stage={task.stage} />
-        <h1 className={styles.text}>{task.title}</h1>
+    <tr key={task?._id} className={styles.row}>
+      <td onClick={() => handleTaskClick(task?._id)} className={`${styles.td} ${styles.pointer}`}>
+        <StageCircle className={styles.circle} stage={task?.stage} />
+        <h1 className={styles.text}>{task?.title}</h1>
       </td>
       {isDesktop ? (
         <>
           <td className={styles.td}>
             <div className={styles.priority}>
-              <PriorityIndicator priority={task.priority} />
+              <PriorityIndicator priority={task?.priority} />
             </div>
           </td>
           <td className={styles.td}>
@@ -62,7 +62,7 @@ const DashboardTaskItem = ({ task, taskIndex }) => {
           </td>
           <td className={`${styles.td} ${styles.createdAt}`}>
             <span className={styles.daysAgo}>
-              {capitalizeFirstLetter(moment(task.createdAt).fromNow())}
+              {capitalizeFirstLetter(moment(task?.createdAt).fromNow())}
             </span>
           </td>
         </>

@@ -39,7 +39,7 @@ const Task = ({ task, isLastTask }) => {
     closeStageModal,
   } = useTask({ task });
 
-  const doneSubtasksLength = task?.subTasks?.filter((subtask) => subtask.done).length;
+  const doneSubtasksLength = task?.subTasks?.filter((subtask) => subtask?.done).length;
   const [moveTaskToTrash, { isLoading }] = useMoveTaskToTrashMutation();
   const deleteHandler = async () => {
     try {
@@ -55,7 +55,7 @@ const Task = ({ task, isLastTask }) => {
         <header className={styles.header}>
           <div className={styles.headerInfo}>
             <div className={styles.headerTop}>
-              <PriorityIndicator style={{ marginLeft: 0 }} withAddition priority={task.priority} />
+              <PriorityIndicator style={{ marginLeft: 0 }} withAddition priority={task?.priority} />
               <More onClick={handleToggle} />
               {isOpened && (
                 <Popup
@@ -99,24 +99,24 @@ const Task = ({ task, isLastTask }) => {
               />
             </div>
 
-            <div onClick={() => navigate(task._id)} className={styles.taskTitle}>
-              <StageCircle stage={task.stage} />
-              <h1 className={styles.title}>{task.title}</h1>
+            <div onClick={() => navigate(task?._id)} className={styles.taskTitle}>
+              <StageCircle stage={task?.stage} />
+              <h1 className={styles.title}>{task?.title}</h1>
             </div>
-            <div className={styles.date}>{formatDate(new Date(task.date))}</div>
+            <div className={styles.date}>{formatDate(new Date(task?.date))}</div>
           </div>
         </header>
         <main className={styles.main}>
           <section className={styles.details}>
-            <Link to={`/task/${task._id}`} title="Commentary" className={styles.commentary}>
+            <Link to={`/task/${task?._id}`} title="Commentary" className={styles.commentary}>
               <MdOutlineComment />
               <span>{task?.activities.length || 0}</span>
             </Link>
-            <Link to={`/task/${task._id}`} title="Assets" className={styles.assets}>
+            <Link to={`/task/${task?._id}`} title="Assets" className={styles.assets}>
               <MdAttachFile />
               <span>{task?.assets.length}</span>
             </Link>
-            <Link to={`/task/${task._id}`} title={"Subtasks"} className={styles.subtasks}>
+            <Link to={`/task/${task?._id}`} title={"Subtasks"} className={styles.subtasks}>
               <FaList />
               <span>
                 {doneSubtasksLength}/{task?.subTasks.length}
@@ -124,7 +124,7 @@ const Task = ({ task, isLastTask }) => {
             </Link>
           </section>
           <section>
-            <Team infoClassName={styles.userInfo} className={styles.team} team={task.team} />
+            <Team infoClassName={styles.userInfo} className={styles.team} team={task?.team} />
           </section>
         </main>
         <footer className={styles.footer}>
@@ -136,7 +136,7 @@ const Task = ({ task, isLastTask }) => {
               : "Subtasks were not added"}
           </section> */}
           <button
-            onClick={() => navigate(task._id, { state: { isSubtaskModalOpen: true } })}
+            onClick={() => navigate(task?._id, { state: { isSubtaskModalOpen: true } })}
             className={`${styles.btnAddSubtask}`}
           >
             <span>+</span> <p>Add subtask</p>

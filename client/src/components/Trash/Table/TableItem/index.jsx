@@ -42,25 +42,25 @@ const TableItem = ({ task, navigateToTask }) => {
     [handleDeleteTask, handleRestoreTask, task],
   );
   return (
-    <tr key={task._id} className={styles.tr}>
+    <tr key={task?._id} className={styles.tr}>
       <td
-        onClick={() => navigateToTask(task._id)}
+        onClick={() => navigateToTask(task?._id)}
         className={`${styles.td} ${styles.titleWrapper}`}
       >
-        <StageCircle stage={task.stage} />
-        <h1 className={styles.title}>{task.title}</h1>
+        <StageCircle stage={task?.stage} />
+        <h1 className={styles.title}>{task?.title}</h1>
       </td>
       {isDesktop ? (
         <>
           <td className={styles.td}>
-            <PriorityIndicator withAddition priority={task.priority} />
+            <PriorityIndicator withAddition priority={task?.priority} />
           </td>
           <td className={styles.td}>
-            <p>{task.stage}</p>
+            <p>{task?.stage}</p>
           </td>
 
           <td className={styles.td}>
-            <p>{new Date(task.updatedAt).toDateString()}</p>
+            <p>{new Date(task?.updatedAt).toDateString()}</p>
           </td>
           <td className={`${styles.actions} ${styles.td} `}>
             <button
@@ -120,7 +120,7 @@ const TableItem = ({ task, navigateToTask }) => {
         </td>
       )}
       {isQuestionModalOpen &&
-        selectedTask?._id === task._id &&
+        selectedTask?._id === task?._id &&
         createPortal(
           <QuestionModal
             changedValue={isQuestionModalOpen}

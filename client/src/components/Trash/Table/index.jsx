@@ -25,7 +25,7 @@ const Table = ({ titles, filteredTask, navigate }) => {
         </tr>
       </thead>
       <tbody className={styles.tbody}>
-        {filteredTask.map((task) => (
+        {filteredTask?.map((task) => (
           <TableItem key={task?._id} navigateToTask={navigateToTask} task={task} />
         ))}
       </tbody>

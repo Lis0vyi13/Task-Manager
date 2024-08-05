@@ -35,27 +35,27 @@ const TaskDetailsLeft = memo(({ task }) => {
     <>
       <div className={styles.taskInfo}>
         <div className={styles.priorityStageBlock}>
-          <PriorityStatus priority={task.priority} />
+          <PriorityStatus priority={task?.priority} />
           <div className={styles.stageBlock}>
-            <StageCircle stage={task.stage} />
-            <span className={styles.stage}>{task.stage}</span>
+            <StageCircle stage={task?.stage} />
+            <span className={styles.stage}>{task?.stage}</span>
           </div>
         </div>
         <div className={styles.createdAtBlock}>
           <span className={styles.createdAt}>
-            Created at: {new Date(task.createdAt).toDateString()}
+            Created at: {new Date(task?.createdAt).toDateString()}
           </span>
         </div>
       </div>
       <div className={styles.assetsSubTasksBlock}>
-        <span>Assets: {task.assets.length}</span>
+        <span>Assets: {task?.assets.length}</span>
         <span>|</span>
-        <span>Subtasks: {task.subTasks.length}</span>
+        <span>Subtasks: {task?.subTasks.length}</span>
       </div>
       <div className={styles.teamBlock}>
         <Title className={styles.titleSecondary}>TASK TEAM</Title>
         <div className={styles.team}>
-          {task.team.map((member) => (
+          {task?.team.map((member) => (
             <div key={member._id} className={styles.memberBlock}>
               <TeamMember user={member} />
             </div>
@@ -91,7 +91,7 @@ const TaskDetailsLeft = memo(({ task }) => {
             <Subtask
               isLastChild={i + 1 === subTasks.length}
               task={task}
-              key={subtask._id}
+              key={subtask?._id}
               {...subtask}
             />
           ))}

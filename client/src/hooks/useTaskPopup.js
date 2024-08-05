@@ -31,7 +31,7 @@ const useTaskPopup = ({ task, setItemHandler = () => {} }) => {
         icon: { Icon: FaFolderOpen, color: "" },
         title: "Open task",
         permission: false,
-        onClick: () => navigate(task._id),
+        onClick: () => navigate(task?._id),
       },
       {
         icon: { Icon: MdEdit, color: "" },

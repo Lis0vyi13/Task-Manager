@@ -52,31 +52,31 @@ const TableItem = ({ task, navigateToTask }) => {
   };
 
   return (
-    <tr className={styles.tr} key={task._id}>
-      <td onClick={() => navigateToTask(task._id)} className={`${styles.tableTitle} ${styles.td}`}>
-        <StageCircle stage={task.stage} />
-        <h1 className={styles.title}>{task.title}</h1>
+    <tr className={styles.tr} key={task?._id}>
+      <td onClick={() => navigateToTask(task?._id)} className={`${styles.tableTitle} ${styles.td}`}>
+        <StageCircle stage={task?.stage} />
+        <h1 className={styles.title}>{task?.title}</h1>
       </td>
       {isDesktop ? (
         <>
           <td className={`${styles.priority} ${styles.td}`}>
-            <PriorityIndicator withAddition priority={task.priority} />
+            <PriorityIndicator withAddition priority={task?.priority} />
           </td>
           <td className={`${styles.td} ${styles.createdAt} ${styles.capitalize}`}>
-            <span className={styles.daysAgo}>{formatDate(new Date(task.date))}</span>
+            <span className={styles.daysAgo}>{formatDate(new Date(task?.date))}</span>
           </td>
           <td className={`${styles.td} ${styles.details}`}>
-            <Link to={`/task/${task._id}`} title="Commentary" className={styles.commentary}>
+            <Link to={`/task/${task?._id}`} title="Commentary" className={styles.commentary}>
               <MdOutlineComment />
-              <span>{task.activities.length || 0}</span>
+              <span>{task?.activities.length || 0}</span>
             </Link>
-            <Link to={`/task/${task._id}`} title="Assets" className={styles.assets}>
+            <Link to={`/task/${task?._id}`} title="Assets" className={styles.assets}>
               <MdAttachFile />
-              <span>{task.assets.length}</span>
+              <span>{task?.assets.length}</span>
             </Link>
-            <Link to={`/task/${task._id}`} title={"Subtasks"} className={styles.subtasks}>
+            <Link to={`/task/${task?._id}`} title={"Subtasks"} className={styles.subtasks}>
               <FaList />
-              <span>0/{task.subTasks.length}</span>
+              <span>0/{task?.subTasks.length}</span>
             </Link>
           </td>
           <td className={`${styles.td}`}>

@@ -5,7 +5,7 @@ const useTaskDetails = ({ task }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (task.assets && task.assets.length > 0) {
+    if (task?.assets && task?.assets.length > 0) {
       const imagePromises = task?.assets?.map((src) => {
         return new Promise((resolve) => {
           const img = new Image();
@@ -21,7 +21,7 @@ const useTaskDetails = ({ task }) => {
     } else {
       setLoading(false);
     }
-  }, [task.assets]);
+  }, [task?.assets]);
 
   const handleImageClick = useCallback((src) => {
     setSelectedImage(src);

@@ -10,7 +10,7 @@ const DashboardBody = () => {
   return (
     <tbody className={styles.tbody}>
       {last10Task?.map((task, taskIndex) => {
-        return <DashboardTaskItem task={task} taskIndex={taskIndex} key={task._id} />;
+        return <DashboardTaskItem task={task} taskIndex={taskIndex} key={task?._id} />;
       })}
     </tbody>
   );

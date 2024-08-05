@@ -20,20 +20,20 @@ const useTaskModal = ({ task, onClose }) => {
         })) || [],
       stage: task?.stage
         ? {
-            value: task.stage,
-            label: task.stage.toUpperCase(),
+            value: task?.stage,
+            label: task?.stage.toUpperCase(),
           }
         : "",
       priority: task?.priority
         ? {
-            value: task.priority,
-            label: task.priority.toUpperCase(),
+            value: task?.priority,
+            label: task?.priority.toUpperCase(),
           }
         : "",
-      date: task?.date ? transformToInputDateType(task.date) : getCurrentDate(),
+      date: task?.date ? transformToInputDateType(task?.date) : getCurrentDate(),
       assets: task?.assets || [],
       description: task?.description || "",
-      links: task?.links ? task.links.join(",") : "",
+      links: task?.links ? task?.links?.join(",") : "",
     }),
     [task],
   );

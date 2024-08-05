@@ -16,7 +16,7 @@ import styles from "./SubtaskModal.module.scss";
 const SubtaskModal = ({ changedValue, onClose, subtask, _id }) => {
   const defaultValues = {
     title: subtask?.title || "",
-    date: subtask?.date ? transformToInputDateType(subtask.date) : getCurrentDate(),
+    date: subtask?.date ? transformToInputDateType(subtask?.date) : getCurrentDate(),
     tag: subtask?.tag || "",
   };
   const { handleSubmit, reset, control } = useForm({
@@ -36,7 +36,7 @@ const SubtaskModal = ({ changedValue, onClose, subtask, _id }) => {
       try {
         const submitData = { ...data, _id };
         if (subtask) {
-          submitData.subTaskId = subtask.subtaskId;
+          submitData.subTaskId = subtask?.subtaskId;
           await updateSubtask(submitData, _id).unwrap();
         } else {
           await addSubtask(submitData, _id).unwrap();
