@@ -5,7 +5,7 @@ import { getCookie } from "@/utils/getCookie";
 const AUTH_URL = "/user";
 
 const initialState = {
-  isLoggedIn: getCookie("__l") && getCookie("__u"),
+  isLoggedIn: getCookie("__u"),
 };
 
 export const authApiSlice = api.injectEndpoints({

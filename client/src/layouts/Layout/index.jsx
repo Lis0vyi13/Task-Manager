@@ -23,11 +23,7 @@ const Layout = () => {
     <section className={`${styles.layout}`}>
       <MobileSidebar ref={sidebarRef} />
       <DesktopSidebar />
-      <div
-        className={`${styles.content} ${
-          isMobileSidebarOpen ? styles.contentOffset : ""
-        }`}
-      >
+      <div className={`${styles.content} ${isMobileSidebarOpen ? styles.contentOffset : ""}`}>
         <Header />
         <main ref={mainRef} className={styles.main}>
           <Suspense fallback={<Loader />}>

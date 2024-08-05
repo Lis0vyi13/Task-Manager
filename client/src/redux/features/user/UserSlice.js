@@ -2,6 +2,7 @@ import api from "@/redux/api";
 import { createSlice } from "@reduxjs/toolkit";
 
 import { decodeCookie } from "@/utils/decodeCookie";
+import { setCookie } from "@/utils/setCookie";
 
 const USER_URL = "/user";
 const initialState = {
@@ -81,6 +82,7 @@ const userSlice = createSlice({
     },
     clearUser(state) {
       state.user = null;
+      setCookie("__u", "", -1);
     },
     changeAvatar(state, { payload }) {
       state.avatar = payload;

@@ -22,7 +22,6 @@ const useLayout = () => {
     setUser,
     setDashboardStats,
   } = useActions();
-
   useEffect(() => {
     if (theme === "dark") {
       document.body.classList.add("dark");
