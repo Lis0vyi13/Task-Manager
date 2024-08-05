@@ -11,10 +11,10 @@ import { IoCheckmarkDoneCircle } from "react-icons/io5";
 import styles from "./Stats.module.scss";
 
 const Stats = () => {
-  const stats = useSelector((store) => store?.tasks?.dashboardStats || {});
-  const allTasks = useSelector((store) => store?.tasks?.tasks || {});
+  const tasks = useSelector((store) => store.tasks);
+  const stats = tasks?.dashboardStats || [];
+  const allTasks = useMemo(() => tasks?.tasks?.tasks || [], [tasks?.tasks]);
   const { last10Task = [], totalTasks = 0, tasks: taskStages = {} } = stats;
-
   const getUpdatedAtTime = (task) => {
     return capitalizeFirstLetter(moment(task?.updatedAt).fromNow());
   };
