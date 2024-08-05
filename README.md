@@ -1,5 +1,5 @@
 Admin permissions: 
 
-user: admin@gmail.com 
+email: admin@gmail.com 
 
 password: admin
