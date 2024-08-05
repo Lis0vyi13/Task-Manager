@@ -18,7 +18,7 @@ app.use(cookieParser());
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "http://localhost:5174"],
+    origin: ["https://lisovyi-task-manager.netlify.app/#/login", "http://localhost:5173", "http://localhost:5174"],
     methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
     credentials: true,
   }),
