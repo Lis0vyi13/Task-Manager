@@ -14,7 +14,11 @@ const Modal = memo(({ onClose, noCross, onSubmit, className, changedValue, child
   });
 
   return createPortal(
-    <div ref={modalRef} className={`${styles.overlay} ${className}`} onClick={handleOverlayClick}>
+    <div
+      ref={modalRef}
+      className={`modal ${styles.overlay} ${className}`}
+      onClick={handleOverlayClick}
+    >
       <div
         ref={modalContentRef}
         className={styles.modalWrapper}

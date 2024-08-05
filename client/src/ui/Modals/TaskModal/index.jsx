@@ -12,6 +12,7 @@ import Modal from "../Modal";
 import { FaImages } from "react-icons/fa";
 
 import styles from "./TaskModal.module.scss";
+import { createPortal } from "react-dom";
 
 const stages = [
   { value: "todo", label: "TODO" },
@@ -55,12 +56,14 @@ const TaskModal = ({ onClose, className, task, changedValue }) => {
       onClose={onCloseHandler}
       onSubmit={handleSubmit(onSubmit)}
     >
-      {isLoading && (
-        <div className={styles.loader}>
-          <Loader />
-        </div>
-      )}
-      <section className={`modalWrapper ${isLoading ? styles.modalLoading : ""} ${styles.modal}`}>
+      {isLoading &&
+        createPortal(
+          <div className={styles.loader}>
+            <Loader />
+          </div>,
+          document.body,
+        )}
+      <section className={`modalWrapper ${styles.modal}`}>
         <Title className="modalTitle">{task ? "Update task" : "Add task"}</Title>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <InputField

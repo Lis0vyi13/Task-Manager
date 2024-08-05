@@ -16,7 +16,7 @@ import { formatDate } from "@/constants";
 import styles from "./MemberItem.module.scss";
 import { toast } from "sonner";
 
-const MemberItem = ({ user }) => {
+const MemberItem = ({ user, isLastUser }) => {
   const {
     isEditModalOpen,
     closeEditModal,
@@ -71,9 +71,9 @@ const MemberItem = ({ user }) => {
         <div className={styles.team}>
           <Team
             {...user}
-            className={styles.avatar}
+            className={`${styles.avatar}`}
             avatarClassName={styles.avatar}
-            infoClassName={styles.info}
+            infoClassName={`${styles.info} ${isLastUser ? styles.lastUserAvatarInfo : ""}`}
             side={"right"}
             team={[user]}
           />

@@ -23,8 +23,8 @@ const Table = ({ users, titles }) => {
         </tr>
       </thead>
       <tbody className={styles.tbody}>
-        {users.map((user) => (
-          <MemberItem key={user._id} user={user} />
+        {users?.map((user, i) => (
+          <MemberItem isLastUser={i + 1 === users?.length} key={user._id} user={user} />
         ))}
       </tbody>
     </table>

@@ -113,6 +113,7 @@ const useTaskModal = ({ task, onClose }) => {
       try {
         setIsLoading(true);
         document.body.style.pointerEvents = "none";
+
         const teamIds = data.team.map((member) => member.value);
         const files = data.assets.filter((item) => item instanceof File);
         const uploadedFileURLs = await Promise.all(files.map((file) => uploadFile(file)));

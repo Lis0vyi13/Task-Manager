@@ -10,6 +10,7 @@ import ColorPicker from "@/ui/Inputs/ColorPicker";
 import Loader from "@/ui/Loader";
 
 import styles from "./EditProfile.module.scss";
+import { createPortal } from "react-dom";
 
 const EditProfile = memo(({ onClose, changedValue }) => {
   const { handleSubmit, onSubmit, handleFileChange, avatarPhoto, isLoading, control } = useProfile({
@@ -19,12 +20,14 @@ const EditProfile = memo(({ onClose, changedValue }) => {
 
   return (
     <Modal onSubmit={handleSubmit(onSubmit)} onClose={onClose} changedValue={changedValue} noCross>
-      {isLoading && (
-        <div className={styles.loader}>
-          <Loader />
-        </div>
-      )}
-      <section className={`modalWrapper ${styles.modal} ${isLoading ? styles.modalLoading : ""}`}>
+      {isLoading &&
+        createPortal(
+          <div className={styles.loader}>
+            <Loader />
+          </div>,
+          document.body,
+        )}
+      <section className={`modalWrapper ${styles.modal}`}>
         <header className={styles.header}>
           <Title className="modalTitle">Edit user</Title>
         </header>

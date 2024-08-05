@@ -34,7 +34,7 @@ const UserAvatar = memo(({ disabled, avatarColor }) => {
     <div className={styles.avatar}>
       <button
         style={{
-          backgroundColor: avatarColor || user?.avatarColor,
+          backgroundColor: user?.avatar ? "transparent" : avatarColor || user?.avatarColor,
           color: textColor,
           cursor: disabled ? "auto" : "pointer",
         }}
