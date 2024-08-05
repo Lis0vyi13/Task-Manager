@@ -2,20 +2,29 @@ import getInitials from "@/utils/getInitials";
 
 import styles from "./UserInfo.module.scss";
 
-const UserInfo = ({ name, title, email, avatar }) => {
+const UserInfo = ({ name, surname, title, email, color, avatar, avatarColor }) => {
   return (
     <div className={`${styles.userInfo}`}>
       <div className={styles.content}>
         <div
           style={{
-            backgroundColor: avatar,
+            backgroundColor: avatar ? "" : avatarColor,
+            color: color,
           }}
           className={styles.avatar}
         >
-          <span className={styles.initials}>{getInitials(name)}</span>
+          {avatar ? (
+            <div className={styles.avatarImg}>
+              <img src={avatar} alt="user avatar" />
+            </div>
+          ) : (
+            <span className={styles.initials}>{getInitials(name, surname)}</span>
+          )}
         </div>
         <div className={styles.userInfoText}>
-          <h1 className={styles.name}>{name}</h1>
+          <h1 className={styles.name}>
+            {name} {surname}
+          </h1>
           <h2 className={styles.role}>{title}</h2>
           <a className={styles.email} href={`mailto:${email}`}>
             {email}

@@ -1,4 +1,5 @@
 @import "@/styles/variables";
+@import "@/styles/breakpoints";
 
 .taskInfo {
   border-bottom: 1px solid $text-secondary;
@@ -64,9 +65,25 @@
 .substasksTitle {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
 }
 
+.subtasksTitleBlock {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.addSubtaskButton {
+  cursor: pointer;
+  font-size: 32px;
+  border-radius: 50%;
+  padding: 5px;
+  transition: all 0.3s ease;
+
+  &:hover {
+    background-color: var(--blockHover);
+  }
+}
 .subtasksProgress {
   padding: 5px 8px;
   border-radius: 20px;

@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import useTaskPopup from "@/hooks/useTaskPopup";
 import useBreakpoints from "@/hooks/useBreakpoints";
+import { useMoveTaskToTrashMutation } from "@/redux/features/tasks/TaskSlice";
+import useUser from "@/hooks/useUser";
+import { toast } from "sonner";
 
-import QuestionModal from "@/ui/Modals/QuestionModal";
 import Team from "@/components/Team";
 import StageCircle from "@/components/StageCircle";
 import More from "@/components/More";
@@ -37,15 +39,21 @@ const TableItem = ({ task, navigateToTask }) => {
     onDeleteTaskHandler,
     TASK_MORE_OPTIONS,
   } = useTaskPopup({ task });
-
+  const user = useUser();
   const { isDesktop } = useBreakpoints();
+  const [moveTaskToTrash] = useMoveTaskToTrashMutation();
+  const deleteHandler = async () => {
+    try {
+      await moveTaskToTrash({ id: task?._id }).unwrap();
+      toast.success("Moved to trash successful!");
+    } catch (error) {
+      toast.success(error?.data?.message);
+    }
+  };
 
   return (
     <tr className={styles.tr} key={task._id}>
-      <td
-        onClick={() => navigateToTask(task._id)}
-        className={`${styles.tableTitle} ${styles.td}`}
-      >
+      <td onClick={() => navigateToTask(task._id)} className={`${styles.tableTitle} ${styles.td}`}>
         <StageCircle stage={task.stage} />
         <h1 className={styles.title}>{task.title}</h1>
       </td>
@@ -54,35 +62,19 @@ const TableItem = ({ task, navigateToTask }) => {
           <td className={`${styles.priority} ${styles.td}`}>
             <PriorityIndicator withAddition priority={task.priority} />
           </td>
-          <td
-            className={`${styles.td} ${styles.createdAt} ${styles.capitalize}`}
-          >
-            <span className={styles.daysAgo}>
-              {formatDate(new Date(task.date))}
-            </span>
+          <td className={`${styles.td} ${styles.createdAt} ${styles.capitalize}`}>
+            <span className={styles.daysAgo}>{formatDate(new Date(task.date))}</span>
           </td>
           <td className={`${styles.td} ${styles.details}`}>
-            <Link
-              to={`/task/${task._id}`}
-              title="Commentary"
-              className={styles.commentary}
-            >
+            <Link to={`/task/${task._id}`} title="Commentary" className={styles.commentary}>
               <MdOutlineComment />
-              <span>{task.activities.length}</span>
+              <span>{task.activities.length || 0}</span>
             </Link>
-            <Link
-              to={`/task/${task._id}`}
-              title="Assets"
-              className={styles.assets}
-            >
+            <Link to={`/task/${task._id}`} title="Assets" className={styles.assets}>
               <MdAttachFile />
               <span>{task.assets.length}</span>
             </Link>
-            <Link
-              to={`/task/${task._id}`}
-              title={"Subtasks"}
-              className={styles.subtasks}
-            >
+            <Link to={`/task/${task._id}`} title={"Subtasks"} className={styles.subtasks}>
               <FaList />
               <span>0/{task.subTasks.length}</span>
             </Link>
@@ -92,19 +84,23 @@ const TableItem = ({ task, navigateToTask }) => {
               infoClassName={styles.userInfo}
               side={"left"}
               className={styles.team}
-              team={task.team}
+              team={task?.team}
             />
           </td>
           <td className={`${styles.actions} ${styles.td} `}>
             <button
+              disabled={!user?.isAdmin}
               onClick={() => openEditModal(task)}
               className={styles.editBtn}
+              title={!user?.isAdmin ? "Administrator rights are needed" : null}
             >
               Edit
             </button>
             <button
+              disabled={!user?.isAdmin}
               onClick={() => openQuestionModal(task)}
               className={styles.deleteBtn}
+              title={!user?.isAdmin ? "Administrator rights are needed" : null}
             >
               Delete
             </button>
@@ -112,27 +108,19 @@ const TableItem = ({ task, navigateToTask }) => {
         </>
       ) : (
         <td className={styles.more}>
-          <More
-            onClick={() => {
-              handleToggle();
-            }}
-          />
+          <More onClick={handleToggle} />
           {isOpened && (
-            <Popup
-              className={`${styles.popup}`}
-              isClosing={isClosing}
-              handleClose={handleClose}
-            >
+            <Popup className={`${styles.popup}`} isClosing={isClosing} handleClose={handleClose}>
               {TASK_MORE_OPTIONS.map((block) =>
                 block.map((item, i) => (
                   <PopupItem
-                    disabled={item.permission}
+                    disabled={!user?.isAdmin && item.permission}
                     key={item.title}
                     className={i + 1 === block.length ? "divider" : ""}
                     icon={item.icon}
                     title={item.title}
                     handleClose={handleClose}
-                    onClick={item.onClick}
+                    onClick={user?.isAdmin || !item.permission ? item.onClick : undefined}
                   />
                 )),
               )}
@@ -152,17 +140,8 @@ const TableItem = ({ task, navigateToTask }) => {
         onDeleteTaskHandler={onDeleteTaskHandler}
         isStageModalOpen={isStageModalOpen}
         closeStageModal={closeStageModal}
+        deleteHandler={deleteHandler}
       />
-      {isQuestionModalOpen && (
-        <QuestionModal
-          changedValue={isQuestionModalOpen}
-          onClose={closeQuestionModal}
-          task={task}
-          type={"delete"}
-          text={"Are you sure you want to delete the selected task?"}
-          submitButtonText={"Delete"}
-        />
-      )}
     </tr>
   );
 };

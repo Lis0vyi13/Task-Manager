@@ -1,13 +1,15 @@
-import { summary } from "@/constants";
-
-import styles from "./DevelopersBody.module.scss";
+import { useGetUsersQuery } from "@/redux/features/user/UserSlice";
 import DeveloperItem from "./DeveloperItem";
 
+import styles from "./DevelopersBody.module.scss";
+
 const DevelopersBody = () => {
+  const { data: users } = useGetUsersQuery();
+
   return (
     <tbody className={styles.developersTableBody}>
-      {summary.users.map((user) => (
-        <DeveloperItem key={user._id} user={user} />
+      {users?.map((user, i) => (
+        <DeveloperItem isLastChild={i + 1 === users.length} key={user._id} user={user} />
       ))}
     </tbody>
   );

@@ -1,19 +1,15 @@
-import { useCallback } from "react";
-import { toast } from "sonner";
 import useTaskModal from "./useTaskModal";
-import useModalHandlers from "@/hooks/useModalHandlers";
 
 import ModalButtons from "@/ui/ModalButtons";
 import Title from "@/ui/Title";
 import SelectField from "@/ui/Inputs/SelectField";
 import InputField from "@/ui/Inputs/InputField";
+import Loader from "@/ui/Loader";
 import TextArea from "@/ui/Inputs/TextArea";
-import QuestionModal from "../QuestionModal";
 import ImageModal from "../Image";
 import Modal from "../Modal";
 
 import { FaImages } from "react-icons/fa";
-import { summary } from "@/constants";
 
 import styles from "./TaskModal.module.scss";
 
@@ -38,32 +34,19 @@ const TaskModal = ({ onClose, className, task, changedValue }) => {
     register,
     control,
     handleFileChange,
-    reset,
     filePreviews,
     selectedImg,
     handleCloseImg,
     handleImageClick,
-    isDeleteModalOpen,
-    openDeleteModal,
-    onDeleteAsset,
-    closeDeleteModal,
+    onCloseHandler,
+    onSubmit,
+    isLoading,
+    removeImageHandler,
   } = useTaskModal({
-    summary,
     task,
-  });
-
-  const { onCloseHandler, onSubmitHandler } = useModalHandlers({
     onClose,
-    reset,
   });
 
-  const onSubmit = useCallback(
-    (data) => {
-      onSubmitHandler(data);
-      toast.success(task ? "Changed successful" : "Added successful");
-    },
-    [onSubmitHandler, task],
-  );
   return (
     <Modal
       changedValue={changedValue}
@@ -72,13 +55,16 @@ const TaskModal = ({ onClose, className, task, changedValue }) => {
       onClose={onCloseHandler}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <section className={`modalWrapper ${styles.modal}`}>
-        <Title className="modalTitle">
-          {task ? "Update task" : "Add task"}
-        </Title>
+      {isLoading && (
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      )}
+      <section className={`modalWrapper ${isLoading ? styles.modalLoading : ""} ${styles.modal}`}>
+        <Title className="modalTitle">{task ? "Update task" : "Add task"}</Title>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
           <InputField
-            name="name"
+            name="title"
             control={control}
             label="Task title"
             rules={{ required: "Task title is required" }}
@@ -86,7 +72,7 @@ const TaskModal = ({ onClose, className, task, changedValue }) => {
           />
 
           <SelectField
-            name="assignee"
+            name="team"
             control={control}
             label="Assign task to:"
             rules={{ required: "Assign task to user is required" }}
@@ -131,7 +117,7 @@ const TaskModal = ({ onClose, className, task, changedValue }) => {
                 type="file"
                 className={styles.inputFile}
                 id="assets"
-                {...register("assets")}
+                {...register("assetsFiles")}
                 multiple
                 onChange={(e) => handleFileChange(e)}
               />
@@ -148,14 +134,11 @@ const TaskModal = ({ onClose, className, task, changedValue }) => {
             <div className={styles.preview}>
               {filePreviews.map((src, index) => (
                 <div key={index} className={styles.image}>
-                  <img
-                    onClick={() => handleImageClick(src)}
-                    src={src}
-                    alt={`Asset ${index + 1}`}
-                  />
+                  <img onClick={() => handleImageClick(src)} src={src} alt={`Asset ${index + 1}`} />
                   <button
+                    type="button"
                     className={styles.closeButton}
-                    onClick={() => openDeleteModal(src)}
+                    onClick={() => removeImageHandler(src)}
                   >
                     &times;
                   </button>
@@ -175,7 +158,11 @@ const TaskModal = ({ onClose, className, task, changedValue }) => {
             label="Add links (separated by commas ',')"
             placeholder="Add some links..."
           />
-          <ModalButtons onClose={onCloseHandler} />
+          <ModalButtons
+            submitButtonText={task ? "Save" : "Create"}
+            disabled={isLoading}
+            onClose={onCloseHandler}
+          />
         </form>
       </section>
       {selectedImg && (
@@ -184,16 +171,6 @@ const TaskModal = ({ onClose, className, task, changedValue }) => {
           onClose={handleCloseImg}
           src={selectedImg}
           alt={selectedImg}
-        />
-      )}
-      {isDeleteModalOpen && (
-        <QuestionModal
-          onSubmit={onDeleteAsset}
-          changedValue={isDeleteModalOpen}
-          onClose={closeDeleteModal}
-          text={"Are you sure you want to delete current asset?"}
-          type={"delete"}
-          submitButtonText="Delete"
         />
       )}
     </Modal>

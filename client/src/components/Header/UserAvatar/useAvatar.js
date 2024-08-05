@@ -7,20 +7,17 @@ import useUser from "@/hooks/useUser";
 import { FaUser } from "react-icons/fa";
 import { IoLogOut } from "react-icons/io5";
 import { RiLockPasswordFill } from "react-icons/ri";
+import { useLogoutMutation } from "@/redux/features/auth/AuthSlice";
 
 const useAvatar = () => {
-  const { isOpened, isClosing, handleToggle, handleClose } =
-    useAnimatedToggle();
+  const { isOpened, isClosing, handleToggle, handleClose } = useAnimatedToggle();
   const user = useUser();
-  const { logOut } = useActions();
+  const [logoutUser] = useLogoutMutation();
+  const { logOut, clearUser } = useActions();
   const [isEditModalOpen, openEditModal, closeEditModal] = useModal({
     setItem: () => {},
   });
-  const [
-    isChangePasswordModalOpen,
-    openChangePasswordModal,
-    closeChangePasswordModal,
-  ] = useModal({
+  const [isChangePasswordModalOpen, openChangePasswordModal, closeChangePasswordModal] = useModal({
     setItem: () => {},
   });
 
@@ -39,12 +36,16 @@ const useAvatar = () => {
       {
         name: "Logout",
         Icon: IoLogOut,
-        handler: () => logOut(),
+        handler: () => {
+          logOut();
+          logoutUser();
+          clearUser();
+        },
         type: "button",
         color: "#f44336",
       },
     ],
-    [logOut, openChangePasswordModal, openEditModal],
+    [clearUser, logOut, logoutUser, openChangePasswordModal, openEditModal],
   );
   return {
     user,

@@ -5,7 +5,7 @@ import {
   MdKeyboardDoubleArrowUp,
 } from "react-icons/md";
 
-import { FaTasks, FaTrash, FaListAlt } from "react-icons/fa";
+import { FaTasks, FaTrash } from "react-icons/fa";
 
 import { IoCheckmarkDoneCircle } from "react-icons/io5";
 
@@ -22,14 +22,14 @@ export const loginInputs = [
     type: "email",
     placeholder: "email@gmail.com",
     autoComplete: "email",
-    options: {
+    rules: {
       required: { value: true, message: "Email is required" },
       pattern: {
         value: /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
         message: "Invalid email address",
       },
     },
-    tabIndex: 1,
+    tabIndex: 0,
   },
   {
     name: "password",
@@ -37,14 +37,14 @@ export const loginInputs = [
     type: "password",
     placeholder: "Your password",
     autoComplete: "current-password",
-    options: {
+    rules: {
       required: { value: true, message: "Password is required" },
       minLength: {
         value: 4,
         message: "Password must be at least 4 characters long",
       },
     },
-    tabIndex: 2,
+    tabIndex: 0,
   },
 ];
 
@@ -71,6 +71,26 @@ export const signUpInputs = [
     },
     tabIndex: 2,
   },
+  {
+    name: "title",
+    label: "Title",
+    type: "text",
+    placeholder: "Administrator",
+    options: {
+      required: { value: true, message: "Title is required" },
+    },
+    tabIndex: 3,
+  },
+  {
+    name: "role",
+    label: "Role",
+    type: "text",
+    placeholder: "Admin",
+    options: {
+      required: { value: true, message: "Role is required" },
+    },
+    tabIndex: 4,
+  },
 ];
 
 export const navLinks = [
@@ -81,63 +101,6 @@ export const navLinks = [
   { name: "Completed", Icon: IoCheckmarkDoneCircle, to: "/completed" },
   { name: "Team", Icon: RiTeamFill, to: "/team" },
   { name: "Trash", Icon: FaTrash, to: "/trash" },
-];
-
-export const notifications = [
-  {
-    id: 1,
-    text: "New task has been assigned to you and 2 others. The task priority is set a normal priority, so check and act accordingly.",
-    createdAt: "2024-06-14T17:08:23Z",
-  },
-  {
-    id: 2,
-    text: "New task has been assigned to you and 2 others. The task priority is set a normal priority, so check and act accordingly.",
-    createdAt: "2024-05-14T17:08:23Z",
-  },
-  {
-    id: 3,
-    text: "New task has been assigned to you and 2 others. The task priority is set a normal priority, so check and act accordingly.",
-    createdAt: "2024-04-14T17:08:23Z",
-  },
-];
-
-export const statsCards = [
-  {
-    id: 1,
-    title: "Total task",
-    color: "blue",
-    type: "all",
-    href: "/tasks",
-    Icon: FaListAlt,
-    createdAt: "2024-06-14T17:08:23Z",
-  },
-  {
-    id: 2,
-    title: "Todos",
-    color: "red",
-    type: "todo",
-    href: "/to-do",
-    Icon: RiTodoFill,
-    createdAt: "2021-06-14T17:08:23Z",
-  },
-  {
-    id: 3,
-    title: "Task in progress",
-    color: "orange",
-    type: "in progress",
-    href: "/in-progress",
-    Icon: RiProgress5Line,
-    createdAt: "2022-06-14T17:08:23Z",
-  },
-  {
-    id: 4,
-    title: "Completed task",
-    color: "green",
-    type: "completed",
-    href: "/completed",
-    Icon: IoCheckmarkDoneCircle,
-    createdAt: "2024-05-14T17:08:23Z",
-  },
 ];
 
 export const tasksHeading = ["Task title", "Priority", "Team", "Created At"];
@@ -198,7 +161,8 @@ export const summary = {
       team: [
         {
           _id: "65c202d4aa62f32ffd1303cc",
-          name: "Olexandr Lisovyi",
+          name: "Olexandr",
+          surname: "Lisovyi",
           title: "Administrator",
           role: "Admin",
           email: "lisovyy13@gmail.com",
@@ -206,7 +170,8 @@ export const summary = {
         },
         {
           _id: "65c30b96e639681a13def0b5",
-          name: "Mykyta Zaharchenko",
+          name: "Mykyta",
+          surname: "Zaharchenko",
           title: "Product Manager",
           role: "Manager",
           email: "nikzakha203@gmail.com",
@@ -214,7 +179,8 @@ export const summary = {
         },
         {
           _id: "65c317360fd860f958baa08e",
-          name: "Alex Johnson",
+          name: "Alex",
+          surname: "Johnson",
           title: "UX Designer",
           role: "Designer",
           email: "alex.johnson@example.com",
@@ -246,7 +212,8 @@ export const summary = {
       team: [
         {
           _id: "65c317360fd860f958baa08e",
-          name: "Alex Johnson",
+          name: "Alex",
+          surname: "Johnson",
           title: "UX Designer",
           role: "Designer",
           email: "alex.johnson@example.com",
@@ -254,7 +221,8 @@ export const summary = {
         },
         {
           _id: "65c3176a0fd860f958baa099",
-          name: "Emily Wilson",
+          name: "Emily",
+          surname: "Wilson",
           title: "Data Analyst",
           role: "Analyst",
           email: "emily.wilson@example.com",
@@ -312,7 +280,8 @@ export const summary = {
       team: [
         {
           _id: "65c202d4aa62f32ffd1303cc",
-          name: "Olexandr Lisovyi",
+          name: "Olexandr",
+          surname: "Lisovyi",
           title: "Administrator",
           role: "Admin",
           email: "lisovyy13@gmail.com",
@@ -320,7 +289,8 @@ export const summary = {
         },
         {
           _id: "65c27a0e18c0a1b750ad5cad",
-          name: "John Doe",
+          name: "John",
+          surname: "Doe",
           title: "Software Engineer",
           role: "Developer",
           email: "john.doe@example.com",
@@ -328,7 +298,8 @@ export const summary = {
         },
         {
           _id: "65c30b96e639681a13def0b5",
-          name: "Mykyta Zaharchenko",
+          name: "Mykyta",
+          surname: "Zaharchenko",
           title: "Product Manager",
           role: "Manager",
           email: "nikzakha203@gmail.com",
@@ -399,7 +370,8 @@ export const summary = {
       team: [
         {
           _id: "65c317360fd860f958baa08e",
-          name: "Alex Johnson",
+          name: "Alex",
+          surname: "Johnson",
           title: "UX Designer",
           role: "Designer",
           email: "alex.johnson@example.com",
@@ -407,7 +379,8 @@ export const summary = {
         },
         {
           _id: "65c3176a0fd860f958baa099",
-          name: "Emily Wilson",
+          name: "Emily",
+          surname: "Wilson",
           title: "Data Analyst",
           role: "Analyst",
           email: "emily.wilson@example.com",
@@ -453,7 +426,8 @@ export const summary = {
       team: [
         {
           _id: "65c30b96e639681a13def0b5",
-          name: "Mykyta Zaharchenko",
+          name: "Mykyta",
+          surname: "Zaharchenko",
           title: "Product Manager",
           role: "Manager",
           email: "nikzakha203@gmail.com",
@@ -461,7 +435,8 @@ export const summary = {
         },
         {
           _id: "65c202d4aa62f32ffd1303cc",
-          name: "Olexandr Lisovyi",
+          name: "Olexandr",
+          surname: "Lisovyi",
           title: "Administrator",
           role: "Admin",
           email: "lisovyy13@gmail.com",
@@ -469,7 +444,8 @@ export const summary = {
         },
         {
           _id: "65c317360fd860f958baa08e",
-          name: "Alex Johnson",
+          name: "Alex",
+          surname: "Johnson",
           title: "UX Designer",
           role: "Designer",
           email: "alex.johnson@example.com",
@@ -509,7 +485,8 @@ export const summary = {
       team: [
         {
           _id: "65c202d4aa62f32ffd1303cc",
-          name: "Olexandr Lisovyi",
+          name: "Olexandr",
+          surname: "Lisovyi",
           title: "Administrator",
           role: "Admin",
           email: "lisovyy13@gmail.com",
@@ -517,7 +494,8 @@ export const summary = {
         },
         {
           _id: "65c27a0e18c0a1b750ad5cad",
-          name: "John Doe",
+          name: "John",
+          surname: "Doe",
           title: "Software Engineer",
           role: "Developer",
           email: "john.doe@example.com",
@@ -525,7 +503,8 @@ export const summary = {
         },
         {
           _id: "65c30b96e639681a13def0b5",
-          name: "Mykyta Zaharchenko",
+          name: "Mykyta",
+          surname: "Zaharchenko",
           title: "Product Manager",
           role: "Manager",
           email: "nikzakha203@gmail.com",
@@ -564,7 +543,8 @@ export const summary = {
       team: [
         {
           _id: "65c317360fd860f958baa08e",
-          name: "Alex Johnson",
+          name: "Alex",
+          surname: "Johnson",
           title: "UX Designer",
           role: "Designer",
           email: "alex.johnson@example.com",
@@ -572,7 +552,8 @@ export const summary = {
         },
         {
           _id: "65c3176a0fd860f958baa099",
-          name: "Emily Wilson",
+          name: "Emily",
+          surname: "Wilson",
           title: "Data Analyst",
           role: "Analyst",
           email: "emily.wilson@example.com",
@@ -604,16 +585,17 @@ export const summary = {
       team: [
         {
           _id: "65c202d4aa62f32ffd1303cc",
-          name: "Olexandr Lisovyi",
+          name: "Olexandr",
+          surname: "Lisovyi",
           title: "Administrator",
           role: "Admin",
           avatar: "#8000ff",
-
           email: "lisovyy13@gmail.com",
         },
         {
           _id: "65c27a0e18c0a1b750ad5cad",
-          name: "John Doe",
+          name: "John",
+          surname: "Doe",
           title: "Software Engineer",
           role: "Developer",
           email: "john.doe@example.com",
@@ -621,7 +603,8 @@ export const summary = {
         },
         {
           _id: "65c30b96e639681a13def0b5",
-          name: "Mykyta Zaharchenko",
+          name: "Mykyta",
+          surname: "Zaharchenko",
           title: "Product Manager",
           role: "Manager",
           email: "nikzakha203@gmail.com",
@@ -660,7 +643,8 @@ export const summary = {
       team: [
         {
           _id: "65c317360fd860f958baa08e",
-          name: "Alex Johnson",
+          name: "Alex",
+          surname: "Johnson",
           title: "UX Designer",
           role: "Designer",
           email: "alex.johnson@example.com",
@@ -668,7 +652,8 @@ export const summary = {
         },
         {
           _id: "65c3176a0fd860f958baa099",
-          name: "Emily Wilson",
+          name: "Emily",
+          surname: "Wilson",
           title: "Data Analyst",
           role: "Analyst",
           email: "emily.wilson@example.com",
@@ -700,16 +685,17 @@ export const summary = {
       team: [
         {
           _id: "65c202d4aa62f32ffd1303cc",
-          name: "Olexandr Lisovyi",
+          name: "Olexandr",
+          surname: "Lisovyi",
           title: "Administrator",
           role: "Admin",
           avatar: "#8000ff",
-
           email: "lisovyy13@gmail.com",
         },
         {
           _id: "65c27a0e18c0a1b750ad5cad",
-          name: "John Doe",
+          name: "John",
+          surname: "Doe",
           title: "Software Engineer",
           role: "Developer",
           email: "john.doe@example.com",
@@ -717,7 +703,8 @@ export const summary = {
         },
         {
           _id: "65c30b96e639681a13def0b5",
-          name: "Mykyta Zaharchenko",
+          name: "Mykyta",
+          surname: "Zaharchenko",
           title: "Product Manager",
           role: "Manager",
           email: "nikzakha203@gmail.com",
@@ -750,7 +737,8 @@ export const summary = {
   users: [
     {
       _id: "65c202d4aa62f32ffd1303cc",
-      name: "Olexandr Lisovyi",
+      name: "Olexandr",
+      surname: "Lisovyi",
       title: "Administrator",
       role: "Admin",
       createdAt: "2022-02-06T09:58:44.794Z",
@@ -760,7 +748,8 @@ export const summary = {
     },
     {
       _id: "65c30b96e639681a13def0b5",
-      name: "Mykyta Zaharchenko",
+      name: "Mykyta",
+      surname: "Zaharchenko",
       title: "Product Manager",
       role: "Manager",
       isActive: true,
@@ -771,7 +760,8 @@ export const summary = {
 
     {
       _id: "65c3176a0fd860f958baa099",
-      name: "Emily Wilson",
+      name: "Emily",
+      surname: "Wilson",
       title: "Data Analyst",
       role: "Analyst",
       isActive: true,
@@ -781,7 +771,8 @@ export const summary = {
     },
     {
       _id: "65c317360fd860f958baa08e",
-      name: "Alex Johnson",
+      name: "Alex",
+      surname: "Johnson",
       title: "UX Designer",
       role: "Designer",
       isActive: true,
@@ -791,7 +782,8 @@ export const summary = {
     },
     {
       _id: "65c27a0e18c0a1b750ad5cad",
-      name: "John Doe",
+      name: "John",
+      surname: "Doe",
       title: "Software Engineer",
       role: "Developer",
       isActive: true,
@@ -801,7 +793,8 @@ export const summary = {
     },
     {
       _id: "65c5f27fb5204a81bde86833",
-      name: "New User",
+      name: "New",
+      surname: "User",
       title: "Designer",
       role: "Developer",
       isActive: false,
@@ -841,7 +834,8 @@ export const tasks = [
     team: [
       {
         _id: "65c202d4aa62f32ffd1303cc",
-        name: "Olexandr Lisovyi",
+        name: "Olexandr",
+        surname: "Lisovyi",
         title: "Administrator",
         email: "lisovyy13@gmail.com",
         avatar: "#8000ff",
@@ -849,7 +843,8 @@ export const tasks = [
       },
       {
         _id: "65c30b96e639681a13def0b5",
-        name: "Mykyta Zaharchenko",
+        name: "Mykyta",
+        surname: "Zaharchenko",
         title: "Product Manager",
         email: "nikzakha203@gmail.com",
         avatar: "#DC2626",
@@ -857,9 +852,9 @@ export const tasks = [
       },
       {
         _id: "65c317360fd860f958baa08e",
-        name: "Alex Johnson",
+        name: "Alex",
+        surname: "Johnson",
         role: "Designer",
-
         title: "UX Designer",
         email: "alex.johnson@example.com",
         avatar: "#059669",
@@ -892,18 +887,18 @@ export const tasks = [
     team: [
       {
         _id: "65c317360fd860f958baa08e",
-        name: "Alex Johnson",
+        name: "Alex",
+        surname: "Johnson",
         role: "Designer",
-
         title: "UX Designer",
         email: "alex.johnson@example.com",
         avatar: "#059669",
       },
       {
         _id: "65c3176a0fd860f958baa099",
-        name: "Emily Wilson",
+        name: "Emily",
+        surname: "Wilson",
         role: "Analyst",
-
         title: "Data Analyst",
         email: "emily.wilson@example.com",
         avatar: "#D97706",
@@ -967,7 +962,8 @@ export const tasks = [
     team: [
       {
         _id: "65c202d4aa62f32ffd1303cc",
-        name: "Olexandr Lisovyi",
+        name: "Olexandr",
+        surname: "Lisovyi",
         title: "Administrator",
         email: "lisovyy13@gmail.com",
         avatar: "#8000ff",
@@ -975,7 +971,8 @@ export const tasks = [
       },
       {
         _id: "65c27a0e18c0a1b750ad5cad",
-        name: "John Doe",
+        name: "John",
+        surname: "Doe",
         title: "Software Engineer",
         email: "john.doe@example.com",
         avatar: "#00cc7a",
@@ -983,7 +980,8 @@ export const tasks = [
       },
       {
         _id: "65c30b96e639681a13def0b5",
-        name: "Mykyta Zaharchenko",
+        name: "Mykyta",
+        surname: "Zaharchenko",
         title: "Product Manager",
         email: "nikzakha203@gmail.com",
         avatar: "#DC2626",
@@ -1054,7 +1052,8 @@ export const tasks = [
     team: [
       {
         _id: "65c317360fd860f958baa08e",
-        name: "Alex Johnson",
+        name: "Alex",
+        surname: "Johnson",
         title: "UX Designer",
         email: "alex.johnson@example.com",
         role: "Designer",
@@ -1063,7 +1062,8 @@ export const tasks = [
       },
       {
         _id: "65c3176a0fd860f958baa099",
-        name: "Emily Wilson",
+        name: "Emily",
+        surname: "Wilson",
         title: "Data Analyst",
         role: "Analyst",
 
@@ -1124,7 +1124,8 @@ export const tasks = [
     team: [
       {
         _id: "65c30b96e639681a13def0b5",
-        name: "Mykyta Zaharchenko",
+        name: "Mykyta",
+        surname: "Zaharchenko",
         title: "Product Manager",
         email: "nikzakha203@gmail.com",
         avatar: "#DC2626",
@@ -1132,7 +1133,8 @@ export const tasks = [
       },
       {
         _id: "65c202d4aa62f32ffd1303cc",
-        name: "Olexandr Lisovyi",
+        name: "Olexandr",
+        surname: "Lisovyi",
         title: "Administrator",
         email: "lisovyy13@gmail.com",
         avatar: "#8000ff",
@@ -1140,9 +1142,9 @@ export const tasks = [
       },
       {
         _id: "65c317360fd860f958baa08e",
-        name: "Alex Johnson",
+        name: "Alex",
+        surname: "Johnson",
         role: "Designer",
-
         title: "UX Designer",
         email: "alex.johnson@example.com",
         avatar: "#059669",
@@ -1181,16 +1183,17 @@ export const tasks = [
     team: [
       {
         _id: "65c202d4aa62f32ffd1303cc",
-        name: "Olexandr Lisovyi",
+        name: "Olexandr",
+        surname: "Lisovyi",
         title: "Administrator",
         avatar: "#8000ff",
         role: "Admin",
-
         email: "lisovyy13@gmail.com",
       },
       {
         _id: "65c27a0e18c0a1b750ad5cad",
-        name: "John Doe",
+        name: "John",
+        surname: "Doe",
         title: "Software Engineer",
         email: "john.doe@example.com",
         avatar: "#00cc7a",
@@ -1198,7 +1201,8 @@ export const tasks = [
       },
       {
         _id: "65c30b96e639681a13def0b5",
-        name: "Mykyta Zaharchenko",
+        name: "Mykyta",
+        surname: "Zaharchenko",
         title: "Product Manager",
         email: "nikzakha203@gmail.com",
         avatar: "#DC2626",
@@ -1237,18 +1241,18 @@ export const tasks = [
     team: [
       {
         _id: "65c317360fd860f958baa08e",
-        name: "Alex Johnson",
+        name: "Alex",
+        surname: "Johnson",
         role: "Designer",
-
         title: "UX Designer",
         email: "alex.johnson@example.com",
         avatar: "#059669",
       },
       {
         _id: "65c3176a0fd860f958baa099",
-        name: "Emily Wilson",
+        name: "Emily",
+        surname: "Wilson",
         role: "Analyst",
-
         title: "Data Analyst",
         email: "emily.wilson@example.com",
         avatar: "#D97706",
@@ -1279,7 +1283,8 @@ export const tasks = [
     team: [
       {
         _id: "65c202d4aa62f32ffd1303cc",
-        name: "Olexandr Lisovyi",
+        name: "Olexandr",
+        surname: "Lisovyi",
         title: "Administrator",
         email: "lisovyy13@gmail.com",
         avatar: "#8000ff",
@@ -1287,7 +1292,8 @@ export const tasks = [
       },
       {
         _id: "65c27a0e18c0a1b750ad5cad",
-        name: "John Doe",
+        name: "John",
+        surname: "Doe",
         title: "Software Engineer",
         email: "john.doe@example.com",
         avatar: "#00cc7a",
@@ -1295,7 +1301,8 @@ export const tasks = [
       },
       {
         _id: "65c30b96e639681a13def0b5",
-        name: "Mykyta Zaharchenko",
+        name: "Mykyta",
+        surname: "Zaharchenko",
         title: "Product Manager",
         email: "nikzakha203@gmail.com",
         avatar: "#DC2626",
@@ -1334,16 +1341,17 @@ export const tasks = [
     team: [
       {
         _id: "65c317360fd860f958baa08e",
-        name: "Alex Johnson",
+        name: "Alex",
+        surname: "Johnson",
         title: "UX Designer",
         role: "Designer",
-
         email: "alex.johnson@example.com",
         avatar: "#059669",
       },
       {
         _id: "65c3176a0fd860f958baa099",
-        name: "Emily Wilson",
+        name: "Emily",
+        surname: "Wilson",
         role: "Analyst",
         title: "Data Analyst",
         email: "emily.wilson@example.com",
@@ -1375,7 +1383,8 @@ export const tasks = [
     team: [
       {
         _id: "65c202d4aa62f32ffd1303cc",
-        name: "Olexandr Lisovyi",
+        name: "Olexandr",
+        surname: "Lisovyi",
         title: "Administrator",
         avatar: "#8000ff",
         role: "Admin",
@@ -1384,7 +1393,8 @@ export const tasks = [
       },
       {
         _id: "65c27a0e18c0a1b750ad5cad",
-        name: "John Doe",
+        name: "John",
+        surname: "Doe",
         title: "Software Engineer",
         email: "john.doe@example.com",
         avatar: "#00cc7a",
@@ -1392,7 +1402,8 @@ export const tasks = [
       },
       {
         _id: "65c30b96e639681a13def0b5",
-        name: "Mykyta Zaharchenko",
+        name: "Mykyta",
+        surname: "Zaharchenko",
         title: "Product Manager",
         email: "nikzakha203@gmail.com",
         avatar: "#DC2626",
@@ -1423,20 +1434,6 @@ export const tasks = [
   },
 ];
 
-export const user = {
-  _id: "662f32ffd1303cc",
-  name: "Olexandr",
-  title: "Administrator",
-  role: "Admin",
-  email: "lisovyy13@gmail.com",
-  isAdmin: true,
-  tasks: [],
-  createdAt: "2024-02-06T09:58:44.794Z",
-  updatedAt: "2024-02-07T06:13:26.757Z",
-  __v: 0,
-  isActive: true,
-};
-
 export const activitiesData = [
   {
     _id: "0",
@@ -1464,8 +1461,7 @@ export const activitiesData = [
   {
     _id: "3",
     type: "in progress",
-    activity:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt nunc ipsum.",
+    activity: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Tincidunt nunc ipsum.",
     date: new Date("2024-01-15").toISOString(),
     by: "Jason Meyers",
   },
@@ -1485,11 +1481,4 @@ export const activitiesData = [
   },
 ];
 
-export const ACT_TYPES = [
-  "Started",
-  "Completed",
-  "In Progress",
-  "Commented",
-  "Bug",
-  "Assigned",
-];
+export const ACT_TYPES = ["Started", "Completed", "In Progress", "Commented", "Bug", "Assigned"];

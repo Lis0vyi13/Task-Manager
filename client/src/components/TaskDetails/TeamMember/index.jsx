@@ -13,7 +13,9 @@ const TeamMember = ({ user }) => {
         team={[user]}
       />
       <div className={styles.userInfo}>
-        <p className={styles.name}>{user.name}</p>
+        <p className={styles.name}>
+          {user.name} {user.surname}
+        </p>
         <span className={styles.role}>{user.role}</span>
       </div>
     </div>

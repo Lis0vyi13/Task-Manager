@@ -1,9 +1,10 @@
 import { useMemo, useState } from "react";
 import useSearch from "./useSearch";
+import { useSelector } from "react-redux";
 
-const useView = ({ tasks, stage }) => {
+const useView = ({ stage }) => {
   const [isLoading, setisLoading] = useState(true);
-
+  const { tasks } = useSelector((store) => store.tasks.tasks);
   const query = useSearch();
 
   const filteredTasks = useMemo(() => {
@@ -15,9 +16,7 @@ const useView = ({ tasks, stage }) => {
       : untrashedTasks;
 
     const queryFilteredTasks = query
-      ? stageFilteredTasks.filter((task) =>
-          task.title.toLowerCase().includes(query.toLowerCase()),
-        )
+      ? stageFilteredTasks.filter((task) => task.title.toLowerCase().includes(query.toLowerCase()))
       : stageFilteredTasks;
     setisLoading(false);
 

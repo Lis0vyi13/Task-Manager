@@ -14,19 +14,18 @@ dbConnection();
 const PORT = process.env.PORT || 5000;
 
 const app = express();
+app.use(cookieParser());
 
 app.use(
   cors({
-    origin: ["http://localhost:3000", "http://localhost:3001"],
-    methods: ["GET", "POST", "DELETE", "PUT"],
+    origin: ["http://localhost:5173", "http://localhost:5174"],
+    methods: ["GET", "POST", "PATCH", "DELETE", "PUT"],
     credentials: true,
   }),
 );
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-app.use(cookieParser());
 
 app.use(morgan("dev"));
 app.use("/api", routes);

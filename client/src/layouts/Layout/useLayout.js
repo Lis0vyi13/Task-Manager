@@ -2,17 +2,26 @@ import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import useActions from "@/hooks/useActions";
 import useAuth from "@/hooks/useAuth";
+import { useGetDashboardStatsQuery, useGetTasksQuery } from "@/redux/features/tasks/TaskSlice";
+import { useGetUserQuery, useGetUsersQuery } from "@/redux/features/user/UserSlice";
 
 const useLayout = () => {
   const isLoggedIn = useAuth();
-  const isMobileSidebarOpen = useSelector(
-    (state) => state.sidebar.isMobileSidebarOpen,
-  );
+  const isMobileSidebarOpen = useSelector((state) => state.sidebar.isMobileSidebarOpen);
   const { theme } = useSelector((state) => state.page);
-
+  const { data: tasks } = useGetTasksQuery();
+  const { data: users } = useGetUsersQuery();
+  const { data: userData } = useGetUserQuery();
+  const { data: dashboardStats } = useGetDashboardStatsQuery();
   const sidebarRef = useRef();
-
-  const { closeMobileSidebar, toggleMobileSidebar } = useActions();
+  const {
+    closeMobileSidebar,
+    toggleMobileSidebar,
+    setTasks,
+    setUsers,
+    setUser,
+    setDashboardStats,
+  } = useActions();
 
   useEffect(() => {
     if (theme === "dark") {
@@ -20,6 +29,24 @@ const useLayout = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  useEffect(() => {
+    if (userData?.user) {
+      setUser(userData.user);
+    }
+    setTasks(tasks);
+    setUsers(users);
+    setDashboardStats(dashboardStats);
+  }, [
+    dashboardStats,
+    setDashboardStats,
+    setTasks,
+    setUser,
+    setUsers,
+    tasks,
+    userData?.user,
+    users,
+  ]);
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(min-width: 900px)");

@@ -1,4 +1,4 @@
-import { memo } from "react";
+import { memo, useEffect, useState } from "react";
 
 import getInitials from "@/utils/getInitials";
 import useAvatar from "./useAvatar";
@@ -9,8 +9,9 @@ import EditProfile from "@/ui/Modals/EditProfile";
 import ChangePassword from "@/ui/Modals/ChangePassword";
 
 import styles from "./UserAvatar.module.scss";
+import isColorLight from "@/utils/isColorLight";
 
-const UserAvatar = memo(() => {
+const UserAvatar = memo(({ disabled, avatarColor }) => {
   const {
     user,
     handleToggle,
@@ -24,14 +25,30 @@ const UserAvatar = memo(() => {
     closeChangePasswordModal,
   } = useAvatar();
 
+  const [textColor, setTextColor] = useState("#fff");
+  useEffect(() => {
+    setTextColor(isColorLight(disabled ? avatarColor : user?.avatarColor) ? "#000" : "#fff");
+  }, [avatarColor, disabled, user]);
+
   return (
     <div className={styles.avatar}>
       <button
-        style={{ backgroundColor: user?.avatar || "#2744e5" }}
+        style={{
+          backgroundColor: avatarColor || user?.avatarColor,
+          color: textColor,
+          cursor: disabled ? "auto" : "pointer",
+        }}
         onClick={handleToggle}
         className={styles.button}
+        disabled={disabled}
       >
-        {getInitials(user?.name)}
+        {user?.avatar ? (
+          <div className={styles.avatarImg}>
+            <img src={user?.avatar} alt="user avatar" />
+          </div>
+        ) : (
+          getInitials(user?.name, user?.surname)
+        )}
       </button>
 
       {isOpened && (
@@ -46,9 +63,7 @@ const UserAvatar = memo(() => {
           ))}
         </Popup>
       )}
-      {isEditModalOpen && (
-        <EditProfile changedValue={isEditModalOpen} onClose={closeEditModal} />
-      )}
+      {isEditModalOpen && <EditProfile changedValue={isEditModalOpen} onClose={closeEditModal} />}
       {isChangePasswordModalOpen && (
         <ChangePassword
           changedValue={isChangePasswordModalOpen}

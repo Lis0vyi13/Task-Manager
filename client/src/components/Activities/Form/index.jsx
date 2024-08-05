@@ -1,6 +1,8 @@
 import { useCallback } from "react";
+import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { usePostCommentMutation } from "@/redux/features/tasks/TaskSlice";
 
 import Button from "@/ui/Button";
 
@@ -15,28 +17,28 @@ const Form = () => {
     formState: { errors },
   } = useForm();
 
+  const { id } = useParams();
+  const [postComment] = usePostCommentMutation();
+
   const onSubmitHandler = useCallback(
-    (data) => {
-      console.log(data);
-      reset();
-      toast.success("Posted successfull");
+    async (data) => {
+      try {
+        await postComment({ data, id }).unwrap();
+        reset();
+        toast.success("Posted successfull");
+      } catch (error) {
+        toast.error(error.data.message);
+      }
     },
-    [reset],
+    [id, postComment, reset],
   );
 
   return (
-    <form
-      onSubmit={handleSubmit(onSubmitHandler)}
-      className={styles.addActivityForm}
-    >
+    <form onSubmit={handleSubmit(onSubmitHandler)} className={styles.addActivityForm}>
       <div className={styles.selectBlock}>
         <p className={styles.label}>Type:</p>
 
-        <select
-          id="type"
-          {...register("type", { required: true })}
-          className={styles.select}
-        >
+        <select id="type" {...register("type", { required: true })} className={styles.select}>
           {ACT_TYPES.map((type) => (
             <option key={type} value={type}>
               {type}
@@ -44,13 +46,9 @@ const Form = () => {
           ))}
         </select>
 
-        {errors.type && (
-          <p className={styles.errorText}>Please select a type.</p>
-        )}
+        {errors.type && <p className={styles.errorText}>Please select a type.</p>}
       </div>
-      {errors?.type && (
-        <p className={styles.errorText}>Please select a type.</p>
-      )}
+      {errors?.type && <p className={styles.errorText}>Please select a type.</p>}
       <div className={styles.textareaBlock}>
         <textarea
           placeholder="Type..."
@@ -58,12 +56,10 @@ const Form = () => {
           {...register("activity", { required: true })}
           name="activity"
         />
-        {errors.activity && (
-          <p className={styles.errorText}>Please enter an activity.</p>
-        )}
+        {errors.activity && <p className={styles.errorText}>Please enter an activity.</p>}
       </div>
       <Button className={styles.submitButton} type="submit">
-        Submit
+        Leave a comment
       </Button>
     </form>
   );

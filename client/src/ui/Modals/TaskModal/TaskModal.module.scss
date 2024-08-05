@@ -7,7 +7,21 @@
   max-height: 80vh;
   overflow-y: auto;
   background-color: var(--blockColor);
+  transition: all 0.3s ease;
+  opacity: 1;
 }
+
+.modalLoading {
+  opacity: 0.6;
+}
+
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .stagePriorityBlock,
 .dateAssetsBlock {
   display: flex;

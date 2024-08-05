@@ -8,27 +8,20 @@ const protectRoute = async (req, res, next) => {
     if (token) {
       const decodedToken = jwt.verify(token, process.env.JWT_SECRET);
 
-      const resp = await User.findById(decodedToken.userId).select(
-        "isAdmin email",
-      );
+      const resp = await User.findById(decodedToken.userId).select("isAdmin email");
 
       req.user = {
         email: resp.email,
         isAdmin: resp.isAdmin,
         userId: decodedToken.userId,
       };
-
       next();
     } else {
-      return res
-        .status(401)
-        .json({ status: false, message: "Not authorized. Try login again." });
+      return res.status(401).json({ status: false, message: "Not authorized. Try login again." });
     }
   } catch (error) {
     console.error(error);
-    return res
-      .status(401)
-      .json({ status: false, message: "Not authorized. Try login again." });
+    return res.status(401).json({ status: false, message: "Not authorized. Try login again." });
   }
 };
 

@@ -1,17 +1,15 @@
 import { useCallback } from "react";
 
 const useModalHandlers = ({ onClose, reset }) => {
-  const onSubmitHandler = useCallback(
-    (data) => {
-      console.log(data);
-      reset();
-    },
-    [reset],
-  );
   const onCloseHandler = useCallback(() => {
     onClose();
     reset();
   }, [onClose, reset]);
+
+  const onSubmitHandler = useCallback(() => {
+    reset();
+    onCloseHandler();
+  }, [onCloseHandler, reset]);
 
   return { onSubmitHandler, onCloseHandler };
 };

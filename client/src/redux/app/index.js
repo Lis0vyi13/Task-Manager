@@ -5,10 +5,9 @@ import userReducer from "../features/user/UserSlice";
 import sidebarReducer from "../features/sidebar/SidebarSlice";
 import searchReducer from "../features/search/SearchSlice";
 import pageReducer from "../features/page/PageSlice";
+import tasksReducer from "../features/tasks/TaskSlice";
 
 import api from "../api";
-
-import authMiddleware from "../features/middlewares/AuthMiddleware";
 
 const store = configureStore({
   reducer: {
@@ -18,9 +17,9 @@ const store = configureStore({
     sidebar: sidebarReducer,
     search: searchReducer,
     page: pageReducer,
+    tasks: tasksReducer,
   },
-  middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(api.middleware).concat(authMiddleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
 });
 
 export default store;

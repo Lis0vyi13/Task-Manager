@@ -1,68 +1,34 @@
-import { useCallback, useState } from "react";
-import { useForm } from "react-hook-form";
-import { toast } from "sonner";
-import useModalHandlers from "@/hooks/useModalHandlers";
-import useUser from "@/hooks/useUser";
+import { memo } from "react";
+import useProfile from "./useProfile";
 
 import Modal from "../Modal";
 import Title from "@/ui/Title";
 import InputField from "@/ui/Inputs/InputField";
 import ModalButtons from "@/ui/ModalButtons";
+import FileInput from "@/ui/Inputs/FileInput";
+import ColorPicker from "@/ui/Inputs/ColorPicker";
+import Loader from "@/ui/Loader";
 
 import styles from "./EditProfile.module.scss";
-import FileInput from "@/ui/Inputs/FileInput";
 
-const EditProfile = ({ onClose, changedValue }) => {
-  const user = useUser();
-  const [avatarPhoto, setAvatarPhoto] = useState(null);
-
-  const defaultValues = {
-    name: user?.name.split(" ")[0] || "",
-    surname: user?.name.split(" ")[1] || "",
-    email: user?.email || "",
-    avatarColor: user?.avatarColor || "#000000",
-  };
-
-  const { handleSubmit, reset, control } = useForm({
-    mode: "onChange",
-    defaultValues,
-  });
-
-  const { onSubmitHandler } = useModalHandlers({
+const EditProfile = memo(({ onClose, changedValue }) => {
+  const { handleSubmit, onSubmit, handleFileChange, avatarPhoto, isLoading, control } = useProfile({
     onClose,
-    reset,
+    changedValue,
   });
-
-  const onSubmit = useCallback(
-    (data) => {
-      onSubmitHandler(data);
-      console.log(data);
-      toast.success("Changed successful");
-      const formData = new FormData();
-      formData.append("name", data.name);
-      formData.append("surname", data.surname);
-      formData.append("email", data.email);
-      formData.append("avatarColor", data.avatarColor);
-      if (avatarPhoto) {
-        formData.append("avatarPhoto", avatarPhoto);
-      }
-    },
-    [avatarPhoto, onSubmitHandler],
-  );
-
-  const handleFileChange = useCallback((e) => {
-    setAvatarPhoto(e.target.files[0]);
-  }, []);
 
   return (
-    <Modal
-      onSubmit={handleSubmit(onSubmit)}
-      onClose={onClose}
-      changedValue={changedValue}
-      noCross
-    >
-      <section className={`modalWrapper ${styles.modal}`}>
-        <Title className="modalTitle">Edit user</Title>
+    <Modal onSubmit={handleSubmit(onSubmit)} onClose={onClose} changedValue={changedValue} noCross>
+      {isLoading && (
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      )}
+      <section className={`modalWrapper ${styles.modal} ${isLoading ? styles.modalLoading : ""}`}>
+        <header className={styles.header}>
+          <Title className="modalTitle">Edit user</Title>
+        </header>
+
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputField
             name="name"
@@ -94,19 +60,29 @@ const EditProfile = ({ onClose, changedValue }) => {
             autoComplete="email"
           />
           <InputField
-            name="avatarColor"
+            name="title"
             control={control}
-            label="Avatar Color"
-            type="color"
+            label="Title"
+            rules={{ required: "Title is required!" }}
+            placeholder="Your title"
           />
-          <div className="inputBlock">
-            <FileInput name={"avatarPhoto"} onChange={handleFileChange} />
+          <InputField
+            name="role"
+            control={control}
+            label="Role"
+            rules={{ required: "Role is required!" }}
+            placeholder="Your role"
+          />
+          <ColorPicker name="avatarColor" control={control} label="Avatar Color" />
+          <div className={`${styles.fileInput} inputBlock`}>
+            <FileInput name="avatar" control={control} onChange={handleFileChange} />
+            {avatarPhoto && <span>1 file selected</span>}
           </div>
-          <ModalButtons onClose={onClose} />
+          <ModalButtons disabled={isLoading} submitButtonText="Save" onClose={onClose} />
         </form>
       </section>
     </Modal>
   );
-};
+});
 
 export default EditProfile;

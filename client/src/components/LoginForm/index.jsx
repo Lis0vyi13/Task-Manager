@@ -1,44 +1,33 @@
 import useLogin from "./useLogin";
 
-import Input from "@/ui/Inputs";
 import Button from "@/ui/Button";
 
 import { loginInputs, signUpInputs } from "@/constants";
 
 import styles from "./LoginForm.module.scss";
+import InputField from "@/ui/Inputs/InputField";
 
 const LoginForm = ({ isSignUp, onSignInClick }) => {
-  const { handleSubmit, onSubmit, register, errors } = useLogin();
+  const { handleSubmit, onSubmit, control, isLoading } = useLogin({
+    isSignUp,
+  });
 
-  console.log(isSignUp);
   return (
     <div className={styles.loginForm}>
       <div className={styles.loginFormContent}>
-        <h2 className={styles.hello}>
-          {isSignUp ? "Sign Up" : "Welcome back!"}
-        </h2>
+        <h2 className={styles.hello}>{isSignUp ? "Sign Up" : "Welcome back!"}</h2>
         <p className={styles.slogan}>Access your tasks securely!</p>
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           {isSignUp &&
             signUpInputs.map((input, index) => (
               <div key={index} className={styles.inputWrapper}>
-                <Input {...input} register={register} />
-                {errors[input.name] && (
-                  <span className={styles.error}>
-                    {errors[input.name].message}
-                  </span>
-                )}
+                <InputField {...input} control={control} />
               </div>
             ))}
 
           {loginInputs.map((input, index) => (
             <div className={styles.inputWrapper} key={index}>
-              <Input {...input} register={register} />
-              {errors[input.name] && (
-                <span className={styles.error}>
-                  {errors[input.name].message}
-                </span>
-              )}
+              <InputField {...input} control={control} />
             </div>
           ))}
 
@@ -48,7 +37,7 @@ const LoginForm = ({ isSignUp, onSignInClick }) => {
               {isSignUp ? "Sign in" : "Sign up"}
             </span>
           </p>
-          <Button className={styles.button} type="submit">
+          <Button disabled={isLoading} className={styles.button} type="submit">
             {isSignUp ? "Sign Up" : "Login"}
           </Button>
         </form>

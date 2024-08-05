@@ -6,6 +6,7 @@ import Loader from "@/ui/Loader";
 import Task from "./Task";
 
 import { fadeSlideUpVariants } from "@/constants";
+
 import styles from "./BoardView.module.scss";
 
 const BoardView = ({ tasks, stage }) => {

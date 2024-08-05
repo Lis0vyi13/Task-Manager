@@ -18,7 +18,7 @@ const titles = [
   { name: "Completed", stage: "completed", color: TASK_TYPE.completed },
 ];
 
-const BoardView = ({ tasks }) => {
+const BoardView = () => {
   const { stages, isExpandArray, onTitleClickHandler } = useBoardView();
 
   return (
@@ -41,7 +41,7 @@ const BoardView = ({ tasks }) => {
                 key={title.name}
               />
             ))}
-          <TaskStage isExpand={isExpandArray[i]} stage={stage} tasks={tasks} />
+          <TaskStage isExpand={isExpandArray[i]} stage={stage} />
         </motion.div>
       ))}
     </section>

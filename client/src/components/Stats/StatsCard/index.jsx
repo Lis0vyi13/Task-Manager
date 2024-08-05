@@ -1,30 +1,11 @@
-import { useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import moment from "moment/moment";
 import { motion } from "framer-motion";
 
-import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
-
-import { fadeSlideUpVariants, tasks } from "@/constants";
+import { fadeSlideUpVariants } from "@/constants";
 import styles from "./StatsCard.module.scss";
 
-const StatsCard = ({ createdAt, Icon, title, type, href, color }) => {
-  const relativeTime = useMemo(
-    () => capitalizeFirstLetter(moment(createdAt).fromNow()),
-    [createdAt],
-  );
+const StatsCard = ({ href, title, Icon, updatedAt, color, value }) => {
   const navigate = useNavigate();
-  const amount = useMemo(
-    () =>
-      tasks.reduce(
-        (acc, task) => {
-          acc[task.stage] += 1;
-          return acc;
-        },
-        { todo: 0, "in progress": 0, completed: 0 },
-      ),
-    [],
-  );
 
   return (
     <>
@@ -36,10 +17,8 @@ const StatsCard = ({ createdAt, Icon, title, type, href, color }) => {
         onClick={() => navigate(href)}
       >
         <h2 className={styles.title}>{title}</h2>
-        <h3 className={styles.amount}>
-          {type === "all" ? tasks.length : amount[type]}
-        </h3>
-        <span className={styles.daysAgo}>{relativeTime}</span>
+        <h3 className={styles.amount}>{value}</h3>
+        <span className={styles.daysAgo}>{updatedAt}</span>
 
         <div className={styles.iconWrapper}>
           <Icon className={styles.icon} />

@@ -20,31 +20,23 @@ const modalStyles = {
 const QuestionModal = ({
   changedValue,
   onClose,
-  // task,
-  // user,
+  handler,
   text,
   type,
   submitButtonText,
   onSubmit,
+  isLoading,
 }) => {
-  // const data = task || user;
-  // const onSubmit = useCallback(() => {}, []);
-
   return (
-    <Modal
-      changedValue={changedValue}
-      noCross
-      onSubmit={onSubmit}
-      onClose={onClose}
-    >
+    <Modal changedValue={changedValue} noCross onSubmit={onSubmit} onClose={onClose}>
       <section className={`${"modalWrapper"} ${styles.modal}`}>
         <div className={`${styles.circle} ${modalStyles[type]?.circle || ""}`}>
-          <FaQuestion
-            className={`${styles.icon} ${modalStyles[type]?.icon || ""}`}
-          />
+          <FaQuestion className={`${styles.icon} ${modalStyles[type]?.icon || ""}`} />
         </div>
         <p className={styles.text}>{text}</p>
         <ModalButtons
+          disabled={isLoading}
+          onSubmit={handler}
           onClose={onClose}
           containerClassName={styles.buttonsContainer}
           submitButtonText={submitButtonText}

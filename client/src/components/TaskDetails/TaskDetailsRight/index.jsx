@@ -7,8 +7,7 @@ import useTaskDetails from "./useTaskDetails";
 import styles from "./TaskDetailsRight.module.scss";
 
 const TaskDetailsRight = ({ task }) => {
-  const { selectedImage, loading, handleImageClick, handleCloseModal } =
-    useTaskDetails({ task });
+  const { selectedImage, loading, handleImageClick, handleCloseModal } = useTaskDetails({ task });
   const isAssets = task?.assets?.length > 0;
   const isLinks = task?.links?.length > 0;
 
@@ -20,9 +19,7 @@ const TaskDetailsRight = ({ task }) => {
       </div>
       <div className={styles.assetsBlock}>
         <Title className={styles.title}>Assets</Title>
-        <div
-          className={`${styles.assets} ${isAssets ? styles.assetsCenter : ""}`}
-        >
+        <div className={`${styles.assets} ${isAssets ? styles.assetsCenter : ""}`}>
           {loading ? (
             <div className={styles.loader}>
               <Loader />
@@ -48,8 +45,8 @@ const TaskDetailsRight = ({ task }) => {
         <div className={styles.links}>
           {isLinks ? (
             <ul className={styles.list}>
-              {task?.links?.map((link) => (
-                <li key={link} className={styles.listItem}>
+              {task?.links?.map((link, i) => (
+                <li key={link + i} className={styles.listItem}>
                   <a className={styles.link} href={link}>
                     {link}
                   </a>

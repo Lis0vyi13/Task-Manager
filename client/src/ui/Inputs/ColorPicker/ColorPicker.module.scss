@@ -1,0 +1,24 @@
+.colorsContainer {
+  display: flex;
+  gap: 10px;
+  justify-content: space-between;
+  align-items: center;
+}
+.options {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  border-right: 1px solid var(--gray);
+}
+
+.label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.errorText {
+  color: red;
+  margin-top: 5px;
+}

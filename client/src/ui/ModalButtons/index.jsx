@@ -8,17 +8,24 @@ const ModalButtons = ({
   cancelButtonText = "Cancel",
   submitButtonText = "Submit",
   containerClassName,
+  onSubmit,
+  disabled,
 }) => {
   return (
     <div className={`${styles.buttons} ${containerClassName}`}>
       <Button
         type={"button"}
         onClick={onClose}
+        disabled={disabled}
         className={`${styles.cancelButton} ${cancelButtonClassName}`}
       >
         {cancelButtonText}
       </Button>
-      <Button className={`${styles.submitButton} ${submitButtonClassName}`}>
+      <Button
+        onClick={onSubmit}
+        disabled={disabled}
+        className={`${styles.submitButton} ${submitButtonClassName}`}
+      >
         {submitButtonText}
       </Button>
     </div>

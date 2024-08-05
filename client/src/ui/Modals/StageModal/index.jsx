@@ -2,6 +2,7 @@ import { useCallback, useMemo } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import useModalHandlers from "@/hooks/useModalHandlers";
+import { useUpdateStageMutation } from "@/redux/features/tasks/TaskSlice";
 
 import Title from "@/ui/Title";
 import SelectField from "@/ui/Inputs/SelectField";
@@ -28,6 +29,7 @@ const StageModal = ({ changedValue, onClose, task }) => {
     }),
     [task?.stage],
   );
+  const [updateStage] = useUpdateStageMutation();
 
   const { handleSubmit, reset, control } = useForm({
     mode: "onChange",
@@ -40,11 +42,18 @@ const StageModal = ({ changedValue, onClose, task }) => {
   });
 
   const onSubmit = useCallback(
-    (data) => {
-      onSubmitHandler(data);
-      toast.success("Changed successful");
+    async (data) => {
+      const stageData = { stage: data.stage.value };
+
+      try {
+        await updateStage({ data: stageData, id: task?._id }).unwrap();
+        onSubmitHandler(data);
+        toast.success("Changed successful");
+      } catch (error) {
+        toast.error(error?.data?.message);
+      }
     },
-    [onSubmitHandler],
+    [onSubmitHandler, task?._id, updateStage],
   );
 
   return (

@@ -13,45 +13,23 @@ import {
 
 import CustomTooltip from "./CustomTooltip";
 
-import { tasks } from "@/constants";
-
 import styles from "./Chart.module.scss";
 
 const Chart = () => {
+  const { dashboardStats } = useSelector((store) => store.tasks);
+  const { graphData } = dashboardStats;
   const { theme } = useSelector((state) => state.page);
-  const totalPriority = useMemo(() => {
-    return tasks.reduce(
-      (acc, task) => {
-        acc[task.priority] += 1;
-        return acc;
-      },
-      { low: 0, normal: 0, medium: 0, high: 0 },
-    );
-  }, []);
+  const hoverColor = useMemo(() => (theme === "light" ? "#d8d8d8" : "#484848"), [theme]);
 
-  const chartData = useMemo(
-    () => [
-      { name: "Low", Amount: totalPriority.low },
-      { name: "Normal", Amount: totalPriority.normal },
-      { name: "Medium", Amount: totalPriority.medium },
-      { name: "High", Amount: totalPriority.high },
-    ],
-    [totalPriority],
-  );
-
-  const hoverColor = useMemo(
-    () => (theme === "light" ? "#d8d8d8" : "#484848"),
-    [theme],
-  );
   return (
     <ResponsiveContainer className={styles.chart} width={"100%"} height={350}>
-      <BarChart data={chartData}>
+      <BarChart data={graphData}>
         <XAxis dataKey="name" />
         <YAxis />
         <Tooltip cursor={{ fill: hoverColor }} content={<CustomTooltip />} />
         <Legend />
         <CartesianGrid strokeDasharray="3 3" />
-        <Bar dataKey="Amount" fill="#8884d8" />
+        <Bar dataKey="Total" fill="#8884d8" />
       </BarChart>
     </ResponsiveContainer>
   );

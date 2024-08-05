@@ -39,7 +39,12 @@
   cursor: pointer;
   border-radius: 20px;
   padding: 3px 7px;
-
+  &:disabled {
+    cursor: not-allowed;
+    & .actionIcon {
+      cursor: not-allowed;
+    }
+  }
   @include mq(sm) {
     padding: 5px 10px;
   }

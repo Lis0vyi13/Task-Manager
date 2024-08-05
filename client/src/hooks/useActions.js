@@ -7,6 +7,7 @@ import { userActions } from "@/redux/features/user/UserSlice";
 import { sidebarActions } from "@/redux/features/sidebar/SidebarSlice";
 import { searchActions } from "@/redux/features/search/SearchSlice";
 import { pageActions } from "@/redux/features/page/PageSlice";
+import { tasksActions } from "@/redux/features/tasks/TaskSlice";
 
 const rootActions = {
   ...authActions,
@@ -14,6 +15,7 @@ const rootActions = {
   ...sidebarActions,
   ...searchActions,
   ...pageActions,
+  ...tasksActions,
 };
 
 const useActions = () => {

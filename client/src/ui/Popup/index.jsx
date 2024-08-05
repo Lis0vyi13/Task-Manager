@@ -1,7 +1,7 @@
 import { useRef, useMemo } from "react";
-import { createPortal } from "react-dom";
+// import { createPortal } from "react-dom";
 import useOutsideClick from "@/hooks/useOutsideClick";
-import useBreakpoints from "@/hooks/useBreakpoints";
+// import useBreakpoints from "@/hooks/useBreakpoints";
 
 import styles from "./Popup.module.scss";
 
@@ -15,7 +15,7 @@ const Popup = ({
 }) => {
   const ref = useRef();
   useOutsideClick(ref, handleClose);
-  const { isDesktop } = useBreakpoints();
+  // const { isMobile } = useBreakpoints();
 
   const popupStyle = useMemo(
     () => ({
@@ -42,9 +42,7 @@ const Popup = ({
     </div>
   );
 
-  return isDesktop || desktopStyle
-    ? popupContent
-    : createPortal(popupContent, document.body);
+  return popupContent;
 };
 
 export default Popup;

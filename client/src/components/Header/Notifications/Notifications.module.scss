@@ -78,6 +78,11 @@
   }
 }
 
+.emptyAlerts {
+  padding: 10px 10px;
+  overflow: hidden;
+}
+
 .popupButtons {
   border-top: 1px solid var(--blockHover);
   position: relative;
@@ -98,10 +103,21 @@
   cursor: pointer;
   transition: all 0.3s ease;
 
-  &:hover {
-    background-color: var(--blockHover);
+  &:not(:disabled) {
+    &:hover {
+      background-color: var(--blockHover);
+    }
+    &:first-of-type {
+      border-right: 1px solid var(--blockHover);
+    }
   }
-  &:first-of-type {
-    border-right: 1px solid var(--blockHover);
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.3;
   }
+}
+
+.loader {
+  padding: 35px 0;
 }

@@ -1,11 +1,12 @@
 import Trash from "@/components/Trash";
 
-import { tasks } from "@/constants";
+import { useGetTrashedTasksQuery } from "@/redux/features/tasks/TaskSlice";
 
 const TrashPage = () => {
+  const { data } = useGetTrashedTasksQuery();
   return (
     <section className="trash">
-      <Trash tasks={tasks} />
+      <Trash tasks={data?.tasks} />
     </section>
   );
 };

@@ -1,20 +1,23 @@
 import { useMemo } from "react";
 import moment from "moment";
+import { useDeleteUserMutation } from "@/redux/features/user/UserSlice";
 import useTaskPopup from "@/hooks/useTaskPopup";
+import useUser from "@/hooks/useUser";
 import useBreakpoints from "@/hooks/useBreakpoints";
 import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
+import { toast } from "sonner";
 
 import Team from "@/components/Team";
 import More from "@/components/More";
 import Popup from "@/ui/Popup";
 import PopupItem from "@/components/PopupItem";
-import EditDeleteModals from "@/components/EditDeleteModals/EditDeleteModals";
 import QuestionModal from "@/ui/Modals/QuestionModal";
+import EditUser from "@/ui/Modals/EditUser";
 
 import { MdEdit, MdDelete } from "react-icons/md";
 import styles from "./DeveloperItem.module.scss";
 
-const DeveloperItem = ({ user }) => {
+const DeveloperItem = ({ user, isLastChild }) => {
   const {
     isEditModalOpen,
     closeEditModal,
@@ -28,8 +31,18 @@ const DeveloperItem = ({ user }) => {
     handleClose,
   } = useTaskPopup({ task: user });
 
+  const currentUser = useUser();
   const { isDesktop } = useBreakpoints();
+  const [deleteUser, { isLoading }] = useDeleteUserMutation();
 
+  const onDeleteHandler = async () => {
+    try {
+      await deleteUser(user._id).unwrap();
+      toast.success("User was deleted successful");
+    } catch (error) {
+      toast.error(error?.data?.message);
+    }
+  };
   const OPTIONS = useMemo(
     () => [
       [
@@ -63,7 +76,9 @@ const DeveloperItem = ({ user }) => {
           team={[user]}
         />
         <div className={styles.userInfo}>
-          <p className={styles.name}>{user.name}</p>
+          <p className={styles.name}>
+            {user.name} {user.surname}
+          </p>
           <span className={styles.role}>{user.role}</span>
         </div>
       </td>
@@ -91,39 +106,35 @@ const DeveloperItem = ({ user }) => {
           <More onClick={handleToggle} />
           {isOpened && (
             <Popup
-              className={`${styles.popup}`}
+              className={`${styles.popup} ${isLastChild ? styles.lastChildPopup : ""}`}
               isClosing={isClosing}
               handleClose={handleClose}
             >
               {OPTIONS.map((block) =>
                 block.map((item, i) => (
                   <PopupItem
-                    disabled={item.permission}
+                    disabled={!currentUser?.isAdmin && item.permission}
                     key={item.title}
                     className={i + 1 === block.length ? "divider" : ""}
                     icon={item.icon}
                     title={item.title}
                     handleClose={handleClose}
-                    onClick={item.onClick}
+                    onClick={currentUser?.isAdmin || !item.permission ? item.onClick : undefined}
                   />
                 )),
               )}
             </Popup>
           )}
           {isEditModalOpen && (
-            <EditDeleteModals
-              user={user}
-              isEditModalOpen={isEditModalOpen}
-              closeEditModal={closeEditModal}
-              isQuestionModalOpen={isQuestionModalOpen}
-              closeQuestionModal={closeQuestionModal}
-            />
+            <EditUser onClose={closeEditModal} changedValue={isEditModalOpen} user={user} />
           )}
           {isQuestionModalOpen && (
             <QuestionModal
               changedValue={isQuestionModalOpen}
               onClose={closeQuestionModal}
               task={user}
+              handler={onDeleteHandler}
+              isLoading={isLoading}
               type={"delete"}
               text={"Are you sure you want to delete the selected user?"}
               submitButtonText={"Delete"}

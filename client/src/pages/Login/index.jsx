@@ -27,11 +27,7 @@ const LoginPage = () => {
   return (
     <section className="login">
       <Container>
-        <div
-          className={`${styles.loginContent} ${
-            isSignUp && isDesktop ? styles.moveLeft : ""
-          }`}
-        >
+        <div className={`${styles.loginContent} ${isSignUp && isDesktop ? styles.moveLeft : ""}`}>
           <div className={styles.leftSide}>
             <p className={styles.slogan}>Organize your work effortlessly!</p>
             <h1 className={styles.title}>Efficient Task Management Tool</h1>

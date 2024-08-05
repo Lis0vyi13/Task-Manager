@@ -162,6 +162,10 @@
     color: var(--colorHover);
   }
   font-weight: 500;
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }
 
 .deleteBtn {
@@ -173,4 +177,8 @@
     color: $error-main-hover;
   }
   font-weight: 500;
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
 }

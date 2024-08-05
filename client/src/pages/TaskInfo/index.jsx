@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useGetTaskQuery } from "@/redux/features/tasks/TaskSlice";
 
 import Title from "@/ui/Title";
 import Tabs from "@/ui/Tabs";
@@ -12,13 +13,12 @@ import { TbListDetails } from "react-icons/tb";
 import { MdTimeline } from "react-icons/md";
 import { IoMdArrowRoundBack } from "react-icons/io";
 
-import { tasks } from "@/constants";
 import styles from "./TaskInfoPage.module.scss";
 
 const TaskInfoPage = () => {
   const { id } = useParams();
   const [activeTab, setActiveTab] = useState(1);
-
+  const { data } = useGetTaskQuery(id);
   const tabs = useMemo(
     () => [
       {
@@ -39,8 +39,6 @@ const TaskInfoPage = () => {
 
   const tabsData = { data: tabs, activeTab, setActiveTab };
 
-  const task = useMemo(() => tasks.find((t) => t._id === id), [id]);
-
   const ActiveTabComponent = useMemo(
     () => tabs.find((tab) => tab.id === activeTab)?.Component,
     [activeTab, tabs],
@@ -60,13 +58,13 @@ const TaskInfoPage = () => {
     <section className={styles.taskDetail}>
       <div onClick={() => navigate(-1)} className={styles.titleBlock}>
         <IoMdArrowRoundBack className={styles.backIcon} />
-        <Title className={styles.title}>{task?.title}</Title>
+        <Title className={styles.title}>{data?.task?.title}</Title>
       </div>
       <div className={styles.tabs}>
         <Tabs {...tabsData} />
       </div>
       <div className={styles.content}>
-        {isLoading ? <Loader /> : <ActiveTabComponent task={task} />}
+        {isLoading ? <Loader /> : <ActiveTabComponent task={data?.task} />}
       </div>
     </section>
   );

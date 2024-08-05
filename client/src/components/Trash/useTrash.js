@@ -1,27 +1,47 @@
-import { useMemo, useState } from "react";
+import { useCallback, useMemo, useState } from "react";
 import useSearch from "@/hooks/useSearch";
 import useTaskDetailHandler from "@/hooks/useTaskDetailHandler";
 import useModal from "@/hooks/useModal";
+import { toast } from "sonner";
+import {
+  useDeleteAllTasksMutation,
+  useRestoreAllTasksMutation,
+} from "@/redux/features/tasks/TaskSlice";
 
 const useTrash = ({ tasks, titles }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [modalType, setModalType] = useState(null);
+  const [deleteAllTasks] = useDeleteAllTasksMutation();
+  const [restoreAllTasks] = useRestoreAllTasksMutation();
 
-  const [isQuestionModalOpen, openQuestionModal, closeQuestionModal] = useModal(
-    {
-      setItem: () => {},
-    },
-  );
+  const handleDeleteAllTasks = useCallback(async () => {
+    try {
+      await deleteAllTasks().unwrap();
+      toast.success("All trashed tasks deleted successfully!");
+    } catch (error) {
+      toast.error(error?.data?.message);
+    }
+  }, [deleteAllTasks]);
+
+  const handleRestoreAllTasks = useCallback(async () => {
+    try {
+      await restoreAllTasks().unwrap();
+      toast.success("All trashed tasks restored successfully!");
+    } catch (error) {
+      toast.error(error?.data?.message);
+    }
+  }, [restoreAllTasks]);
+
+  const [isQuestionModalOpen, openQuestionModal, closeQuestionModal] = useModal({
+    setItem: () => {},
+  });
   const query = useSearch();
   const filteredTask = useMemo(() => {
     setIsLoading(true);
 
-    const trashedTasks = tasks.filter((task) => task.isTrashed);
     const queryTasks = query
-      ? trashedTasks.filter((task) =>
-          task?.title?.toLowerCase().includes(query.toLowerCase()),
-        )
-      : trashedTasks;
+      ? tasks.filter((task) => task?.title?.toLowerCase().includes(query.toLowerCase()))
+      : tasks;
 
     setIsLoading(false);
 
@@ -34,6 +54,29 @@ const useTrash = ({ tasks, titles }) => {
     () => ({ titles, navigate, filteredTask }),
     [titles, navigate, filteredTask],
   );
+  const modalData = useMemo(
+    () => ({
+      restoreAll: {
+        text: "Are you sure you want to restore all the tasks?",
+        type: "restore",
+        submitButtonText: "Restore all",
+        handler: () => {
+          handleRestoreAllTasks();
+          closeQuestionModal();
+        },
+      },
+      deleteAll: {
+        text: "Are you sure you want to delete all the tasks?",
+        type: "delete",
+        submitButtonText: "Delete all",
+        handler: () => {
+          handleDeleteAllTasks();
+          closeQuestionModal();
+        },
+      },
+    }),
+    [closeQuestionModal, handleDeleteAllTasks, handleRestoreAllTasks],
+  );
   return {
     filteredTask,
     isLoading,
@@ -43,6 +86,7 @@ const useTrash = ({ tasks, titles }) => {
     isQuestionModalOpen,
     openQuestionModal,
     closeQuestionModal,
+    modalData,
   };
 };
 

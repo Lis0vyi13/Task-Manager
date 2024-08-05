@@ -1,13 +1,6 @@
 import styles from "./PopupItem.module.scss";
 
-const PopupItem = ({
-  icon,
-  title,
-  className,
-  disabled,
-  onClick,
-  handleClose,
-}) => {
+const PopupItem = ({ icon, title, className, disabled, onClick, handleClose }) => {
   const { Icon, color } = icon;
   const onClickHandler = () => {
     handleClose();
@@ -15,7 +8,7 @@ const PopupItem = ({
   };
   return (
     <button
-      onClick={!disabled && onClickHandler}
+      onClick={!disabled ? onClickHandler : undefined}
       disabled={disabled}
       className={`${styles.item} ${className}`}
     >

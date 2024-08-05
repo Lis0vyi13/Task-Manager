@@ -21,6 +21,13 @@
   width: fit-content;
 }
 
+.lastSubtaskPopup {
+  @include mq(mdXl) {
+    bottom: 70px;
+    right: 50px;
+  }
+}
+
 .header {
   display: flex;
   gap: 10px;
@@ -86,4 +93,32 @@
   background-color: var(--blockHover);
   border-radius: 10px;
   transition: all 0.3s ease;
+  position: relative;
+}
+.pulse {
+  -webkit-animation: pulse 0.5s ease;
+  animation: pulse 0.5s ease;
+}
+@-webkit-keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
 }

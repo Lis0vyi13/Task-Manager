@@ -2,6 +2,7 @@ import { useCallback } from "react";
 import moment from "moment";
 import useTaskPopup from "@/hooks/useTaskPopup";
 import useBreakpoints from "@/hooks/useBreakpoints";
+import useUser from "@/hooks/useUser";
 import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 
 import Popup from "@/ui/Popup";
@@ -42,12 +43,10 @@ const DashboardTaskItem = ({ task, taskIndex }) => {
     [navigate],
   );
 
+  const user = useUser();
   return (
     <tr key={task._id} className={styles.row}>
-      <td
-        onClick={() => handleTaskClick(task._id)}
-        className={`${styles.td} ${styles.pointer}`}
-      >
+      <td onClick={() => handleTaskClick(task._id)} className={`${styles.td} ${styles.pointer}`}>
         <StageCircle className={styles.circle} stage={task.stage} />
         <h1 className={styles.text}>{task.title}</h1>
       </td>
@@ -71,21 +70,17 @@ const DashboardTaskItem = ({ task, taskIndex }) => {
         <td className={styles.more}>
           <More onClick={handleToggle} />
           {isOpened && (
-            <Popup
-              className={`${styles.popup}`}
-              isClosing={isClosing}
-              handleClose={handleClose}
-            >
+            <Popup className={`${styles.popup}`} isClosing={isClosing} handleClose={handleClose}>
               {TASK_MORE_OPTIONS.map((block) =>
                 block.map((item, i) => (
                   <PopupItem
-                    disabled={item.permission}
+                    disabled={!user?.isAdmin && item.permission}
                     key={item.title}
                     className={i + 1 === block.length ? "divider" : ""}
                     icon={item.icon}
                     title={item.title}
                     handleClose={handleClose}
-                    onClick={item.onClick}
+                    onClick={user?.isAdmin || !item.permission ? item.onClick : undefined}
                   />
                 )),
               )}

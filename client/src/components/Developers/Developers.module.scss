@@ -6,6 +6,10 @@
   background-color: var(--blockColor);
   border-radius: 10px;
   flex-grow: 1;
+  max-height: 725px;
+  @include mq(md) {
+    overflow: auto;
+  }
 }
 
 .table {

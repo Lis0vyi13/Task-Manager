@@ -172,12 +172,12 @@
 }
 
 .restore {
-  color: var(--gray);
   padding: 5px;
   border-radius: 50%;
   font-size: 35px;
   transition: all 0.3s ease;
   &:hover {
+    color: var(--blockColor);
     background-color: $text-secondary;
   }
 }
@@ -190,5 +190,16 @@
   transition: all 0.3s ease;
   &:hover {
     background-color: $text-secondary;
+  }
+}
+
+.restoreButton {
+  &:disabled .restore {
+    cursor: not-allowed;
+  }
+}
+.deleteButton {
+  &:disabled .delete {
+    cursor: not-allowed;
   }
 }

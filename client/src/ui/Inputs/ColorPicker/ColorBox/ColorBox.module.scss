@@ -1,0 +1,10 @@
+.colorSquare {
+  width: 28.5px;
+  height: 29.5px;
+  cursor: pointer;
+  border: 2px solid transparent;
+}
+
+.selected {
+  border-color: black;
+}

@@ -1,6 +1,8 @@
 import { useMemo } from "react";
 import useTaskPopup from "@/hooks/useTaskPopup";
 import useBreakpoints from "@/hooks/useBreakpoints";
+import { useDeleteUserMutation } from "@/redux/features/user/UserSlice";
+import useUser from "@/hooks/useUser";
 
 import Team from "@/components/Team";
 import More from "@/components/More";
@@ -12,6 +14,7 @@ import EditUser from "@/ui/Modals/EditUser";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { formatDate } from "@/constants";
 import styles from "./MemberItem.module.scss";
+import { toast } from "sonner";
 
 const MemberItem = ({ user }) => {
   const {
@@ -27,7 +30,18 @@ const MemberItem = ({ user }) => {
     handleClose,
   } = useTaskPopup({ task: user });
 
+  const currentUser = useUser();
   const { isDesktop } = useBreakpoints();
+  const [deleteUser, { isLoading }] = useDeleteUserMutation();
+
+  const onDeleteHandler = async () => {
+    try {
+      await deleteUser(user._id).unwrap();
+      toast.success("User was deleted successful");
+    } catch (error) {
+      toast.error(error?.data?.message);
+    }
+  };
 
   const OPTIONS = useMemo(
     () => [
@@ -63,7 +77,9 @@ const MemberItem = ({ user }) => {
             side={"right"}
             team={[user]}
           />
-          <p className={styles.name}>{user.name}</p>
+          <p className={styles.name}>
+            {user.name} {user.surname}
+          </p>
         </div>
       </td>
       {isDesktop ? (
@@ -90,12 +106,16 @@ const MemberItem = ({ user }) => {
           </td>
           <td className={`${styles.actions} ${styles.td} `}>
             <button
+              title={!currentUser?.isAdmin ? "Administrator rights are needed" : null}
+              disabled={!currentUser?.isAdmin}
               onClick={() => openEditModal(user)}
               className={styles.editBtn}
             >
               Edit
             </button>
             <button
+              title={!currentUser?.isAdmin ? "Administrator rights are needed" : null}
+              disabled={!currentUser?.isAdmin}
               onClick={() => openQuestionModal(user)}
               className={styles.deleteBtn}
             >
@@ -107,21 +127,17 @@ const MemberItem = ({ user }) => {
         <td>
           <More onClick={handleToggle} />
           {isOpened && (
-            <Popup
-              className={`${styles.popup}`}
-              isClosing={isClosing}
-              handleClose={handleClose}
-            >
+            <Popup className={`${styles.popup}`} isClosing={isClosing} handleClose={handleClose}>
               {OPTIONS.map((block) =>
                 block.map((item, i) => (
                   <PopupItem
-                    disabled={item.permission}
+                    disabled={!currentUser?.isAdmin}
                     key={item.title}
                     className={i + 1 === block.length ? "divider" : ""}
                     icon={item.icon}
                     title={item.title}
                     handleClose={handleClose}
-                    onClick={item.onClick}
+                    onClick={currentUser?.isAdmin ? item.onClick : undefined}
                   />
                 )),
               )}
@@ -131,17 +147,15 @@ const MemberItem = ({ user }) => {
       )}
 
       {isEditModalOpen && (
-        <EditUser
-          changedValue={isEditModalOpen}
-          onClose={closeEditModal}
-          user={user}
-        />
+        <EditUser changedValue={isEditModalOpen} onClose={closeEditModal} user={user} />
       )}
 
       {isQuestionModalOpen && (
         <QuestionModal
           changedValue={isQuestionModalOpen}
           onClose={closeQuestionModal}
+          handler={onDeleteHandler}
+          isLoading={isLoading}
           user={user}
           type={"delete"}
           text={"Are you sure you want to delete current user?"}

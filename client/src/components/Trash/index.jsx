@@ -1,5 +1,7 @@
 import { motion } from "framer-motion";
+import useUser from "@/hooks/useUser";
 import useTrash from "./useTrash";
+import { toast } from "sonner";
 
 import Title from "@/ui/Title";
 import Loader from "@/ui/Loader";
@@ -11,22 +13,8 @@ import { MdDelete, MdRestore } from "react-icons/md";
 import { fadeSlideUpVariants } from "@/constants";
 
 import styles from "./Trash.module.scss";
-import { toast } from "sonner";
 
 const titles = ["Full Name", "Priority", "Stage", "Modified on"];
-
-const modalData = {
-  restoreAll: {
-    text: "Are you sure you want to restore all the tasks?",
-    type: "restore",
-    submitButtonText: "Restore all",
-  },
-  deleteAll: {
-    text: "Are you sure you want to delete all the tasks?",
-    type: "delete",
-    submitButtonText: "Delete all",
-  },
-};
 
 const Trash = ({ tasks }) => {
   const {
@@ -38,11 +26,13 @@ const Trash = ({ tasks }) => {
     isQuestionModalOpen,
     openQuestionModal,
     closeQuestionModal,
+    modalData,
   } = useTrash({
     tasks,
     titles,
   });
 
+  const user = useUser();
   return (
     <section className={styles.trash}>
       <motion.header
@@ -54,38 +44,35 @@ const Trash = ({ tasks }) => {
         <Title>Trash</Title>
 
         <div className={styles.trashActions}>
-          <div
+          <button
             onClick={() => {
-              if (filteredTask.length > 0) {
+              if (filteredTask?.length > 0) {
                 openQuestionModal();
                 setModalType("restoreAll");
               } else {
-                toast.warning(
-                  "You can't restore tasks because of trash is empty!",
-                );
+                toast.warning("You can't restore tasks because of trash is empty!");
               }
             }}
             className={styles.trashAction}
           >
             <MdRestore className={styles.actionIcon} />
             <p className={styles.actionText}>Restore all</p>
-          </div>
-          <div
+          </button>
+          <button
+            disabled={!user?.isAdmin}
             onClick={() => {
-              if (filteredTask.length > 0) {
+              if (filteredTask?.length > 0) {
                 openQuestionModal();
                 setModalType("deleteAll");
               } else {
-                toast.warning(
-                  "You can't delete tasks because of trash is empty!",
-                );
+                toast.warning("You can't delete tasks because of trash is empty!");
               }
             }}
             className={`${styles.trashAction} ${styles.deleteIcon}`}
           >
             <MdDelete className={styles.actionIcon} />
             <p className={styles.actionText}>Delete all</p>
-          </div>
+          </button>
         </div>
         {isQuestionModalOpen && (
           <QuestionModal
@@ -99,13 +86,11 @@ const Trash = ({ tasks }) => {
         initial="hidden"
         animate="visible"
         variants={fadeSlideUpVariants}
-        className={`${styles.listView} ${
-          filteredTask.length > 0 ? styles.notEmpty : ""
-        }`}
+        className={`${styles.listView} ${filteredTask?.length > 0 ? styles.notEmpty : ""}`}
       >
         {isLoading ? (
           <Loader />
-        ) : filteredTask.length > 0 ? (
+        ) : filteredTask?.length > 0 ? (
           <Table {...tableData} />
         ) : (
           "Trash is empty"

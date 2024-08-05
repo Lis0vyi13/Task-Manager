@@ -1,14 +1,16 @@
+import { useSelector } from "react-redux";
 import DashboardTaskItem from "../DashboardTaskItem";
 
 import styles from "./DashboardBody.module.scss";
 
-const DashboardBody = ({ data }) => {
+const DashboardBody = () => {
+  const { dashboardStats } = useSelector((store) => store.tasks);
+  const { last10Task } = dashboardStats;
+
   return (
     <tbody className={styles.tbody}>
-      {data.map((task, taskIndex) => {
-        return (
-          <DashboardTaskItem task={task} taskIndex={taskIndex} key={task._id} />
-        );
+      {last10Task?.map((task, taskIndex) => {
+        return <DashboardTaskItem task={task} taskIndex={taskIndex} key={task._id} />;
       })}
     </tbody>
   );

@@ -1,4 +1,5 @@
-import { useMemo } from "react";
+import { useEffect, useMemo, useRef } from "react";
+import useUser from "@/hooks/useUser";
 import useSubtask from "./useSubtask";
 
 import More from "@/components/More";
@@ -10,7 +11,7 @@ import SubtaskModal from "@/ui/Modals/SubtaskModal";
 import { MdTaskAlt } from "react-icons/md";
 import styles from "./Subtask.module.scss";
 
-const Subtask = ({ title, date, tag, done }) => {
+const Subtask = ({ task, _id: subtaskId, title, date, tag, done, isLastChild }) => {
   const {
     doneHandler,
     isOpened,
@@ -22,15 +23,27 @@ const Subtask = ({ title, date, tag, done }) => {
     closeDeleteModal,
     isEditModalOpen,
     closeEditModal,
-  } = useSubtask();
+  } = useSubtask({ task, subtaskId });
+  const markButtonRef = useRef(null);
+  const user = useUser();
 
+  useEffect(() => {
+    const markButton = markButtonRef.current;
+
+    markButton.addEventListener("click", function () {
+      markButton.classList.remove(styles.pulse);
+      void markButton.offsetWidth;
+      markButton.classList.add(styles.pulse);
+    });
+  }, []);
   const subtaskData = useMemo(
     () => ({
       title,
       date,
       tag,
+      subtaskId,
     }),
-    [date, tag, title],
+    [date, subtaskId, tag, title],
   );
 
   return (
@@ -43,9 +56,7 @@ const Subtask = ({ title, date, tag, done }) => {
           <span className={styles.date}>{new Date(date).toDateString()}</span>
           <div className={styles.tags}>
             <span className={styles.tag}>{tag}</span>
-            {done && (
-              <span className={`${styles.doneTag} ${styles.tag}`}>Done</span>
-            )}
+            {done && <span className={`${styles.doneTag} ${styles.tag}`}>Done</span>}
           </div>
         </header>
         <main className={styles.main}>
@@ -55,25 +66,23 @@ const Subtask = ({ title, date, tag, done }) => {
           </div>
           {isOpened && (
             <Popup
-              className={`${styles.popup}`}
+              className={`${styles.popup} ${isLastChild ? styles.lastSubtaskPopup : ""}`}
               isClosing={isClosing}
               handleClose={handleClose}
+              desktopStyle
             >
               {OPTIONS.map((block, blockIndex) =>
                 block.map((item, i) => (
                   <PopupItem
-                    disabled={item.permission}
+                    disabled={!user?.isAdmin && item.permission}
                     key={item.title}
                     className={
-                      i + 1 === block.length &&
-                      blockIndex + 1 !== OPTIONS.length
-                        ? "divider"
-                        : ""
+                      i + 1 === block.length && blockIndex + 1 !== OPTIONS.length ? `divider` : ""
                     }
                     icon={item.icon}
                     title={item.title}
                     handleClose={handleClose}
-                    onClick={item.onClick}
+                    onClick={user?.isAdmin || !item.permission ? item.onClick : undefined}
                   />
                 )),
               )}
@@ -82,6 +91,7 @@ const Subtask = ({ title, date, tag, done }) => {
         </main>
         <footer className={styles.footer}>
           <button
+            ref={markButtonRef}
             onClick={doneHandler}
             className={`${done ? styles.undone : styles.done} ${styles.button}`}
           >
@@ -91,6 +101,7 @@ const Subtask = ({ title, date, tag, done }) => {
 
         {isEditModalOpen && (
           <SubtaskModal
+            {...task}
             changedValue={isEditModalOpen}
             onClose={closeEditModal}
             subtask={subtaskData}

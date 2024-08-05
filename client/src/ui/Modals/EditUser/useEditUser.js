@@ -1,29 +1,31 @@
 import { useMemo } from "react";
 import { useForm } from "react-hook-form";
-import transformToInputDateType from "@/utils/transformToInputDateType";
 
 const selectStatusOptions = [
   { value: true, label: "Active" },
   { value: false, label: "Disabled" },
 ];
 
+const isAdminOptions = [
+  { value: true, label: "True" },
+  { value: false, label: "False" },
+];
+
 const useEditUser = ({ user }) => {
   const defaultValues = useMemo(
     () => ({
       name: user?.name || "",
+      surname: user?.surname || "",
       role: user?.role || "",
       email: user?.email || "",
-      status:
+      isActive:
         user?.isActive !== ""
-          ? selectStatusOptions?.find(
-              (option) => option.value === user.isActive,
-            )
+          ? selectStatusOptions?.find((option) => option.value === user.isActive)
           : "",
-      createdAt: user?.createdAt
-        ? transformToInputDateType(user.createdAt)
-        : "",
+      isAdmin:
+        user?.isAdmin !== "" ? isAdminOptions?.find((option) => option.value === user.isAdmin) : "",
     }),
-    [user.createdAt, user?.email, user.isActive, user?.name, user?.role],
+    [user?.email, user.isActive, user.isAdmin, user?.name, user?.role, user?.surname],
   );
 
   const { handleSubmit, reset, control } = useForm({
@@ -31,7 +33,7 @@ const useEditUser = ({ user }) => {
     defaultValues,
   });
 
-  return { handleSubmit, reset, control, selectStatusOptions };
+  return { handleSubmit, reset, control, selectStatusOptions, isAdminOptions };
 };
 
 export default useEditUser;

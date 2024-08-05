@@ -1,35 +1,37 @@
 import express from "express";
 import { isAdminRoute, protectRoute } from "../middlewares/authMiddleware.js";
 import {
-  activateUserProfile,
   changeUserPassword,
   deleteUserProfile,
   getNotificationsList,
   getTeamList,
+  getUser,
+  getUserById,
   loginUser,
   logoutUser,
   markNotificationRead,
   registerUser,
+  sendNotification,
   updateUserProfile,
 } from "../controllers/userController.js";
 
 const router = express.Router();
 
+router.get("/get-team", protectRoute, getTeamList);
+router.get("/notifications", protectRoute, getNotificationsList);
+router.get("/profile", protectRoute, getUser);
+
 router.post("/register", registerUser);
 router.post("/login", loginUser);
 router.post("/logout", logoutUser);
+router.post("/send-notification", sendNotification);
 
-router.get("/get-team", protectRoute, isAdminRoute, getTeamList);
-router.get("/notifications", protectRoute, getNotificationsList);
-
-router.put("/profile", protectRoute, updateUserProfile);
-router.put("/read-noti", protectRoute, markNotificationRead);
+router.put("/read-notification", protectRoute, markNotificationRead);
 router.put("/change-password", protectRoute, changeUserPassword);
 
-// //   FOR ADMIN ONLY - ADMIN ROUTES
-router
-  .route("/:id")
-  .put(protectRoute, isAdminRoute, activateUserProfile)
-  .delete(protectRoute, isAdminRoute, deleteUserProfile);
+router.patch("/profile", protectRoute, updateUserProfile);
+
+// FOR ADMIN ONLY - ADMIN ROUTES
+router.route("/:id").get(getUserById).delete(protectRoute, isAdminRoute, deleteUserProfile);
 
 export default router;

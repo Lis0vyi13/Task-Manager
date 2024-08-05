@@ -19,6 +19,7 @@
   }
 
   &.moveLeft {
+    margin-left: -100px;
     .leftSide {
       transform: translateY(107%);
       @include mq(sm) {

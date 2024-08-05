@@ -1,3 +1,29 @@
 .modal {
+  position: relative;
+  max-height: 80vh;
+  overflow-y: auto;
   background-color: var(--blockColor);
+}
+
+.modalLoading {
+  opacity: 0.6;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.fileInput {
+  margin-top: 15px !important;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
 }

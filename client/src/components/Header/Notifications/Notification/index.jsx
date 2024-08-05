@@ -1,18 +1,22 @@
-import { memo, useMemo } from "react";
+import { memo, useEffect, useMemo } from "react";
 import moment from "moment";
 import capitalizeFirstLetter from "@/utils/capitalizeFirstLetter";
 
 import { LuBellRing } from "react-icons/lu";
-import styles from "./Alert.module.scss";
+import styles from "./Notification.module.scss";
 
-const Alert = memo(({ text, createdAt }) => {
+const Notification = memo(({ _id, text, onClick, setNotification, isRead, createdAt }) => {
   const relativeTime = useMemo(
     () => capitalizeFirstLetter(moment(createdAt).fromNow()),
     [createdAt],
   );
 
+  useEffect(() => {
+    setNotification({ _id, text, createdAt, time: relativeTime });
+  }, [_id, createdAt, isRead, relativeTime, setNotification, text]);
+
   return (
-    <div className={styles.alert}>
+    <div onClick={() => onClick()} className={`${styles.alert}`}>
       <div className={styles.icon}>
         <LuBellRing />
       </div>
@@ -29,4 +33,4 @@ const Alert = memo(({ text, createdAt }) => {
   );
 });
 
-export default Alert;
+export default Notification;

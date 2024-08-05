@@ -11,9 +11,7 @@ const useHeader = () => {
   const debouncedSearchValue = useDebounce(watch("searchQuery"), 500);
   const { toggleMobileSidebar, setQuery, resetQuery } = useActions();
   const { pathname } = useLocation();
-  const isMobileSidebarOpen = useSelector(
-    (state) => state.sidebar.isMobileSidebarOpen,
-  );
+  const isMobileSidebarOpen = useSelector((state) => state.sidebar.isMobileSidebarOpen);
 
   const handleReset = () => {
     reset({ searchQuery: "" });
@@ -29,10 +27,7 @@ const useHeader = () => {
     [],
   );
 
-  const isSearchVisible = useMemo(
-    () => validPaths.includes(pathname),
-    [pathname, validPaths],
-  );
+  const isSearchVisible = useMemo(() => validPaths.includes(pathname), [pathname, validPaths]);
 
   return {
     isSearchVisible,

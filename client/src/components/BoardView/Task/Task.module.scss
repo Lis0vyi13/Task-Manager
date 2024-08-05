@@ -4,11 +4,14 @@
 .task {
   background-color: var(--blockColor);
   border-radius: 10px;
-  flex-grow: 1;
+  height: 100%;
 }
 
 .content {
+  display: flex;
+  flex-direction: column;
   padding: 10px;
+  height: 100%;
 }
 .header {
   display: flex;
@@ -69,7 +72,7 @@
 
 .details {
   display: flex;
-  gap: 10px;
+  gap: 7px;
   align-items: center;
   font-size: 14px;
   color: var(--gray);
@@ -120,6 +123,11 @@
 
 .footer {
   overflow: auto;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: flex-end;
+
   ::-webkit-scrollbar {
     width: 9px;
   }
@@ -139,17 +147,12 @@
     background-color: #13389e;
   }
 }
-.subtasksWrapper {
-  margin-top: 10px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  max-height: 61px;
-  overflow: auto;
-}
 
 .btnAddSubtask {
   display: flex;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   gap: 10px;
   font-size: 16px;
   text-transform: uppercase;
@@ -182,4 +185,9 @@
 
 .divider {
   border-bottom: 1px solid $text-secondary;
+}
+
+.lastTaskPopup {
+  bottom: 90px;
+  right: 40px;
 }

@@ -5,7 +5,7 @@ import useActions from "@/hooks/useActions";
 
 import UserAvatar from "./UserAvatar";
 import SearchInput from "./SearchInput";
-import Notification from "./Notification";
+import Notifications from "./Notifications";
 import ThemeToggle from "../ThemeToggle";
 
 import styles from "./Header.module.scss";
@@ -35,24 +35,17 @@ const Header = () => {
     <header className={styles.header}>
       <div className={styles.leftSide}>
         {!isMobileSidebarOpen && (
-          <button
-            onClick={() => toggleMobileSidebar()}
-            className={styles.burger}
-          >
+          <button onClick={() => toggleMobileSidebar()} className={styles.burger}>
             ≡
           </button>
         )}
         {isSearchVisible && (
-          <SearchInput
-            register={register}
-            watch={watch}
-            handleReset={handleReset}
-          />
+          <SearchInput register={register} watch={watch} handleReset={handleReset} />
         )}
       </div>
       <div className={styles.rightSide}>
         <ThemeToggle theme={theme} toggleTheme={toggleTheme} />
-        <Notification />
+        <Notifications />
         <UserAvatar />
       </div>
     </header>

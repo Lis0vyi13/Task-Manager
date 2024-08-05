@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import DashboardHead from "./DashboardHead";
 import DashboardBody from "./DashboardBody";
 
-import { fadeSlideUpVariants, summary } from "@/constants";
+import { fadeSlideUpVariants } from "@/constants";
 
 import styles from "./DashboardTasks.module.scss";
 
@@ -23,7 +23,7 @@ const DashboardTasks = () => {
     >
       <table className={styles.table}>
         <DashboardHead />
-        <DashboardBody data={summary.last10Task} />
+        <DashboardBody />
       </table>
     </motion.section>
   );

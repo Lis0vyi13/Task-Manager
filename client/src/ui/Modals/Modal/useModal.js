@@ -3,44 +3,59 @@ import "wicg-inert";
 
 const useModal = ({ onClose, onSubmit, changedValue, styles }) => {
   const modalRef = useRef();
+  const modalContentRef = useRef();
+  const rootElement = document.querySelector("#root");
 
   const onEscapeHandler = useCallback(
     (e) => {
-      if (e.key !== "Escape") return;
-      onClose();
+      if (e.key === "Escape") {
+        onClose();
+      }
     },
     [onClose],
   );
+
   const onEnterHandler = useCallback(
     (e) => {
-      if (e.key !== "Enter") return;
-
-      onSubmit();
+      if (e.key === "Enter") {
+        onSubmit();
+      }
     },
     [onSubmit],
   );
 
+  const handleOverlayClick = useCallback(
+    (e) => {
+      if (e.target === modalRef.current && document.activeElement.tagName != "INPUT") {
+        onClose();
+        rootElement.inert = undefined;
+      }
+    },
+    [onClose, rootElement],
+  );
+
   useEffect(() => {
     const modal = modalRef.current;
+
+    if (changedValue && !rootElement.inert) {
+      rootElement.inert = true;
+      modal?.classList.add(styles.visible);
+    }
+
     document.addEventListener("keydown", onEscapeHandler);
     document.addEventListener("keydown", onEnterHandler);
-    if (changedValue) {
-      setTimeout(() => {
-        modal?.classList.add(styles.visible);
-        document.querySelector("#root").inert = true;
-      }, 0);
-    }
 
     return () => {
       if (modal) {
         modal.classList.remove(styles.visible);
-        document.querySelector("#root").inert = false;
       }
+      rootElement.inert = undefined;
       document.removeEventListener("keydown", onEscapeHandler);
       document.removeEventListener("keydown", onEnterHandler);
     };
-  }, [changedValue, onEnterHandler, onEscapeHandler, styles.visible]);
-  return { modalRef };
+  }, [changedValue, onEnterHandler, onEscapeHandler, rootElement, styles.visible]);
+
+  return { modalRef, modalContentRef, handleOverlayClick };
 };
 
 export default useModal;

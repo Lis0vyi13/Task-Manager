@@ -11,7 +11,7 @@
   align-items: flex-start;
   @include shadow;
   position: fixed;
-  bottom: 0;
+  bottom: -2px;
   left: 0;
   right: 0;
 
@@ -22,6 +22,7 @@
     transform: translateY(0);
     position: absolute;
     right: 0;
+    left: unset;
     bottom: -5px;
     min-width: 230px;
     -webkit-animation: popupOpenAnimation 0.2s ease-out forwards;
@@ -34,7 +35,6 @@
   position: absolute;
   bottom: -5px;
   left: unset;
-
   min-width: 230px;
   -webkit-animation: popupOpenAnimation 0.2s ease-out forwards;
   animation: popupOpenAnimation 0.2s ease-out forwards;

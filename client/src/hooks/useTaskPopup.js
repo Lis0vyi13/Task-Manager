@@ -7,21 +7,17 @@ import { MdDelete, MdEdit } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
 
 const useTaskPopup = ({ task, setItemHandler = () => {} }) => {
-  const { isOpened, isClosing, handleToggle, handleClose } =
-    useAnimatedToggle();
+  const { isOpened, isClosing, handleToggle, handleClose } = useAnimatedToggle();
 
   const [isEditModalOpen, openEditModal, closeEditModal] = useModal({
     setItem: setItemHandler,
   });
-  const [isQuestionModalOpen, openQuestionModal, closeQuestionModal] = useModal(
-    {
-      setItem: setItemHandler,
-    },
-  );
-  const [isAddSubtaskModalOpen, openAddSubtaskModal, closeAddSubtaskModal] =
-    useModal({
-      setItem: () => {},
-    });
+  const [isQuestionModalOpen, openQuestionModal, closeQuestionModal] = useModal({
+    setItem: setItemHandler,
+  });
+  const [isAddSubtaskModalOpen, openAddSubtaskModal, closeAddSubtaskModal] = useModal({
+    setItem: () => {},
+  });
 
   const [isStageModalOpen, openStageModal, closeStageModal] = useModal({
     setItem: () => {},
@@ -60,7 +56,7 @@ const useTaskPopup = ({ task, setItemHandler = () => {} }) => {
       {
         icon: { Icon: MdDelete, color: "red" },
         title: "Delete",
-        permission: false,
+        permission: true,
         onClick: openQuestionModal,
       },
     ],

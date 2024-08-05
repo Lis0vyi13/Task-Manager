@@ -5,8 +5,9 @@
   background-color: var(--blockColor);
   border-radius: 10px;
   width: 100%;
-  overflow: hidden;
-
+  @include mq(md) {
+    overflow: hidden;
+  }
   @include mq(lgXl) {
     width: 65%;
   }

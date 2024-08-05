@@ -1,6 +1,7 @@
 import { memo, useCallback } from "react";
 import useEditUser from "./useEditUser";
 import useModalHandlers from "@/hooks/useModalHandlers";
+import { useUpdateProfileMutation } from "@/redux/features/user/UserSlice";
 import { toast } from "sonner";
 
 import Title from "@/ui/Title";
@@ -12,38 +13,46 @@ import Modal from "../Modal";
 import styles from "./EditUser.module.scss";
 
 const EditUser = memo(({ user, onClose, changedValue }) => {
-  const { handleSubmit, reset, control, selectStatusOptions } = useEditUser({
+  const { handleSubmit, reset, control, selectStatusOptions, isAdminOptions } = useEditUser({
     user,
   });
   const { onSubmitHandler } = useModalHandlers({
     onClose,
     reset,
   });
+  const [updateUser] = useUpdateProfileMutation();
 
   const onSubmit = useCallback(
-    (data) => {
-      onSubmitHandler(data);
-      toast.success("Changed successful");
+    async (data) => {
+      const userData = { ...data, _id: user?._id };
+      try {
+        await updateUser(userData).unwrap();
+        onSubmitHandler(userData);
+        toast.success("Changed successful");
+      } catch (error) {
+        toast.error(error?.data?.message);
+      }
     },
-    [onSubmitHandler],
+    [onSubmitHandler, updateUser, user?._id],
   );
   return (
-    <Modal
-      onSubmit={handleSubmit(onSubmit)}
-      onClose={onClose}
-      changedValue={changedValue}
-      noCross
-    >
+    <Modal onSubmit={handleSubmit(onSubmit)} onClose={onClose} changedValue={changedValue} noCross>
       <section className={`modalWrapper ${styles.modal}`}>
         <Title className={"modalTitle"}>Edit user</Title>
         <form onSubmit={handleSubmit(onSubmit)}>
           <InputField
-            disabled
             name={"name"}
             control={control}
-            label={"Full name"}
-            rules={{ required: "Full name is required!" }}
-            placeholder={"Your full name"}
+            label={"Name"}
+            rules={{ required: "Name is required!" }}
+            placeholder={"Your name"}
+          />
+          <InputField
+            name={"surname"}
+            control={control}
+            label={"Surname"}
+            rules={{ required: "Surname is required!" }}
+            placeholder={"Your surname"}
           />
           <InputField
             name={"role"}
@@ -68,22 +77,22 @@ const EditUser = memo(({ user, onClose, changedValue }) => {
             autoComplete={"email"}
           />
           <SelectField
-            name="status"
+            name="isActive"
             control={control}
             label={"Status"}
-            rules={{ required: "User status" }}
+            rules={{ required: "User status is required" }}
             placeholder={"Status..."}
             options={selectStatusOptions}
           />
-          <InputField
-            disabled
-            name="createdAt"
+          <SelectField
+            name="isAdmin"
             control={control}
-            label="Created at"
-            type="date"
-            rules={{ required: "Date is required" }}
+            label={"Admin"}
+            rules={{ required: "Is admin is required" }}
+            options={isAdminOptions}
           />
-          <ModalButtons onClose={onClose} />
+
+          <ModalButtons submitButtonText="Save" onClose={onClose} />
         </form>
       </section>
     </Modal>

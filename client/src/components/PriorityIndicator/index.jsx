@@ -14,7 +14,10 @@ const PriorityIndicator = ({ priority, withAddition, style }) => {
   return (
     <div style={{ color: color }} className={styles.priority}>
       {TASK_PRIORITY_ICONS[priority]}
-      <span style={style} className={`${styles.priorityText}`}>
+      <span
+        style={style}
+        className={`${styles.priorityText} ${priority === "normal" ? styles.normalPriority : ""} `}
+      >
         {priority} {withAddition && "priority"}
       </span>
     </div>
