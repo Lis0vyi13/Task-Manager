@@ -209,11 +209,12 @@ export const postTaskActivity = async (req, res) => {
     const type = requestType?.toLowerCase();
 
     const task = await Task.findById(id);
-
+    const date = new Date().toISOString();
     const data = {
       type,
       activity,
       by: userId,
+      date,
     };
 
     task.activities.push(data);
