@@ -26,7 +26,7 @@ const Stats = () => {
         title: "Total task",
         color: "blue",
         type: "all",
-        value: totalTasks,
+        value: totalTasks || 0,
         href: "/tasks",
         Icon: FaListAlt,
         updatedAt:
@@ -38,7 +38,7 @@ const Stats = () => {
         color: "red",
         type: "todo",
         href: "/to-do",
-        value: taskStages?.todo,
+        value: taskStages?.todo || 0,
         Icon: RiTodoFill,
         updatedAt:
           getUpdatedAtTime(allTasks?.find((task) => task?.stage === "todo")) || "No data found",
@@ -49,7 +49,7 @@ const Stats = () => {
         color: "orange",
         type: "in progress",
         href: "/in-progress",
-        value: taskStages["in progress"],
+        value: taskStages["in progress"] || 0,
         Icon: RiProgress5Line,
         updatedAt:
           getUpdatedAtTime(allTasks?.find((task) => task?.stage === "in progress")) ||
@@ -61,7 +61,7 @@ const Stats = () => {
         color: "green",
         type: "completed",
         href: "/completed",
-        value: taskStages?.completed,
+        value: taskStages?.completed || 0,
         Icon: IoCheckmarkDoneCircle,
         updatedAt:
           getUpdatedAtTime(allTasks?.find((task) => task?.stage === "completed")) ||
