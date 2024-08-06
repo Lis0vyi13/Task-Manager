@@ -26,9 +26,9 @@
   gap: 10px;
   width: 100%;
   border-bottom: 1px solid $text-secondary;
-  @include mq(md) {
-    min-width: max(1542px, 100%);
-  }
+  // @include mq(md) {
+  //   min-width: max(1542px, 100%);
+  // }
 }
 
 .th {
@@ -43,5 +43,12 @@
   &:not(:first-of-type) {
     justify-content: center;
     text-align: center;
+  }
+}
+
+.createdAt {
+  display: none;
+  @include mq(xl) {
+    display: block;
   }
 }

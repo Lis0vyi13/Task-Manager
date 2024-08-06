@@ -1,18 +1,22 @@
-import useBreakpoints from "@/hooks/useBreakpoints";
+import { useMediaQuery } from "react-responsive";
 
-import styles from "./Table.module.scss";
 import TableItem from "./TableItem";
 
+import styles from "./Table.module.scss";
+
 const Table = ({ filteredTasks, titles, navigateToTask }) => {
-  const { isDesktop } = useBreakpoints();
+  const forMobile = useMediaQuery({ query: "(max-width:1200px)" });
 
   return (
     <table className={styles.table}>
       <thead className={styles.thead}>
         <tr className={styles.tr}>
-          {isDesktop ? (
+          {!forMobile ? (
             titles.map((title) => (
-              <th key={title} className={`${styles.th}`}>
+              <th
+                key={title}
+                className={`${title === "Created At" ? styles.createdAt : ""} ${styles.th}`}
+              >
                 {title}
               </th>
             ))
@@ -23,11 +27,7 @@ const Table = ({ filteredTasks, titles, navigateToTask }) => {
       </thead>
       <tbody className={styles.tbody}>
         {filteredTasks.map((task) => (
-          <TableItem
-            key={task?._id}
-            task={task}
-            navigateToTask={navigateToTask}
-          />
+          <TableItem key={task?._id} task={task} navigateToTask={navigateToTask} />
         ))}
       </tbody>
     </table>

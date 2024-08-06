@@ -4,7 +4,6 @@ import { toast } from "sonner";
 import useModalHandlers from "@/hooks/useModalHandlers";
 import { useUpdateStageMutation } from "@/redux/features/tasks/TaskSlice";
 
-import LoaderOnLoading from "@/components/LoaderOnLoading";
 import Title from "@/ui/Title";
 import SelectField from "@/ui/Inputs/SelectField";
 import ModalButtons from "@/ui/ModalButtons";
@@ -64,8 +63,6 @@ const StageModal = ({ changedValue, onClose, task }) => {
       onSubmit={handleSubmit(onSubmit)}
       onClose={onCloseHandler}
     >
-      <LoaderOnLoading isLoading={isLoading} />
-
       <section className={`modalWrapper ${styles.modal}`}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Title className={"modalTitle"}>Change task stage</Title>

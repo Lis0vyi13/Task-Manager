@@ -13,8 +13,8 @@
   justify-content: space-between;
   background-color: var(--blockColor);
 
-  @include mq(md) {
-    min-width: max(1542px, 100%);
+  @include mq(mdLg) {
+    // min-width: max(1542px, 100%);
     justify-content: unset;
   }
 
@@ -32,6 +32,7 @@
     min-width: 35%;
     text-align: left;
   }
+
   min-width: 14%;
   text-align: center;
 }
@@ -50,6 +51,7 @@
     justify-content: center;
   }
   &:last-of-type {
+    justify-content: flex-end;
     min-width: auto;
     width: 100%;
     padding-right: 5px;
@@ -93,8 +95,11 @@
 }
 
 .createdAt {
-  display: flex;
-  align-items: center;
+  display: none;
+  @include mq(xl) {
+    display: flex;
+    align-items: center;
+  }
 }
 .daysAgo {
   color: var(--color);

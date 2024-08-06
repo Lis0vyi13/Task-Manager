@@ -9,7 +9,6 @@ import FileInput from "@/ui/Inputs/FileInput";
 import ColorPicker from "@/ui/Inputs/ColorPicker";
 
 import styles from "./EditProfile.module.scss";
-import LoaderOnLoading from "@/components/LoaderOnLoading";
 
 const EditProfile = memo(({ onClose, changedValue }) => {
   const { handleSubmit, onSubmit, handleFileChange, avatarPhoto, isLoading, control } = useProfile({
@@ -19,8 +18,6 @@ const EditProfile = memo(({ onClose, changedValue }) => {
 
   return (
     <Modal onSubmit={handleSubmit(onSubmit)} onClose={onClose} changedValue={changedValue} noCross>
-      <LoaderOnLoading isLoading={isLoading} />
-
       <section className={`modalWrapper ${styles.modal}`}>
         <header className={styles.header}>
           <Title className="modalTitle">Edit user</Title>

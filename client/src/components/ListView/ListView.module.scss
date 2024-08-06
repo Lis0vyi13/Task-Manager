@@ -4,13 +4,13 @@
 
 .listView {
   margin-top: 13px;
-  max-width: max(1542px, 100%);
   border-radius: 10px;
-  overflow-x: visible;
+  overflow-y: visible;
 
-  @include mq(md) {
-    overflow-x: auto;
+  @include mq(mdLg) {
+    overflow-x: clip;
   }
+
   &.notEmpty {
     @include shadow;
     background-color: var(--blockColor);

@@ -4,7 +4,6 @@ import ModalButtons from "@/ui/ModalButtons";
 import Title from "@/ui/Title";
 import SelectField from "@/ui/Inputs/SelectField";
 import InputField from "@/ui/Inputs/InputField";
-import LoaderOnLoading from "@/components/LoaderOnLoading";
 import TextArea from "@/ui/Inputs/TextArea";
 import ImageModal from "../Image";
 import Modal from "../Modal";
@@ -55,8 +54,6 @@ const TaskModal = ({ onClose, className, task, changedValue }) => {
       onClose={onCloseHandler}
       onSubmit={handleSubmit(onSubmit)}
     >
-      <LoaderOnLoading isLoading={isLoading} />
-
       <section className={`modalWrapper ${styles.modal}`}>
         <Title className="modalTitle">{task ? "Update task" : "Add task"}</Title>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>

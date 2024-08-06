@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import useTaskPopup from "@/hooks/useTaskPopup";
-import useBreakpoints from "@/hooks/useBreakpoints";
 import { useMoveTaskToTrashMutation } from "@/redux/features/tasks/TaskSlice";
 import useUser from "@/hooks/useUser";
 import { toast } from "sonner";
@@ -18,6 +17,7 @@ import { FaList } from "react-icons/fa";
 
 import { formatDate } from "@/constants";
 import styles from "./TableItem.module.scss";
+import { useMediaQuery } from "react-responsive";
 
 const TableItem = ({ task, navigateToTask }) => {
   const {
@@ -40,7 +40,7 @@ const TableItem = ({ task, navigateToTask }) => {
     TASK_MORE_OPTIONS,
   } = useTaskPopup({ task });
   const user = useUser();
-  const { isDesktop } = useBreakpoints();
+  const forMobile = useMediaQuery({ query: "(max-width:1200px)" });
   const [moveTaskToTrash] = useMoveTaskToTrashMutation();
   const deleteHandler = async () => {
     try {
@@ -57,7 +57,7 @@ const TableItem = ({ task, navigateToTask }) => {
         <StageCircle stage={task?.stage} />
         <h1 className={styles.title}>{task?.title}</h1>
       </td>
-      {isDesktop ? (
+      {!forMobile ? (
         <>
           <td className={`${styles.priority} ${styles.td}`}>
             <PriorityIndicator withAddition priority={task?.priority} />

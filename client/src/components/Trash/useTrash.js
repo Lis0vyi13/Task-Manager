@@ -12,8 +12,8 @@ const useTrash = ({ tasks, titles }) => {
   const [filteredTask, setFilteredTask] = useState(tasks);
   const [isLoading, setIsLoading] = useState(true);
   const [modalType, setModalType] = useState(null);
-  const [deleteAllTasks] = useDeleteAllTasksMutation();
-  const [restoreAllTasks] = useRestoreAllTasksMutation();
+  const [deleteAllTasks, { isLoading: onDeleteLoading }] = useDeleteAllTasksMutation();
+  const [restoreAllTasks, { isLoading: onRestoreLoading }] = useRestoreAllTasksMutation();
 
   const handleDeleteAllTasks = useCallback(async () => {
     try {
@@ -65,22 +65,16 @@ const useTrash = ({ tasks, titles }) => {
         text: "Are you sure you want to restore all the tasks?",
         type: "restore",
         submitButtonText: "Restore all",
-        handler: () => {
-          handleRestoreAllTasks();
-          closeQuestionModal();
-        },
+        handler: () => handleRestoreAllTasks(),
       },
       deleteAll: {
         text: "Are you sure you want to delete all the tasks?",
         type: "delete",
         submitButtonText: "Delete all",
-        handler: () => {
-          handleDeleteAllTasks();
-          closeQuestionModal();
-        },
+        handler: () => handleDeleteAllTasks(),
       },
     }),
-    [closeQuestionModal, handleDeleteAllTasks, handleRestoreAllTasks],
+    [handleDeleteAllTasks, handleRestoreAllTasks],
   );
 
   return {
@@ -93,6 +87,8 @@ const useTrash = ({ tasks, titles }) => {
     openQuestionModal,
     closeQuestionModal,
     modalData,
+    onDeleteLoading,
+    onRestoreLoading,
   };
 };
 

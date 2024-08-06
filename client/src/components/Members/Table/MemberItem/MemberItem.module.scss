@@ -51,6 +51,9 @@
   &:not(:first-of-type) {
     justify-content: center;
   }
+  &:not(:last-of-type) {
+    word-break: break-all;
+  }
   &:last-of-type {
     min-width: auto;
     width: 100%;

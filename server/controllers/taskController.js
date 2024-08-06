@@ -381,13 +381,14 @@ export const trashTask = async (req, res) => {
 
 export const deleteRestoreTask = async (req, res) => {
   try {
+    const { userId } = req.user;
     const { id } = req.params;
     const { actionType } = req.query;
 
     if (actionType === "delete") {
       await Task.findByIdAndDelete(id);
     } else if (actionType === "deleteAll") {
-      await Task.deleteMany({ isTrashed: true });
+      await Task.deleteMany({ isTrashed: true, team: userId });
     } else if (actionType === "restore") {
       const resp = await Task.findById(id);
 

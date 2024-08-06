@@ -1,6 +1,5 @@
 import Modal from "../Modal";
 import ModalButtons from "@/ui/ModalButtons";
-import LoaderOnLoading from "@/components/LoaderOnLoading";
 
 import { FaQuestion } from "react-icons/fa";
 import styles from "./QuestionModal.module.scss";
@@ -30,8 +29,6 @@ const QuestionModal = ({
 }) => {
   return (
     <Modal changedValue={changedValue} noCross onSubmit={onSubmit} onClose={onClose}>
-      <LoaderOnLoading isLoading={isLoading} />
-
       <section className={`${"modalWrapper"} ${styles.modal}`}>
         <div className={`${styles.circle} ${modalStyles[type]?.circle || ""}`}>
           <FaQuestion className={`${styles.icon} ${modalStyles[type]?.icon || ""}`} />

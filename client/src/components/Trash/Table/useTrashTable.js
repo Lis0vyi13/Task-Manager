@@ -2,8 +2,8 @@ import { useDeleteTaskMutation, useRestoreTaskMutation } from "@/redux/features/
 import { toast } from "sonner";
 
 const useTrashTable = () => {
-  const [deleteTask] = useDeleteTaskMutation();
-  const [restoreTask] = useRestoreTaskMutation();
+  const [deleteTask, { isLoading: onDeleteLoading }] = useDeleteTaskMutation();
+  const [restoreTask, { isLoading: onRestoreLoading }] = useRestoreTaskMutation();
 
   const handleDeleteTask = async (id) => {
     try {
@@ -23,7 +23,7 @@ const useTrashTable = () => {
     }
   };
 
-  return { handleDeleteTask, handleRestoreTask };
+  return { handleDeleteTask, handleRestoreTask, onDeleteLoading, onRestoreLoading };
 };
 
 export default useTrashTable;

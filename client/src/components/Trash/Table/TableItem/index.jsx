@@ -23,7 +23,8 @@ const TableItem = ({ task, navigateToTask }) => {
     setItem: setSelectedTask,
   });
 
-  const { handleDeleteTask, handleRestoreTask } = useTrashTable();
+  const { handleDeleteTask, handleRestoreTask, onDeleteLoading, onRestoreLoading } =
+    useTrashTable();
   const modalData = useMemo(
     () => ({
       restore: {
@@ -126,6 +127,7 @@ const TableItem = ({ task, navigateToTask }) => {
             changedValue={isQuestionModalOpen}
             onClose={closeQuestionModal}
             task={selectedTask}
+            isLoading={onDeleteLoading || onRestoreLoading}
             {...modalData[modalType]}
           />,
           document.body,

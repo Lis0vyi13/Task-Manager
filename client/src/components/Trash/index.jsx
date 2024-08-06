@@ -27,6 +27,8 @@ const Trash = ({ tasks }) => {
     openQuestionModal,
     closeQuestionModal,
     modalData,
+    onDeleteLoading,
+    onRestoreLoading,
   } = useTrash({
     tasks,
     titles,
@@ -78,6 +80,7 @@ const Trash = ({ tasks }) => {
           <QuestionModal
             changedValue={isQuestionModalOpen}
             onClose={closeQuestionModal}
+            isLoading={(onDeleteLoading, onRestoreLoading)}
             {...modalData[modalType]}
           />
         )}

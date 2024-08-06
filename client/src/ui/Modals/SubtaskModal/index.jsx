@@ -6,7 +6,6 @@ import transformToInputDateType from "@/utils/transformToInputDateType";
 import { useAddSubtaskMutation, useUpdateSubtaskMutation } from "@/redux/features/tasks/TaskSlice";
 import { getCurrentDate } from "@/utils/getCurrentDate";
 
-import LoaderOnLoading from "@/components/LoaderOnLoading";
 import Title from "@/ui/Title";
 import InputField from "@/ui/Inputs/InputField";
 import ModalButtons from "@/ui/ModalButtons";
@@ -58,8 +57,6 @@ const SubtaskModal = ({ changedValue, onClose, subtask, _id }) => {
       onSubmit={handleSubmit(onSubmit)}
       onClose={onCloseHandler}
     >
-      <LoaderOnLoading isLoading={loadingOnAdd || loadingOnUpdate} />
-
       <section className={`modalWrapper ${styles.modal}`}>
         <form onSubmit={handleSubmit(onSubmit)}>
           <Title className={"modalTitle"}>{subtask ? "Edit subtask" : "Add subtask"}</Title>

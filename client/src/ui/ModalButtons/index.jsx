@@ -1,4 +1,5 @@
 import Button from "../Button";
+import Loader from "../Loader";
 import styles from "./ModalButtons.module.scss";
 
 const ModalButtons = ({
@@ -26,7 +27,7 @@ const ModalButtons = ({
         disabled={disabled}
         className={`${styles.submitButton} ${submitButtonClassName}`}
       >
-        {submitButtonText}
+        {disabled ? <Loader /> : submitButtonText}
       </Button>
     </div>
   );
