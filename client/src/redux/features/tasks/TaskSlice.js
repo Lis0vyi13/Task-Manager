@@ -6,6 +6,7 @@ import api from "@/redux/api";
 const initialState = {
   tasks: [],
   dashboardStats: {},
+  trashedTasks: [],
 };
 
 const TASKS_URL = "/task";
@@ -167,6 +168,9 @@ const TasksSlice = createSlice({
     },
     setDashboardStats(state, { payload }) {
       state.dashboardStats = payload;
+    },
+    setTrashedTasks(state, { payload }) {
+      state.trashedTasks = payload;
     },
   },
 });

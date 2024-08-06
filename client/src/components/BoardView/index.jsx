@@ -21,8 +21,8 @@ const BoardView = ({ tasks, stage }) => {
     >
       {isLoading ? (
         <Loader />
-      ) : filteredTasks.length > 0 ? (
-        filteredTasks.map((task) => <Task task={task} key={task?._id} />)
+      ) : filteredTasks?.length > 0 ? (
+        filteredTasks?.map((task) => <Task task={task} key={task?._id} />)
       ) : (
         "Tasks not found"
       )}

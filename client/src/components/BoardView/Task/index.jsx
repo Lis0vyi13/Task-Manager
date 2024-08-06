@@ -46,7 +46,7 @@ const Task = ({ task, isLastTask }) => {
       await moveTaskToTrash({ id: task?._id }).unwrap();
       toast.success("Moved to trash successful!");
     } catch (error) {
-      toast.success(error?.data?.message);
+      toast.error(error?.data?.message);
     }
   };
   return (

@@ -10,6 +10,7 @@ import InputField from "@/ui/Inputs/InputField";
 import ModalButtons from "@/ui/ModalButtons";
 
 import styles from "./ChangePassword.module.scss";
+import LoaderOnLoading from "@/components/LoaderOnLoading";
 
 const ChangePassword = ({ onClose, changedValue }) => {
   const { handleSubmit, reset, control } = useForm({
@@ -50,6 +51,7 @@ const ChangePassword = ({ onClose, changedValue }) => {
       changedValue={changedValue}
       noCross
     >
+      <LoaderOnLoading isLoading={isLoading} />
       <section className={`modalWrapper ${styles.modal}`}>
         <Title className={"modalTitle"}>Edit user</Title>
         <form onSubmit={handleSubmit(validatePasswords)}>

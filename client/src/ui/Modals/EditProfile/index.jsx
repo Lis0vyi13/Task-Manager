@@ -1,5 +1,4 @@
 import { memo } from "react";
-import { createPortal } from "react-dom";
 import useProfile from "./useProfile";
 
 import Modal from "../Modal";
@@ -8,9 +7,9 @@ import InputField from "@/ui/Inputs/InputField";
 import ModalButtons from "@/ui/ModalButtons";
 import FileInput from "@/ui/Inputs/FileInput";
 import ColorPicker from "@/ui/Inputs/ColorPicker";
-import Loader from "@/ui/Loader";
 
 import styles from "./EditProfile.module.scss";
+import LoaderOnLoading from "@/components/LoaderOnLoading";
 
 const EditProfile = memo(({ onClose, changedValue }) => {
   const { handleSubmit, onSubmit, handleFileChange, avatarPhoto, isLoading, control } = useProfile({
@@ -20,13 +19,8 @@ const EditProfile = memo(({ onClose, changedValue }) => {
 
   return (
     <Modal onSubmit={handleSubmit(onSubmit)} onClose={onClose} changedValue={changedValue} noCross>
-      {isLoading &&
-        createPortal(
-          <div className={styles.loader}>
-            <Loader />
-          </div>,
-          document.body,
-        )}
+      <LoaderOnLoading isLoading={isLoading} />
+
       <section className={`modalWrapper ${styles.modal}`}>
         <header className={styles.header}>
           <Title className="modalTitle">Edit user</Title>

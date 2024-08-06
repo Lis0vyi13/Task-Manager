@@ -2,7 +2,11 @@ import { useEffect, useRef } from "react";
 import { useSelector } from "react-redux";
 import useActions from "@/hooks/useActions";
 import useAuth from "@/hooks/useAuth";
-import { useGetDashboardStatsQuery, useGetTasksQuery } from "@/redux/features/tasks/TaskSlice";
+import {
+  useGetDashboardStatsQuery,
+  useGetTasksQuery,
+  useGetTrashedTasksQuery,
+} from "@/redux/features/tasks/TaskSlice";
 import { useGetUserQuery, useGetUsersQuery } from "@/redux/features/user/UserSlice";
 
 const useLayout = () => {
@@ -13,6 +17,8 @@ const useLayout = () => {
   const { data: users } = useGetUsersQuery();
   const { data: userData } = useGetUserQuery();
   const { data: dashboardStats } = useGetDashboardStatsQuery();
+  const { data: trashedTasks } = useGetTrashedTasksQuery();
+
   const sidebarRef = useRef();
   const {
     closeMobileSidebar,
@@ -21,6 +27,7 @@ const useLayout = () => {
     setUsers,
     setUser,
     setDashboardStats,
+    setTrashedTasks,
   } = useActions();
   useEffect(() => {
     if (theme === "dark") {
@@ -31,18 +38,21 @@ const useLayout = () => {
 
   useEffect(() => {
     if (userData?.user) {
-      setUser(userData.user);
+      setUser(userData?.user);
     }
     setTasks(tasks);
     setUsers(users);
     setDashboardStats(dashboardStats);
+    setTrashedTasks(trashedTasks);
   }, [
     dashboardStats,
     setDashboardStats,
     setTasks,
+    setTrashedTasks,
     setUser,
     setUsers,
     tasks,
+    trashedTasks,
     userData?.user,
     users,
   ]);

@@ -39,9 +39,9 @@ const Members = () => {
         initial="hidden"
         animate="visible"
         variants={fadeSlideUpVariants}
-        className={`${styles.listView} ${users.length > 0 ? styles.notEmpty : ""}`}
+        className={`${styles.listView} ${users?.length > 0 ? styles.notEmpty : ""}`}
       >
-        {users.length > 0 ? <Table {...tableData} /> : "No users found"}
+        {users?.length > 0 ? <Table {...tableData} /> : "No users found"}
       </motion.section>
     </section>
   );

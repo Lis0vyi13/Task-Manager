@@ -4,7 +4,7 @@ import ModalButtons from "@/ui/ModalButtons";
 import Title from "@/ui/Title";
 import SelectField from "@/ui/Inputs/SelectField";
 import InputField from "@/ui/Inputs/InputField";
-import Loader from "@/ui/Loader";
+import LoaderOnLoading from "@/components/LoaderOnLoading";
 import TextArea from "@/ui/Inputs/TextArea";
 import ImageModal from "../Image";
 import Modal from "../Modal";
@@ -12,7 +12,6 @@ import Modal from "../Modal";
 import { FaImages } from "react-icons/fa";
 
 import styles from "./TaskModal.module.scss";
-import { createPortal } from "react-dom";
 
 const stages = [
   { value: "todo", label: "TODO" },
@@ -56,13 +55,8 @@ const TaskModal = ({ onClose, className, task, changedValue }) => {
       onClose={onCloseHandler}
       onSubmit={handleSubmit(onSubmit)}
     >
-      {isLoading &&
-        createPortal(
-          <div className={styles.loader}>
-            <Loader />
-          </div>,
-          document.body,
-        )}
+      <LoaderOnLoading isLoading={isLoading} />
+
       <section className={`modalWrapper ${styles.modal}`}>
         <Title className="modalTitle">{task ? "Update task" : "Add task"}</Title>
         <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>

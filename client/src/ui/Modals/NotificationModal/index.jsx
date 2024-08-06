@@ -13,8 +13,8 @@ const NotificationModal = ({ options }) => {
   const onSubmit = async () => {
     try {
       await markNotification({ id: notification?._id }).unwrap();
-      toast.success("Marked as Read");
       handleClose();
+      toast.success("Marked as Read");
     } catch (error) {
       toast.error(error.data.message);
     }

@@ -4,6 +4,7 @@ import useModalHandlers from "@/hooks/useModalHandlers";
 import { useUpdateProfileMutation } from "@/redux/features/user/UserSlice";
 import { toast } from "sonner";
 
+import LoaderOnLoading from "@/components/LoaderOnLoading";
 import Title from "@/ui/Title";
 import InputField from "@/ui/Inputs/InputField";
 import SelectField from "@/ui/Inputs/SelectField";
@@ -20,7 +21,7 @@ const EditUser = memo(({ user, onClose, changedValue }) => {
     onClose,
     reset,
   });
-  const [updateUser] = useUpdateProfileMutation();
+  const [updateUser, { isLoading }] = useUpdateProfileMutation();
 
   const onSubmit = useCallback(
     async (data) => {
@@ -37,6 +38,8 @@ const EditUser = memo(({ user, onClose, changedValue }) => {
   );
   return (
     <Modal onSubmit={handleSubmit(onSubmit)} onClose={onClose} changedValue={changedValue} noCross>
+      <LoaderOnLoading isLoading={isLoading} />
+
       <section className={`modalWrapper ${styles.modal}`}>
         <Title className={"modalTitle"}>Edit user</Title>
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -92,7 +95,7 @@ const EditUser = memo(({ user, onClose, changedValue }) => {
             options={isAdminOptions}
           />
 
-          <ModalButtons submitButtonText="Save" onClose={onClose} />
+          <ModalButtons disabled={isLoading} submitButtonText="Save" onClose={onClose} />
         </form>
       </section>
     </Modal>

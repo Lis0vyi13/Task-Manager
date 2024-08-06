@@ -1,4 +1,4 @@
-import { useCallback, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import useSearch from "@/hooks/useSearch";
 import useTaskDetailHandler from "@/hooks/useTaskDetailHandler";
 import useModal from "@/hooks/useModal";
@@ -9,6 +9,7 @@ import {
 } from "@/redux/features/tasks/TaskSlice";
 
 const useTrash = ({ tasks, titles }) => {
+  const [filteredTask, setFilteredTask] = useState(tasks);
   const [isLoading, setIsLoading] = useState(true);
   const [modalType, setModalType] = useState(null);
   const [deleteAllTasks] = useDeleteAllTasksMutation();
@@ -35,17 +36,20 @@ const useTrash = ({ tasks, titles }) => {
   const [isQuestionModalOpen, openQuestionModal, closeQuestionModal] = useModal({
     setItem: () => {},
   });
+
   const query = useSearch();
-  const filteredTask = useMemo(() => {
-    setIsLoading(true);
 
-    const queryTasks = query
-      ? tasks.filter((task) => task?.title?.toLowerCase().includes(query.toLowerCase()))
-      : tasks;
+  useEffect(() => {
+    const filterTasks = () => {
+      setIsLoading(true);
+      const queryTasks = query
+        ? tasks.filter((task) => task?.title?.toLowerCase().includes(query.toLowerCase()))
+        : tasks;
+      setFilteredTask(queryTasks);
+      setIsLoading(false);
+    };
 
-    setIsLoading(false);
-
-    return queryTasks;
+    filterTasks();
   }, [query, tasks]);
 
   const navigate = useTaskDetailHandler();
@@ -54,6 +58,7 @@ const useTrash = ({ tasks, titles }) => {
     () => ({ titles, navigate, filteredTask }),
     [titles, navigate, filteredTask],
   );
+
   const modalData = useMemo(
     () => ({
       restoreAll: {
@@ -77,6 +82,7 @@ const useTrash = ({ tasks, titles }) => {
     }),
     [closeQuestionModal, handleDeleteAllTasks, handleRestoreAllTasks],
   );
+
   return {
     filteredTask,
     isLoading,
