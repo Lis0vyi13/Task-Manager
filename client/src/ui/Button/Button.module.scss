@@ -15,7 +15,6 @@
     background-color: $primary-main-hover;
   }
   &:disabled {
-    pointer-events: none;
     cursor: not-allowed;
     background-color: gray;
   }

@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useRef } from "react";
 import useUser from "@/hooks/useUser";
+import { isTeamMember } from "@/utils/isTeamMember";
 import useSubtask from "./useSubtask";
 
 import More from "@/components/More";
@@ -11,7 +12,7 @@ import SubtaskModal from "@/ui/Modals/SubtaskModal";
 import { MdTaskAlt } from "react-icons/md";
 import styles from "./Subtask.module.scss";
 
-const Subtask = ({ task, _id: subtaskId, title, date, tag, done, isLastChild }) => {
+const Subtask = ({ task, _id: subtaskId, createdBy, title, date, tag, done, isLastChild }) => {
   const {
     doneHandler,
     isOpened,
@@ -26,6 +27,8 @@ const Subtask = ({ task, _id: subtaskId, title, date, tag, done, isLastChild }) 
   } = useSubtask({ task, subtaskId });
   const markButtonRef = useRef(null);
   const user = useUser();
+  const isMember = isTeamMember(task, user);
+  const isSubtaskCreator = createdBy === user?._id;
 
   useEffect(() => {
     const markButton = markButtonRef.current;
@@ -74,7 +77,7 @@ const Subtask = ({ task, _id: subtaskId, title, date, tag, done, isLastChild }) 
               {OPTIONS.map((block, blockIndex) =>
                 block.map((item, i) => (
                   <PopupItem
-                    disabled={!user?.isAdmin && item.permission}
+                    disabled={!user?.isAdmin && !isSubtaskCreator}
                     key={item.title}
                     className={
                       i + 1 === block.length && blockIndex + 1 !== OPTIONS.length ? `divider` : ""
@@ -82,7 +85,7 @@ const Subtask = ({ task, _id: subtaskId, title, date, tag, done, isLastChild }) 
                     icon={item.icon}
                     title={item.title}
                     handleClose={handleClose}
-                    onClick={user?.isAdmin || !item.permission ? item.onClick : undefined}
+                    onClick={user?.isAdmin && isSubtaskCreator ? item.onClick : undefined}
                   />
                 )),
               )}
@@ -91,9 +94,23 @@ const Subtask = ({ task, _id: subtaskId, title, date, tag, done, isLastChild }) 
         </main>
         <footer className={styles.footer}>
           <button
+            disabled={!user?.isAdmin && !isMember && !isSubtaskCreator}
             ref={markButtonRef}
+            title={
+              !user?.isAdmin && !isMember && !isSubtaskCreator
+                ? "You need to be admin or member of task"
+                : done
+                ? "Mark as Undone"
+                : "Mark as Done"
+            }
             onClick={doneHandler}
-            className={`${done ? styles.undone : styles.done} ${styles.button}`}
+            className={`${
+              !user?.isAdmin && !isMember && !isSubtaskCreator
+                ? ""
+                : done
+                ? styles.undone
+                : styles.done
+            } ${styles.button}`}
           >
             {done ? "Mark as Undone" : "Mark as Done"}
           </button>
@@ -112,7 +129,7 @@ const Subtask = ({ task, _id: subtaskId, title, date, tag, done, isLastChild }) 
             changedValue={isDeleteModalOpen}
             onClose={closeDeleteModal}
             type={"delete"}
-            text={"Are you sure to delete current subtask?"}
+            text={"Are you sure you want to delete current subtask?"}
           />
         )}
       </div>

@@ -6,6 +6,7 @@
   gap: 30px;
   flex-direction: column;
   background-color: var(--blockColor);
+  position: relative;
   @include mq(mdXl) {
     flex-direction: row;
   }
@@ -18,4 +19,11 @@
     flex: unset;
     width: 50%;
   }
+}
+
+.more {
+  position: absolute;
+  right: 10px;
+  top: 0;
+  z-index: 1;
 }

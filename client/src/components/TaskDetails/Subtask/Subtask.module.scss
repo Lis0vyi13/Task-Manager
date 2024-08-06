@@ -94,6 +94,9 @@
   border-radius: 10px;
   transition: all 0.3s ease;
   position: relative;
+  &:disabled {
+    cursor: not-allowed;
+  }
 }
 .pulse {
   -webkit-animation: pulse 0.5s ease;

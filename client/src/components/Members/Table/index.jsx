@@ -25,7 +25,7 @@ const Table = ({ users, titles }) => {
       <tbody className={styles.tbody}>
         {users?.map((user, i) => (
           <MemberItem
-            isCreator={i === 0}
+            isMainAdmin={i === 0}
             isLastUser={i + 1 === users?.length}
             key={user._id}
             user={user}

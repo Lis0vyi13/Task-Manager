@@ -1,20 +1,13 @@
 import styles from "./Button.module.scss";
 
-const Button = ({
-  tabIndex,
-  disabled,
-  style,
-  type,
-  className,
-  onClick,
-  children,
-}) => {
+const Button = ({ tabIndex, disabled, style, type, className, title, onClick, children }) => {
   return (
     <button
       disabled={disabled}
       onClick={onClick}
       style={style}
       type={type}
+      title={title}
       tabIndex={tabIndex}
       className={`${styles.button} ${className || ""}`}
     >

@@ -3,13 +3,15 @@ import { useParams } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { usePostCommentMutation } from "@/redux/features/tasks/TaskSlice";
+import useUser from "@/hooks/useUser";
 
 import Button from "@/ui/Button";
 
 import { ACT_TYPES } from "@/constants";
 import styles from "./Form.module.scss";
+import { isTeamMember } from "@/utils/isTeamMember";
 
-const Form = () => {
+const Form = ({ task }) => {
   const {
     register,
     handleSubmit,
@@ -18,6 +20,8 @@ const Form = () => {
   } = useForm();
 
   const { id } = useParams();
+  const user = useUser();
+  const isMember = isTeamMember(task, user);
   const [postComment] = usePostCommentMutation();
 
   const onSubmitHandler = useCallback(
@@ -32,7 +36,6 @@ const Form = () => {
     },
     [id, postComment, reset],
   );
-
   return (
     <form onSubmit={handleSubmit(onSubmitHandler)} className={styles.addActivityForm}>
       <div className={styles.selectBlock}>
@@ -58,9 +61,16 @@ const Form = () => {
         />
         {errors.activity && <p className={styles.errorText}>Please enter an activity.</p>}
       </div>
-      <Button className={styles.submitButton} type="submit">
-        Leave a comment
-      </Button>
+      <div>
+        <Button
+          disabled={!user?.isAdmin && !isMember}
+          title={!user?.isAdmin && !isMember ? "You need to be admin or member of task" : undefined}
+          className={styles.submitButton}
+          type="submit"
+        >
+          Leave a comment
+        </Button>
+      </div>
     </form>
   );
 };

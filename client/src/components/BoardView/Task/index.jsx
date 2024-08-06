@@ -26,7 +26,6 @@ const Task = ({ task, isLastTask }) => {
     handleClose,
     TASK_MORE_OPTIONS,
     navigate,
-    user,
     isEditModalOpen,
     closeEditModal,
     isAddSubtaskModalOpen,
@@ -66,7 +65,7 @@ const Task = ({ task, isLastTask }) => {
                   {TASK_MORE_OPTIONS.map((block, blockIndex) =>
                     block.map((item, i) => (
                       <PopupItem
-                        disabled={!user?.isAdmin && item.permission}
+                        disabled={item.permission}
                         key={item.title}
                         className={
                           i + 1 === block.length && blockIndex + 1 !== TASK_MORE_OPTIONS.length
@@ -76,7 +75,7 @@ const Task = ({ task, isLastTask }) => {
                         icon={item.icon}
                         title={item.title}
                         handleClose={handleClose}
-                        onClick={user?.isAdmin || !item.permission ? item.onClick : undefined}
+                        onClick={!item.permission ? item.onClick : undefined}
                       />
                     )),
                   )}

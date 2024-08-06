@@ -1,6 +1,8 @@
 import { useMemo } from "react";
 import getProgressColor from "@/utils/getProgressColor";
 
+import useModal from "@/hooks/useModal";
+
 const useTaskDetailsLeft = ({ task }) => {
   const memoizedTask = useMemo(() => task, [task]);
 
@@ -14,7 +16,18 @@ const useTaskDetailsLeft = ({ task }) => {
 
   const progressColor = useMemo(() => getProgressColor(subtasksProgress), [subtasksProgress]);
 
-  return { progressColor, subtasksProgress, subTasks };
+  const [isAddSubtaskModalOpen, openAddSubtaskModal, closeAddSubtaskModal] = useModal({
+    setItem: () => {},
+  });
+
+  return {
+    progressColor,
+    subtasksProgress,
+    subTasks,
+    openAddSubtaskModal,
+    isAddSubtaskModalOpen,
+    closeAddSubtaskModal,
+  };
 };
 
 export default useTaskDetailsLeft;

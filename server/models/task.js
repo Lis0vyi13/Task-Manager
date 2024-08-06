@@ -3,6 +3,7 @@ import mongoose, { Schema } from "mongoose";
 const taskSchema = new Schema(
   {
     title: { type: String, required: true },
+    createdBy: { type: Schema.Types.ObjectId },
     date: { type: Date, default: new Date(), required: true },
     priority: {
       type: String,
@@ -31,6 +32,7 @@ const taskSchema = new Schema(
         title: String,
         date: Date,
         tag: String,
+        createdBy: { type: Schema.Types.ObjectId },
         done: Boolean,
       },
     ],

@@ -2,12 +2,14 @@ import Title from "@/ui/Title";
 import ImageModal from "@/ui/Modals/Image";
 import Loader from "@/ui/Loader";
 
-import useTaskDetails from "./useTaskDetails";
+import useTaskDetailsRight from "./useTaskDetailsRight";
 
 import styles from "./TaskDetailsRight.module.scss";
 
 const TaskDetailsRight = ({ task }) => {
-  const { selectedImage, loading, handleImageClick, handleCloseModal } = useTaskDetails({ task });
+  const { selectedImage, loading, handleImageClick, handleCloseModal } = useTaskDetailsRight({
+    task,
+  });
   const isAssets = task?.assets?.length > 0;
   const isLinks = task?.links?.length > 0;
 

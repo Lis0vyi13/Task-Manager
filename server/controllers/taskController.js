@@ -122,12 +122,13 @@ export const getTask = async (req, res) => {
 
 export const getTrashedTasks = async (req, res) => {
   try {
-    const { userId } = req.user;
+    const { userId, isAdmin } = req.user;
 
-    let query = {
-      isTrashed: true,
-      team: userId,
-    };
+    let query = { isTrashed: true };
+
+    if (!isAdmin) {
+      query.team = userId;
+    }
 
     let tasks = await Task.find(query)
       .populate({
@@ -181,6 +182,7 @@ export const createTask = async (req, res) => {
       activities: [activity],
       description,
       links,
+      createdBy: userId,
     });
 
     await Notice.create({
@@ -227,12 +229,14 @@ export const postTaskActivity = async (req, res) => {
 
 export const createSubTask = async (req, res) => {
   try {
+    const { userId } = req.user;
     const { title, tag, date, _id } = req.body;
 
     const newSubTask = {
       title,
       date,
       tag,
+      createdBy: userId,
       done: false,
     };
 
@@ -381,21 +385,27 @@ export const trashTask = async (req, res) => {
 
 export const deleteRestoreTask = async (req, res) => {
   try {
-    const { userId } = req.user;
+    const { userId, isAdmin } = req.user;
     const { id } = req.params;
     const { actionType } = req.query;
+
+    const query = { isTrashed: true };
+
+    if (!isAdmin) {
+      query.team = userId;
+    }
 
     if (actionType === "delete") {
       await Task.findByIdAndDelete(id);
     } else if (actionType === "deleteAll") {
-      await Task.deleteMany({ isTrashed: true, team: userId });
+      await Task.deleteMany(query);
     } else if (actionType === "restore") {
       const resp = await Task.findById(id);
 
       resp.isTrashed = false;
       resp.save();
     } else if (actionType === "restoreAll") {
-      await Task.updateMany({ isTrashed: true }, { $set: { isTrashed: false } });
+      await Task.updateMany(query, { $set: { isTrashed: false } });
     }
 
     res.status(200).json({

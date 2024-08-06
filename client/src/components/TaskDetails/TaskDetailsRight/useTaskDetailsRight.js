@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react";
 
-const useTaskDetails = ({ task }) => {
+const useTaskDetailsRight = ({ task }) => {
   const [selectedImage, setSelectedImage] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -34,4 +34,4 @@ const useTaskDetails = ({ task }) => {
   return { selectedImage, loading, handleImageClick, handleCloseModal };
 };
 
-export default useTaskDetails;
+export default useTaskDetailsRight;

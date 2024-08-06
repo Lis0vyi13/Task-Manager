@@ -107,7 +107,6 @@ const useTaskModal = ({ task, onClose }) => {
       setFilePreviews((prevFiles) => [...prevFiles, ...newPreviews]);
 
       const allAssets = [...existingUrls, ...newFiles];
-      console.log(allAssets);
       setValue("assets", allAssets);
     },
     [getValues, setValue],

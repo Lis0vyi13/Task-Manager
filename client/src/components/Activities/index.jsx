@@ -21,7 +21,7 @@ const Activities = ({ task }) => {
 
       <article className={styles.right}>
         <Title className={styles.title}>Add activity</Title>
-        <Form />
+        <Form task={task} />
       </article>
     </section>
   );

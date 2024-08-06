@@ -2,7 +2,7 @@ import { memo, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 
 import useTaskDetailsLeft from "./useTaskDetailsLeft";
-import useModal from "@/hooks/useModal";
+import useUser from "@/hooks/useUser";
 
 import Title from "@/ui/Title";
 import SubtaskModal from "@/ui/Modals/SubtaskModal";
@@ -15,14 +15,21 @@ import styles from "./TaskDetailsLeft.module.scss";
 import { IoMdAdd } from "react-icons/io";
 
 const TaskDetailsLeft = memo(({ task }) => {
-  const { progressColor, subtasksProgress, subTasks } = useTaskDetailsLeft({
+  const {
+    progressColor,
+    subtasksProgress,
+    subTasks,
+    openAddSubtaskModal,
+    isAddSubtaskModalOpen,
+    closeAddSubtaskModal,
+  } = useTaskDetailsLeft({
     task,
   });
-  const [isAddSubtaskModalOpen, openAddSubtaskModal, closeAddSubtaskModal] = useModal({
-    setItem: () => {},
-  });
+
   const location = useLocation();
   const navigate = useNavigate();
+  const user = useUser();
+  const isTaskCreator = task?.createdBy === user?._id;
 
   useEffect(() => {
     const locationState = location.state?.state;
@@ -80,13 +87,16 @@ const TaskDetailsLeft = memo(({ task }) => {
               </span>
             </div>
           </div>
-          <div>
+          <button disabled={!user?.isAdmin && !isTaskCreator} onClick={() => openAddSubtaskModal()}>
             <IoMdAdd
-              title="Add subtask"
+              title={
+                !user?.isAdmin && !isTaskCreator
+                  ? "You need be admin or creator of task"
+                  : "Add subtask"
+              }
               className={styles.addSubtaskButton}
-              onClick={() => openAddSubtaskModal()}
             />
-          </div>
+          </button>
         </div>
         <div className={styles.subtasks}>
           {subTasks.map((subtask, i) => (

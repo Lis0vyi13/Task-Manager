@@ -33,7 +33,6 @@ const useSubtask = ({ task, subtaskId }) => {
         {
           icon: { Icon: MdEdit, color: "#000" },
           title: "Edit",
-          permission: false,
           onClick: openEditModal,
         },
       ],
@@ -41,7 +40,6 @@ const useSubtask = ({ task, subtaskId }) => {
         {
           icon: { Icon: MdDelete, color: "red" },
           title: "Delete",
-          permission: false,
           onClick: openDeleteModal,
         },
       ],

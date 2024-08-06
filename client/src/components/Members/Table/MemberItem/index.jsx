@@ -16,7 +16,7 @@ import { formatDate } from "@/constants";
 import styles from "./MemberItem.module.scss";
 import { toast } from "sonner";
 
-const MemberItem = ({ user, isCreator, isLastUser }) => {
+const MemberItem = ({ user, isMainAdmin, isLastUser }) => {
   const {
     isEditModalOpen,
     closeEditModal,
@@ -49,7 +49,7 @@ const MemberItem = ({ user, isCreator, isLastUser }) => {
         {
           icon: { Icon: MdEdit, color: "#000" },
           title: "Edit",
-          permission: false,
+          permission: isMainAdmin || (!currentUser?.isAdmin && user?._id !== currentUser?._id),
           onClick: openEditModal,
         },
       ],
@@ -57,12 +57,19 @@ const MemberItem = ({ user, isCreator, isLastUser }) => {
         {
           icon: { Icon: MdDelete, color: "red" },
           title: "Delete",
-          permission: false,
+          permission: isMainAdmin || !currentUser?.isAdmin,
           onClick: openQuestionModal,
         },
       ],
     ],
-    [openEditModal, openQuestionModal],
+    [
+      currentUser?._id,
+      currentUser?.isAdmin,
+      isMainAdmin,
+      openEditModal,
+      openQuestionModal,
+      user?._id,
+    ],
   );
 
   return (
@@ -107,7 +114,7 @@ const MemberItem = ({ user, isCreator, isLastUser }) => {
           <td className={`${styles.actions} ${styles.td} `}>
             <button
               title={!currentUser?.isAdmin ? "Administrator rights are needed" : null}
-              disabled={isCreator || !currentUser?.isAdmin}
+              disabled={isMainAdmin || (!currentUser?.isAdmin && user?._id !== currentUser?._id)}
               onClick={() => openEditModal(user)}
               className={styles.editBtn}
             >
@@ -115,7 +122,7 @@ const MemberItem = ({ user, isCreator, isLastUser }) => {
             </button>
             <button
               title={!currentUser?.isAdmin ? "Administrator rights are needed" : null}
-              disabled={isCreator || !currentUser?.isAdmin}
+              disabled={isMainAdmin || (!currentUser?.isAdmin && user?._id !== currentUser?._id)}
               onClick={() => openQuestionModal(user)}
               className={styles.deleteBtn}
             >
@@ -131,13 +138,17 @@ const MemberItem = ({ user, isCreator, isLastUser }) => {
               {OPTIONS.map((block) =>
                 block.map((item, i) => (
                   <PopupItem
-                    disabled={isCreator || !currentUser?.isAdmin}
+                    disabled={item.permission}
                     key={item.title}
                     className={i + 1 === block.length ? "divider" : ""}
                     icon={item.icon}
                     title={item.title}
                     handleClose={handleClose}
-                    onClick={currentUser?.isAdmin ? item.onClick : undefined}
+                    onClick={
+                      currentUser?.isAdmin || user?._id === currentUser?._id
+                        ? item.onClick
+                        : undefined
+                    }
                   />
                 )),
               )}

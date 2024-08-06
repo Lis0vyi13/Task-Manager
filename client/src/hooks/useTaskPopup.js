@@ -1,10 +1,12 @@
 import useAnimatedToggle from "./useAnimatedToggle";
+import useUser from "./useUser";
 import useModal from "./useModal";
 import useTaskDetailHandler from "./useTaskDetailHandler";
 
 import { FaExchangeAlt, FaFolderOpen } from "react-icons/fa";
 import { MdDelete, MdEdit } from "react-icons/md";
 import { IoMdAdd } from "react-icons/io";
+import { isTeamMember } from "@/utils/isTeamMember";
 
 const useTaskPopup = ({ task, setItemHandler = () => {} }) => {
   const { isOpened, isClosing, handleToggle, handleClose } = useAnimatedToggle();
@@ -24,6 +26,9 @@ const useTaskPopup = ({ task, setItemHandler = () => {} }) => {
   });
 
   const navigate = useTaskDetailHandler();
+  const user = useUser();
+  const isCreator = task?.createdBy === user?._id;
+  const isMember = isTeamMember(task, user);
 
   const TASK_MORE_OPTIONS = [
     [
@@ -36,19 +41,19 @@ const useTaskPopup = ({ task, setItemHandler = () => {} }) => {
       {
         icon: { Icon: MdEdit, color: "" },
         title: "Edit",
-        permission: false,
+        permission: !user?.isAdmin && !isCreator,
         onClick: openEditModal,
       },
       {
         icon: { Icon: IoMdAdd, color: "" },
         title: "Add sub task",
-        permission: false,
+        permission: !user?.isAdmin && !isCreator,
         onClick: openAddSubtaskModal,
       },
       {
         icon: { Icon: FaExchangeAlt, color: "" },
         title: "Change stage",
-        permission: false,
+        permission: !user?.isAdmin && !isCreator && !isMember,
         onClick: openStageModal,
       },
     ],
@@ -56,7 +61,7 @@ const useTaskPopup = ({ task, setItemHandler = () => {} }) => {
       {
         icon: { Icon: MdDelete, color: "red" },
         title: "Delete",
-        permission: true,
+        permission: !user?.isAdmin && !isCreator,
         onClick: openQuestionModal,
       },
     ],
