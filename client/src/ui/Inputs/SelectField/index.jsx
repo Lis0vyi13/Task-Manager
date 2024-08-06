@@ -9,6 +9,7 @@ const SelectField = ({
   control,
   label,
   rules,
+  disabled,
   options,
   isMulti = false,
   placeholder,
@@ -32,9 +33,10 @@ const SelectField = ({
             {...field}
             isMulti={isMulti}
             options={options}
+            isDisabled={disabled}
             placeholder={placeholder}
             styles={customStyles}
-            className={` ${error ? styles.inputError : ""}`}
+            className={`${disabled ? styles.disabled : ""} ${error ? styles.inputError : ""}`}
           />
         )}
       />

@@ -1,4 +1,5 @@
 import { memo, useCallback } from "react";
+import useUser from "@/hooks/useUser";
 import useEditUser from "./useEditUser";
 import useModalHandlers from "@/hooks/useModalHandlers";
 import { useUpdateProfileMutation } from "@/redux/features/user/UserSlice";
@@ -21,7 +22,7 @@ const EditUser = memo(({ user, onClose, changedValue }) => {
     reset,
   });
   const [updateUser, { isLoading }] = useUpdateProfileMutation();
-
+  const currentUser = useUser();
   const onSubmit = useCallback(
     async (data) => {
       const userData = { ...data, _id: user?._id };
@@ -78,6 +79,7 @@ const EditUser = memo(({ user, onClose, changedValue }) => {
           />
           <SelectField
             name="isActive"
+            disabled={!currentUser?.isAdmin}
             control={control}
             label={"Status"}
             rules={{ required: "User status is required" }}
@@ -86,6 +88,7 @@ const EditUser = memo(({ user, onClose, changedValue }) => {
           />
           <SelectField
             name="isAdmin"
+            disabled={!currentUser?.isAdmin}
             control={control}
             label={"Admin"}
             rules={{ required: "Is admin is required" }}

@@ -122,7 +122,7 @@ const MemberItem = ({ user, isMainAdmin, isLastUser }) => {
             </button>
             <button
               title={!currentUser?.isAdmin ? "Administrator rights are needed" : null}
-              disabled={isMainAdmin || (!currentUser?.isAdmin && user?._id !== currentUser?._id)}
+              disabled={isMainAdmin || !currentUser?.isAdmin}
               onClick={() => openQuestionModal(user)}
               className={styles.deleteBtn}
             >
