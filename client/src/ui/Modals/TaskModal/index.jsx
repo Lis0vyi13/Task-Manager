@@ -120,7 +120,7 @@ const TaskModal = ({ onClose, className, task, changedValue }) => {
                 type="file"
                 className={styles.inputFile}
                 id="assets"
-                {...register("assetsFiles")}
+                {...register("assets")}
                 multiple
                 onChange={(e) => handleFileChange(e)}
               />

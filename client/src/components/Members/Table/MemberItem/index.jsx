@@ -16,7 +16,7 @@ import { formatDate } from "@/constants";
 import styles from "./MemberItem.module.scss";
 import { toast } from "sonner";
 
-const MemberItem = ({ user, isLastUser }) => {
+const MemberItem = ({ user, isCreator, isLastUser }) => {
   const {
     isEditModalOpen,
     closeEditModal,
@@ -107,7 +107,7 @@ const MemberItem = ({ user, isLastUser }) => {
           <td className={`${styles.actions} ${styles.td} `}>
             <button
               title={!currentUser?.isAdmin ? "Administrator rights are needed" : null}
-              disabled={!currentUser?.isAdmin}
+              disabled={isCreator || !currentUser?.isAdmin}
               onClick={() => openEditModal(user)}
               className={styles.editBtn}
             >
@@ -115,7 +115,7 @@ const MemberItem = ({ user, isLastUser }) => {
             </button>
             <button
               title={!currentUser?.isAdmin ? "Administrator rights are needed" : null}
-              disabled={!currentUser?.isAdmin}
+              disabled={isCreator || !currentUser?.isAdmin}
               onClick={() => openQuestionModal(user)}
               className={styles.deleteBtn}
             >
@@ -131,7 +131,7 @@ const MemberItem = ({ user, isLastUser }) => {
               {OPTIONS.map((block) =>
                 block.map((item, i) => (
                   <PopupItem
-                    disabled={!currentUser?.isAdmin}
+                    disabled={isCreator || !currentUser?.isAdmin}
                     key={item.title}
                     className={i + 1 === block.length ? "divider" : ""}
                     icon={item.icon}

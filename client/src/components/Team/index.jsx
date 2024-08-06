@@ -15,10 +15,10 @@ const Team = ({
   withInfo = true,
 }) => {
   const { avatarRefs, userInfoRefs } = useTeam({ team });
-
+  const modifiedTeam = team?.length > 2 ? team?.slice(0, 2) : team;
   return (
-    <div className={`${styles.team} ${className}`}>
-      {team?.map((dev, i) => {
+    <div className={`${styles.team} ${className} ${team?.length > 2 ? styles.offset : ""}`}>
+      {modifiedTeam?.map((dev, i) => {
         const color = isColorLight(dev?.avatarColor) ? "#000" : "#fff";
         return (
           <div
@@ -52,6 +52,7 @@ const Team = ({
           </div>
         );
       })}
+      {team?.length > 2 && <span className={styles.restTeamNumber}>+{team?.length - 2}</span>}
     </div>
   );
 };

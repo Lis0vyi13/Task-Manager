@@ -9,6 +9,7 @@ $breakpoints: (
   lg: 1300px,
   lgXl: 1405px,
   xl: 1686px,
+  xxl: 1800px,
 );
 
 @function breakpoint($name) {

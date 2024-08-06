@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 
 const useView = ({ stage }) => {
   const [isLoading, setisLoading] = useState(true);
-  const { tasks } = useSelector((store) => store.tasks.tasks);
+  const tasks = useSelector((store) => store?.tasks?.tasks?.tasks);
   const query = useSearch();
 
   const filteredTasks = useMemo(() => {

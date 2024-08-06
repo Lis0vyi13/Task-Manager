@@ -95,14 +95,19 @@ const useTaskModal = ({ task, onClose }) => {
     async (e) => {
       const files = Array.from(e.target.files);
       const existingFiles = getValues("assets") || [];
-      const newFiles = files.filter((file) => file instanceof File);
-      const existingUrls = existingFiles.filter((item) => typeof item === "string");
 
+      const existingUrls = existingFiles.map((item) =>
+        typeof item === "string" ? item : URL.createObjectURL(item),
+      );
+
+      const newFiles = files.filter((file) => file instanceof File);
       const newPreviews = newFiles.map((file) => URL.createObjectURL(file));
+
       setFileCount((prevCount) => prevCount + newFiles.length);
       setFilePreviews((prevFiles) => [...prevFiles, ...newPreviews]);
 
       const allAssets = [...existingUrls, ...newFiles];
+      console.log(allAssets);
       setValue("assets", allAssets);
     },
     [getValues, setValue],
@@ -113,7 +118,6 @@ const useTaskModal = ({ task, onClose }) => {
       try {
         setIsLoading(true);
         document.body.style.pointerEvents = "none";
-
         const teamIds = data.team.map((member) => member.value);
         const files = data.assets.filter((item) => item instanceof File);
         const uploadedFileURLs = await Promise.all(files.map((file) => uploadFile(file)));

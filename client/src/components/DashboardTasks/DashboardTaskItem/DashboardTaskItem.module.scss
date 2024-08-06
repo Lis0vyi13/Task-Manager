@@ -9,7 +9,7 @@
   &:not(:first-of-type) {
     width: 15%;
     @include mq(xl) {
-      width: 10%;
+      width: 13.1%;
     }
     flex-grow: 1;
     flex-shrink: 1;

@@ -40,11 +40,7 @@ const ColorPicker = memo(({ name, control, label, rules }) => {
       <div className={styles.colorsContainer}>
         <div className={styles.options}>
           {colorOptions.map((option, i) => (
-            <ColorBox
-              key={option + "-" + i}
-              option={option}
-              {...colorBoxProps}
-            />
+            <ColorBox key={option + "-" + i} option={option} {...colorBoxProps} />
           ))}
         </div>
         <div className={styles.avatar}>

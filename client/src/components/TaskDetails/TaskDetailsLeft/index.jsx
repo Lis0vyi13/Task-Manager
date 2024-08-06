@@ -1,4 +1,5 @@
 import { memo, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 
 import useTaskDetailsLeft from "./useTaskDetailsLeft";
 import useModal from "@/hooks/useModal";
@@ -12,7 +13,6 @@ import Subtask from "../Subtask";
 
 import styles from "./TaskDetailsLeft.module.scss";
 import { IoMdAdd } from "react-icons/io";
-import { useLocation } from "react-router-dom";
 
 const TaskDetailsLeft = memo(({ task }) => {
   const { progressColor, subtasksProgress, subTasks } = useTaskDetailsLeft({
@@ -22,14 +22,16 @@ const TaskDetailsLeft = memo(({ task }) => {
     setItem: () => {},
   });
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const locationState = location.state?.state;
     if (locationState?.isSubtaskModalOpen) {
       openAddSubtaskModal();
+      navigate(location.pathname, { replace: true, state: { ...location.state, state: null } });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [location.state]);
+  }, []);
 
   return (
     <>

@@ -1,4 +1,5 @@
 import { memo } from "react";
+import { createPortal } from "react-dom";
 import useProfile from "./useProfile";
 
 import Modal from "../Modal";
@@ -10,7 +11,6 @@ import ColorPicker from "@/ui/Inputs/ColorPicker";
 import Loader from "@/ui/Loader";
 
 import styles from "./EditProfile.module.scss";
-import { createPortal } from "react-dom";
 
 const EditProfile = memo(({ onClose, changedValue }) => {
   const { handleSubmit, onSubmit, handleFileChange, avatarPhoto, isLoading, control } = useProfile({

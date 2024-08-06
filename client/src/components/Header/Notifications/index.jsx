@@ -84,6 +84,7 @@ const Notifications = memo(() => {
                     readType: "all",
                     data: {},
                   }).unwrap();
+                  toast.success("Readed successfully!");
                 } catch (error) {
                   toast.error(error.data.message);
                 }

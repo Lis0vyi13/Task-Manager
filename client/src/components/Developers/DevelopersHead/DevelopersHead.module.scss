@@ -2,12 +2,14 @@
 @import "@/styles/breakpoints";
 
 .developersTableHead {
+  position: relative;
   text-transform: capitalize;
   left: 0;
   top: 1px;
   transform: translateY(-2px);
   z-index: 2;
   width: 100%;
+  height: 53px;
   @include mq(xsSm) {
     padding-top: 4px;
   }

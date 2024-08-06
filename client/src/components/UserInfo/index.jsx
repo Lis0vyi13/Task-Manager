@@ -1,8 +1,18 @@
 import getInitials from "@/utils/getInitials";
 
 import styles from "./UserInfo.module.scss";
+import ImageModal from "@/ui/Modals/Image";
+import { useCallback, useState } from "react";
 
 const UserInfo = ({ name, surname, title, email, color, avatar, avatarColor }) => {
+  const [selectedImage, setSelectedImage] = useState(null);
+  const handleImageClick = useCallback((src) => {
+    setSelectedImage(src);
+  }, []);
+  const handleCloseModal = useCallback(() => {
+    setSelectedImage(null);
+  }, []);
+
   return (
     <div className={`${styles.userInfo}`}>
       <div className={styles.content}>
@@ -14,7 +24,10 @@ const UserInfo = ({ name, surname, title, email, color, avatar, avatarColor }) =
           className={styles.avatar}
         >
           {avatar ? (
-            <div className={styles.avatarImg}>
+            <div
+              onClick={() => handleImageClick(avatar)}
+              className={"avatar" + " " + styles.avatarImg}
+            >
               <img src={avatar} alt="user avatar" />
             </div>
           ) : (
@@ -31,6 +44,14 @@ const UserInfo = ({ name, surname, title, email, color, avatar, avatarColor }) =
           </a>
         </div>
       </div>
+      {selectedImage && (
+        <ImageModal
+          changedValue={selectedImage}
+          src={selectedImage}
+          alt="Selected asset"
+          onClose={handleCloseModal}
+        />
+      )}
     </div>
   );
 };

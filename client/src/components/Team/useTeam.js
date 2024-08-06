@@ -21,10 +21,7 @@ const useTeam = ({ team }) => {
     const handleOutsideClick = (e) => {
       userInfos.forEach((userInfo, i) => {
         if (userInfo && userInfo.classList.contains(styles.active)) {
-          if (
-            !userInfos[i].contains(e.target) &&
-            !avatars[i].contains(e.target)
-          ) {
+          if (!userInfos[i].contains(e.target) && !avatars[i].contains(e.target)) {
             userInfo.classList.remove(styles.active);
           }
         }
@@ -41,7 +38,9 @@ const useTeam = ({ team }) => {
 
     userInfos.forEach((userInfo) => {
       if (userInfo) {
-        userInfo.addEventListener("click", (e) => e.stopPropagation());
+        userInfo.addEventListener("click", (e) => {
+          if (!e.target.closest(".avatar")) e.stopPropagation();
+        });
       }
     });
 
