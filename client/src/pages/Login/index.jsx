@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useActions from "@/hooks/useActions";
 
 import useAuth from "@/hooks/useAuth";
 import useBreakpoints from "@/hooks/useBreakpoints";
@@ -9,16 +10,30 @@ import LoginForm from "@/components/LoginForm";
 import Circle from "@/components/Circle";
 
 import styles from "./LoginPage.module.scss";
+import { getCookie } from "@/utils/getCookie";
 
 const LoginPage = () => {
-  const user = useAuth();
+  const isLoggedIn = useAuth();
   const navigate = useNavigate();
   const { isDesktop } = useBreakpoints();
   const [isSignUp, setIsSignUp] = useState(false);
+  const { checkAuth } = useActions();
 
   useEffect(() => {
-    user && navigate("/");
-  }, [navigate, user]);
+    isLoggedIn && navigate("/");
+  }, [navigate, isLoggedIn]);
+
+  useEffect(() => {
+    const checkCookies = () => {
+      checkAuth();
+      console.log(getCookie("__l"), getCookie("__u"), isLoggedIn);
+    };
+
+    const interval = setInterval(checkCookies, 1000);
+
+    // Cleanup interval on component unmount
+    return () => clearInterval(interval);
+  }, [checkAuth, isLoggedIn]);
 
   const handleSignInClick = () => {
     setIsSignUp((prev) => !prev);
