@@ -6,7 +6,6 @@ import Form from "./Form";
 import styles from "./Activities.module.scss";
 
 const Activities = ({ task }) => {
-  console.log(task);
   return (
     <section className={styles.activitiesWrapper}>
       <article className={styles.left}>

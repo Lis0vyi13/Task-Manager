@@ -188,6 +188,8 @@
 }
 
 .lastTaskPopup {
-  bottom: 90px;
-  right: 40px;
+  @include mq(sm) {
+    bottom: 90px;
+    right: 40px;
+  }
 }

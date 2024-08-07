@@ -91,9 +91,13 @@
 }
 
 .popup {
-  bottom: 10px;
+  @include mq(sm) {
+    bottom: 10px;
+  }
 }
 .lastChildPopup {
-  bottom: 70px;
-  right: 60px;
+  @include mq(sm) {
+    bottom: 70px;
+    right: 60px;
+  }
 }
