@@ -21,13 +21,25 @@ const LoginForm = ({ isSignUp, onSignInClick }) => {
           {isSignUp &&
             signUpInputs.map((input, index) => (
               <div key={index} className={styles.inputWrapper}>
-                <InputField {...input} control={control} />
+                <InputField
+                  spellCheck={false}
+                  autoCorrect="off"
+                  autoCapitalize="off"
+                  {...input}
+                  control={control}
+                />
               </div>
             ))}
 
           {loginInputs.map((input, index) => (
             <div className={styles.inputWrapper} key={index}>
-              <InputField {...input} control={control} />
+              <InputField
+                spellCheck={false}
+                autoCorrect="off"
+                autoCapitalize="off"
+                {...input}
+                control={control}
+              />
             </div>
           ))}
 
